@@ -25,6 +25,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { NgChartsModule } from 'ng2-charts';
 import { MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list'
+
 
 @NgModule({
   declarations: [
@@ -59,6 +64,10 @@ import { MatProgressBarModule} from '@angular/material/progress-bar';
     NgChartsModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    MatTabsModule,
+    MatTableModule,
+    MatSidenavModule,
+    MatListModule
   ],
   exports:[
     MatToolbarModule,
@@ -84,7 +93,11 @@ import { MatProgressBarModule} from '@angular/material/progress-bar';
     BarrasComponent,
     LineComponent,
     DonaPuntosComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    MatTabsModule,
+    MatTableModule,
+    MatSidenavModule,
+    MatListModule
   ]
 })
 export class SharedModule { }
