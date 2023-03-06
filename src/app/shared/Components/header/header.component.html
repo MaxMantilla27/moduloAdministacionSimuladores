@@ -1,0 +1,16 @@
+<mat-toolbar class="matTolBArHeader fixed-top" >
+  <div class="avatar">
+    <img  [src]="urlAvatar" alt="">
+    <div mat-icon-button [matMenuTriggerFor]="logout" ><span id="name-avatar">{{NombreAlumno}}</span>  <i class="material-icons">arrow_drop_down</i></div>
+  </div>
+</mat-toolbar>
+
+<mat-menu #logout="matMenu" style="padding: 0px 20px;" class="matmenuCustom">
+  <div class="contentMatMenu" (click)="$event.stopPropagation();" style="padding: 10px 20px !important;">
+    <button mat-menu-item class="buttonMenuHeader" style="padding: 5px !important;"(click)="cerrarSesion()">
+      <mat-icon>logout</mat-icon>
+      <span>Salir</span>
+    </button>
+  </div>
+</mat-menu>
+
