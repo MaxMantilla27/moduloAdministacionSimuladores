@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ConfiguracionPreguntasComponent } from './configuracion-preguntas/configuracion-preguntas.component';
 import { ConfiguracionTipoPreguntasComponent } from './configuracion-tipo-preguntas/configuracion-tipo-preguntas.component';
 import { ConfiguracionInterfazComponent } from './configuracion-interfaz/configuracion-interfaz.component';
+import { AdministrarUsuariosComponent } from './administrar-usuarios/administrar-usuarios.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ConfiguracionInterfazComponent } from './configuracion-interfaz/configu
     ConfiguracionCategoriasComponent,
     ConfiguracionPreguntasComponent,
     ConfiguracionTipoPreguntasComponent,
-    ConfiguracionInterfazComponent
+    ConfiguracionInterfazComponent,
+    AdministrarUsuariosComponent
   ],
   imports: [
     CommonModule,

@@ -9,6 +9,10 @@ export class ConfiguracionInterfazComponent implements OnInit {
 
   constructor() { }
 
+  datasource=[]
+
+  displayedColumns: string[] = ['minimo', 'maximo', 'intentos', 'nivel'];
+
   ngOnInit(): void {
   }
 

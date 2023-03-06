@@ -1,1 +1,76 @@
-<p>configuracion-interfaz works!</p>
+<div class="contenedor">
+  <div class="titulo">
+    <h1>Configuracion de interfaz</h1>
+    <p>
+      Puedes modificar el video tutorial y el logotipo mostrado al inicio del
+      simulador
+    </p>
+  </div>
+
+  <div class="contenedor">
+    <div class="inp">
+      <div class="tit">
+        <p>Video Tutorial:</p>
+      </div>
+      <input placeholder="[Url / IdVideo]" />
+    </div>
+
+    <div class="inp">
+      <div class="tit">
+        <p>Logotipo:</p>
+      </div>
+      <input class="ng-hide" id="input-file-id" multiple type="file" />
+    </div>
+
+    <p>Parametros de nivel</p>
+    <table mat-table class="mat-elevation-z8" [dataSource]="datasource">
+      <ng-container matColumnDef="minimo">
+        <th mat-header-cell *matHeaderCellDef style="width: 80px">
+          Promedio Minimo
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="maximo">
+        <th mat-header-cell *matHeaderCellDef style="width: 80px">
+          Promedio Maximo
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="intentos">
+        <th mat-header-cell *matHeaderCellDef style="width: 80px">
+          N intentos
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="nivel">
+        <th mat-header-cell *matHeaderCellDef style="width: 80px">Nivel</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+
+    <div class="contenedor">
+        <div class="inp">
+          <div class="tit">
+            <p>Porcentaje minimo de aprobacion:</p>
+          </div>
+          <input type="number"  />
+        </div>
+    
+        <div class="inp">
+          <div class="tit">
+            <p>Vigencia de acceso:</p>
+          </div>
+          <input type="number"  />
+        </div>
+    
+  </div>
+
+  <button mat-raised-button style="background-color: orange; color:white;">Guardar Cambios</button>
+</div>
