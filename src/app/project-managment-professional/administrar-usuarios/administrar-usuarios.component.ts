@@ -9,6 +9,10 @@ export class AdministrarUsuariosComponent implements OnInit {
 
   constructor() { }
 
+  displayedColumns: string[] = ['codigo', 'alumno', 'correo', 'programa','centro', 'fechaMatricula', 'curso', 'estadoPagos','pagos', 'solicitud', 'habilitar', 'caducidad'];
+  
+  datasource=[]
+
   ngOnInit(): void {
   }
 

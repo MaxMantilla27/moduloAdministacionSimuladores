@@ -33,7 +33,7 @@
           >Administrador de usuarios</span
         >
       </mat-list-item>
-      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
+      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" [routerLink]="'reporteGeneral'">
         <span class="full-width" *ngIf="isExpanded || isShowing"
           >Reporte General</span
         >

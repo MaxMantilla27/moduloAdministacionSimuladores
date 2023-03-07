@@ -8,6 +8,7 @@ import { ConfiguracionPreguntasComponent } from './configuracion-preguntas/confi
 import { ConfiguracionTipoPreguntasComponent } from './configuracion-tipo-preguntas/configuracion-tipo-preguntas.component';
 import { ConfiguracionInterfazComponent } from './configuracion-interfaz/configuracion-interfaz.component';
 import { AdministrarUsuariosComponent } from './administrar-usuarios/administrar-usuarios.component';
+import { ReporteGeneralComponent } from './reporte-general/reporte-general.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { AdministrarUsuariosComponent } from './administrar-usuarios/administrar
     ConfiguracionPreguntasComponent,
     ConfiguracionTipoPreguntasComponent,
     ConfiguracionInterfazComponent,
-    AdministrarUsuariosComponent
+    AdministrarUsuariosComponent,
+    ReporteGeneralComponent
   ],
   imports: [
     CommonModule,
