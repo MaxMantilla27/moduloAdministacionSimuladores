@@ -1,0 +1,93 @@
+.contenedor {
+    padding: 15px;
+  }
+  
+  .titulo {
+    padding: 15px;
+  }
+  
+  p {
+    color: grey;
+  }
+  
+  h1 {
+    font-size: 30px;
+    color: grey;
+  }
+  
+  .inp {
+    width: 100%;
+    display: flex;
+    margin-bottom: 15px;
+  }
+  
+  .inp input {
+    margin-right: 20px;
+  }
+  
+  .inp button {
+    margin-right: 20px;
+  }
+  
+  .inp .tit {
+    margin-right: 20px;
+    width: 200px;
+  }
+  
+  .inp p {
+    margin-right: 20px;
+    color: grey;
+    font-size: 15px;
+  }
+  
+  .contenedor {
+    padding: 15px;
+  }
+
+  .colorin{
+    background-color: #323232;
+    border: 1px solid #323232;
+    color: white;
+  }
+
+
+  .modos{
+    margin: auto;
+    padding: auto;
+    width: 250px;
+    height: 40px;
+    text-align: center;
+    border: 1px solid grey;
+    border-radius: 5px;
+    color: black;
+  }
+
+  .item-leyenda-dona-principal{
+    color: #af9f9f;
+    padding-top: 20px;
+    padding-bottom: 5px;
+  }
+
+  .datos1{
+    border: 1px solid white; 
+    text-align: center;
+  }
+
+
+  .datos{
+    border: 1px solid grey; 
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+
+  .ContenidoDonaPuntos2{
+    line-height: 20px;
+    text-align: center;
+    font-size: 50px;
+    color: #0684f2;
+    border-radius: 100%;
+    font-weight: 700;
+  }
+  
