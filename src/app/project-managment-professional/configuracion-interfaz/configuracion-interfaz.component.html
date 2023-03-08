@@ -7,7 +7,6 @@
     </p>
   </div>
 
-  <div class="contenedor">
     <div class="inp">
       <div class="tit">
         <p>Video Tutorial:</p>
@@ -25,14 +24,14 @@
     <p>Parametros de nivel</p>
     <table mat-table class="mat-elevation-z8" [dataSource]="datasource">
       <ng-container matColumnDef="minimo">
-        <th mat-header-cell *matHeaderCellDef style="width: 80px">
+        <th mat-header-cell *matHeaderCellDef style="width: 140px">
           Promedio Minimo
         </th>
         <td mat-cell *matCellDef="let element">{{ element.position }}</td>
       </ng-container>
 
       <ng-container matColumnDef="maximo">
-        <th mat-header-cell *matHeaderCellDef style="width: 80px">
+        <th mat-header-cell *matHeaderCellDef style="width: 140px">
           Promedio Maximo
         </th>
         <td mat-cell *matCellDef="let element">{{ element.name }}</td>
@@ -55,7 +54,7 @@
     </table>
 
 
-    <div class="contenedor">
+    
         <div class="inp">
           <div class="tit">
             <p>Porcentaje minimo de aprobacion:</p>
@@ -70,7 +69,7 @@
           <input type="number"  />
         </div>
     
-  </div>
+
 
   <button mat-raised-button style="background-color: orange; color:white;">Guardar Cambios</button>
 </div>

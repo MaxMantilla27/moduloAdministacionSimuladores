@@ -1,11 +1,12 @@
-.contenedor {
+.contenedor{
+  padding: 15px;
+  padding-left: 70px;
+}
+
+.titulo{
     padding: 15px;
   }
-  
-  .titulo {
-    padding: 15px;
-  }
-  
+
   p {
     color: grey;
   }
@@ -20,11 +21,7 @@
     display: flex;
     margin-bottom: 15px;
   }
-  
-  
-  .contenedor {
-    padding: 15px;
-  }
+
   
   .half {
     width: 50%;

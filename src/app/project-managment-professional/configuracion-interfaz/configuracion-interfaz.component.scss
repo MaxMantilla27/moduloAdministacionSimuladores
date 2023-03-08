@@ -1,46 +1,45 @@
-.contenedor{
-    padding: 15px;
+.contenedor {
+  padding: 15px;
+  padding-left: 70px;
+}
+.titulo {
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
-.titulo{
-    padding: 15px;
-  }
-
-p{
-    color: grey;
-  }
-
-h1{
-    font-size: 30px;
-    color: grey;
-  }
-
-
-
-  h3{
-    font-size: 15px;
-    color: grey;
-  }
-
-  .inp{
-    display: flex;
-    margin-bottom:15px ;
-  }
-
-  .inp .tit{
-
-    width: 250px;
-  }
-
-  .inp p{
-    margin-right: 20px;
-    color: grey;
-    font-size: 15px;
-  }
-
-  .contenedor{
-    padding: 15px;
+p {
+  color: grey;
 }
-table{
-    margin-bottom: 10px;
+
+h1 {
+  font-size: 30px;
+  color: grey;
+}
+
+input {
+  width: 400px;
+}
+
+h3 {
+  font-size: 15px;
+  color: grey;
+}
+
+.inp {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.inp .tit {
+  width: 250px;
+}
+
+.inp p {
+  margin-right: 20px;
+  color: grey;
+  font-size: 15px;
+}
+
+table {
+  margin-bottom: 10px;
 }
