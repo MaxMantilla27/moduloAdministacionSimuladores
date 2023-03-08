@@ -36,24 +36,26 @@ export class HeaderComponent implements OnInit {
   }
   public urlAvatar='';
   public Avatar: AvatarDTO = {
+    id: 0,
+    idPersonal: 0,
     accessories: '',
     clothes: '',
-    clothes_Color: '',
+    clothesColor: '',
     eyes: '',
     eyesbrow: '',
-    facial_Hair: '',
-    facial_Hair_Color: '',
-    hair_Color: '',
-    idAlumno: 0,
-    idAspNetUsers: '',
-    idAvatar: 0,
+    facialHair: '',
+    facialHairColor: '',
+    hairColor: '',
     mouth: '',
     skin: '',
-    topC: ''
+    top: '',
+    idSexo:0,
+    usuario:''
   };
   public token: boolean = this._SessionStorageService.validateTokken();
 
   ngOnInit(): void {
+    console.log(this.token)
     if (this.token) {
       this.ObtenerAvatar();
     }
@@ -71,8 +73,10 @@ export class HeaderComponent implements OnInit {
     this._AvatarService.ObtenerAvatar().pipe(takeUntil(this.signal$)).subscribe({
       next: (x) => {
         this.Avatar = x;
+        console.log(x)
         this.NombreAlumno = x.nombres
         this.urlAvatar=this._AvatarService.GetUrlImagenAvatar(this.Avatar);
+        console.log(this.urlAvatar)
       },
     });
   }

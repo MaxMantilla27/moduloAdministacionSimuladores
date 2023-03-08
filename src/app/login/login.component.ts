@@ -3,7 +3,7 @@ import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms
 import { Router } from '@angular/router';
 import { DatoObservableDTO } from '../Models/DatoObservableDTO';
 import { loginDTO, UserCredentialsDTO } from '../Models/login';
-import { AspNetUserService } from '../shared/Services/AspNetUsers/asp-net-users.service';
+import { AccountService } from '../shared/Services/Account/account.service';
 import { HelperService } from '../shared/Services/helper.service';
 import { SessionStorageService } from '../shared/Services/session-storage.service';
 
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private _AspNetUsers:AspNetUserService,
+    private _Account:AccountService,
     private _SessionStorageService:SessionStorageService,
     private _HelperService:HelperService
   ) { }
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
     if(this.userForm.valid){
       this.CuentaLogin.username=this.userForm.get('Email')?.value;
       this.CuentaLogin.password=this.userForm.get('Password')?.value;
-      this._AspNetUsers.Authenticate(this.CuentaLogin).subscribe({
+      this._Account.Authenticate(this.CuentaLogin).subscribe({
       next: x => {
         this.statuscharge=false
           this._SessionStorageService.SetToken(x.token)
@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
         this.errorLogin=e.error.excepcion.descripcionGeneral;
         setTimeout(()=>{
           this.errorLogin='';
-        },10000);
+        },3000);
       },
       complete:()=>{
         this.statuscharge=false
