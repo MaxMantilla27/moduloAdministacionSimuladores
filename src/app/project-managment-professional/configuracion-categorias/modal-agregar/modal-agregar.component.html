@@ -1,0 +1,87 @@
+<ng-container *ngIf="loader == true">
+  <div class="loading-indicator">
+    <mat-progress-spinner
+      mode="indeterminate"
+      color="accent"
+    ></mat-progress-spinner>
+  </div>
+</ng-container>
+<div class="titulo">Añadir Categoria</div>
+<mat-dialog-content class="mat-typography">
+  <div class="contenedor">
+    <div class="inre">
+      <h3>Nombre de la categoria *</h3>
+      <div class="ver">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Nombre de la categoria</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="inre">
+      <h3>Leyenda *</h3>
+      <div class="ver">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Leyenda</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div class="contenedor">
+    <div class="inre">
+      <h3>Cantidad de preguntas totales *</h3>
+      <div class="ver">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Cantidad de preguntas</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="inre">
+      <h3>Cantidad de preguntas por examen *</h3>
+      <div class="ver">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Cantidad de preguntas</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div class="contenedor">
+    <div class="inre">
+      <h3>Proporcion *</h3>
+      <div class="ver">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Proporcion</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="inre">
+      <h3>Tiene subcategoria *</h3>
+      <div class="ver">
+        <input type="checkbox" />
+      </div>
+    </div>
+  </div>
+
+  <div class="contenedor">
+    <div class="inre">
+      <h3>Nombre de la categoria *</h3>
+      <div class="ver">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Nombre de la categoria</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div class="crear">
+    <button mat-flat-button class="botonAgregar">Guardar</button>
+    <button mat-flat-button class="cancelar" (click)="Cancelar()">Cancelar</button>
+  </div>
+</mat-dialog-content>

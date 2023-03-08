@@ -8,6 +8,7 @@ import { ConfiguracionPreguntasComponent } from './configuracion-preguntas/confi
 import { ConfiguracionTipoPreguntasComponent } from './configuracion-tipo-preguntas/configuracion-tipo-preguntas.component';
 import { ProjectManagmentProfessionalComponent } from './project-managment-professional.component';
 import { ReporteGeneralComponent } from './reporte-general/reporte-general.component';
+import { ReporteUsuariosComponent } from './reporte-usuarios/reporte-usuarios.component';
 
 const routes: Routes = [
   {path:'',component:ProjectManagmentProfessionalComponent,canActivateChild:[AuthGuard] ,children:[
@@ -17,7 +18,8 @@ const routes: Routes = [
     {path:'configuracionPreguntas', component: ConfiguracionPreguntasComponent},
     {path:'configuracionInterfaz', component: ConfiguracionInterfazComponent},
     {path:'administrarUsuarios', component: AdministrarUsuariosComponent},
-    {path:'reporteGeneral', component: ReporteGeneralComponent}
+    {path:'reporteGeneral', component: ReporteGeneralComponent},
+    {path: 'reporteUsuario', component: ReporteUsuariosComponent}
   ]},
 ];
 

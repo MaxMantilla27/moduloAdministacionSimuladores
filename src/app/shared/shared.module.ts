@@ -28,7 +28,9 @@ import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list'
+import {MatDialogModule} from '@angular/material/dialog'
+import {MatListModule} from '@angular/material/list';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -67,7 +69,9 @@ import {MatListModule} from '@angular/material/list'
     MatTabsModule,
     MatTableModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule,
+    MatPaginatorModule
   ],
   exports:[
     MatToolbarModule,
@@ -97,7 +101,9 @@ import {MatListModule} from '@angular/material/list'
     MatTabsModule,
     MatTableModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule,
+    MatPaginatorModule
   ]
 })
 export class SharedModule { }
