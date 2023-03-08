@@ -1,19 +1,20 @@
 
 export interface AvatarDTO{
-  idAvatar:number,
-  idAlumno:number,
-  idAspNetUsers:string,
-  topC:string,
+  id:number,
+  idPersonal:number,
+  top:string,
   accessories:string,
-  hair_Color:string,
-  facial_Hair:string,
-  facial_Hair_Color:string,
+  hairColor:string,
+  facialHair:string,
+  facialHairColor:string,
   clothes:string,
-  clothes_Color:string,
+  clothesColor:string,
   eyes:string,
   eyesbrow:string,
   mouth:string,
-  skin:string
+  skin:string,
+  usuario:string,
+  idSexo:number,
 }
 export interface AvatarCaracteristicaDTO{
   IdAvatarCaracteristica:number,
