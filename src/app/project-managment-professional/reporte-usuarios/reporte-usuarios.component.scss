@@ -47,7 +47,7 @@
   .colorin{
     background-color: #323232;
     border: 1px solid #323232;
-    color: white;
+    color: white !important;
   }
 
 
@@ -89,5 +89,13 @@
     color: #0684f2;
     border-radius: 100%;
     font-weight: 700;
+  }
+
+  ::placeholder{
+    text-align: center;
+  }
+
+  input{
+    width: 300px;
   }
   

@@ -4,7 +4,7 @@
     <mat-tab-group >
         <mat-tab label="Categorias">
             <div class="titulo">
-              <h1>Configuracion de categorias</h1>
+              <h1>Categorias</h1>
                 <p>Puedes modificar los nombres de las categorias y su proporcion dentro del examen, este determinara cuantas preguntas apareceran cada categoria en los modos entrenamiento y examen</p>
             </div>
             <table mat-table  class="mat-elevation-z8" [dataSource]="datasource">
@@ -35,7 +35,7 @@
         </mat-tab>
         <mat-tab label="Sub categorias"> 
             <div class="titulo">
-                <h1>Configuracion de sub categorias</h1>
+                <h1>Sub categorias</h1>
                 <p>En caso el examen cuente con una distribucion por subcategorias apareceran aqui</p>
             </div>
 
@@ -71,3 +71,12 @@
         </mat-tab>
       </mat-tab-group>
     </div>
+
+
+    <button
+          class="modos"
+          mat-flat-button
+          (click)="openDialog()"
+        >
+          Modo estudio
+        </button>

@@ -13,7 +13,7 @@
         <p>Codigo de matricula:</p>
       </div>
       <input placeholder="[Codigo]" />
-      <button mat-raised-button style="background-color: skyblue; color: white">
+      <button mat-raised-button style="background-color: #23CAE4; color: white">
         Buscar
       </button>
     </div>
@@ -91,7 +91,7 @@
       <div class="col-md-4">
         <div>
           <p>Resultados de la ultima simulacion</p>
-          <app-dona [Puntos]="Puntos"></app-dona>
+          <app-dona [Puntos]="Puntos" [TotalPuntos]="Puntos"></app-dona>
           <div class="item-leyenda-dona-principal">
             <div>[Categoria] : [Subcategoria]</div>
           </div>
@@ -99,7 +99,7 @@
       </div>
       <div class="col-md-4">
         <p>Mejor puntaje obtenido</p>
-        <app-dona [Puntos]="Puntos"></app-dona>
+        <app-dona [Puntos]="Puntos" [TotalPuntos]="Puntos"></app-dona>
         <div class="item-leyenda-dona-principal">
           <div>[Categoria] : [Subcategoria]</div>
         </div>
@@ -156,7 +156,7 @@
         <div class="col-md-4">
           <div>
             <p>Resultados de la ultima simulacion</p>
-            <app-dona [Puntos]="Puntos"></app-dona>
+            <app-dona [Puntos]="Puntos" [TotalPuntos]="Puntos"></app-dona>
             <div class="item-leyenda-dona-principal">
               <div>[Nombre de la simulacion]</div>
             </div>
@@ -164,12 +164,78 @@
         </div>
         <div class="col-md-4">
           <p>Mejor puntaje obtenido</p>
-          <app-dona [Puntos]="Puntos"></app-dona>
+          <app-dona [Puntos]="Puntos" [TotalPuntos]="Puntos"></app-dona>
           <div class="item-leyenda-dona-principal">
             <div>[Nombre de la simulacion]</div>
           </div>
         </div>
         <div class="col-md-4">
+          <p>Puntaje general por categorias</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="container datos1" style="margin-top: 50px">
+    <table mat-table  class="mat-elevation-z8" [dataSource]="datasource">
+                    
+      <ng-container matColumnDef="ranking" >
+        <th mat-header-cell *matHeaderCellDef style="width: 200px"> Ranking</th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="nombre" >
+        <th mat-header-cell *matHeaderCellDef style="width: 400px"> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="fechaInicio">
+        <th mat-header-cell *matHeaderCellDef style="width: 300px"> Fecha y hora de inicio </th>
+        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="FechaFinalizacion">
+        <th mat-header-cell *matHeaderCellDef style="width: 300px"> Fecha y hora de finalizacion </th>
+        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="duracion">
+          <th mat-header-cell *matHeaderCellDef style="width: 200px"> Duracion </th>
+          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="puntaje">
+          <th mat-header-cell *matHeaderCellDef style="width: 200px"> Puntaje </th>
+          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  </ng-container>
+
+  <ng-container *ngIf="seleccionado == 3">
+  
+    <div class="container datos">
+      <div class="row">
+        <div class="col-md-4">
+          <div>
+            <p>Resultados de la ultima simulacion</p>
+            <app-dona [Puntos]="Puntos" [TotalPuntos]="Puntos"></app-dona>
+            <div class="item-leyenda-dona-principal">
+              <div>[Nombre de la simulacion]</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <p>Mejor puntaje obtenido</p>
+          <app-dona [Puntos]="Puntos" [TotalPuntos]="Puntos"></app-dona>
+          <div class="item-leyenda-dona-principal">
+            <div>[Nombre de la simulacion]</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+           
           <p>Puntaje general por categorias</p>
         </div>
       </div>

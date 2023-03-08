@@ -10,6 +10,8 @@ import { ConfiguracionInterfazComponent } from './configuracion-interfaz/configu
 import { AdministrarUsuariosComponent } from './administrar-usuarios/administrar-usuarios.component';
 import { ReporteGeneralComponent } from './reporte-general/reporte-general.component';
 import { ReporteUsuariosComponent } from './reporte-usuarios/reporte-usuarios.component';
+import { ModalAgregarComponent } from './configuracion-categorias/modal-agregar/modal-agregar.component';
+import { ModalAgregarPreguntasComponent } from './configuracion-preguntas/modal-agregar-preguntas/modal-agregar.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { ReporteUsuariosComponent } from './reporte-usuarios/reporte-usuarios.co
     ConfiguracionInterfazComponent,
     AdministrarUsuariosComponent,
     ReporteGeneralComponent,
-    ReporteUsuariosComponent
+    ReporteUsuariosComponent,
+    ModalAgregarComponent,
+    ModalAgregarPreguntasComponent
   ],
   imports: [
     CommonModule,

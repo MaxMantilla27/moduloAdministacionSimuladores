@@ -23,7 +23,7 @@
      background-color: #23CAE4;
      border-radius: 5px;
      padding:10px;
-     color:white
+     color:white !important;
 
   }
   .full-width {
@@ -47,4 +47,10 @@
   .parent:hover{
     color:white
   }
+
+  .parent:focus{
+    color:white
+  }
+
+
 
