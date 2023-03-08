@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ModalAgregarSubcategoriaComponent } from './modal-agregar-subcategoria/modal-agregar-subcategoria.component';
 import { ModalAgregarComponent } from './modal-agregar/modal-agregar.component';
 
 @Component({
@@ -22,6 +23,17 @@ export class ConfiguracionCategoriasComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(ModalAgregarComponent, {
+      width: '1000px',
+      maxHeight: '90vh',
+      panelClass: 'dialog-gestor',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+  }
+
+  openDialogSub(){
+    const dialogRef = this.dialog.open(ModalAgregarSubcategoriaComponent, {
       width: '1000px',
       maxHeight: '90vh',
       panelClass: 'dialog-gestor',

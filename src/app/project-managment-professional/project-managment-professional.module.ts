@@ -12,6 +12,7 @@ import { ReporteGeneralComponent } from './reporte-general/reporte-general.compo
 import { ReporteUsuariosComponent } from './reporte-usuarios/reporte-usuarios.component';
 import { ModalAgregarComponent } from './configuracion-categorias/modal-agregar/modal-agregar.component';
 import { ModalAgregarPreguntasComponent } from './configuracion-preguntas/modal-agregar-preguntas/modal-agregar.component';
+import { ModalAgregarSubcategoriaComponent } from './configuracion-categorias/modal-agregar-subcategoria/modal-agregar-subcategoria.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ModalAgregarPreguntasComponent } from './configuracion-preguntas/modal-
     ReporteGeneralComponent,
     ReporteUsuariosComponent,
     ModalAgregarComponent,
-    ModalAgregarPreguntasComponent
+    ModalAgregarPreguntasComponent,
+    ModalAgregarSubcategoriaComponent
   ],
   imports: [
     CommonModule,
