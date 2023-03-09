@@ -10,14 +10,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InterceptorService } from './Interceptor/interceptor.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HelperService } from './shared/Services/helper.service';
-import { ProjectManagmentProfessionalComponent } from './project-managment-professional/project-managment-professional.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ErrorPageComponent,
-    ProjectManagmentProfessionalComponent,
+
   ],
   imports: [
     BrowserModule,

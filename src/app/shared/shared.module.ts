@@ -28,9 +28,9 @@ import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {MatDialogModule} from '@angular/material/dialog'
-import {MatListModule} from '@angular/material/list';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatDialogModule} from '@angular/material/dialog'
+import { MatListModule} from '@angular/material/list';
+import { MatPaginatorModule} from '@angular/material/paginator';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzAnchorModule } from 'ng-zorro-antd/anchor';
@@ -321,7 +321,7 @@ import { NzGraphModule } from 'ng-zorro-antd/graph';
     NzPipesModule,
     NzCodeEditorModule,
     NzGraphModule
-    
+
   ]
 })
 export class SharedModule { }

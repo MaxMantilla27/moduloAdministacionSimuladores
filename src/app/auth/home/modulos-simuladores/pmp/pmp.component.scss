@@ -1,0 +1,49 @@
+.example-container {
+    height: 820px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: white;
+  }
+  .example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+
+  }
+  .example-sidenav {
+     user-select: none;
+     background-color: #23CAE4;
+     border-radius: 5px;
+     padding:10px;
+     color:white !important;
+
+  }
+  .full-width {
+    width: 100%;
+  }
+  .menu-button {
+    transition: 300ms ease-in-out;
+    transform: rotate(0deg);
+  }
+  .menu-button.rotated {
+    transform: rotate(180deg);
+  }
+
+  .parent{
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: #23CAE4
+  }
+
+  .parent:hover{
+    color:white
+  }
+
+  .parent:focus{
+    color:white
+  }
+
+
+

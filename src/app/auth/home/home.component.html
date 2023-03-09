@@ -4,7 +4,7 @@
     <div class="subTituloHome">Selecciona el simulador de examen que deseas administrar:</div>
     <div class="row" style="margin-bottom:10px;margin-right: 10px;">
       <ng-container *ngFor="let item of ListaSimuladores">
-        <div class="col-12 col-md-6  CardsSimuladores" (click)="IdSimulador=item.id" style="cursor: pointer;">
+        <div class="col-12 col-md-6  CardsSimuladores"  style="cursor: pointer;" [routerLink]="'/'+item.esquema">
           <div class="card-body row" style="border-radius: 20px 20px 20px 20px;background: #FFFFFF;width: 103%;">
             <div>
               <img class="logoSimulador" src="https://repositorioweb.blob.core.windows.net/repositorioweb/simulador/{{item.esquema}}/imagenes/{{item.logo}}" />

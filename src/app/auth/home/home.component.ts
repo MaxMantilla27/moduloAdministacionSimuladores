@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit,ViewChild, ViewEncapsulation } from '@ang
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import { Router } from '@angular/router';
 import { Subject,takeUntil } from 'rxjs';
 import { AvatarDTO } from 'src/app/Models/AvatarDTO';
 import { AvatarService } from 'src/app/shared/Services/Avatar/avatar.service';
@@ -18,7 +19,8 @@ export class HomeComponent implements OnInit {
     private _SessionStorageService:SessionStorageService,
     private _AvatarService:AvatarService,
     private _HomeService: HomeService,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private router: Router,
   ) { }
   private signal$ = new Subject();
 
@@ -75,5 +77,4 @@ export class HomeComponent implements OnInit {
       },
     });
   }
-
 }
