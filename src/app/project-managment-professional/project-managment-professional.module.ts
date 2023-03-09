@@ -9,6 +9,10 @@ import { ConfiguracionTipoPreguntasComponent } from './configuracion-tipo-pregun
 import { ConfiguracionInterfazComponent } from './configuracion-interfaz/configuracion-interfaz.component';
 import { AdministrarUsuariosComponent } from './administrar-usuarios/administrar-usuarios.component';
 import { ReporteGeneralComponent } from './reporte-general/reporte-general.component';
+import { ReporteUsuariosComponent } from './reporte-usuarios/reporte-usuarios.component';
+import { ModalAgregarComponent } from './configuracion-categorias/modal-agregar/modal-agregar.component';
+import { ModalAgregarPreguntasComponent } from './configuracion-preguntas/modal-agregar-preguntas/modal-agregar.component';
+import { ModalAgregarSubcategoriaComponent } from './configuracion-categorias/modal-agregar-subcategoria/modal-agregar-subcategoria.component';
 
 
 @NgModule({
@@ -18,7 +22,11 @@ import { ReporteGeneralComponent } from './reporte-general/reporte-general.compo
     ConfiguracionTipoPreguntasComponent,
     ConfiguracionInterfazComponent,
     AdministrarUsuariosComponent,
-    ReporteGeneralComponent
+    ReporteGeneralComponent,
+    ReporteUsuariosComponent,
+    ModalAgregarComponent,
+    ModalAgregarPreguntasComponent,
+    ModalAgregarSubcategoriaComponent
   ],
   imports: [
     CommonModule,
