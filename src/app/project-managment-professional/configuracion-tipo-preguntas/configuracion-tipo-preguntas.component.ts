@@ -18,7 +18,9 @@ export class ConfiguracionTipoPreguntasComponent implements OnInit {
   seleccionado = false;
 
   displayedColumns: string[] = ['id', 'tipo', 'acciones'];
-
+  searchValue = '';
+  visible = false;
+  listOfDisplayData = [];
   
   public envio: actualizarTipoRespuestaDTO={
     id : 0,
@@ -78,4 +80,14 @@ export class ConfiguracionTipoPreguntasComponent implements OnInit {
       },
     });
   }
+
+  reset(): void {
+    this.searchValue = '';
+    this.search();
+  }
+
+  search(): void {
+    this.visible = false;
+    this.listOfDisplayData = this.datasource.filter((item: actualizarTipoRespuestaDTO) => item.nombre.indexOf(this.searchValue) !== -1);
+  } 
 }
