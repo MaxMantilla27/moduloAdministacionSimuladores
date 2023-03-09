@@ -18,7 +18,7 @@ const routes: Routes = [
       [
         { path: '', component: HomeComponent},
         { path: 'pmp', component: PmpComponent},
-        { path: 'pmp/configuracion',component:PmpConfiguracionCategoriasComponent},
+        { path: 'pmp/configuracionCategorias',component:PmpConfiguracionCategoriasComponent},
         { path: 'pmp/configuracionTipoPreguntas', component: PmpConfiguracionTipoPreguntasComponent},
         { path: 'pmp/configuracionPreguntas', component: PmpConfiguracionPreguntasComponent},
         { path: 'pmp/configuracionInterfaz', component: PmpConfiguracionInterfazComponent},
