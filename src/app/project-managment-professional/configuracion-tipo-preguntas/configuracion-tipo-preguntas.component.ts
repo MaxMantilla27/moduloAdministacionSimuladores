@@ -20,7 +20,9 @@ export class ConfiguracionTipoPreguntasComponent implements OnInit {
   displayedColumns: string[] = ['id', 'tipo', 'acciones'];
   searchValue = '';
   visible = false;
-  listOfDisplayData = [];
+  listOfDisplayData: any = [];
+  editId: string | null = null;
+  idMandar: number
   
   public envio: actualizarTipoRespuestaDTO={
     id : 0,
@@ -36,7 +38,14 @@ export class ConfiguracionTipoPreguntasComponent implements OnInit {
     this._TipoRespuesta.ObtenerTipoRespuesta().subscribe({
       next: (x: any) => {
         this.datasource = x;
+        this.listOfDisplayData = this.datasource
+        
         this.datasource.forEach((d:any)=> {
+          d.select=false;
+          d.NombreNUevo=d.nombre
+        });
+
+        this.listOfDisplayData.forEach((d:any)=> {
           d.select=false;
           d.NombreNUevo=d.nombre
         });
@@ -45,23 +54,24 @@ export class ConfiguracionTipoPreguntasComponent implements OnInit {
   }
 
   editar(index:number) {
-    this.datasource.forEach((d:any)=> {
+
+    this.listOfDisplayData.forEach((d:any)=> {
       d.select=false;
     });
-    this.datasource[index].select = true;
+    this.listOfDisplayData[index].select = true;
   }
 
   cancelar(index:number) {
-    this.datasource[index].select = false;
-    this.datasource[index].NombreNUevo = this.datasource[index].nombre;
+    this.listOfDisplayData[index].select = false;
+    this.listOfDisplayData[index].NombreNUevo = this.listOfDisplayData[index].nombre;
   }
 
   aceptar(index:number) {
-    this.datasource[index].select = false;
-    this.datasource[index].nombre = this.datasource[index].NombreNUevo;
+    this.listOfDisplayData[index].select = false;
+    this.listOfDisplayData[index].nombre = this.listOfDisplayData[index].NombreNUevo;
 
-    this.envio.id = this.datasource[index].id,
-      this.envio.nombre= this.datasource[index].NombreNUevo,
+    this.envio.id = this.listOfDisplayData[index].id,
+      this.envio.nombre= this.listOfDisplayData[index].NombreNUevo,
       this.envio.fechaModificacion= new Date()
       this.Actualizar() 
   }
@@ -81,13 +91,32 @@ export class ConfiguracionTipoPreguntasComponent implements OnInit {
     });
   }
 
-  reset(): void {
-    this.searchValue = '';
-    this.search();
+  // reset(): void {
+  //   this.searchValue = '';
+  //   this.search();
+  // }
+
+  // search(): void {
+  //   this.visible = false;
+  //   this.listOfDisplayData = this.datasource.filter((item: actualizarTipoRespuestaDTO) => item.nombre.indexOf(this.searchValue) !== -1);
+  // } 
+
+  
+  startEdit(id: string): void {
+    this.editId = id;
+    this.idMandar = parseInt(id);
+    this.listOfDisplayData.forEach((d:any)=> {
+      d.select=false;
+    });
+    this.listOfDisplayData[this.idMandar].select = true;
+
+    console.log(id)
+    console.log( this.listOfDisplayData[this.idMandar].select)
   }
 
-  search(): void {
-    this.visible = false;
-    this.listOfDisplayData = this.datasource.filter((item: actualizarTipoRespuestaDTO) => item.nombre.indexOf(this.searchValue) !== -1);
-  } 
+  stopEdit(): void {
+    this.listOfDisplayData.forEach((d:any)=> {
+      d.select=false;
+    });
+  }
 }

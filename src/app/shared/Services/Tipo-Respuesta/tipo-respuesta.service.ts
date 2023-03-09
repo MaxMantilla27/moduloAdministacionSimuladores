@@ -11,6 +11,8 @@ import { environment } from 'src/environments/environment';
 export class TipoRespuestaService {
 
   public urlBase=environment.url_api+'PmpTipoRespuesta';
+  public urlBase2=environment.url_api+'PmpParametrosNivel';
+  public urlBase3=environment.url_api+'PmpModo';
   constructor(private http: HttpClient) { }
 
 
@@ -18,9 +20,17 @@ export class TipoRespuestaService {
     return this.http.get<any>(this.urlBase+'/ObtenerTipoRespuestaEntity');
   }
 
-
   public actualizarTipoRespuesta(Json:actualizarTipoRespuestaDTO):Observable<any>{
     console.log(Json)
     return this.http.post<any>(this.urlBase+'/actualizarTipoRespuesta',Json);
   }
+
+  public ObtenerParametrosNivelEntity():Observable<any>{
+    return this.http.get<any>(this.urlBase2+'/ObtenerParametrosNivelEntity');
+  }
+
+  public ObtenerDominioCategorias():Observable<any>{
+    return this.http.get<any>(this.urlBase3 +'/ObtenerDominioCategorias');
+  }
+
 }

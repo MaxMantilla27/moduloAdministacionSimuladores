@@ -7,8 +7,92 @@
     </p>
   </div>
 
-  <div id_="test">
-    <table mat-table class="mat-elevation-z8" [dataSource]="datasource">
+  <div id="test">
+
+    <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed" class="table">
+      <thead>
+        <tr>
+          <th nzCustomFilter style="width:120px ; text-align: center; background-color: #e1dcdc">Id</th>
+          <th style=" text-align: center; background-color: #e1dcdc">
+            Tipo de pregunta
+            <!-- <nz-filter-trigger
+              [(nzVisible)]="visible"
+              [nzActive]="searchValue.length > 0"
+              [nzDropdownMenu]="menu"
+            >
+              <span nz-icon nzType="search"></span>
+            </nz-filter-trigger> -->
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of nzTable.data; let i = index">
+          <td style="text-align: center;">{{ data.id }}</td>
+          <td>
+            <!-- <div class="editable-cell" [hidden]="editId === data.id">
+              {{ data.nombre }}
+            </div>
+            <input
+              [hidden]="editId !== data.id"
+              type="text"
+              nz-input
+              [(ngModel)]="data.name"
+              (blur)="stopEdit()"
+            /> -->
+
+            <ng-container *ngIf="data.select == false">
+              {{ data.nombre }}
+            </ng-container>
+            <ng-container *ngIf="data.select == true">
+              <input
+                type="text"
+                nz-input
+                [(ngModel)]="data.NombreNUevo"
+                (blur)="stopEdit()"
+              />
+            </ng-container>
+          </td>
+          <td>
+            <ng-container *ngIf="data.select == false">
+              <button mat-button class="edit" (click)="editar(i)">
+                <i class="material-icons">edit</i>
+              </button>
+            </ng-container>
+            <ng-container *ngIf="data.select == true">
+              <button mat-button class="aceptar" (click)="aceptar(i)">
+                <i class="material-icons">check_circle</i>
+              </button>
+              <button mat-button class="cancel" (click)="cancelar(i)">
+                <i class="material-icons">close</i>
+              </button>
+            </ng-container>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+    <!-- <nz-dropdown-menu #menu="nzDropdownMenu">
+      <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+          <input
+            type="text"
+            nz-input
+            placeholder="Search name"
+            [(ngModel)]="searchValue"
+          />
+          <button
+            nz-button
+            nzSize="small"
+            nzType="primary"
+            (click)="search()"
+            class="search-button"
+          >
+            Search
+          </button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </div>
+    </nz-dropdown-menu> -->
+    <!-- <table mat-table class="mat-elevation-z8" [dataSource]="datasource">
       <ng-container matColumnDef="id">
         <th
           mat-header-cell
@@ -61,12 +145,10 @@
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
+    </table> -->
   </div>
   <!-- 
   <button mat-raised-button style="background-color: orange; color: white">
     Guardar Cambios
   </button> -->
 </div>
-
-

@@ -4,3 +4,12 @@ export interface actualizarTipoRespuestaDTO {
     fechaModificacion: Date,
 
   }
+
+
+  export interface actualizarParamtrosNivel {
+    id:number,
+    valorMinimo: number,
+    valorMaximo: number,
+
+  }
+
