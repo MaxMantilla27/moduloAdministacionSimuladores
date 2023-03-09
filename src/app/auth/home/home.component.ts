@@ -5,6 +5,7 @@ import { BaseChartDirective } from 'ng2-charts';
 import { Subject,takeUntil } from 'rxjs';
 import { AvatarDTO } from 'src/app/Models/AvatarDTO';
 import { AvatarService } from 'src/app/shared/Services/Avatar/avatar.service';
+import { HomeService } from 'src/app/shared/Services/Home/home.service';
 import { SessionStorageService } from 'src/app/shared/Services/session-storage.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private _SessionStorageService:SessionStorageService,
     private _AvatarService:AvatarService,
+    private _HomeService: HomeService,
     private elementRef: ElementRef
   ) { }
   private signal$ = new Subject();
@@ -43,13 +45,15 @@ export class HomeComponent implements OnInit {
     idSexo:0,
     usuario:''
   };
-
+  public ListaSimuladores:any
+  public IdSimulador=0;
   public token: boolean = this._SessionStorageService.validateTokken();
 
   ngOnInit(): void {
 
     if (this.token) {
       this.ObtenerAvatar();
+      this.ListarSimuladores();
     }
   }
 
@@ -59,6 +63,15 @@ export class HomeComponent implements OnInit {
         this.Avatar = x;
         this.NombreAlumno = x.nombres
         this.urlAvatar=this._AvatarService.GetUrlImagenAvatar(this.Avatar);
+      },
+    });
+  }
+  ListarSimuladores() {
+    this._HomeService.ListarSimuladores().pipe(takeUntil(this.signal$)).subscribe({
+      next: (x) => {
+        console.log(x)
+        this.ListaSimuladores = x;
+        console.log(this.ListaSimuladores)
       },
     });
   }
