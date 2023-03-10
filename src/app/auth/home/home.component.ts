@@ -71,9 +71,7 @@ export class HomeComponent implements OnInit {
   ListarSimuladores() {
     this._HomeService.ListarSimuladores().pipe(takeUntil(this.signal$)).subscribe({
       next: (x) => {
-        console.log(x)
         this.ListaSimuladores = x;
-        console.log(this.ListaSimuladores)
       },
     });
   }

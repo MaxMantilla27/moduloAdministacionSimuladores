@@ -13,3 +13,14 @@ export interface actualizarTipoRespuestaDTO {
 
   }
 
+  export interface actualizarInterfaz {
+    Id : number
+    UrlVideo : string
+    Logo : string
+    PorcentajeMinimoAprobacion : number
+    VigenciaAcceso : number
+    UsuarioModificacion : string
+    FechaModificacion : Date
+  }
+
+

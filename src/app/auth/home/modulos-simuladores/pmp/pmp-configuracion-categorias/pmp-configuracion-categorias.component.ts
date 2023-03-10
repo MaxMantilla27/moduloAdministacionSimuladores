@@ -52,8 +52,6 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
     this._TipoRespuesta.ObtenerDominioCategorias().subscribe({
       next: (x: any) => {
         this.datasource = x;
-        console.log(x)
-
       },
     });
   }

@@ -11,14 +11,14 @@
     <div class="tit">
       <p>Video Tutorial:</p>
     </div>
-    <input placeholder="[Url / IdVideo]" />
+    <input type='text' placeholder="[Url / IdVideo]" [(ngModel)]="video"/>
   </div>
 
   <div class="inp">
     <div class="tit">
       <p>Logotipo:</p>
     </div>
-    <input class="ng-hide" id="input-file-id" multiple type="file" />
+    <input class="ng-hide" id="input-file-id" type="file"  (change)="handleFile($event)"/>
   </div>
 
   <p>Parametros de nivel</p>
@@ -26,12 +26,12 @@
   <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed">
     <thead>
       <tr>
-        <th nzCustomFilter style="width:80px ; text-align: center; background-color: #e1dcdc">Promedio Minimo</th>
+        <th nzCustomFilter style="width:120px ; text-align: center; background-color: #e1dcdc">Promedio Minimo</th>
         <th style="width:120px; text-align: center; background-color: #e1dcdc">Promedio Maximo</th>
         <th style="width:120px; text-align: center; background-color: #e1dcdc">N intentos</th>
         <th style="width:120px; text-align: center; background-color: #e1dcdc">Nivel</th>
 
-        
+
       </tr>
     </thead>
     <tbody>
@@ -60,7 +60,7 @@
             />
           </ng-container>
         </td>
-        <td style="text-align: center">{{ data.nombre }}</td>
+        <td style="text-align: center">{{ data.numeroIntentos }}</td>
         <td style="text-align: center">{{ data.nombre }}</td>
         <td>
           <ng-container *ngIf="data.select == false">
@@ -139,17 +139,17 @@
     <div class="tit">
       <p>Porcentaje minimo de aprobacion:</p>
     </div>
-    <input type="number" />
+    <input type="number" [(ngModel)]="porcentaje" />
   </div>
 
   <div class="inp">
     <div class="tit">
       <p>Vigencia de acceso:</p>
     </div>
-    <input type="number" />
+    <input type="number" [(ngModel)]="acceso" />
   </div>
 
-  <button mat-raised-button style="background-color: orange; color: white">
+  <button mat-raised-button style="background-color: orange; color: white" (click)="ActualizarInterfaz()">
     Guardar Cambios
   </button>
 </div>

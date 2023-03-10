@@ -25,8 +25,8 @@ const routes: Routes = [
         { path: 'pmp/administrarUsuarios', component: PmpAdministrarUsuariosComponent},
         { path: 'pmp/reporteGeneral', component: PmpReporteGeneralComponent},
         { path: 'pmp/reporteUsuario', component: PmpReporteUsuariosComponent}
-      ]
-  }
+      ],
+  },
 ];
 
 @NgModule({

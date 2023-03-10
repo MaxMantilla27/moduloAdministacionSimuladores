@@ -5,7 +5,7 @@ import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
-import { actualizarParamtrosNivel, actualizarTipoRespuestaDTO } from 'src/app/Models/TipoRespuesta';
+import { actualizarParamtrosNivel, actualizarTipoRespuestaDTO,actualizarInterfaz } from 'src/app/Models/TipoRespuesta';
 
 @Component({
   selector: 'app-pmp-configuracion-interfaz',
@@ -16,7 +16,7 @@ export class PmpConfiguracionInterfazComponent implements OnInit {
 
   constructor(private _TipoRespuesta: PmpTipoRespuestaService) {}
 
-  datasource=[]
+  datasource: any=[]
   displayedColumns: string[] = ['minimo', 'maximo', 'intentos', 'nivel'];
   seleccionado = false;
   searchValue = '';
@@ -24,10 +24,15 @@ export class PmpConfiguracionInterfazComponent implements OnInit {
   listOfDisplayData: any = [];
   editId: string | null = null;
   idMandar: number
-
+  fileToUpload: File | null = null;
+  video=''
+  logo=''
+  porcentaje=0
+  acceso=0
 
   ngOnInit(): void {
-    this.ObtenerTipoRespuesta()
+    this.ObtenerTipoRespuesta();
+    this.ObtenerConfiguracionSimuladorEntity();
   }
 
 
@@ -42,10 +47,7 @@ export class PmpConfiguracionInterfazComponent implements OnInit {
     this._TipoRespuesta.ObtenerParametrosNivelEntity().subscribe({
       next: (x: any) => {
         this.datasource = x;
-        console.log(x)
-
         this.listOfDisplayData = this.datasource
-
         this.datasource.forEach((d:any)=> {
           d.select=false;
           d.valorMinimo=d.valorMinimo
@@ -85,6 +87,55 @@ export class PmpConfiguracionInterfazComponent implements OnInit {
       this.envio.valorMaximo= this.listOfDisplayData[index].valorMaximo
       // this.Actualizar()
   }
+  handleFile(event:any): void {
+
+    this.fileToUpload = event.target.files
+}
+public actualizar: actualizarInterfaz={
+  Id : 0,
+  UrlVideo : '',
+  Logo : '',
+  PorcentajeMinimoAprobacion : 0,
+  VigenciaAcceso : 0,
+  UsuarioModificacion : '',
+  FechaModificacion : new Date()
+}
+
+ActualizarInterfaz(){
+  this.actualizar.Id = this.datasource[0].id
+  this.actualizar.UrlVideo = this.video
+  this.actualizar.Logo = this.logo
+  this.actualizar.PorcentajeMinimoAprobacion = this.porcentaje
+  this.actualizar.VigenciaAcceso = this.acceso
+  console.log(this.fileToUpload)
+  console.log(this.actualizar)
+}
+ObtenerConfiguracionSimuladorEntity() {
+  this._TipoRespuesta.ObtenerConfiguracionSimuladorEntity().subscribe({
+    next: (x: any) => {
+      this.datasource = x;
+      console.log(x)
+      this.video = x[0].urlVideo
+      this.acceso = x[0].vigenciaAcceso
+      this.porcentaje = x[0].porcentajeMinimoAprobacion
+
+      console.log(this.acceso)
+    },
+  });
+}
+
+  ActualizarConfiguracionSimulador() {
+  this._TipoRespuesta.actualizarConfiguracionSimulador(this.actualizar).subscribe({
+    next: (x) => {
+    },
+    error:(e)=>{
+
+    },
+    complete: () => {
+
+    },
+  });
+}
 
 
 
