@@ -5,7 +5,7 @@ import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { TipoRespuestaService } from 'src/app/shared/Services/Tipo-Respuesta/tipo-respuesta.service';
-import { actualizarParamtrosNivel, actualizarTipoRespuestaDTO } from 'src/app/Models/TipoRespuesta';
+import { actualizarInterfaz, actualizarParamtrosNivel, actualizarTipoRespuestaDTO } from 'src/app/Models/TipoRespuesta';
 
 @Component({
   selector: 'app-configuracion-interfaz',
@@ -16,7 +16,7 @@ export class ConfiguracionInterfazComponent implements OnInit {
 
   constructor(private _TipoRespuesta: TipoRespuestaService) {}
 
-  datasource=[]
+  datasource: any=[]
   displayedColumns: string[] = ['minimo', 'maximo', 'intentos', 'nivel'];
   seleccionado = false;
   searchValue = '';
@@ -24,11 +24,23 @@ export class ConfiguracionInterfazComponent implements OnInit {
   listOfDisplayData: any = [];
   editId: string | null = null;
   idMandar: number
+  fileToUpload: File | null = null;
+  video=''
+  logo=''
+  porcentaje=0
+  acceso=0
   
 
   ngOnInit(): void {
     this.ObtenerTipoRespuesta()
+    this.ObtenerConfiguracionSimuladorEntity() 
   }
+
+  handleFile(event:any): void {
+
+      this.fileToUpload = event.target.files  
+ }
+
 
     
   public envio: actualizarParamtrosNivel={
@@ -37,6 +49,26 @@ export class ConfiguracionInterfazComponent implements OnInit {
     valorMaximo: 0
   }
 
+  
+  public actualizar: actualizarInterfaz={
+    Id : 0,
+    UrlVideo : '',
+    Logo : '',
+    PorcentajeMinimoAprobacion : 0,
+    VigenciaAcceso : 0,
+    UsuarioModificacion : '',
+    FechaModificacion : new Date()
+  }
+
+  ActualizarInterfaz(){
+    this.actualizar.Id = this.datasource[0].id
+    this.actualizar.UrlVideo = this.video
+    this.actualizar.Logo = this.logo
+    this.actualizar.PorcentajeMinimoAprobacion = this.porcentaje
+    this.actualizar.VigenciaAcceso = this.acceso
+    console.log(this.fileToUpload)
+    console.log(this.actualizar)
+  }
 
   ObtenerTipoRespuesta() {
     this._TipoRespuesta.ObtenerParametrosNivelEntity().subscribe({
@@ -60,6 +92,38 @@ export class ConfiguracionInterfazComponent implements OnInit {
       },
     });
   }
+
+  ObtenerConfiguracionSimuladorEntity() {
+    this._TipoRespuesta.ObtenerConfiguracionSimuladorEntity().subscribe({
+      next: (x: any) => {
+        this.datasource = x;
+        console.log(x)
+        this.video = x[0].urlVideo
+        this.acceso = x[0].vigenciaAcceso
+        this.porcentaje = x[0].porcentajeMinimoAprobacion 
+
+        console.log(this.acceso)
+      },
+    });
+  }
+
+    ActualizarConfiguracionSimulador() {
+    this._TipoRespuesta.actualizarConfiguracionSimulador(this.actualizar).subscribe({
+      next: (x) => {
+      },
+      error:(e)=>{
+     
+      },
+      complete: () => {
+
+      },
+    });
+  }
+
+
+  
+
+  
 
   editar(index:number) {
 

@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { ProjectManagmentProfessionalComponent} from './project-managment-professional/project-managment-professional.component'
 
 const routes: Routes = [
+  {path: 'pmp' ,loadChildren:()=>import('./project-managment-professional/project-managment-professional.module').then(m=>m.ProjectManagmentProfessionalModule)},
   {path:'Account/login',component:LoginComponent,canActivate:[AuthCuentaGuard]},
   {path:'',loadChildren:()=>import('./auth/auth.module').then(m=>m.AuthModule)},
   {path:'**',component:ErrorPageComponent}
