@@ -1,0 +1,155 @@
+<div class="contenedor">
+  <div class="titulo">
+    <h1>Configuracion de interfaz</h1>
+    <p>
+      Puedes modificar el video tutorial y el logotipo mostrado al inicio del
+      simulador
+    </p>
+  </div>
+
+  <div class="inp">
+    <div class="tit">
+      <p>Video Tutorial:</p>
+    </div>
+    <input type='text' placeholder="[Url / IdVideo]" [(ngModel)]="video"/>
+  </div>
+
+  <div class="inp">
+    <div class="tit">
+      <p>Logotipo:</p>
+    </div>
+    <input class="ng-hide" id="input-file-id" type="file"  (change)="handleFile($event)"/>
+  </div>
+
+  <p>Parametros de nivel</p>
+
+  <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed">
+    <thead>
+      <tr>
+        <th nzCustomFilter style="width:120px ; text-align: center; background-color: #e1dcdc">Promedio Minimo</th>
+        <th style="width:120px; text-align: center; background-color: #e1dcdc">Promedio Maximo</th>
+        <th style="width:120px; text-align: center; background-color: #e1dcdc">N intentos</th>
+        <th style="width:120px; text-align: center; background-color: #e1dcdc">Nivel</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of nzTable.data; let i = index">
+        <td style="text-align: center">
+          <ng-container *ngIf="data.select == false">
+            {{ data.valorMinimo }}
+          </ng-container>
+          <ng-container *ngIf="data.select == true">
+            <input
+              type="text"
+              nz-input
+              [(ngModel)]="data.valorMinimo"
+            />
+          </ng-container>
+        </td>
+        <td style="text-align: center">
+          <ng-container *ngIf="data.select == false">
+            {{ data.valorMaximo }}
+          </ng-container>
+          <ng-container *ngIf="data.select == true">
+            <input
+              type="text"
+              nz-input
+              [(ngModel)]="data.valorMaximo"
+            />
+          </ng-container>
+        </td>
+        <td style="text-align: center">{{ data.numeroIntentos }}</td>
+        <td style="text-align: center">{{ data.nombre }}</td>
+        <td>
+          <ng-container *ngIf="data.select == false">
+            <button mat-button class="edit" (click)="editar(i)">
+              <i class="material-icons">edit</i>
+            </button>
+          </ng-container>
+          <ng-container *ngIf="data.select == true">
+            <button mat-button class="aceptar" (click)="aceptar(i)">
+              <i class="material-icons">check_circle</i>
+            </button>
+            <button mat-button class="cancel" (click)="cancelar(i)">
+              <i class="material-icons">close</i>
+            </button>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+      <div class="search-box">
+        <input
+          type="text"
+          nz-input
+          placeholder="Search name"
+          [(ngModel)]="searchValue"
+        />
+        <button
+          nz-button
+          nzSize="small"
+          nzType="primary"
+          (click)="search()"
+          class="search-button"
+        >
+          Search
+        </button>
+        <button nz-button nzSize="small" (click)="reset()">Reset</button>
+      </div>
+    </div>
+  </nz-dropdown-menu>
+
+  <!-- <table mat-table class="mat-elevation-z8" [dataSource]="datasource">
+      <ng-container matColumnDef="minimo">
+        <th mat-header-cell *matHeaderCellDef style="width: 140px">
+          Promedio Minimo
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.valorMinimo }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="maximo">
+        <th mat-header-cell *matHeaderCellDef style="width: 140px">
+          Promedio Maximo
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.valorMaximo }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="intentos">
+        <th mat-header-cell *matHeaderCellDef style="width: 80px">
+          N intentos
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="nivel">
+        <th mat-header-cell *matHeaderCellDef style="width: 80px">Nivel</th>
+        <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table> -->
+
+  <div class="inp">
+    <div class="tit">
+      <p>Porcentaje minimo de aprobacion:</p>
+    </div>
+    <input type="number" [(ngModel)]="porcentaje" />
+  </div>
+
+  <div class="inp">
+    <div class="tit">
+      <p>Vigencia de acceso:</p>
+    </div>
+    <input type="number" [(ngModel)]="acceso" />
+  </div>
+
+  <button mat-raised-button style="background-color: orange; color: white" (click)="ActualizarInterfaz()">
+    Guardar Cambios
+  </button>
+</div>
