@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { actualizarTipoRespuestaDTO,actualizarInterfaz } from 'src/app/Models/TipoRespuesta';
+import { actualizarTipoRespuestaDTO,actualizarInterfaz, actualizarParametrosNivel } from 'src/app/Models/TipoRespuesta';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -29,15 +29,15 @@ export class PmpTipoRespuestaService {
     return this.http.get<any>(this.urlBase2+'/ObtenerParametrosNivelEntity');
   }
 
+  public actualizarPmpParametroNivel(Json:actualizarParametrosNivel):Observable<any>{
+    console.log(Json)
+    return this.http.post<any>(this.urlBase2+'/actualizarPmpParametroNivel',Json);
+  }
+
   public ObtenerDominioCategorias():Observable<any>{
     return this.http.get<any>(this.urlBase3 +'/ObtenerDominioCategorias');
   }
   public ObtenerConfiguracionSimuladorEntity():Observable<any>{
     return this.http.get<any>(this.urlBase4 +'/ObtenerConfiguracionSimuladorEntity');
-  }
-
-  public actualizarConfiguracionSimulador(Json:actualizarInterfaz):Observable<any>{
-    console.log(Json)
-    return this.http.post<any>(this.urlBase4+'/actualizarConfiguracionSimulador',Json);
   }
 }

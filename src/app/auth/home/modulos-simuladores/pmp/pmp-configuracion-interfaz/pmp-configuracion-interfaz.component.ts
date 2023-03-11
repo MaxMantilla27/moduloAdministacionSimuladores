@@ -5,7 +5,7 @@ import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
-import { actualizarParamtrosNivel, actualizarTipoRespuestaDTO,actualizarInterfaz } from 'src/app/Models/TipoRespuesta';
+import { actualizarParametrosNivel, actualizarTipoRespuestaDTO,actualizarInterfaz } from 'src/app/Models/TipoRespuesta';
 
 @Component({
   selector: 'app-pmp-configuracion-interfaz',
@@ -36,10 +36,12 @@ export class PmpConfiguracionInterfazComponent implements OnInit {
   }
 
 
-  public envio: actualizarParamtrosNivel={
-    id : 0,
+  public envio: actualizarParametrosNivel={
+    id: 0,
+    nombre: '',
+    fechaModificacion: new Date(),
     valorMinimo: 0,
-    valorMaximo: 0
+    valorMaximo: 0,
   }
 
 
@@ -85,7 +87,9 @@ export class PmpConfiguracionInterfazComponent implements OnInit {
     this.envio.id = this.listOfDisplayData[index].id,
       this.envio.valorMinimo= this.listOfDisplayData[index].valorMinimo,
       this.envio.valorMaximo= this.listOfDisplayData[index].valorMaximo
-      // this.Actualizar()
+      console.log(this.envio)
+      this.actualizarPmpParametroNivel();
+      
   }
   handleFile(event:any): void {
 
@@ -115,21 +119,29 @@ ObtenerConfiguracionSimuladorEntity() {
     next: (x: any) => {
       this.datasource = x;
       console.log(x)
+
+      this.datasource.forEach((d:any)=> {
+        d.select=false;
+        d.ValorMaximo =d.valorMaximo
+        d.ValorMinino =d.valorMinimo
+      });
+
       this.video = x[0].urlVideo
       this.acceso = x[0].vigenciaAcceso
       this.porcentaje = x[0].porcentajeMinimoAprobacion
-
       console.log(this.acceso)
     },
   });
 }
 
-  ActualizarConfiguracionSimulador() {
-  this._TipoRespuesta.actualizarConfiguracionSimulador(this.actualizar).subscribe({
+actualizarPmpParametroNivel() {
+    console.log(this.actualizarPmpParametroNivel)
+  this._TipoRespuesta.actualizarPmpParametroNivel(this.envio).subscribe({
     next: (x) => {
+      console.log(x)
     },
     error:(e)=>{
-
+      console.log(e)
     },
     complete: () => {
 
@@ -137,20 +149,6 @@ ObtenerConfiguracionSimuladorEntity() {
   });
 }
 
-
-
-  // Actualizar() {
-  //   this._TipoRespuesta.actualizarTipoRespuesta(this.envio).subscribe({
-  //     next: (x) => {
-  //     },
-  //     error:(e)=>{
-
-  //     },
-  //     complete: () => {
-
-  //     },
-  //   });
-  // }
 
   reset(): void {
     this.searchValue = '';
