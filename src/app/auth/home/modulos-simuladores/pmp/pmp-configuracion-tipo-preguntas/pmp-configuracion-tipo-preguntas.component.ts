@@ -16,7 +16,6 @@ export class PmpConfiguracionTipoPreguntasComponent implements OnInit {
 
   datasource :any= [];
   seleccionado = false;
-
   displayedColumns: string[] = ['id', 'tipo', 'acciones'];
   searchValue = '';
   visible = false;
@@ -42,12 +41,12 @@ export class PmpConfiguracionTipoPreguntasComponent implements OnInit {
 
         this.datasource.forEach((d:any)=> {
           d.select=false;
-          d.NombreNUevo=d.nombre
+          d.NombreNuevo=d.nombre
         });
 
         this.listOfDisplayData.forEach((d:any)=> {
           d.select=false;
-          d.NombreNUevo=d.nombre
+          d.NombreNuevo=d.nombre
         });
       },
     });
@@ -63,27 +62,30 @@ export class PmpConfiguracionTipoPreguntasComponent implements OnInit {
 
   cancelar(index:number) {
     this.listOfDisplayData[index].select = false;
-    this.listOfDisplayData[index].NombreNUevo = this.listOfDisplayData[index].nombre;
+    this.listOfDisplayData[index].NombreNuevo = this.listOfDisplayData[index].nombre;
   }
 
   aceptar(index:number) {
     this.listOfDisplayData[index].select = false;
-    this.listOfDisplayData[index].nombre = this.listOfDisplayData[index].NombreNUevo;
+    this.listOfDisplayData[index].NombreNuevo = this.listOfDisplayData[index].nombre;
 
     this.envio.id = this.listOfDisplayData[index].id,
-      this.envio.nombre= this.listOfDisplayData[index].NombreNUevo,
+      this.envio.nombre = this.listOfDisplayData[index].NombreNuevo,
       this.envio.fechaModificacion= new Date()
-      this.Actualizar()
+      console.log(this.envio)
+      this.actualizarTipoRespuesta()
   }
 
 
 
-  Actualizar() {
+  actualizarTipoRespuesta() {
+    console.log(this.actualizarTipoRespuesta)
     this._TipoRespuesta.actualizarTipoRespuesta(this.envio).subscribe({
       next: (x) => {
+        console.log(x)
       },
       error:(e)=>{
-
+        console.log(e)
       },
       complete: () => {
 
@@ -91,16 +93,15 @@ export class PmpConfiguracionTipoPreguntasComponent implements OnInit {
     });
   }
 
-  // reset(): void {
-  //   this.searchValue = '';
-  //   this.search();
-  // }
+  reset(): void {
+    this.searchValue = '';
+    this.search();
+  }
 
-  // search(): void {
-  //   this.visible = false;
-  //   this.listOfDisplayData = this.datasource.filter((item: actualizarTipoRespuestaDTO) => item.nombre.indexOf(this.searchValue) !== -1);
-  // }
-
+  search(): void {
+    this.visible = false;
+    this.listOfDisplayData = this.datasource.filter((item: actualizarTipoRespuestaDTO) => item.nombre.indexOf(this.searchValue) !== -1);
+  }
 
   startEdit(id: string): void {
     this.editId = id;
