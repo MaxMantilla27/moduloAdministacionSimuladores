@@ -22,13 +22,27 @@
       <div class="tit">
         <p>Categoria:</p>
       </div>
-      <input placeholder="[Codigo]" />
+<mat-form-field appearance="fill">
+  <mat-label>Categorias</mat-label>
+  <mat-select [(ngModel)]="categoria" (selectionChange)="seleccionar($event)">
+    <mat-option *ngFor="let a of listaCategorias" [value]="a.id" >
+      {{a.nombre}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
     </div>
     <div class="inp">
       <div class="tit">
         <p>Sub Categoria:</p>
       </div>
-      <input placeholder="[IdAlumno]" />
+      <mat-form-field appearance="fill">
+        <mat-label>SubCategorias</mat-label>
+        <mat-select [(ngModel)]="subcategoria" >
+          <mat-option *ngFor="let a of listaSubCategorias" [value]="a.id">
+            {{a.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
 
     <div class="inp">

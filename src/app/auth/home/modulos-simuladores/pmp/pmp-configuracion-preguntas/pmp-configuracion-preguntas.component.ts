@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
 import { PmpModalAgregarPreguntasComponent } from './pmp-modal-agregar-preguntas/pmp-modal-agregar-preguntas.component';
 
 @Component({
@@ -7,27 +8,55 @@ import { PmpModalAgregarPreguntasComponent } from './pmp-modal-agregar-preguntas
   templateUrl: './pmp-configuracion-preguntas.component.html',
   styleUrls: ['./pmp-configuracion-preguntas.component.scss']
 })
-export class PmpConfiguracionPreguntasComponent implements OnInit {
+export class PmpConfiguracionPreguntasComponent implements OnInit, OnChanges {
 
   constructor(
     public dialog: MatDialog,
+    private _TipoRespuesta: PmpTipoRespuestaService
   ) { }
 
-  datasource=[]
+  datasource:any=[]
+
 
   displayedColumns: string[] = ['id', 'enunciado', 'idcategoria', 'nombrecategoria', 'nombresubcategoria'];
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
+    this.ObtenerPregunta()
   }
 
-  openDialog() {
+  ngOnInit(): void {
+    this.ObtenerPregunta()
+  }
+
+  openDialog(data:any) {
+    console.log(data)
     const dialogRef = this.dialog.open(PmpModalAgregarPreguntasComponent, {
       width: '1000px',
       maxHeight: '90vh',
       panelClass: 'dialog-gestor',
+      data: data
     });
 
     dialogRef.afterClosed().subscribe((result) => {
+    });
+  }
+
+  editar(index:number){
+
+  }
+
+  eliminar(index:number){
+
+  }
+
+  
+
+  ObtenerPregunta() {
+    this._TipoRespuesta.ObtenerPregunta().subscribe({
+      next: (x: any) => {
+        this.datasource = x;
+        console.log(x)
+      },
     });
   }
 
