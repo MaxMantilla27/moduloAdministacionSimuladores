@@ -1,19 +1,54 @@
-<div class="contenedor">
+<div class="row" style="padding: 40px 30px 10px 30px;">
   <div class="titulo">
-    <h1>Configuracion</h1>
+    Configuracion de categorías
   </div>
-  <mat-tab-group>
+  <mat-tab-group class="tabHorizontalCategorias">
     <mat-tab label="Categorias">
-      <div class="titulo">
-        <h1>Categorias</h1>
-        <p>
-          Puedes modificar los nombres de las categorias y su proporcion dentro
-          del examen, este determinara cuantas preguntas apareceran cada
-          categoria en los modos entrenamiento y examen
-        </p>
+      <div class="subTitulo">
+          Puedes modificar los nombres de las categorias, la cantidad de preguntas por examen y su proporcion dentro del examen,
+          este determinara cuantas preguntas apareceran para cada categoria en los modos entrenamiento y examen.
       </div>
-      <div id="test">
-        <table mat-table class="mat-elevation-z8" [dataSource]="datasource">
+      <div *ngIf="listaCategorias!=undefined" id="test">
+        <table class="tableCategorias">
+          <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Cant. de preguntas por examen</th>
+            <th>Proporción</th>
+            <th>Opciones</th>
+          </tr>
+          <ng-container *ngFor="let item of listaCategorias ;let i=index">
+            <tr>
+              <td>
+                {{item.id}}
+              </td>
+              <td>
+                {{item.nombre}}
+              </td>
+              <td>
+                {{item.cantidadPreguntasPorExamen}}
+              </td>
+              <td>
+                {{item.proporcion}} %
+              </td>
+              <td>
+                <ng-container>
+                  <button mat-button class="edit" (click)="EditarCategoria(item)">
+                    <i class="material-icons">edit</i>
+                  </button>
+                </ng-container>
+                <ng-container>
+                  <button mat-button class="delete" (click)="EliminarCategoria(item)">
+                    <i class="material-icons">delete</i>
+                  </button>
+                </ng-container>
+              </td>
+            </tr>
+          </ng-container>
+        </table>
+
+
+        <!-- <table mat-table class="mat-elevation-z8" [dataSource]="datasource">
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef style="width: 100px">Id.</th>
             <td mat-cell *matCellDef="let element">{{ element.id }}</td>
@@ -42,11 +77,8 @@
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
+        </table> -->
 
-        <button class="modos" mat-flat-button (click)="openDialog()">
-          Modo estudio
-        </button>
       </div>
     </mat-tab>
     <mat-tab label="Sub categorias">
@@ -60,7 +92,7 @@
 
       <div class="tabla">
         <div id="test">
-          <table mat-table class="mat-elevation-z8" [dataSource]="datasource">
+          <table mat-table class="mat-elevation-z8" [dataSource]="listaCategorias">
             <ng-container matColumnDef="id">
               <th mat-header-cell *matHeaderCellDef style="width: 100px">
                 Id.
@@ -95,9 +127,7 @@
         </div>
       </div>
 
-      <button class="modos" mat-flat-button (click)="openDialogSub()">
-        Modo estudio
-      </button>
+
     </mat-tab>
   </mat-tab-group>
 </div>

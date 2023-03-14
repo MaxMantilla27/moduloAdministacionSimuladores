@@ -25,7 +25,6 @@ export class PmpComponent implements OnInit {
   ngOnInit(): void {
   }
   tabChanged(tabChangeEvent: MatTabChangeEvent): void {
-    console.log(tabChangeEvent)
 
   }
 }

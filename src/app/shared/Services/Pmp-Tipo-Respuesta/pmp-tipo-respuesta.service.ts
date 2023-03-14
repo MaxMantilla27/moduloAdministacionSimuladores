@@ -21,7 +21,6 @@ export class PmpTipoRespuestaService {
   }
 
   public actualizarTipoRespuesta(Json:actualizarTipoRespuestaDTO):Observable<any>{
-    console.log(Json)
     return this.http.post<any>(this.urlBase+'/actualizarTipoRespuesta',Json);
   }
 
@@ -37,7 +36,6 @@ export class PmpTipoRespuestaService {
   }
 
   public actualizarConfiguracionSimulador(Json:actualizarInterfaz):Observable<any>{
-    console.log(Json)
     return this.http.post<any>(this.urlBase4+'/actualizarConfiguracionSimulador',Json);
   }
 }

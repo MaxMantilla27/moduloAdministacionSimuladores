@@ -107,19 +107,15 @@ ActualizarInterfaz(){
   this.actualizar.Logo = this.logo
   this.actualizar.PorcentajeMinimoAprobacion = this.porcentaje
   this.actualizar.VigenciaAcceso = this.acceso
-  console.log(this.fileToUpload)
-  console.log(this.actualizar)
 }
 ObtenerConfiguracionSimuladorEntity() {
   this._TipoRespuesta.ObtenerConfiguracionSimuladorEntity().subscribe({
     next: (x: any) => {
       this.datasource = x;
-      console.log(x)
       this.video = x[0].urlVideo
       this.acceso = x[0].vigenciaAcceso
       this.porcentaje = x[0].porcentajeMinimoAprobacion
 
-      console.log(this.acceso)
     },
   });
 }

@@ -110,8 +110,6 @@ export class PmpConfiguracionTipoPreguntasComponent implements OnInit {
     });
     this.listOfDisplayData[this.idMandar].select = true;
 
-    console.log(id)
-    console.log( this.listOfDisplayData[this.idMandar].select)
   }
 
   stopEdit(): void {

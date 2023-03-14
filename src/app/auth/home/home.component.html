@@ -2,12 +2,15 @@
   <div class="container" style="width: 80%;" >
     <div class="tituloHome">Bienvenido</div>
     <div class="subTituloHome">Selecciona el simulador de examen que deseas administrar:</div>
-    <div class="row" style="margin-bottom:10px;margin-right: 10px;">
+    <div class="row" style="padding-bottom:10px;margin-right: 10px;">
       <ng-container *ngFor="let item of ListaSimuladores">
         <div class="col-12 col-md-6  CardsSimuladores"  style="cursor: pointer;"(click)="RedirigirModuloSimulador(item.esquema)">
-          <div class="card-body row" style="border-radius: 20px 20px 20px 20px;background: #FFFFFF;width: 103%;">
-            <div>
+          <div class="card-body row" style="border-radius: 10px 10px 10px 10px;background: #FFFFFF;width: 103%;">
+            <div *ngIf="item.esquema!='devop'" style="margin-top:10px;margin-bottom: 5px;">
               <img class="logoSimulador" src="https://repositorioweb.blob.core.windows.net/repositorioweb/simulador/{{item.esquema}}/imagenes/{{item.logo}}" />
+            </div>
+            <div *ngIf="item.esquema=='devop'" style="margin-top:10px;margin-bottom: 5px;">
+              <img style="height: 1.9rem;" src="https://repositorioweb.blob.core.windows.net/repositorioweb/simulador/{{item.esquema}}/imagenes/{{item.logo}}" />
             </div>
             <div style="font-size: 15px;">
               Examen {{item.nombre}}
@@ -16,8 +19,7 @@
         </div>
       </ng-container>
     </div>
-
-
+    <div style=""></div>
   </div>
 </div>
 

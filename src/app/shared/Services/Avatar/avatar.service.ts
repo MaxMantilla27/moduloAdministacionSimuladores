@@ -16,7 +16,6 @@ export class AvatarService {
   }
 
   GetUrlImagenAvatar(avatar:AvatarDTO):string{
-    console.log(avatar)
     var url='https://avataaars.io/?avatarStyle=Circle&topType=';
     url +=avatar.top+'&accessoriesType=';
     url +=avatar.accessories+'&hairColor=';

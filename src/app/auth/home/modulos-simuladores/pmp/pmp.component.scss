@@ -45,198 +45,117 @@
     color:white
   }
 
-// .tabVertical
-//   .contentHeaderM {
-//       opacity: 1;
-//       display: flex;
-//       justify-content: flex-start;
-//       align-items: stretch;
-//       width: 100%;
-//       padding: 20px !important;
-//       flex-wrap: nowrap !important;
-//       .titleMatr {
-//         word-break: break-word;
-//         white-space: normal;
-//         width: 248px !important;
-//         text-align: left;
-//         margin-left: 10px;
-//       }
-// }
-  // .tabVertical
-  // .mat-tab-header
-  // .mat-tab-label-container
-  // .mat-tab-list
-  // .mat-tab-labels {
-  //   max-width: 290px;
-  // }
+  .tabVertical {
+    flex-direction: row !important;
+  }
+  .tabVertical .mat-tab-header {
+    border-bottom: none !important;
+    margin-top: 50px;
+  }
+  .tabVertical .mat-tab-header .mat-tab-header-pagination {
+    display: none !important;
+  }
+  .tabVertical .mat-tab-header .mat-tab-label-container {
+    border-right: 2px solid #d2d2d2;
+  }
+  .tabVertical
+  .mat-tab-header
+  .mat-tab-label-container
+  .mat-tab-list
+  .mat-tab-labels {
+  flex-direction: column !important;
+  opacity: 1;
+  max-width: 17rem;
+  //border-right: 2px solid #d2d2d2;
+}
+.tabVertical
+  .mat-tab-header
+  .mat-tab-label-container
+  .mat-tab-list
+  .mat-tab-labels
+  .mat-tab-label {
+  justify-content: flex-start;
+  opacity: 1 !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  min-width: 60px !important;
+  height: auto !important;
+  width: 100%;
+  //justify-content: center;
+}
+.tabVertical
+  .mat-tab-header
+  .mat-tab-label-container
+  .mat-tab-list
+  .mat-tab-labels
+  .mat-tab-label:hover {
+  background: #f4f4f4;
+}
 
-  // .msjCom {
-  //   display: flex;
-  //   background: #fff8f0;
-  //   padding: 10px 40px;
-  //   border-radius: 5px;
-  //   color: #72706d;
-  //   img {
-  //     width: 20px;
-  //     margin-right: 20px;
-  //   }
-  // }
-  // .tabVertical
-  //   .mat-tab-header
-  //   .mat-tab-label-container
-  //   .mat-tab-list
-  //   .mat-tab-labels
-  //   .mat-tab-label
-  //   .mat-tab-label-content
-  //   .contentHeaderM {
-  //   opacity: 1;
-  //   display: flex;
-  //   justify-content: flex-start;
-  //   align-items: stretch;
-  //   width: 100%;
-  //   padding: 20px !important;
-  //   flex-wrap: nowrap !important;
-  //   .titleMatr {
-  //     word-break: break-word;
-  //     white-space: normal;
-  //     /* display: block; */
-  //     width: 248px !important;
-  //     text-align: left;
-  //     margin-left: 10px;
-  //   }
-  //   .iconMat {
-  //     background-repeat: no-repeat;
-  //     width: 20px;
-  //     height: 20px;
-  //     background-position: center;
-  //     .material-icons{
-  //       //color: #4a4a49;
-  //       font-size: 20px !important;
-  //     }
-  //   }
-  // }
-  // .tabVertical
-  //   mat-tab-header
-  //   .mat-tab-label-container
-  //   .mat-tab-list
-  //   .mat-tab-labels
-  //   .mat-tab-label-active
-  //   .mat-tab-label-content
-  //   .contentHeaderM {
-  //   color: #0684f3 !important;
-  //   font-weight: 600;
-  //   text-decoration: auto;
+.tabVertical
+  .mat-tab-header
+  .mat-tab-label-container
+  .mat-tab-list
+  .mat-ink-bar {
+  height: 100%;
+  left: 98% !important;
+  display: none;
+}
+.tabVertical .mat-tab-body-wrapper {
+  flex: 1 1 auto !important;
+  min-height: 540px;
+}
+.tabVertical .mat-tab-body-wrapper .mat-tab-body .mat-tab-body-content {
+  overflow: hidden;
+}
+.tabVertical
+  mat-tab-header
+  .mat-tab-label-container
+  .mat-tab-list
+  .mat-tab-labels
+  .mat-tab-label-active {
+  background: #f4f4f4;
+  box-shadow: inset 8px 0px 0 #3390ff;
+}
 
-  //   .iconMat {
-  //     .material-icons{
-  //       color: #41a6ff !important;
-  //     }
-  //   }
-  //   .titleMatr {
-  //     text-decoration: underline;
-  //   }
-  // }
-  // .ActiveChil {
-  //   color: #0684f3 !important;
-  //   font-weight: 600;
-
-  //   .titleMatr {
-  //     color: #0684f3 !important;
-  //     text-decoration: underline;
-  //   }
-  // }
-  // .subContent {
-  //   margin-left: 20px;
-  // }
-  // .hederCapitulo {
-  //   display: flex;
-  //   justify-content: space-between;
-  //   border-bottom: solid 1px gray;
-  //   padding-bottom: 10px;
-  //   align-items: center;
-  //   flex-wrap: wrap;
-  // }
-  // .cursoTitle {
-  //   font-size: 20px;
-  //   margin-bottom: 10px;
-  //   font-weight: 600;
-  // }
-  // .cursoTabDescripcion {
-  //   font-size: 18px;
-  //   color: #929292;
-  //   margin-bottom: 20px;
-  // }
-
-  // .cursoTabRemenber {
-  //   display: flex;
-  //   justify-content: flex-start;
-  //   background: #fff8f0;
-  //   padding: 5px 10px;
-  //   margin-bottom: 20px;
-  //   border: solid 1px #fff4e8;
-  // }
-  // .cursoTabRemenber img {
-  //   width: 15px;
-  //   margin-right: 10px;
-  // }
-  // .cursoTabRemenber div {
-  //   //font-size: 13px;
-  //   color: #505050;
-  // }
-
-  // .NSesionCapitulo {
-  //   color: #878778;
-  //   font-size: 12px;
-  // }
-  // .promedioCapitulo {
-  //   font-size: 12px;
-  //   background: #0684f2;
-  //   padding: 5px 20px;
-  //   border-radius: 10px;
-  //   color: white;
-  // }
-  // .titleCapitulo {
-  //   color: #545454;
-  //   font-size: 18px;
-  //   font-weight: 600;
-  // }
-  // .playsesion {
-  //   color: #ff7012;
-  //   margin-right: 5px;
-  // }
-  // .contentCapituloSesion {
-  //   padding: 0px 0px 30px 20px;
-  // }
-  // .capituloSesion {
-  //   align-items: center;
-  //   justify-content: space-between;
-  // }
-
-  // .tituloSesion {
-  //   color: #898989;
-  //   font-size: 16px;
-  //   cursor: pointer;
-  //   margin-bottom: 5px;
-  // }
-  // .tituloSesion:hover {
-  //   color: #0668bf;
-  //   font-weight: 600;
-  //   text-decoration: underline;
-  // }
-  // .contentModuloSesiones {
-  //   display: flex;
-  //   flex-wrap: wrap;
-  //   padding: 15px 0px;
-  // }
-  // .contentModuloSesiones mat-progress-bar .mat-progress-bar-buffer {
-  //   background: #e7e7e8 !important;
-  // }
-  // .contentModuloSesiones mat-progress-bar {
-  //   height: 5px !important;
-  // }
-  // .contentModuloSesiones mat-progress-bar .mat-progress-bar-fill::after {
-  //   background-color: #00c356;
-  // }
-
-
-
+@media (max-width: 768px) {
+  .tabVertical > mat-tab-header{
+    z-index: 100;
+    //position: absolute !important;
+    background: white;
+    height: 100%;
+    min-width: 2px;
+  }
+  .reverse2 {
+    left: 265px !important;
+  }
+}
+@media (max-width: 576px) {
+  .rowpaddAv {
+    padding: 45px 0px;
+  }
+}
+@media (min-width: 576px) {
+  .rowpaddAv {
+    padding: 45px 20px;
+  }
+  .pad-resp {
+    padding: 5px 10px 0px 10px;
+  }
+}
+@media (min-width: 768px) {
+  .tabVertical > mat-tab-header{
+    z-index: 100;
+    //position: absolute !important;
+    background: white;
+    height: calc( 100% - 40px );
+    min-width: 2px;
+    max-width: 17rem;
+  }
+  .rowpaddAv {
+    padding: 45px 40px 45px 20px;
+  }
+  .pad-resp {
+    padding: 5px 10px 0px 10px;
+  }
+}
