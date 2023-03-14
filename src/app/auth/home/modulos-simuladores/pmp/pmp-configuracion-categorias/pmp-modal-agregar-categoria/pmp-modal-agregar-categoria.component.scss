@@ -1,3 +1,19 @@
+// .agregarCategoria
+//   .mat-form-field-appearance-outline .mat-form-field-infix {
+//     padding: 0.5em 0 0.5em 0;
+
+// }
+.agregarCategoria
+  .mat-form-field.mat-form-field-appearance-outline
+  > div.mat-form-field-infix{
+    padding: 0.5em 0 0.5em 0;
+  }
+.dialog-agregar-categoria{
+  mat-dialog-container{
+    padding: 0px !important;
+    height: auto;
+  }
+}
 .contenido{
     width:100%;
     display: flex;
@@ -45,16 +61,16 @@
     width: 100%;
     display: flex;
     justify-content: end;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 .crear{
     width: 100%;
     display:flex ;
     justify-content: center;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 
