@@ -117,7 +117,7 @@ import { NzGraphModule } from 'ng-zorro-antd/graph';
     DonaComponent,
     DonaPuntosComponent,
     PieComponent,
-    MigaPanComponent
+    MigaPanComponent,
 
 
   ],

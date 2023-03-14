@@ -19,22 +19,15 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
     private _TipoRespuesta: PmpTipoRespuestaService
   ) { }
 
-  datasource=[]
+  public listaCategorias:any;
+  public CantTotalPreguntasPorExamenCategoria=0;
+  public isNew=false;
 
   ngOnInit(): void {
     this.ObtenerDominioCategorias()
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(PmpModalAgregarCategoriaComponent, {
-      width: '1000px',
-      maxHeight: '90vh',
-      panelClass: 'dialog-gestor',
-    });
 
-    dialogRef.afterClosed().subscribe((result) => {
-    });
-  }
 
   openDialogSub(){
     const dialogRef = this.dialog.open(PmpModalAgregarSubcategoriaComponent, {
@@ -49,11 +42,50 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
 
 
   ObtenerDominioCategorias() {
+    this.CantTotalPreguntasPorExamenCategoria=0;
     this._TipoRespuesta.ObtenerDominioCategorias().subscribe({
       next: (x: any) => {
-        this.datasource = x;
+        console.log(x)
+        this.listaCategorias = x;
+        this.listaCategorias.forEach((y:any)=>{
+          this.CantTotalPreguntasPorExamenCategoria=this.CantTotalPreguntasPorExamenCategoria+y.cantidadPreguntasPorExamen
+        })
+        this.listaCategorias.forEach((y:any)=>{
+          var auxProporcion = (y.cantidadPreguntasPorExamen/this.CantTotalPreguntasPorExamenCategoria)*100
+          y.proporcion = Math.round(auxProporcion)
+        })
       },
     });
   }
+  EditarCategoria(data:any){
+    console.log(data)
+    if(data==undefined){
+      //Agregar Categoria
+      this.isNew=true;
+      const dialogRef = this.dialog.open(PmpModalAgregarCategoriaComponent, {
+        width: '1000px',
+        maxHeight: '90vh',
+        panelClass: 'dialog-gestor',
+      });
 
+      dialogRef.afterClosed().subscribe((result) => {
+      });
+    }
+    else{
+      // Editar Categoria
+      this.isNew=false;
+      const dialogRef = this.dialog.open(PmpModalAgregarCategoriaComponent, {
+        width: '1000px',
+        maxHeight: '90vh',
+        panelClass: 'dialog-gestor',
+        data:[data]
+      });
+
+      dialogRef.afterClosed().subscribe((result) => {
+      });
+    }
+  }
+  EliminarCategoria(data:any){
+
+  }
 }

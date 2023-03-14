@@ -1,21 +1,15 @@
-.contenedor{
-    padding: 15px;
-    padding-left: 70px;
-}
-
 .titulo{
-    padding: 15px;
-  }
-
-  .titulo p{
-    color: grey;
-  }
-
-h1{
-    font-size: 30px;
-    color: grey;
-  }
-
+  color: #7E7E7E;
+  font-size: 30px;
+  font-weight: bold;
+}
+.subTitulo{
+  color: #7E7E7E;
+  font-size: 15px;
+}
+// .tabHorizontalCategorias{
+//   flex-direction: row !important;
+// }
 
   #test {
     width:100%;
@@ -24,3 +18,35 @@ h1{
   table {
     margin: 0 auto; /* or margin: 0 auto 0 auto */
   }
+  .tableCategorias{
+    width: 100%;
+    margin-top: 40px;
+    table-layout: fixed
+  }
+  .tableCategorias tr th{
+
+    border: solid 1px #b2b2b2;
+    background: #e7e7e7;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .tableCategorias tr td{
+    border: solid 1px #b2b2b2;
+    text-align: center;
+    padding: 10px;
+    word-break: break-all;
+    font-size: 12px;
+  }
+.edit{
+  background-color: #094D82;
+  color: white;
+  margin-right: 10px;
+  font-size: 10px;
+}
+.delete{
+  background-color: #FC5757;
+  color: white;
+  font-size: 10px;
+  margin-right: 10px;
+}
