@@ -5,6 +5,14 @@ export interface actualizarTipoRespuestaDTO {
 
   }
 
+  export interface filtradoPreguntaDTO{
+    id:number,
+    pregunta:string,
+    idCategoria:number,
+    categoria:string,
+    subcategoria:string,
+  }
+
 
   export interface actualizarParamtrosNivel {
     id:number,

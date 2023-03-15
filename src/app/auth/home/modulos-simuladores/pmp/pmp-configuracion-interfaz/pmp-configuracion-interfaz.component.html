@@ -11,57 +11,94 @@
     <div class="tit">
       <p>Video Tutorial:</p>
     </div>
-    <input type='text' placeholder="[Url / IdVideo]" [(ngModel)]="video"/>
+    <input type="text" placeholder="[Url / IdVideo]" [(ngModel)]="video" />
   </div>
 
   <div class="inp">
     <div class="tit">
       <p>Logotipo:</p>
     </div>
-    <input class="ng-hide" id="input-file-id" type="file"  (change)="handleFile($event)"/>
+    <input
+      class="ng-hide"
+      id="input-file-id"
+      type="file"
+      (change)="handleFile($event)"
+    />
   </div>
 
   <p>Parametros de nivel</p>
 
-  <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed">
+  <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed" style="background-color: tr
+  ;">
     <thead>
       <tr>
-        <th nzCustomFilter style="width:120px ; text-align: center; background-color: #e1dcdc">Promedio Minimo</th>
-        <th style="width:120px; text-align: center; background-color: #e1dcdc">Promedio Maximo</th>
-        <th style="width:120px; text-align: center; background-color: #e1dcdc">N intentos</th>
-        <th style="width:120px; text-align: center; background-color: #e1dcdc">Nivel</th>
-
-
+        <th
+          nzCustomFilter
+          style="
+            width: 150px;
+            text-align: center;
+            background-color: #e1dcdc;
+            border: 1px solid #cacaca;
+          "
+        >
+          Promedio Minimo
+        </th>
+        <th
+          style="
+            width: 150px;
+            text-align: center;
+            background-color: #e1dcdc;
+            border: 1px solid #cacaca;
+          "
+        >
+          Promedio Maximo
+        </th>
+        <th
+          style="
+            width: 150px;
+            text-align: center;
+            background-color: #e1dcdc;
+            border: 1px solid #cacaca;
+          "
+        >
+          N intentos
+        </th>
+        <th
+          style="
+            width: 150px;
+            text-align: center;
+            background-color: #e1dcdc;
+            border: 1px solid #cacaca;
+          "
+        >
+          Nivel
+        </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let data of nzTable.data; let i = index">
-        <td style="text-align: center">
+        <td style="text-align: center; border: 1px solid #cacaca">
           <ng-container *ngIf="data.select == false">
             {{ data.valorMinimo }}
           </ng-container>
           <ng-container *ngIf="data.select == true">
-            <input
-              type="text"
-              nz-input
-              [(ngModel)]="data.valorMinimo"
-            />
+            <input type="text" nz-input [(ngModel)]="data.valorMinimo" />
           </ng-container>
         </td>
-        <td style="text-align: center">
+        <td style="text-align: center; border: 1px solid #cacaca">
           <ng-container *ngIf="data.select == false">
             {{ data.valorMaximo }}
           </ng-container>
           <ng-container *ngIf="data.select == true">
-            <input
-              type="text"
-              nz-input
-              [(ngModel)]="data.valorMaximo"
-            />
+            <input type="text" nz-input [(ngModel)]="data.valorMaximo" />
           </ng-container>
         </td>
-        <td style="text-align: center">{{ data.numeroIntentos }}</td>
-        <td style="text-align: center">{{ data.nombre }}</td>
+        <td style="text-align: center; border: 1px solid #cacaca">
+          {{ data.numeroIntentos }}
+        </td>
+        <td style="text-align: center; border: 1px solid #cacaca">
+          {{ data.nombre }}
+        </td>
         <td>
           <ng-container *ngIf="data.select == false">
             <button mat-button class="edit" (click)="editar(i)">
@@ -149,7 +186,11 @@
     <input type="number" [(ngModel)]="acceso" />
   </div>
 
-  <button mat-raised-button style="background-color: orange; color: white" (click)="ActualizarInterfaz()">
+  <button
+    mat-raised-button
+    style="background-color: orange; color: white"
+    (click)="ActualizarInterfaz()"
+  >
     Guardar Cambios
   </button>
 </div>
