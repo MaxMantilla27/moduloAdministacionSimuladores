@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {
   actualizarTipoRespuestaDTO,
   actualizarInterfaz,
+  actualizarParametrosNivel,
 } from 'src/app/Models/TipoRespuesta';
 import { environment } from 'src/environments/environment';
 
@@ -17,6 +18,7 @@ export class PmpTipoRespuestaService {
   public urlBase4 = environment.url_api + 'PmpConfiguracionSimulador';
   public urlBase5 = environment.url_api + 'PmpPregunta';
   public urlBase6 = environment.url_api + 'PmpTarea';
+  public urlBase7 = environment.url_api + 'PmpTipoPreguntaClasificacion'
   constructor(private http: HttpClient) {}
 
   public ObtenerTipoRespuesta(): Observable<any> {
@@ -63,5 +65,21 @@ export class PmpTipoRespuestaService {
 
   public ObtenerSubcategoriaCombo(idDominio:any): Observable<any> {
     return this.http.post<any>(this.urlBase6 + '/ObtenerComboTarea' , idDominio[0]);
+  }
+
+  public actualizarPmpParametroNivel(
+    Json: actualizarParametrosNivel
+  ): Observable<any> {
+    console.log(Json);
+    return this.http.post<any>(
+      this.urlBase4 + '/actualizarPmpParametroNivel',
+      Json
+    );
+  }
+
+  public ObtenerListaTipoPreguntaClasificacion(): Observable<any> {
+    return this.http.get<any>(
+      this.urlBase7 + '/ObtenerListaTipoPreguntaClasificacion'
+    );
   }
 }

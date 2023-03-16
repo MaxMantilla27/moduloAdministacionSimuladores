@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp-Tipo-Respue
 export class PmpModalAgregarPreguntasComponent implements OnInit {
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<PmpModalAgregarPreguntasComponent>,
     private _TipoRespuesta: PmpTipoRespuestaService
   ) { }
@@ -23,10 +24,11 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   datasource: any
   listaCategorias:any
   listaSubCategorias:any
+  listaTipoPregunta:any
 
   categoria:any
   subcategoria:any
-
+  tipoPregunta:any
   
   envio:any = [
     {
@@ -36,6 +38,17 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
 
   ngOnInit(): void {
     this.ObtenerCombo()
+    this.ObtenerComboTipoPreguntaClasificacion()
+
+    console.log(this.data)
+
+    // if(this.data.data != undefined){
+    //   console.log("editar")
+    // }
+    // if(this.data.data == undefined || this.data[0] == null ){
+    //   console.log("agregar")
+    // }
+
   }
 
   Cancelar(){
@@ -66,6 +79,16 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     this._TipoRespuesta.ObtenerSubcategoriaCombo(this.envio).subscribe({
       next: (x: any) => {
         this.listaSubCategorias = x;
+        console.log(x)
+      },
+    });
+  }
+  
+  
+  ObtenerComboTipoPreguntaClasificacion() {
+    this._TipoRespuesta.ObtenerListaTipoPreguntaClasificacion().subscribe({
+      next: (x: any) => {
+        this.listaTipoPregunta = x;
         console.log(x)
       },
     });

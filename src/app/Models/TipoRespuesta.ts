@@ -13,7 +13,7 @@ export interface actualizarTipoRespuestaDTO {
   }
 
 
-  export interface actualizarParamtrosNivel {
+  export interface actualizarParametrosNivel {
     id:number,
     valorMinimo: number,
     valorMaximo: number

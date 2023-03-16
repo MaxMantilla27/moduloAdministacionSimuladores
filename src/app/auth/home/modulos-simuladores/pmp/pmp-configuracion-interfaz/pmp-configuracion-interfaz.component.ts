@@ -38,8 +38,6 @@ export class PmpConfiguracionInterfazComponent implements OnInit {
 
   public envio: actualizarParametrosNivel={
     id: 0,
-    nombre: '',
-    fechaModificacion: new Date(),
     valorMinimo: 0,
     valorMaximo: 0,
   }
@@ -112,12 +110,13 @@ ActualizarInterfaz(){
   this.actualizar.PorcentajeMinimoAprobacion = this.porcentaje
   this.actualizar.VigenciaAcceso = this.acceso
 }
+
 ObtenerConfiguracionSimuladorEntity() {
   this._TipoRespuesta.ObtenerConfiguracionSimuladorEntity().subscribe({
     next: (x: any) => {
       this.datasource = x;
       console.log(x)
-
+      console.log(this.datasource)
       this.datasource.forEach((d:any)=> {
         d.select=false;
         d.ValorMaximo =d.valorMaximo
@@ -133,7 +132,6 @@ ObtenerConfiguracionSimuladorEntity() {
 }
 
 actualizarPmpParametroNivel() {
-    console.log(this.actualizarPmpParametroNivel)
   this._TipoRespuesta.actualizarPmpParametroNivel(this.envio).subscribe({
     next: (x) => {
       console.log(x)

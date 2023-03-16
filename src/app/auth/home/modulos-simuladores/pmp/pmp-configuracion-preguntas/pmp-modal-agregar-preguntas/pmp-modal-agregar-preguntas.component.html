@@ -1,130 +1,170 @@
 <ng-container *ngIf="loader == true">
-    <div class="loading-indicator">
-      <mat-progress-spinner
-        mode="indeterminate"
-        color="accent"
-      ></mat-progress-spinner>
-    </div>
-  </ng-container>
-  <div class="titulo">Configuracion de Pregunta
-    <!-- <button mat-flat-button class="cancelar" (click)="Cancelar()">Cancelar</button> -->
+  <div class="loading-indicator">
+    <mat-progress-spinner
+      mode="indeterminate"
+      color="accent"
+    ></mat-progress-spinner>
   </div>
-  <ng-container *ngIf="loader == true">
-    <div class="loading-indicator">
-      <mat-progress-spinner
-        mode="indeterminate"
-        color="accent"
-      ></mat-progress-spinner>
+</ng-container>
+<div class="titulo">
+  Configuracion de Pregunta
+  <!-- <button mat-flat-button class="cancelar" (click)="Cancelar()">Cancelar</button> -->
+</div>
+<ng-container *ngIf="loader == true">
+  <div class="loading-indicator">
+    <mat-progress-spinner
+      mode="indeterminate"
+      color="accent"
+    ></mat-progress-spinner>
+  </div>
+</ng-container>
+<div class="contenedor">
+  <div class="inp">
+    <div class="tit">
+      <p>Categoria:</p>
     </div>
-  </ng-container>
-  <div class="contenedor">
-    <div class="inp">
-      <div class="tit">
-        <p>Categoria:</p>
-      </div>
-<mat-form-field appearance="fill">
-  <mat-label>Categorias</mat-label>
-  <mat-select [(ngModel)]="categoria" (selectionChange)="seleccionar($event)">
-    <mat-option *ngFor="let a of listaCategorias" [value]="a.id" >
-      {{a.nombre}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Categorias</mat-label>
+      <mat-select
+        [(ngModel)]="categoria"
+        (selectionChange)="seleccionar($event)"
+      >
+        <mat-option *ngFor="let a of listaCategorias" [value]="a.id">
+          {{ a.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="inp">
+    <div class="tit">
+      <p>Sub Categoria:</p>
     </div>
-    <div class="inp">
-      <div class="tit">
-        <p>Sub Categoria:</p>
-      </div>
-      <mat-form-field appearance="fill">
-        <mat-label>SubCategorias</mat-label>
-        <mat-select [(ngModel)]="subcategoria" >
-          <mat-option *ngFor="let a of listaSubCategorias" [value]="a.id">
-            {{a.nombre}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-
-    <div class="inp">
-      <div class="tit">
-        <p>Tipo de Pregunta:</p>
-      </div>
-      <input placeholder="[Nombres y Apellidos]" />
-    </div>
-    <div class="inp">
-      <div class="tit">
-        <p>Enunciado:</p>
-      </div>
-
-      <div class="box">
-        <textarea name="textarea" rows="10" cols="80" placeholder="[Contenido del enunciado]"></textarea>
-        <div class="inp">
-          <div class="tit">
-            <p>Imagen:</p>
-          </div>
-          <input class="ng-hide" id="input-file-id" multiple type="file" />
-        </div>
-      </div>
-
-    </div>
-
-    <div class="inp">
-      <div class="tit">
-        <p>Alternativas:</p>
-      </div>
-    </div>
-
-    <table mat-table  class="mat-elevation-z8" [dataSource]="datasource">
-
-      <ng-container matColumnDef="id" >
-        <th mat-header-cell *matHeaderCellDef style="width: 200px"> Id</th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="alternativa" >
-        <th mat-header-cell *matHeaderCellDef style="width: 400px"> Alternativa </th>
-        <td mat-cell *matCellDef="let element"> {{element.alternativa}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="correcto">
-        <th mat-header-cell *matHeaderCellDef style="width: 300px"> Correcto </th>
-       <input type="checkbox">
-      </ng-container>
-
-      <ng-container matColumnDef="puntaje">
-        <th mat-header-cell *matHeaderCellDef style="width: 300px"> Puntaje </th>
-        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="retroalimentacion">
-          <th mat-header-cell *matHeaderCellDef style="width: 200px"> Retroalimentacion </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-        </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-
-
-    <div class="inp">
-      <div class="tit">
-        <p>Tiene retroalimentacion unica:</p>
-      </div>
-
-      <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-        <mat-button-toggle value="bold">Si</mat-button-toggle>
-        <mat-button-toggle value="italic">No</mat-button-toggle>
-      </mat-button-toggle-group>
-  
-    </div>
-    
-
-   
+    <mat-form-field appearance="fill">
+      <mat-label>SubCategorias</mat-label>
+      <mat-select [(ngModel)]="subcategoria">
+        <mat-option *ngFor="let a of listaSubCategorias" [value]="a.id">
+          {{ a.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
+  <div class="inp">
+    <div class="tit">
+      <p>Tipo de Pregunta:</p>
+    </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo de Pregunta</mat-label>
+      <mat-select [(ngModel)]="tipoPregunta">
+        <mat-option *ngFor="let a of listaTipoPregunta" [value]="a.id">
+          {{ a.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="inp">
+    <div class="tit">
+      <p>Enunciado:</p>
+    </div>
+  </div>
 
-    <div class="crear">
-      <button mat-flat-button class="botonAgregar">Guardar</button>
-      <button mat-flat-button class="cancelar" (click)="Cancelar()">Cancelar</button>
+  <div class="box">
+    <textarea
+      style="width: 100%"
+      name="textarea"
+      rows="10"
+      cols="80"
+      placeholder="[Contenido del enunciado]"
+    ></textarea>
+    <div class="inp">
+      <div class="tit">
+        <p>Imagen:</p>
+      </div>
+      <input class="ng-hide" id="input-file-id" multiple type="file" />
+    </div>
+  </div>
+
+  <div class="inp">
+    <div class="tit">
+      <p>Alternativas:</p>
+    </div>
+  </div>
+
+  <table mat-table class="mat-elevation-z8" [dataSource]="datasource">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef style="width: 200px">Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="alternativa">
+      <th mat-header-cell *matHeaderCellDef style="width: 400px">
+        Alternativa
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.alternativa }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="correcto">
+      <th mat-header-cell *matHeaderCellDef style="width: 300px">Correcto</th>
+      <input type="checkbox" />
+    </ng-container>
+
+    <ng-container matColumnDef="puntaje">
+      <th mat-header-cell *matHeaderCellDef style="width: 300px">Puntaje</th>
+      <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="retroalimentacion">
+      <th mat-header-cell *matHeaderCellDef style="width: 200px">
+        Retroalimentacion
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <div class="inp">
+    <div class="tit">
+      <p>Tiene retroalimentacion unica:</p>
     </div>
 
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle value="bold">Si</mat-button-toggle>
+      <mat-button-toggle value="italic">No</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <div class="box">
+    <div class="inp">
+      <div class="tit">
+        <p>Video:</p>
+      </div>
+      <input placeholder="[Link/IDVideo]" />
+    </div>
+    <div class="inp">
+      <div class="tit">
+        <p>Texto:</p>
+      </div>
+      <textarea
+        name="textarea"
+        rows="10"
+        cols="80"
+        placeholder="[Contenido del enunciado]"
+      ></textarea>
+    </div>
+    <div class="inp">
+      <div class="tit">
+        <p>Imagen:</p>
+      </div>
+      <input class="ng-hide" id="input-file-id" multiple type="file" />
+    </div>
+  </div>
+</div>
+
+<div class="crear">
+  <button mat-flat-button class="botonAgregar">Guardar</button>
+  <button mat-flat-button class="cancelar" (click)="Cancelar()">
+    Cancelar
+  </button>
+</div>

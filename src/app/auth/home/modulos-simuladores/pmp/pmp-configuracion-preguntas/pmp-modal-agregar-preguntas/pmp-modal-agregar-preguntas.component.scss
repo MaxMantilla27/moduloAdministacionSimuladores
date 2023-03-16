@@ -119,6 +119,7 @@ input{
   border-radius: 10px;
   padding: 20px;
   padding-bottom: 0px;
+  margin-bottom:20px ;
 }
 
 
@@ -132,4 +133,25 @@ textarea {
 
 table{
   margin-bottom: 15px;
+}
+
+.edit{
+  background-color: yellow;
+  color: white;
+
+}
+
+
+.cancel{
+  background-color: red;
+  color: white;
+
+}
+
+
+.agregar{
+  width: 150px;
+  background-color: #31CE12;
+  color: white;
+
 }
