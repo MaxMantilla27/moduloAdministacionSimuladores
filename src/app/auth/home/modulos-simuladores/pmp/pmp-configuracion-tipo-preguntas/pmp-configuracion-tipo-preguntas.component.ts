@@ -79,6 +79,4 @@ export class PmpConfiguracionTipoPreguntasComponent implements OnInit {
       },
     });
   }
-  }
-  }
 }

@@ -15,7 +15,6 @@ export interface filtradoPreguntaDTO{
 export interface actualizarParametrosNivel {
   id:number,
   nombre:string,
-  fechaModificacion: Date,
   valorMinimo: number,
   valorMaximo: number,
 

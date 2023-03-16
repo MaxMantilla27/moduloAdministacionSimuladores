@@ -1,6 +1,7 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { filtradoPreguntaDTO } from 'src/app/Models/TipoRespuesta';
+import { PmpPreguntaService } from 'src/app/shared/Services/Pmp-Pregunta/pmp-pregunta.service';
 import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
 import { PmpModalAgregarPreguntasComponent } from './pmp-modal-agregar-preguntas/pmp-modal-agregar-preguntas.component';
 
@@ -12,7 +13,7 @@ import { PmpModalAgregarPreguntasComponent } from './pmp-modal-agregar-preguntas
 export class PmpConfiguracionPreguntasComponent implements OnInit, OnChanges {
   constructor(
     public dialog: MatDialog,
-    private _TipoRespuesta: PmpTipoRespuestaService
+    private _Pregunta: PmpPreguntaService
   ) {}
 
   datasource: any = [];
@@ -55,7 +56,7 @@ export class PmpConfiguracionPreguntasComponent implements OnInit, OnChanges {
       width: '1000px',
       maxHeight: '90vh',
       panelClass: 'dialog-gestor',
- 
+
     });
 
     dialogRef.afterClosed().subscribe((result) => {});
@@ -65,7 +66,7 @@ export class PmpConfiguracionPreguntasComponent implements OnInit, OnChanges {
   eliminar(index: number) {}
 
   ObtenerPregunta() {
-    this._TipoRespuesta.ObtenerPregunta().subscribe({
+    this._Pregunta.ObtenerPregunta().subscribe({
       next: (x: any) => {
         this.datasource = x;
         this.listOfDisplayData = this.datasource;
@@ -75,7 +76,7 @@ export class PmpConfiguracionPreguntasComponent implements OnInit, OnChanges {
   }
 
   reset(): void {
-    this.searchValue = '';  
+    this.searchValue = '';
     this.search();
   }
 

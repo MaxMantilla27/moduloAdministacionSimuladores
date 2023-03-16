@@ -5,7 +5,7 @@ import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
-import { actualizarParamtrosNivel, actualizarTipoRespuestaDTO,actualizarInterfaz } from 'src/app/Models/TipoRespuesta';
+import { actualizarParametrosNivel, actualizarTipoRespuestaDTO,actualizarInterfaz } from 'src/app/Models/TipoRespuesta';
 import { PmpConfiguracionSimuladorService } from 'src/app/shared/Services/Pmp-Configuracion-Simulador/pmp-configuracion-simulador.service';
 
 @Component({
@@ -40,8 +40,9 @@ export class PmpConfiguracionInterfazComponent implements OnInit {
   public fileErrorMsg=''
   public nombrefile='Ning�n archivo seleccionado'
 
-  public envio: actualizarParamtrosNivel={
+  public envio: actualizarParametrosNivel={
     id : 0,
+    nombre:'',
     valorMinimo: 0,
     valorMaximo: 0
   }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { PmpCategoriasService } from 'src/app/shared/Services/Pmp-Categorias/pmp-categorias.service';
+import { PmpTareaService } from 'src/app/shared/Services/Pmp-Tarea/pmp-tarea.service';
 import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
 
 @Component({
@@ -11,7 +13,8 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<PmpModalAgregarPreguntasComponent>,
-    private _TipoRespuesta: PmpTipoRespuestaService
+    private _Tarea: PmpTareaService,
+    private _Categorias: PmpCategoriasService
   ) { }
 
   displayedColumns: string[] = ['id', 'alternativa', 'correcto', 'puntaje', 'retroalimentacion'];
@@ -27,7 +30,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   categoria:any
   subcategoria:any
 
-  
+
   envio:any = [
     {
       idDominio: 0
@@ -42,9 +45,9 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  
+
   ObtenerCombo() {
-    this._TipoRespuesta.ObtenerComboDominio().subscribe({
+    this._Categorias.ObtenerComboDominio().subscribe({
       next: (x: any) => {
         this.listaCategorias = x;
         console.log(x)
@@ -63,12 +66,12 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
 
   ObtenerComboSubcategoria() {
     console.log(this.envio[0])
-    this._TipoRespuesta.ObtenerSubcategoriaCombo(this.envio).subscribe({
+    this._Tarea.ObtenerSubcategoriaCombo(this.envio).subscribe({
       next: (x: any) => {
         this.listaSubCategorias = x;
         console.log(x)
       },
     });
   }
-  
+
 }

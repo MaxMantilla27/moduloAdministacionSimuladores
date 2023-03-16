@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
+import { PmpExamenService } from 'src/app/shared/Services/Pmp-examen/pmp-examen.service';
 import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
 
 
@@ -14,7 +15,7 @@ export class PmpReporteUsuariosComponent implements OnInit {
   displayedColumns: string[] = ['ranking', 'nombre', 'fechaInicio', 'FechaFinalizacion', 'duracion', 'puntaje'];
 
   constructor(
-    private _TipoRespuesta: PmpTipoRespuestaService
+    private _Examen: PmpExamenService
   ) { }
   ngOnInit(): void {
 
@@ -33,7 +34,7 @@ export class PmpReporteUsuariosComponent implements OnInit {
 
 
   filtroReporteUsuarios() {
-    this._TipoRespuesta.ObtenerReporteUsuario(this.codigoMatricula).subscribe({
+    this._Examen.ObtenerReporteUsuario(this.codigoMatricula).subscribe({
       next: (x) => {
         console.log(x)
          this.id = x.id,
