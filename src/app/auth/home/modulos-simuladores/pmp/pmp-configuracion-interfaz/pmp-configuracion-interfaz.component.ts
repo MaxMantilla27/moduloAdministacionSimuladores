@@ -38,7 +38,7 @@ export class PmpConfiguracionInterfazComponent implements OnInit {
   public file:any;
   public filestatus=false
   public fileErrorMsg=''
-  public nombrefile='Ningún archivo seleccionado'
+  public nombrefile='Ning�n archivo seleccionado'
 
   public envio: actualizarParamtrosNivel={
     id : 0,
@@ -128,7 +128,7 @@ getFileDetails(event:any) {
     var modifiedDate = event.target.files[i].lastModifiedDate;
     var extencion=name.split('.')[name.split('.').length-1]
     if( Math.round((size/1024)/1024)>150){
-      this.fileErrorMsg='El tamaño del archivo no debe superar los 25 MB'
+      this.fileErrorMsg='El tama�o del archivo no debe superar los 25 MB'
       this.filestatus=false
     }
     this.selectedFiles = event.target.files;

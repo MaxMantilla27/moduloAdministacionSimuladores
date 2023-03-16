@@ -3,13 +3,23 @@ export interface actualizarTipoRespuestaDTO {
     nombre: string,
   }
 
+export interface filtradoPreguntaDTO{
+  id:number,
+  pregunta:string,
+  idCategoria:number,
+  categoria:string,
+  subcategoria:string,
+}
 
-  export interface actualizarParamtrosNivel {
-    id:number,
-    valorMinimo: number,
-    valorMaximo: number,
 
-  }
+export interface actualizarParametrosNivel {
+  id:number,
+  nombre:string,
+  fechaModificacion: Date,
+  valorMinimo: number,
+  valorMaximo: number,
+
+}
 
   export interface actualizarInterfaz {
     id : number
@@ -19,5 +29,4 @@ export interface actualizarTipoRespuestaDTO {
     vigenciaAcceso : number,
     file: File
   }
-
 

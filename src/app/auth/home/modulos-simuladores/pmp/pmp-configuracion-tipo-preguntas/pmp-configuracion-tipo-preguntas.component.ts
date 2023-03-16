@@ -16,7 +16,6 @@ export class PmpConfiguracionTipoPreguntasComponent implements OnInit {
 
   datasource :any= [];
   seleccionado = false;
-
   displayedColumns: string[] = ['id', 'tipo', 'acciones'];
   searchValue = '';
   visible = false;
@@ -39,7 +38,6 @@ export class PmpConfiguracionTipoPreguntasComponent implements OnInit {
         console.log(x)
         this.datasource = x;
         this.listOfDisplayData = this.datasource
-
         this.datasource.forEach((d:any)=> {
           d.select=false;
           d.nombreNuevo=d.nombre
@@ -80,5 +78,7 @@ export class PmpConfiguracionTipoPreguntasComponent implements OnInit {
 
       },
     });
+  }
+  }
   }
 }

@@ -7,42 +7,137 @@
     </p>
   </div>
   <div id="test">
-    <table mat-table class="mat-elevation-z8" [dataSource]="datasource">
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef style="width: 100px">Id.</th>
-        <td mat-cell *matCellDef="let element">{{ element.position }}</td>
-      </ng-container>
+    <nz-table
+      #columnTable
+      [nzData]="listOfDisplayData"
+      [nzScroll]="{ x: '1100px' }"
+    >
+      <thead>
+        <tr>
+          <th
+            style="
+              width: 100px;
+              text-align: center;
+              background-color: #e1dcdc;
+              border: 1px solid #cacaca;
+            "
+          >
+            Id
+          </th>
+          <th
+            style="
+              width: 300px;
+              text-align: center;
+              background-color: #e1dcdc;
+              border: 1px solid #cacaca;
+            "
+          >
+            Enunciado
+          </th>
+          <th
+            style="
+              width: 100px;
+              text-align: center;
+              background-color: #e1dcdc;
+              border: 1px solid #cacaca;
+            "
+          >
+            Id Categoria
+          </th>
+          <th
+            nzCustomFilter
+            style="
+              width: 200px;
+              text-align: center;
+              background-color: #e1dcdc;
+              border: 1px solid #cacaca;
+            "
+          >
+            Nombre Categoria
+            <nz-filter-trigger
+              [(nzVisible)]="visible"
+              [nzActive]="searchValue.length > 0"
+              [nzDropdownMenu]="menu"
+            >
+              <span nz-icon nzType="search"></span>
+            </nz-filter-trigger>
+          </th>
+          <th
+            style="
+              width: 200px;
+              text-align: center;
+              background-color: #e1dcdc;
+              border: 1px solid #cacaca;
+            "
+          >
+            Nombre Subcategoria
+          </th>
+          <th style="width: 200px">
+            <button mat-button class="agregar" 
+            (click)="agregar()">
+              Añadir
+            </button>
+          </th>
+        </tr>
+      </thead>
 
-      <ng-container matColumnDef="enunciado">
-        <th mat-header-cell *matHeaderCellDef style="width: 200px">
-          Enunciado
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-      </ng-container>
-      <ng-container matColumnDef="idcategoria">
-        <th mat-header-cell *matHeaderCellDef style="width: 100px">
-          Id Categoria
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-      </ng-container>
-      <ng-container matColumnDef="nombrecategoria">
-        <th mat-header-cell *matHeaderCellDef style="width: 200px">
-          Nombre Categoria
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-      </ng-container>
-      <ng-container matColumnDef="nombresubcategoria">
-        <th mat-header-cell *matHeaderCellDef style="width: 200px">
-          Nombre Subcategoria
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-      </ng-container>
+      <tbody>
+        <tr *ngFor="let data of columnTable.data; let i = index">
+          <td style="text-align: center; border: 1px solid #cacaca">
+            {{ data.id }}
+          </td>
+          <td style="text-align: center; border: 1px solid #cacaca">
+            {{ data.pregunta }}
+          </td>
+          <td style="text-align: center; border: 1px solid #cacaca">
+            {{ data.idCategoria }}
+          </td>
+          <td style="text-align: center; border: 1px solid #cacaca">
+            {{ data.categoria }}
+          </td>
+          <td style="text-align: center; border: 1px solid #cacaca">
+            {{ data.subcategoria }}
+          </td>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
+          <td nzRight>
+            <button
+              mat-button
+              class="edit"
+              (click)="openDialog(data)"
+              style="margin-right: 10px"
+            >
+              <i class="material-icons">edit</i>
+            </button>
+
+            <button mat-button class="cancel" (click)="eliminar(i)">
+              <i class="material-icons">close</i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+          <input
+            type="text"
+            nz-input
+            placeholder="Search name"
+            [(ngModel)]="searchValue"
+          />
+          <button
+            nz-button
+            nzSize="small"
+            nzType="primary"
+            (click)="search()"
+            class="search-button"
+          >
+            Search
+          </button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </div>
+    </nz-dropdown-menu>
   </div>
 </div>
-<button class="modos" mat-flat-button (click)="openDialog()">
-  Modo estudio
-</button>

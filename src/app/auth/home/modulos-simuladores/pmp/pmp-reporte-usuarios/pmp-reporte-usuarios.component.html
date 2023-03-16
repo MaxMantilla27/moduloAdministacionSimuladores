@@ -1,4 +1,4 @@
-<div class="row">
+  <div class="row">
   <div class="titulo">
     <h1>Reporte de Usuarios</h1>
     <p>
@@ -11,8 +11,9 @@
       <div class="tit">
         <p>Codigo de matricula:</p>
       </div>
-      <input placeholder="[Codigo]" />
-      <button mat-raised-button style="background-color: #23CAE4; color: white">
+      <input placeholder="[Codigo]"  [(ngModel)]="codigoMatricula"/>
+      <button mat-raised-button style="background-color: #23CAE4; color: white"
+      (click)="filtroReporteUsuarios()">
         Buscar
       </button>
     </div>
@@ -20,32 +21,32 @@
       <div class="tit">
         <p>Id Alumno:</p>
       </div>
-      <input placeholder="[IdAlumno]" />
+      <input placeholder="[IdAlumno]" [(ngModel)]="id" />
     </div>
 
     <div class="inp">
       <div class="tit">
         <p>Nombres y Apellidos:</p>
       </div>
-      <input placeholder="[Nombres y Apellidos]" />
+      <input placeholder="[Nombres y Apellidos]" [(ngModel)]="nombre" />
     </div>
     <div class="inp">
       <div class="tit">
         <p>Nivel:</p>
       </div>
-      <input placeholder="[Nivel]" />
+      <input placeholder="[Nivel]" [(ngModel)]="nivel"/>
     </div>
     <div class="inp">
       <div class="tit">
         <p>Examenes activos:</p>
       </div>
-      <input placeholder="[Examenes Activos]" />
+      <input placeholder="[Examenes Activos]" [(ngModel)]="activos"/>
     </div>
     <div class="inp">
       <div class="tit">
         <p>Examenes Completados:</p>
       </div>
-      <input placeholder="[Examenes Completados]" />
+      <input placeholder="[Examenes Completados]" [(ngModel)]="finalizados" />
     </div>
   </div>
 
