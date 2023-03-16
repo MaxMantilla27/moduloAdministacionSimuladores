@@ -1,6 +1,14 @@
 <div class="row " style="margin-left:0px">
   <div class="col-12 col-md-12 col-lg-12" style="position: relative;padding: 0px;">
-    <mat-tab-group class="tabVertical" [(selectedIndex)]="tabIndex" (selectedTabChange)="tabChanged($event)">
+    <div style="margin-top: 10px;display: flex;margin-bottom: -40px;">
+      <div style="cursor:pointer" [routerLink]="'/'">
+        <i style="color:#FFA218;font-size:3rem" class="material-icons">arrow_back</i>
+      </div>
+      <div *ngIf="Esquema!=undefined" style="margin-top:10px;">
+        <img style="width:13rem" src="https://repositorioweb.blob.core.windows.net/repositorioweb/simulador/{{Esquema}}/imagenes/{{LogoSimulador}}" />
+      </div>
+    </div>
+    <mat-tab-group class="tabVertical" [(selectedIndex)]="tabIndex" >
       <mat-tab>
         <ng-template mat-tab-label>
           <div  class="contentHeaderM" >

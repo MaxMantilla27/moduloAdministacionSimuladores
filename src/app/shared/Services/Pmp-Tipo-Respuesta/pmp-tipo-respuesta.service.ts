@@ -28,14 +28,6 @@ export class PmpTipoRespuestaService {
     return this.http.get<any>(this.urlBase2+'/ObtenerParametrosNivelEntity');
   }
 
-  public ObtenerDominioCategorias():Observable<any>{
-    return this.http.get<any>(this.urlBase3 +'/ObtenerDominioCategorias');
-  }
-  public ObtenerConfiguracionSimuladorEntity():Observable<any>{
-    return this.http.get<any>(this.urlBase4 +'/ObtenerConfiguracionSimuladorEntity');
-  }
 
-  public actualizarConfiguracionSimulador(Json:actualizarInterfaz):Observable<any>{
-    return this.http.post<any>(this.urlBase4+'/actualizarConfiguracionSimulador',Json);
-  }
+
 }

@@ -1,8 +1,6 @@
 export interface actualizarTipoRespuestaDTO {
     id:number,
     nombre: string,
-    fechaModificacion: Date,
-
   }
 
 
@@ -14,13 +12,12 @@ export interface actualizarTipoRespuestaDTO {
   }
 
   export interface actualizarInterfaz {
-    Id : number
-    UrlVideo : string
-    Logo : string
-    PorcentajeMinimoAprobacion : number
-    VigenciaAcceso : number
-    UsuarioModificacion : string
-    FechaModificacion : Date
+    id : number
+    urlVideo : string
+    logo : string
+    porcentajeMinimoAprobacion : number
+    vigenciaAcceso : number,
+    file: File
   }
 
 
