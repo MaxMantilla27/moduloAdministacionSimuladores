@@ -74,3 +74,4 @@ export class PmpModalAgregarCategoriaComponent implements OnInit {
     return '';
   }
 }
+  
