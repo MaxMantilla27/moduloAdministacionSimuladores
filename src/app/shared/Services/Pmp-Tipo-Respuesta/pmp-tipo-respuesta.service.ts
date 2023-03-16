@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {
   actualizarTipoRespuestaDTO,
   actualizarInterfaz,
+  actualizarParametrosNivel,
 } from 'src/app/Models/TipoRespuesta';
 import { environment } from 'src/environments/environment';
 
@@ -17,6 +18,7 @@ export class PmpTipoRespuestaService {
   public urlBase4 = environment.url_api + 'PmpConfiguracionSimulador';
   public urlBase5 = environment.url_api + 'PmpPregunta';
   public urlBase6 = environment.url_api + 'PmpTarea';
+  public urlBase7 = environment.url_api + 'PmpExamen';
   constructor(private http: HttpClient) {}
 
   public ObtenerTipoRespuesta(): Observable<any> {
@@ -57,11 +59,25 @@ export class PmpTipoRespuestaService {
     );
   }
 
+  public actualizarPmpParametroNivel(
+    Json: actualizarParametrosNivel
+  ): Observable<any> {
+    console.log(Json);
+    return this.http.post<any>(
+      this.urlBase2 + '/actualizarPmpParametroNivel',
+      Json
+    );
+  }
+
   public ObtenerPregunta(): Observable<any> {
     return this.http.get<any>(this.urlBase5 + '/ObtenerListaModoDapper');
   }
 
   public ObtenerSubcategoriaCombo(idDominio:any): Observable<any> {
     return this.http.post<any>(this.urlBase6 + '/ObtenerComboTarea' , idDominio[0 ]);
+  }
+
+  public ObtenerReporteUsuario(codigoMatricula:any): Observable<any> {
+    return this.http.get<any>(this.urlBase7 + '/ObtenerReporteUsuarioDapper?CodigoMatricula=' + codigoMatricula);
   }
 }

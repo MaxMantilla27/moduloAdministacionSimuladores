@@ -5,7 +5,7 @@ import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
-import { actualizarParametrosNivel, actualizarTipoRespuestaDTO,actualizarInterfaz } from 'src/app/Models/TipoRespuesta';
+import { actualizarTipoRespuestaDTO,actualizarInterfaz, actualizarParametrosNivel } from 'src/app/Models/TipoRespuesta';
 
 @Component({
   selector: 'app-pmp-configuracion-interfaz',
@@ -38,10 +38,10 @@ export class PmpConfiguracionInterfazComponent implements OnInit {
 
   public envio: actualizarParametrosNivel={
     id: 0,
-    nombre: '',
-    fechaModificacion: new Date(),
     valorMinimo: 0,
     valorMaximo: 0,
+    nombre: '',
+    fechaModificacion: new Date
   }
 
 

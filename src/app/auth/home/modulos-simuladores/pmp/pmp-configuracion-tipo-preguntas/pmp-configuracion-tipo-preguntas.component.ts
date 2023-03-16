@@ -26,7 +26,7 @@ export class PmpConfiguracionTipoPreguntasComponent implements OnInit {
   public envio: actualizarTipoRespuestaDTO={
     id : 0,
     nombre: '',
-    fechaModificacion: new Date()
+    fechaModificacion: new Date
   }
 
   ngOnInit(): void {
@@ -38,7 +38,6 @@ export class PmpConfiguracionTipoPreguntasComponent implements OnInit {
       next: (x: any) => {
         this.datasource = x;
         this.listOfDisplayData = this.datasource
-
         this.datasource.forEach((d:any)=> {
           d.select=false;
           d.NombreNuevo=d.nombre
@@ -66,17 +65,21 @@ export class PmpConfiguracionTipoPreguntasComponent implements OnInit {
   }
 
   aceptar(index:number) {
+
+    console
     this.listOfDisplayData[index].select = false;
-    this.listOfDisplayData[index].NombreNuevo = this.listOfDisplayData[index].nombre;
+    this.listOfDisplayData[index].nombre = this.listOfDisplayData[index].NombreNuevo;
 
     this.envio.id = this.listOfDisplayData[index].id,
-      this.envio.nombre = this.listOfDisplayData[index].NombreNuevo,
+      this.envio.nombre = this.listOfDisplayData[index].nombre,
       this.envio.fechaModificacion= new Date()
       console.log(this.envio)
-      this.actualizarTipoRespuesta()
+      this.actualizarTipoRespuesta();
   }
 
-
+  handleFile(event:any ): void {
+    this.handleFile = event?.target.files
+  }
 
   actualizarTipoRespuesta() {
     console.log(this.actualizarTipoRespuesta)
