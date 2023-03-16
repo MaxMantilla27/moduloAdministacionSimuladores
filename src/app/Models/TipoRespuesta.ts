@@ -1,8 +1,7 @@
 export interface actualizarTipoRespuestaDTO {
     id:number,
     nombre: string,
-    fechaModificacion: Date,
-
+    fechaModificacion: Date
   }
 
   export interface filtradoPreguntaDTO{
@@ -17,8 +16,7 @@ export interface actualizarTipoRespuestaDTO {
   export interface actualizarParamtrosNivel {
     id:number,
     valorMinimo: number,
-    valorMaximo: number,
-
+    valorMaximo: number
   }
 
   export interface actualizarInterfaz {
