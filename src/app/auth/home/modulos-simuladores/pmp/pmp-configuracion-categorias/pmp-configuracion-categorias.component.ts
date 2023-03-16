@@ -59,31 +59,30 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
   }
   EditarCategoria(data:any){
     console.log(data)
-    if(data==undefined){
-      //Agregar Categoria
-      this.isNew=true;
-      const dialogRef = this.dialog.open(PmpModalAgregarCategoriaComponent, {
-        width: '1000px',
-        maxHeight: '90vh',
-        panelClass: 'dialog-gestor',
-      });
+    // Editar Categoria
+    this.isNew=false;
+    const dialogRef = this.dialog.open(PmpModalAgregarCategoriaComponent, {
+       width: '60%',
+      panelClass: 'dialog-agregar-categoria',
+      data:[data],
+      disableClose: true
+    });
 
-      dialogRef.afterClosed().subscribe((result) => {
-      });
-    }
-    else{
-      // Editar Categoria
-      this.isNew=false;
-      const dialogRef = this.dialog.open(PmpModalAgregarCategoriaComponent, {
-        width: '1000px',
-        maxHeight: '90vh',
-        panelClass: 'dialog-gestor',
-        data:[data]
-      });
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    // if(data==undefined){
+    //   //Agregar Categoria
+    //   this.isNew=true;
+    //   const dialogRef = this.dialog.open(PmpModalAgregarCategoriaComponent, {
+    //     panelClass: 'dialog-agregar-categoria',
+    //   });
 
-      dialogRef.afterClosed().subscribe((result) => {
-      });
-    }
+    //   dialogRef.afterClosed().subscribe((result) => {
+    //   });
+    // }
+    // else{
+
+    // }
   }
   EliminarCategoria(data:any){
 

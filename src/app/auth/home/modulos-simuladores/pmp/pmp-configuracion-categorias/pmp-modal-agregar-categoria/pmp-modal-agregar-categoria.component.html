@@ -1,98 +1,86 @@
-<ng-container *ngIf="loader == true">
-  <div class="loading-indicator">
-    <mat-progress-spinner
-      mode="indeterminate"
-      color="accent"
-    ></mat-progress-spinner>
-  </div>
-</ng-container>
-<div class="titulo">Añadir Categoria</div>
+<div class="titulo">Añadir Categoría</div>
 <form [formGroup]="formCategoria">
 
-  <mat-dialog-content class="mat-typography">
-    <div class="contenedor">
-      <div class="inre">
-        <h3>Nombre de la categoría:</h3>
-        <div class="ver">
-          <mat-form-field class="example-full-width" appearance="outline" >
-            <mat-label>Nombre de la categoría</mat-label>
-            <input type="text"  formControlName="NombreCategoria" matInput />
-            <mat-error *ngIf="formCategoria.invalid">{{obtenerErrorCampoNombre('NombreCategoria')}}</mat-error>
-          </mat-form-field>
+  <div class="agregarCategoria">
+    <mat-dialog-content class="mat-typography">
+      <div class="contenedor">
+        <div class="inre">
+          <div class="ver">
+            <mat-form-field class="example-full-width" appearance="outline" >
+              <mat-label>Nombre de la categoría</mat-label>
+              <input type="text"  formControlName="NombreCategoria" matInput />
+              <mat-error *ngIf="formCategoria.invalid">{{obtenerErrorCampoNombre('NombreCategoria')}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="inre">
+          <div class="ver">
+            <mat-form-field class="example-full-width" appearance="outline" >
+              <mat-label>Leyenda</mat-label>
+              <input type="text"  formControlName="Leyenda" matInput />
+              <mat-error *ngIf="formCategoria.invalid">{{obtenerErrorCampoNombre('Leyenda')}}</mat-error>
+            </mat-form-field>
+          </div>
         </div>
       </div>
-      <div class="inre">
-        <h3>Leyenda:</h3>
-        <div class="ver">
-          <mat-form-field class="example-full-width" appearance="outline" >
-            <mat-label>Leyenda</mat-label>
-            <input type="text"  formControlName="Leyenda" matInput />
-            <mat-error *ngIf="formCategoria.invalid">{{obtenerErrorCampoNombre('Leyenda')}}</mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
 
-    <div class="contenedor">
-      <div class="inre">
-        <h3>Cantidad total de preguntas:</h3>
-        <div class="ver">
-          <mat-form-field class="example-full-width" appearance="outline" >
-            <mat-label>Cantidad total de preguntas</mat-label>
-            <input type="number"  formControlName="CantidadPreguntasTotales" matInput />
-            <mat-error *ngIf="formCategoria.invalid">{{obtenerErrorCampoNombre('CantidadPreguntasTotales')}}</mat-error>
-          </mat-form-field>
+      <div class="contenedor">
+        <div class="inre">
+          <div class="ver">
+            <mat-form-field class="example-full-width" appearance="outline" >
+              <mat-label>Cantidad total de preguntas</mat-label>
+              <input type="number"  formControlName="CantidadPreguntasTotales" matInput />
+              <mat-error *ngIf="formCategoria.invalid">{{obtenerErrorCampoNombre('CantidadPreguntasTotales')}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="inre">
+          <div class="ver">
+            <mat-form-field class="example-full-width" appearance="outline" >
+              <mat-label>Cantidad de preguntas por examen</mat-label>
+              <input type="number"  formControlName="CantidadPreguntasExamen" matInput />
+              <mat-error *ngIf="formCategoria.invalid">{{obtenerErrorCampoNombre('CantidadPreguntasExamen')}}</mat-error>
+            </mat-form-field>
+          </div>
         </div>
       </div>
-      <div class="inre">
-        <h3>Cantidad de preguntas por examen:</h3>
-        <div class="ver">
-          <mat-form-field class="example-full-width" appearance="outline" >
-            <mat-label>Cantidad de preguntas por examen</mat-label>
-            <input type="number"  formControlName="CantidadPreguntasExamen" matInput />
-            <mat-error *ngIf="formCategoria.invalid">{{obtenerErrorCampoNombre('CantidadPreguntasExamen')}}</mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
 
-    <div class="contenedor">
-      <div class="inre">
-        <h3>Proporción:</h3>
-        <div class="ver">
-          <mat-form-field class="example-full-width" appearance="outline" >
-            <mat-label>Proporcion</mat-label>
-            <input type="number"  formControlName="Proporcion" matInput />
-            <mat-error *ngIf="formCategoria.invalid">{{obtenerErrorCampoNombre('Proporcion')}}</mat-error>
-          </mat-form-field>
+      <div class="contenedor">
+        <div class="inre">
+          <div class="ver">
+            <mat-form-field class="example-full-width" appearance="outline" >
+              <mat-label>Proporcion</mat-label>
+              <input type="number"  formControlName="Proporcion" matInput />
+              <mat-error *ngIf="formCategoria.invalid">{{obtenerErrorCampoNombre('Proporcion')}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="inre">
+          <div style="font-size:12px">Tiene subcategoría</div>
+          <div class="ver">
+            <mat-checkbox style="margin-top: -13px;" color="primary"  formControlName="TieneSubCategoria" class="example-full-width" appearance="outline">
+            </mat-checkbox>
+
+          </div>
         </div>
       </div>
-      <div class="inre">
-        <h3>Tiene subcategoría:</h3>
-        <div class="ver">
-          <mat-checkbox color="primary"  formControlName="TieneSubCategoria" class="example-full-width" appearance="outline">
-          </mat-checkbox>
 
+      <div class="contenedor">
+        <div class="inre">
+          <div style="font-size: 13px;margin-top: -13px;">
+            Logo:
+          </div>
+          <div class="ver">
+            <input id="file" type="file"  />
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="contenedor">
-      <div class="inre">
-        <h3>Logo:</h3>
-        <div class="ver">
-          <mat-form-field class="example-full-width" appearance="outline" >
-            <mat-label>Logo</mat-label>
-            <input class="ng-hide" id="input-file-id" multiple type="file"  formControlName="Logo" />
-          </mat-form-field>
-        </div>
+      <div class="crear">
+        <button style="background: #FF850C;" mat-flat-button class="botonAgregar">Guardar Cambios</button>
+        <button mat-flat-button class="cancelar" (click)="Cancelar()">Cancelar</button>
       </div>
-    </div>
-
-    <div class="crear">
-      <button mat-flat-button class="botonAgregar">Guardar</button>
-      <button mat-flat-button class="cancelar" (click)="Cancelar()">Cancelar</button>
-    </div>
-  </mat-dialog-content>
+    </mat-dialog-content>
+  </div>
 </form>
 
