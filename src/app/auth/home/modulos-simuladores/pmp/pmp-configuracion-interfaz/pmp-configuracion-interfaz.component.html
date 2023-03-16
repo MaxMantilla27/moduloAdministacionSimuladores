@@ -141,37 +141,6 @@
     </div>
   </nz-dropdown-menu>
 
-  <!-- <table mat-table class="mat-elevation-z8" [dataSource]="datasource">
-      <ng-container matColumnDef="minimo">
-        <th mat-header-cell *matHeaderCellDef style="width: 140px">
-          Promedio Minimo
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.valorMinimo }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="maximo">
-        <th mat-header-cell *matHeaderCellDef style="width: 140px">
-          Promedio Maximo
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.valorMaximo }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="intentos">
-        <th mat-header-cell *matHeaderCellDef style="width: 80px">
-          N intentos
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.position }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="nivel">
-        <th mat-header-cell *matHeaderCellDef style="width: 80px">Nivel</th>
-        <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table> -->
-
   <div class="inp">
     <div class="tit">
       <p>Porcentaje minimo de aprobacion:</p>
@@ -188,7 +157,7 @@
 
   <button
     mat-raised-button
-    style="background-color: orange; color: white"
+    style="background-color: orange; color: white; width: 150px;"
     (click)="ActualizarInterfaz()"
   >
     Guardar Cambios
