@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { MatDialogRef as MatDialogRef, MAT_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PmpCategoriasService } from 'src/app/shared/Services/Pmp-Categorias/pmp-categorias.service';
 import { PmpTareaService } from 'src/app/shared/Services/Pmp-Tarea/pmp-tarea.service';
 import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
@@ -16,7 +16,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<PmpModalAgregarPreguntasComponent>,
     private _Categorias: PmpCategoriasService,
-    private _Tareas: PmpTareaService, 
+    private _Tareas: PmpTareaService,
     private formBuilder: FormBuilder
 
   ) { }
@@ -45,13 +45,13 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   listaCategorias:any
   listaSubCategorias:any
   listaTipoPregunta:any
-  listaPregunta:any 
+  listaPregunta:any
   lisSubCategoriaPorCateogoria:Array<any>=[]
   categoria:any
   subcategoria:any
   tipoPregunta:any
   public idDominio: 0
-  
+
   envio:any = [
     {
       idDominio: 0
@@ -64,7 +64,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
       {
         // this.formPregunta.patchValue({
         //   IdCategoria:this.data.idCategoria
-          
+
         // })
         this.formPregunta.get('Id')?.setValue(this.data.id)
         this.formPregunta.get('IdCategoria')?.setValue(this.data.idCategoria)
@@ -76,7 +76,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
         this.formPregunta.get('Retroalimentacion')?.setValue(this.data.retroalimentacion)
         this.formPregunta.get('ImgPreguntaRetroalimentacion')?.setValue(this.data.imgPreguntaRetroalimentacion)
         this.formPregunta.get('TieneRetroalimentacion')?.setValue(true)
-        
+
         console.log(this.formPregunta)
     }
     else{
@@ -99,7 +99,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  
+
   // ObtenerCombo() {
   //   this._Categorias.ObtenerCategorias().subscribe({
   //     next: (x: any) => {
@@ -129,7 +129,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   //     },
   //   });
   // }
-  
+
   ObtenerComboCategorias() {
     this._Categorias.ObtenerComboCategorias().subscribe({
       next: (x: any) => {
@@ -153,7 +153,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     });
     console.log(this.lisSubCategoriaPorCateogoria)
   }
-  
+
   obtenerErrorCampoNombre(val: string) {
     var campo = this.formPregunta.get(val);
     if (campo!.hasError('required')) {
@@ -178,5 +178,5 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   //     },
   //   });
   // }
-  
+
 }
