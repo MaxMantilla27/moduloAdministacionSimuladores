@@ -1,14 +1,11 @@
-.contenedor {
-  padding: 15px;
-  padding-left: 70px;
+.titulo{
+  color: #7E7E7E;
+  font-size: 30px;
+  font-weight: bold;
 }
-
-.titulo {
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-p {
-  color: grey;
+.subTitulo{
+  color: #7E7E7E;
+  font-size: 15px;
 }
 
 h1 {
@@ -91,4 +88,9 @@ h1 {
 
 input {
   width: 300px;
+}
+.detalle{
+  background-color: #094D82;
+  color: white;
+
 }

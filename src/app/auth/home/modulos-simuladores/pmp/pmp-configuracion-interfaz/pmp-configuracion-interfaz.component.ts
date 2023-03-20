@@ -38,7 +38,7 @@ export class PmpConfiguracionInterfazComponent implements OnInit {
   public file:any;
   public filestatus=false
   public fileErrorMsg=''
-  public nombrefile='Ning�n archivo seleccionado'
+  public nombrefile='Ningún archivo seleccionado'
 
   public envio: actualizarParametrosNivel={
     id : 0,

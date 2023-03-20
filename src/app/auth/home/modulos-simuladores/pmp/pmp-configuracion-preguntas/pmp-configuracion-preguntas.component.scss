@@ -1,15 +1,25 @@
-.contenedor{
-  padding: 15px;
-  padding-left: 70px;
-}
-
 .titulo{
-    padding: 15px;
-  }
-
-  .titulo p{
-    color: grey;
-  }
+  color: #7E7E7E;
+  font-size: 30px;
+  font-weight: bold;
+}
+.subTitulo{
+  color: #7E7E7E;
+  font-size: 15px;
+}
+.edit{
+  background-color: #094D82;
+  color: white;
+}
+.cancel{
+  background-color: #FC5757;
+  color: white;
+}
+.agregar{
+  width: 150px;
+  background-color: #28A745;
+  color: white;
+}
 
 h1{
     font-size: 30px;
@@ -25,23 +35,3 @@ h1{
   }
 
 
-  .edit{
-    background-color: #094D82;
-    color: white;
-
-  }
-
-
-  .cancel{
-    background-color: #FC5757;
-    color: white;
-
-  }
-
-
-  .agregar{
-    width: 150px;
-    background-color: #28A745;
-    color: white;
-
-  }

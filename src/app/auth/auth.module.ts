@@ -17,6 +17,7 @@ import { PmpConfiguracionTipoPreguntasComponent } from './home/modulos-simulador
 import { PmpReporteGeneralComponent } from './home/modulos-simuladores/pmp/pmp-reporte-general/pmp-reporte-general.component';
 import { PmpReporteUsuariosComponent } from './home/modulos-simuladores/pmp/pmp-reporte-usuarios/pmp-reporte-usuarios.component';
 import { PmpComponent } from './home/modulos-simuladores/pmp/pmp.component';
+import { PmpAbrirModalDetalleExamenComponent } from './home/modulos-simuladores/pmp/pmp-reporte-usuarios/pmp-abrir-modal-detalle-examen/pmp-abrir-modal-detalle-examen/pmp-abrir-modal-detalle-examen.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,10 @@ import { PmpComponent } from './home/modulos-simuladores/pmp/pmp.component';
     PmpConfiguracionTipoPreguntasComponent,
     PmpReporteGeneralComponent,
     PmpReporteUsuariosComponent,
-
+    PmpModalAgregarCategoriaComponent,
+    PmpModalAgregarPreguntasComponent,
+    PmpModalAgregarSubcategoriaComponent,
+    PmpAbrirModalDetalleExamenComponent
 
   ],
   imports: [

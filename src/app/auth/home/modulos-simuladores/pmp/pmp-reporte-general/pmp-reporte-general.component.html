@@ -5,82 +5,69 @@
   <div class="subTitulo">
     Puedes monitorear el estado de todos los alumnos matriculados en el programa e identificar que alumnos estan preparados para rendir el examen oficial de certificacion
   </div>
-    <div class="contenedor">
-      <div class="inp">
-          <button
-            mat-raised-button
-            style="background-color: orange; color: white"
-          >
-            Guardar Cambios
-          </button>
-
-      </div>
-      <table mat-table  class="mat-elevation-z8" [dataSource]="datasource">
-
-        <ng-container matColumnDef="codigo" >
-          <th mat-header-cell *matHeaderCellDef style="width: 100px"> Codigo de Matricula </th>
-          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="alumno" >
-          <th mat-header-cell *matHeaderCellDef style="width: 200px"> Alumno </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="centro">
-          <th mat-header-cell *matHeaderCellDef style="width: 100px"> Centro de costos  </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="tipoMatricula">
-          <th mat-header-cell *matHeaderCellDef style="width: 100px"> Tipo de matricula </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="fechaMatricula">
-          <th mat-header-cell *matHeaderCellDef style="width: 100px"> Fecha matricula al simulador</th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="punmax">
-          <th mat-header-cell *matHeaderCellDef style="width: 100px"> Puntaje max M.examen </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="punorom">
-          <th mat-header-cell *matHeaderCellDef style="width: 100px"> Puntaje prom M.examens </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="simfin">
-          <th mat-header-cell *matHeaderCellDef style="width: 100px"> Simulaciones finalizadas </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="fechaultima">
-          <th mat-header-cell *matHeaderCellDef style="width: 100px"> F. de ultima simulacion </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="nivel">
-          <th mat-header-cell *matHeaderCellDef style="width: 100px"> Nivel </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="certificacion">
-            <th mat-header-cell *matHeaderCellDef style="width: 100px"> Certificacion </th>
-            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-          </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </div>
+  <div class="tablaReporteGeneral">
+    <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed"class="table">
+      <thead>
+        <tr>
+          <th nzCustomFilter style="border: solid 1px #b2b2b2;width:120px ; text-align: center; background-color: #E7E7E7;color: #222222;">Código de Matrícula</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Alumno</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Centro de Costos</th>
+          <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Tipo de Matrícula</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Fecha de Matrícula al Simulador</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Ptje. máx M. exámen</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Ptje. prom M. exámen</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Simulaciones Finalizadas</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Fecha de últimas simulación</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Nivel</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Certificación</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Guardar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of nzTable.data; let i = index">
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.codigoMatricula }}
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.alumno }}
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.centroCostos }}
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.tipoMatricula }}</td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.fechaMatriculaSimulador|date: 'dd/MM/yyyy' }}
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.puntajeMaximo }}
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.puntajePromedio }}
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.simulacionesFinalizadas }}
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.fechaUltimaSimulacion|date: 'dd/MM/yyyy' }}
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.nivel }}
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            <mat-select [(ngModel)]="data.idCertificacion" (selectionChange)="seleccionar($event)">
+              <mat-option *ngFor="let a of ComboReporteGeneral" [value]="a.id" >
+                {{a.nombre}}
+              </mat-option>
+            </mat-select>
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            <button mat-button class="aceptar" (click)="GuardarCambios(data)">
+              <i class="material-icons">check_circle</i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
   </div>
+</div>
