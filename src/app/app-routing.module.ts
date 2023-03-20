@@ -8,6 +8,7 @@ const routes: Routes = [
   {path:'Account/login',component:LoginComponent,canActivate:[AuthCuentaGuard]},
   {path:'',loadChildren:()=>import('./auth/auth.module').then(m=>m.AuthModule)},
   {path:'**',component:ErrorPageComponent}
+
 ];
 
 @NgModule({

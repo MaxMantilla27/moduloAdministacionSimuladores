@@ -1,0 +1,146 @@
+.contenedor {
+  padding: 15px;
+}
+
+.titulo {
+  padding: 15px;
+  background-color: #23CAE4;
+  color: white;
+}
+
+p {
+  color: grey;
+}
+
+h1 {
+  font-size: 30px;
+  color: grey;
+}
+
+.inp {
+  width: 100%;
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.inp input {
+  margin-right: 20px;
+}
+
+.inp button {
+  margin-right: 20px;
+}
+
+.inp .tit {
+  margin-right: 50px;
+  width: 200px;
+}
+
+.inp p {
+  margin-right: 20px;
+  color: grey;
+  font-size: 15px;
+}
+
+.contenedor {
+  padding: 15px;
+}
+
+.colorin{
+  background-color: #323232;
+  border: 1px solid #323232;
+  color: white !important;
+}
+
+
+.modos{
+  margin: auto;
+  padding: auto;
+  width: 250px;
+  height: 40px;
+  text-align: center;
+  border: 1px solid grey;
+  border-radius: 5px;
+  color: black;
+}
+
+.item-leyenda-dona-principal{
+  color: #af9f9f;
+  padding-top: 20px;
+  padding-bottom: 5px;
+}
+
+.datos1{
+  border: 1px solid white; 
+  text-align: center;
+}
+
+
+.datos{
+  border: 1px solid grey; 
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+
+.ContenidoDonaPuntos2{
+  line-height: 20px;
+  text-align: center;
+  font-size: 50px;
+  color: #0684f2;
+  border-radius: 100%;
+  font-weight: 700;
+}
+
+::placeholder{
+  text-align: center;
+}
+
+input{
+  width: 300px;
+}
+
+.example-full-width{
+  width: 500px;
+}
+.botonAgregar{
+  width: 150px;
+  background-color: #23CAE4;
+  color: white;
+  margin-right: 20px;
+}
+
+.cancelar{
+  width: 150px;
+  background-color: red;
+  color: white;
+}
+
+.box{
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 20px;
+  padding-bottom: 0px;
+  width: 100%;
+  
+}
+
+
+textarea {
+  resize: vertical;
+  height: 70px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+
+table{
+  margin-bottom: 15px;
+}
+
+#btn-hide{
+  height: 20px;
+  background-color: green;
+}
+

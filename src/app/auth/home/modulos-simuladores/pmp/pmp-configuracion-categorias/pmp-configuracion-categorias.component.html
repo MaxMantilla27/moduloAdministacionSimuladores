@@ -1,0 +1,103 @@
+<div class="row" style="padding: 40px 30px 10px 30px;">
+  <div class="titulo">
+    Configuración de categorías
+  </div>
+  <mat-tab-group class="tabHorizontalCategorias">
+    <mat-tab label="Categorias">
+      <div class="subTitulo">
+          Puedes modificar los nombres de las categorías, la cantidad de preguntas por examen y su proporcion dentro del examen,
+          este determinara cuantas preguntas apareceran para cada categoria en los modos entrenamiento y examen.
+      </div>
+      <div *ngIf="listaCategorias!=undefined" id="test">
+        <table class="tableCategorias">
+          <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Cant. de preguntas por examen</th>
+            <th>Proporción</th>
+            <th>Opciones</th>
+          </tr>
+          <ng-container *ngFor="let item of listaCategorias ;let i=index">
+            <tr>
+              <td>
+                {{item.id}}
+              </td>
+              <td>
+                {{item.nombre}}
+              </td>
+              <td>
+                {{item.cantidadPreguntasPorExamen}}
+              </td>
+              <td>
+                {{item.proporcion}} %
+              </td>
+              <td>
+                <ng-container>
+                  <button mat-button class="edit" (click)="EditarCategoria(item)">
+                    <i class="material-icons">edit</i>
+                  </button>
+                </ng-container>
+                <ng-container>
+                  <button mat-button class="delete" (click)="EliminarCategoria(item)">
+                    <i class="material-icons">delete</i>
+                  </button>
+                </ng-container>
+              </td>
+            </tr>
+          </ng-container>
+        </table>
+
+      </div>
+    </mat-tab>
+    <mat-tab label="SubCategorias">
+      <div class="subTitulo">
+        Puedes modificar los nombres de las subcategorías, la cantidad de preguntas por examen y su proporcion dentro del examen,
+        este determinara cuantas preguntas apareceran para cada categoria en los modos entrenamiento y examen.
+       </div>
+       <div *ngIf="listaCategorias!=undefined" id="test">
+        <table class="tableCategorias">
+          <tr>
+            <th>Id</th>
+            <th>Nombre de la subcategoría</th>
+            <th>Categoria Asignada</th>
+            <th>Cant. de preguntas por examen</th>
+            <th>Proporción</th>
+            <th>Opciones</th>
+          </tr>
+          <ng-container *ngFor="let item of listaCategorias ;let i=index">
+            <tr>
+              <td>
+                {{item.id}}
+              </td>
+              <td>
+                {{item.nombre}}
+              </td>
+              <td>
+                {{item.cantidadPreguntasPorExamen}}
+              </td>
+              <td>
+                {{item.proporcion}} %
+              </td>
+              <td>
+                <ng-container>
+                  <button mat-button class="edit" (click)="EditarCategoria(item)">
+                    <i class="material-icons">edit</i>
+                  </button>
+                </ng-container>
+                <ng-container>
+                  <button mat-button class="delete" (click)="EliminarCategoria(item)">
+                    <i class="material-icons">delete</i>
+                  </button>
+                </ng-container>
+              </td>
+            </tr>
+          </ng-container>
+        </table>
+
+      </div>
+
+
+
+    </mat-tab>
+  </mat-tab-group>
+</div>

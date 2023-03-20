@@ -10,12 +10,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InterceptorService } from './Interceptor/interceptor.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HelperService } from './shared/Services/helper.service';
+import { NotificationModule } from '@progress/kendo-angular-notification';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -23,6 +26,7 @@ import { HelperService } from './shared/Services/helper.service';
     SharedModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    NotificationModule,
 
   ],
   providers: [

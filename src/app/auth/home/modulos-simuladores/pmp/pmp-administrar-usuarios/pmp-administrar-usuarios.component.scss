@@ -1,0 +1,51 @@
+.titulo{
+  color: #7E7E7E;
+  font-size: 30px;
+  font-weight: bold;
+}
+.subTitulo{
+  color: #7E7E7E;
+  font-size: 15px;
+}
+.titulo2{
+    padding: 15px;
+  }
+
+
+p {
+  color: grey;
+}
+
+h1 {
+  font-size: 30px;
+  color: grey;
+}
+
+.inp {
+  width: 100%;
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.inp input {
+  margin-right: 20px;
+}
+
+.inp button {
+  margin-right: 20px;
+}
+
+.inp .tit {
+  margin-right: 20px;
+}
+
+.inp p {
+  margin-right: 20px;
+  color: grey;
+  font-size: 15px;
+}
+
+.half {
+  width: 50%;
+  display: flex;
+}

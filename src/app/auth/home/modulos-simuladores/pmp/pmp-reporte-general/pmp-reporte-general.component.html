@@ -1,0 +1,73 @@
+<div class="row" style="padding: 40px 30px 10px 30px;">
+  <div class="titulo">
+    Reporte General
+  </div>
+  <div class="subTitulo">
+    Puedes monitorear el estado de todos los alumnos matriculados en el programa e identificar que alumnos estan preparados para rendir el examen oficial de certificacion
+  </div>
+  <div class="tablaReporteGeneral">
+    <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed"class="table">
+      <thead>
+        <tr>
+          <th nzCustomFilter style="border: solid 1px #b2b2b2;width:120px ; text-align: center; background-color: #E7E7E7;color: #222222;">Código de Matrícula</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Alumno</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Centro de Costos</th>
+          <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Tipo de Matrícula</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Fecha de Matrícula al Simulador</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Ptje. máx M. exámen</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Ptje. prom M. exámen</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Simulaciones Finalizadas</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Fecha de últimas simulación</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Nivel</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Certificación</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Guardar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of nzTable.data; let i = index">
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.codigoMatricula }}
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.alumno }}
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.centroCostos }}
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.tipoMatricula }}</td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.fechaMatriculaSimulador|date: 'dd/MM/yyyy' }}
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.puntajeMaximo }}
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.puntajePromedio }}
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.simulacionesFinalizadas }}
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.fechaUltimaSimulacion|date: 'dd/MM/yyyy' }}
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            {{ data.nivel }}
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            <mat-select [(ngModel)]="data.idCertificacion" (selectionChange)="seleccionar($event)">
+              <mat-option *ngFor="let a of ComboReporteGeneral" [value]="a.id" >
+                {{a.nombre}}
+              </mat-option>
+            </mat-select>
+          </td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            <button mat-button class="aceptar" (click)="GuardarCambios(data)">
+              <i class="material-icons">check_circle</i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

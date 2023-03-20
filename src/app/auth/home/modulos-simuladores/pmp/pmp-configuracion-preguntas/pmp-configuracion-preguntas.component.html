@@ -1,0 +1,110 @@
+<div class="row" style="padding: 40px 30px 10px 30px;">
+  <div class="titulo">
+    Configuración de preguntas
+  </div>
+  <div class="subTitulo">
+    Puedes modificar el enunciado de las preguntas, sus alternativas, su retroalimentacion o el tipo de pregunta
+  </div>
+  <div>
+    <button mat-button class="agregar"
+            (click)="agregar()">
+              Añadir
+            </button>
+  </div>
+  <div id="test">
+    <nz-table
+      #columnTable
+      [nzData]="listOfDisplayData"
+       nzTableLayout="fixed" class="table"
+    >
+      <thead>
+        <tr>
+          <th style="border: solid 1px #b2b2b2;width:30px; text-align: center; background-color: #E7E7E7;color: #222222;">
+            Id
+          </th>
+          <th style="border: solid 1px #b2b2b2;width:130px; text-align: center; background-color: #E7E7E7;color: #222222;">
+            Enunciado
+          </th>
+          <th style="border: solid 1px #b2b2b2;width:40px; text-align: center; background-color: #E7E7E7;color: #222222;">
+            Id Categoria
+          </th>
+          <th style="border: solid 1px #b2b2b2;width:50px; text-align: center; background-color: #E7E7E7;color: #222222;">
+            Nombre Categoria
+            <nz-filter-trigger
+              [(nzVisible)]="visible"
+              [nzActive]="searchValue.length > 0"
+              [nzDropdownMenu]="menu"
+            >
+              <span nz-icon nzType="search"></span>
+            </nz-filter-trigger>
+          </th>
+          <th style="border: solid 1px #b2b2b2;width:80px; text-align: center; background-color: #E7E7E7;color: #222222;"
+          >
+            Nombre Subcategoria
+          </th>
+          <th style="border: solid 1px #b2b2b2;width:70px; text-align: center; background-color: #E7E7E7;color: #222222;">Opciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let data of columnTable.data; let i = index">
+          <td style="text-align: center; border: 1px solid #cacaca">
+            {{ data.id }}
+          </td>
+          <td style="text-align: center; border: 1px solid #cacaca">
+            {{ data.enunciado }}
+          </td>
+          <td style="text-align: center; border: 1px solid #cacaca">
+            {{ data.idCategoria }}
+          </td>
+          <td style="text-align: center; border: 1px solid #cacaca">
+            {{ data.categoria }}
+          </td>
+          <td style="text-align: center; border: 1px solid #cacaca">
+            {{ data.subcategoria }}
+          </td>
+
+          <td  style="justify-content: center;display: flex;">
+            <ng-container>
+              <button
+              mat-button
+              class="edit"
+              (click)="openDialog(data)"
+              style="margin-right: 10px"
+            >
+              <i class="material-icons">edit</i>
+            </button>
+
+            <button mat-button class="cancel" (click)="eliminar(i)">
+              <i class="material-icons">close</i>
+            </button>
+            </ng-container>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+          <input
+            type="text"
+            nz-input
+            placeholder="Search name"
+            [(ngModel)]="searchValue"
+          />
+          <button
+            nz-button
+            nzSize="small"
+            nzType="primary"
+            (click)="search()"
+            class="search-button"
+          >
+            Search
+          </button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </div>
+    </nz-dropdown-menu>
+  </div>
+</div>

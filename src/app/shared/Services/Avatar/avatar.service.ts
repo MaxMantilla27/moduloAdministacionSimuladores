@@ -17,13 +17,13 @@ export class AvatarService {
 
   GetUrlImagenAvatar(avatar:AvatarDTO):string{
     var url='https://avataaars.io/?avatarStyle=Circle&topType=';
-    url +=avatar.topC+'&accessoriesType=';
+    url +=avatar.top+'&accessoriesType=';
     url +=avatar.accessories+'&hairColor=';
-    url +=avatar.hair_Color+'&facialHairType=';
-    url +=avatar.facial_Hair+'&facialHairColor=';
-    url +=avatar.facial_Hair_Color+'&clotheType=';
+    url +=avatar.hairColor+'&facialHairType=';
+    url +=avatar.facialHair+'&facialHairColor=';
+    url +=avatar.facialHairColor+'&clotheType=';
     url +=avatar.clothes+'&clotheColor=';
-    url +=avatar.clothes_Color+'&eyeType=';
+    url +=avatar.clothesColor+'&eyeType=';
     url +=avatar.eyes+'&eyebrowType=';
     url +=avatar.eyesbrow+'&mouthType=';
     url +=avatar.mouth+'&skinColor=';
