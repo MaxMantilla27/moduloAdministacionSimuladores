@@ -8,10 +8,11 @@ import { environment } from 'src/environments/environment';
 })
 export class PmpTareaService {
 
-  public urlBase=environment.url_api+'PmpPregunta';
+  public urlBase=environment.url_api+'PmpTarea';
   constructor(private http: HttpClient) { }
 
   public ObtenerSubcategoriaCombo(idDominio:any): Observable<any> {
-    return this.http.post<any>(this.urlBase + '/ObtenerComboTarea' , idDominio[0 ]);
+    console.log(idDominio[0])
+    return this.http.post<any>(this.urlBase + '/ObtenerComboTarea?idDominio=' + idDominio[0].idDominio,'');
   }
 }

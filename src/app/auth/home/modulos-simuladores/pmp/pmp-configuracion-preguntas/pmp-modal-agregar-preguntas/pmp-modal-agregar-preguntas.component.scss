@@ -32,7 +32,7 @@ h1 {
 }
 
 .inp .tit {
-  margin-right: 20px;
+  margin-right: 50px;
   width: 200px;
 }
 
@@ -101,6 +101,9 @@ input{
   width: 300px;
 }
 
+.example-full-width{
+  width: 500px;
+}
 .botonAgregar{
   width: 150px;
   background-color: #23CAE4;
@@ -119,6 +122,8 @@ input{
   border-radius: 10px;
   padding: 20px;
   padding-bottom: 0px;
+  width: 100%;
+  
 }
 
 
@@ -133,3 +138,9 @@ textarea {
 table{
   margin-bottom: 15px;
 }
+
+#btn-hide{
+  height: 20px;
+  background-color: green;
+}
+

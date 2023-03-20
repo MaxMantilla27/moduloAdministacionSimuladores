@@ -12,5 +12,11 @@ export class PmpPreguntaService {
 
   public ObtenerPregunta(): Observable<any> {
     return this.http.get<any>(this.urlBase + '/ObtenerListaModoDapper');
+  } 
+
+  public ObtenerPmpPregunta(idPregunta: any):Observable<any>{
+    return this.http.post<any>(this.urlBase+'/ObtenerPmpPregunta?Id='+idPregunta,'');
   }
+
+
 }

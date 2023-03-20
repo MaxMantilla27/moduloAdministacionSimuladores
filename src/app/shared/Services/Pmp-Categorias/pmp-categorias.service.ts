@@ -14,7 +14,7 @@ export class PmpCategoriasService {
   public ObtenerCategorias():Observable<any>{
     return this.http.get<any>(this.urlBase +'/ObtenerCategorias');
   }
-  public ObtenerComboDominio(): Observable<any> {
+  public ObtenerComboCategorias(): Observable<any> {
     return this.http.get<any>(this.urlBase + '/ObtenerComboCategorias');
   }
 
