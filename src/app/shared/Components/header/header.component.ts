@@ -1,5 +1,5 @@
 import { asNativeElements, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MatLegacyMenu as MatMenu, MatLegacyMenuTrigger as MatMenuTrigger } from '@angular/material/legacy-menu';
+import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { AvatarDTO } from 'src/app/Models/AvatarDTO';
