@@ -8,6 +8,12 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class PmpTipoRespuestaService {
+  ObtenerSubcategoriaCombo(envio: any) {
+    throw new Error('Method not implemented.');
+  }
+  ObtenerComboDominio() {
+    throw new Error('Method not implemented.');
+  }
 
   public urlBase=environment.url_api+'PmpTipoRespuesta';
   public urlBase2=environment.url_api+'PmpParametrosNivel';

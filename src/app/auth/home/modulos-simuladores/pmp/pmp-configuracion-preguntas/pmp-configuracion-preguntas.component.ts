@@ -40,6 +40,7 @@ export class PmpConfiguracionPreguntasComponent implements OnInit, OnChanges {
 
   openDialog(data: any) {
     console.log(data);
+    //Editar Pregunta
     const dialogRef = this.dialog.open(PmpModalAgregarPreguntasComponent, {
       width: '1000px',
       maxHeight: '90vh',
