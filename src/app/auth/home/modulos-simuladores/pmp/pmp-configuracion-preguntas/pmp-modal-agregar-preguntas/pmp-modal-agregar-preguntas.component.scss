@@ -28,11 +28,11 @@ h1 {
 }
 
 .inp button {
-  margin-right: 20px;
+  margin-right: 100px;
 }
 
 .inp .tit {
-  margin-right: 50px;
+  margin-right: -70px;
   width: 200px;
 }
 
@@ -99,6 +99,8 @@ h1 {
 
 input{
   width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .example-full-width{
@@ -132,6 +134,8 @@ textarea {
   height: 70px;
   padding: 10px;
   margin-bottom: 10px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
 }
 
 
@@ -139,8 +143,8 @@ table{
   margin-bottom: 15px;
 }
 
-#btn-hide{
-  height: 20px;
-  background-color: green;
+.buttonGroup{
+  margin-left: 10%;
 }
+
 
