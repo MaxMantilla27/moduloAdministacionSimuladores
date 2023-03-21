@@ -15,13 +15,12 @@ export class BarrasComponent implements OnInit {
   @Input() ResultadoDominio1=0;
   @Input() ResultadoDominio2=0;
   @Input() ResultadoDominio3=0;
-  @Input() ResultadoDominio4=0;
 
   public barChartOptions: ChartConfiguration['options'] = {};
   public barChartType: ChartType = 'bar';
   public barChartPlugins = [DatalabelsPlugin];
   public barChartData: ChartData<'bar'> = {
-    labels: [ 'H1', 'H2', 'H3', 'H4'],
+    labels: [ 'C1', 'C2', 'C3'],
     datasets: [
       { data: [ 0, 0, 0, 0],
         label: 'Puntaje',
@@ -41,14 +40,12 @@ export class BarrasComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     if(this.ResultadoDominio1!=0 ||
       this.ResultadoDominio2!=0 ||
-      this.ResultadoDominio3!=0 ||
-      this.ResultadoDominio4!=0 ){
+      this.ResultadoDominio3!=0){
       this.ValoresChart()
     }
     if(this.ResultadoDominio1==0 &&
       this.ResultadoDominio2==0 &&
-      this.ResultadoDominio3==0 &&
-      this.ResultadoDominio4==0){
+      this.ResultadoDominio3==0){
       this.ValoresChartInicio()
     }
   }
@@ -74,12 +71,11 @@ export class BarrasComponent implements OnInit {
     }
     //Datos
     this.barChartData={
-      labels: [ 'H1', 'H2', 'H3', 'H4'],
+      labels: [ 'C1', 'C2', 'C3',],
       datasets: [
         { data: [ this.ResultadoDominio1,
           this.ResultadoDominio2,
-          this.ResultadoDominio3,
-          this.ResultadoDominio4],
+          this.ResultadoDominio3],
           label: 'Puntaje (%)',
           backgroundColor: '#00C356',
           hoverBackgroundColor:[
@@ -117,9 +113,9 @@ export class BarrasComponent implements OnInit {
     }
     //Datos
     this.barChartData={
-      labels: [ 'H1', 'H2', 'H3', 'H4'],
+      labels: [ 'C1', 'C2', 'C3'],
       datasets: [
-        { data: [ 0, 0, 0, 0],
+        { data: [ 0, 0, 0],
           label: 'Puntaje',
           backgroundColor: '#00C356',
           hoverBackgroundColor:[

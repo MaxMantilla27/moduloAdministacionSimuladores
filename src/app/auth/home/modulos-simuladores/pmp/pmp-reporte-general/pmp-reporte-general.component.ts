@@ -32,7 +32,6 @@ export class PmpReporteGeneralComponent implements OnInit {
   ObtenerReporteGeneralPmp(){
     this._PmpReporteGeneral.ObtenerReporteGeneralPmp().subscribe({
       next: (x: any) => {
-        console.log(x)
         this.ReporteGeneral = x;
         this.listOfDisplayData = this.ReporteGeneral;
       },
@@ -41,7 +40,6 @@ export class PmpReporteGeneralComponent implements OnInit {
   ObtenerComboCertificacionPmp(){
     this._PmpReporteGeneral.ObtenerComboCertificacionPmp().subscribe({
       next: (x: any) => {
-        console.log(x)
         this.ComboReporteGeneral = x;
       },
     });
@@ -55,7 +53,6 @@ export class PmpReporteGeneralComponent implements OnInit {
     this.EnvioCertificacion.codigoMatricula = data.codigoMatricula;
     this.EnvioCertificacion.idAlumno = data.idAlumno;
     this.EnvioCertificacion.idEstadoCertificacionSimulador = data.idCertificacion;
-    console.log(data)
     this._PmpReporteGeneral.InsertarCertificacionPmp(this.EnvioCertificacion).subscribe({
       next: (x: any) => {
         this.alertaService.mensajeExitoso();

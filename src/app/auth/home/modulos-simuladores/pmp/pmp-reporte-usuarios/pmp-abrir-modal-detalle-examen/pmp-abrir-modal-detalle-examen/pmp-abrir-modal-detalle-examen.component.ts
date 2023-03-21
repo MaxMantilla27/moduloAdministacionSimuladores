@@ -1,11 +1,12 @@
-import { Component, OnInit,Inject } from '@angular/core';
+import { Component, OnInit,Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PmpExamenService } from 'src/app/shared/Services/Pmp-examen/pmp-examen.service';
 
 @Component({
   selector: 'app-pmp-abrir-modal-detalle-examen',
   templateUrl: './pmp-abrir-modal-detalle-examen.component.html',
-  styleUrls: ['./pmp-abrir-modal-detalle-examen.component.scss']
+  styleUrls: ['./pmp-abrir-modal-detalle-examen.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class PmpAbrirModalDetalleExamenComponent implements OnInit {
 
@@ -21,7 +22,9 @@ export class PmpAbrirModalDetalleExamenComponent implements OnInit {
   public CantidadTotalPreguntas=0;
   public ContadorPreguntaActual=0;
   public ContadorPregunta=0;
-  public NombreDominio=''
+  public NombreSimulacion=''
+  public NombreCategoria=''
+  public NombreSubCategoria=''
   ngOnInit(): void {
     this.IdExamen=this.data
     this.ObtenerRespuestaExamenDetallePreguntaPorId();
@@ -34,18 +37,21 @@ export class PmpAbrirModalDetalleExamenComponent implements OnInit {
         this.ListaPreguntas=x.pregunta
         this.CantidadTotalPreguntas=x.length;
         this.ContadorPreguntaActual=this.ContadorPregunta+1;
-        this.NombreDominio=x[0].dominioNombre;
+        this.NombreSimulacion=x[0].nombreExamen
+        this.NombreCategoria=x[0].categoria;
+        this.NombreSubCategoria=x[0].subCategoria;
       }
     })
   }
-  RegresarMenu(){
+  Salir(){
     this.dialogRef.close();
   }
   SiguientePregunta(){
     this.ContadorPreguntaActual=this.ContadorPreguntaActual+1;
     this.ContadorPregunta=this.ContadorPregunta+1;
-    if (this.ContadorPreguntaActual>this.CantidadTotalPreguntas){
-      this.dialogRef.close();
-    }
+  }
+  AnteriorPregunta(){
+    this.ContadorPreguntaActual=this.ContadorPreguntaActual-1;
+    this.ContadorPregunta=this.ContadorPregunta-1;
   }
 }

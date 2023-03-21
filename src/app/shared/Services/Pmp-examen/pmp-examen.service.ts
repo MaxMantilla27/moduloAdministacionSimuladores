@@ -20,4 +20,7 @@ export class PmpExamenService {
   public ObtenerRespuestaExamenDetallePreguntaPorId(id:number):Observable<any>{
     return this.http.get<any>(this.urlBase+'/ObtenerRespuestaExamenDetallePreguntaPorId/'+id);
   }
+  public ObtenerResumenSimulacionesPorModoUsuario(IdAspNetUsers:string,Modo:number): Observable<any> {
+    return this.http.get<any>(this.urlBase + '/ObtenerResumenSimulacionesPorModoUsuario?IdAspNetUsers=' + IdAspNetUsers+ '&Modo=' + Modo);
+  }
 }

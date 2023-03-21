@@ -4,47 +4,62 @@
   </div>
   <div class="subTitulo">
     Puedes visualizar el estado de los simuladores, resultado y nivel de aprendizaje.
-  </div>
-    <div class="inp">
-      <div class="tit">
-        <p>Codigo de matricula:</p>
+  </div >
+  <div style="margin-top:15px">
+    <div style="display: flex;margin-top: 10px;margin-bottom: 15px;">
+      <div class="col-12 col-md-3 nombreInput">
+        Codigo de matricula:
       </div>
-      <input placeholder="[Codigo]"  [(ngModel)]="codigoMatricula"/>
-      <button mat-raised-button style="background-color: #23CAE4; color: white"
-      (click)="filtroReporteUsuarios()">
+      <div class="col-12 col-md-3">
+        <input class="inputRUsuarioBuscar" placeholder="[Codigo]"  [(ngModel)]="codigoMatricula"/>
+      </div>
+      <div class="col-12 col-md-6">
+        <button mat-button style="background-color: #04BAFF; color: white" (click)="filtroReporteUsuarios()">
+          <i class="material-icons">search</i>
         Buscar
       </button>
-    </div>
-    <div class="inp">
-      <div class="tit">
-        <p>Id Alumno:</p>
       </div>
-      <input placeholder="[IdAlumno]" [(ngModel)]="IdAlumno" />
+    </div>
+    <div style="display: flex;margin-top: 10px;margin-bottom: 10px;">
+      <div class="col-12 col-md-3 nombreInput">
+        Id Alumno:
+      </div>
+      <div class="col-12 col-md-9">
+        <input class="inputRUsuario"  placeholder="[IdAlumno]" [(ngModel)]="IdAlumno" />
+      </div>
     </div>
 
-    <div class="inp">
-      <div class="tit">
-        <p>Nombres y Apellidos:</p>
+    <div style="display: flex;margin-top: 10px;margin-bottom: 10px;">
+      <div class="col-12 col-md-3 nombreInput">
+        Nombres y Apellidos:
       </div>
-      <input placeholder="[Nombres y Apellidos]" [(ngModel)]="Alumno" />
+      <div class="col-12 col-md-9">
+        <input class="inputRUsuario"  placeholder="[Nombres y Apellidos]" [(ngModel)]="Alumno" />
+      </div>
     </div>
-    <div class="inp">
-      <div class="tit">
-        <p>Nivel:</p>
+    <div style="display: flex;margin-top: 10px;margin-bottom: 10px;">
+      <div class="col-12 col-md-3 nombreInput">
+        Nivel:
       </div>
-      <input placeholder="[Nivel]" [(ngModel)]="Nivel"/>
+      <div class="col-12 col-md-9">
+        <input class="inputRUsuario"  placeholder="[Nivel]" [(ngModel)]="Nivel"/>
+      </div>
     </div>
-    <div class="inp">
-      <div class="tit">
-        <p>Examenes activos:</p>
+    <div style="display: flex;margin-top: 10px;margin-bottom: 10px;">
+      <div class="col-12 col-md-3 nombreInput">
+        Examenes activos:
       </div>
-      <input placeholder="[Examenes Activos]" [(ngModel)]="ExamenesActivos"/>
+      <div class="col-12 col-md-9">
+        <input class="inputRUsuario"  placeholder="[Examenes Activos]" [(ngModel)]="ExamenesActivos"/>
+      </div>
     </div>
-    <div class="inp">
-      <div class="tit">
-        <p>Examenes Completados:</p>
+    <div style="display: flex;margin-top: 10px;margin-bottom: 10px;">
+      <div class="col-12 col-md-3 nombreInput">
+        Examenes Completados:
       </div>
-      <input placeholder="[Examenes Completados]" [(ngModel)]="ExamenesCompletados" />
+      <div class="col-12 col-md-9">
+        <input class="inputRUsuario"  placeholder="[Examenes Completados]" [(ngModel)]="ExamenesCompletados" />
+      </div>
     </div>
   </div>
 
@@ -55,7 +70,7 @@
           class="modos"
           mat-flat-button
           [ngClass]="{ colorin: Modo == 1 }"
-          (click)="ObtenerRankingPorModoUsuario(1)"
+          (click)="ObtenerResumenSimulacionesPorModoUsuario(1)"
         >
           Modo estudio
         </button>
@@ -65,7 +80,7 @@
           class="modos"
           mat-flat-button
           [ngClass]="{ colorin: Modo == 2 }"
-          (click)="ObtenerRankingPorModoUsuario(2)"
+          (click)="ObtenerResumenSimulacionesPorModoUsuario(2)"
         >
           Modo entrenamiento
         </button>
@@ -75,7 +90,7 @@
           class="modos"
           mat-flat-button
           [ngClass]="{ colorin: Modo == 3 }"
-          (click)="ObtenerRankingPorModoUsuario(3)"
+          (click)="ObtenerResumenSimulacionesPorModoUsuario(3)"
         >
           Modo examen
         </button>
@@ -89,21 +104,41 @@
       <div class="col-md-4">
         <div>
           <p>Resultados de la ultima simulacion</p>
-          <app-dona [Puntos]="Puntos" [TotalPuntos]="Puntos"></app-dona>
+          <app-dona [Puntos]="PuntosUltimaSimulacion" [TotalPuntos]="PuntosUltimaSimulacion"></app-dona>
           <div class="item-leyenda-dona-principal">
-            <div>[Categoria] : [Subcategoria]</div>
+            <div>Nombre: {{NombreUltimaSimulacion}}</div>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <p>Mejor puntaje obtenido</p>
-        <app-dona [Puntos]="Puntos" [TotalPuntos]="Puntos"></app-dona>
+        <app-dona [Puntos]="PuntosMejorSimulacion" [TotalPuntos]="PuntosMejorSimulacion"></app-dona>
         <div class="item-leyenda-dona-principal">
-          <div>[Categoria] : [Subcategoria]</div>
+          <div>Simulación: {{NombreMejorSimulacion}}</div>
         </div>
       </div>
       <div class="col-md-4">
         <p>Categorias con mayores puntajes</p>
+        <div *ngIf="PuntajesCategoria!=undefined">
+          <ng-container *ngFor="let itemCategorias of PuntajesCategoria" >
+            <div *ngIf="itemCategorias.promedio!=0" class="row">
+              <div class="col-9" style="top:8px;">
+                <mat-progress-bar mode="determinate" style="height: 10px;"
+                  [value]="itemCategorias.promedio">
+                </mat-progress-bar>
+                <p style="text-align: left;"><b style="color:#786565">Categoría {{itemCategorias.id}}: </b> <span>{{itemCategorias.nombre}}</span></p>
+            </div>
+            <div class="col-3">
+                <h5 style="color: #0684f2; white-space: nowrap; font-weight: 800 ">{{itemCategorias.promedio}}%</h5>
+            </div>
+            </div>
+          </ng-container>
+        </div>
+        <div *ngIf="PuntajesCategoria==undefined">
+          <div style=" font-size: 15px;margin-top: 10px;">
+            Aún no ha realizado ninguna sesión de estudio
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -147,21 +182,28 @@
         <div class="col-md-4">
           <div>
             <p>Resultados de la ultima simulacion</p>
-            <app-dona [Puntos]="Puntos" [TotalPuntos]="Puntos"></app-dona>
+            <app-dona [Puntos]="PuntosUltimaSimulacion" [TotalPuntos]="PuntosUltimaSimulacion"></app-dona>
             <div class="item-leyenda-dona-principal">
-              <div>[Nombre de la simulacion]</div>
+              <div>Nombre: {{NombreUltimaSimulacion}}</div>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <p>Mejor puntaje obtenido</p>
-          <app-dona [Puntos]="Puntos" [TotalPuntos]="Puntos"></app-dona>
+          <app-dona [Puntos]="PuntosMejorSimulacion" [TotalPuntos]="PuntosMejorSimulacion"></app-dona>
           <div class="item-leyenda-dona-principal">
-            <div>[Nombre de la simulacion]</div>
+            <div>Simulación: {{NombreMejorSimulacion}}</div>
           </div>
         </div>
         <div class="col-md-4">
           <p>Puntaje general por categorias</p>
+          <div>
+            <app-barras
+              [ResultadoDominio1]="ResultadoDominio1"
+              [ResultadoDominio2]="ResultadoDominio2"
+              [ResultadoDominio3]="ResultadoDominio3">
+            </app-barras>
+          </div>
         </div>
       </div>
     </div>
@@ -205,22 +247,28 @@
         <div class="col-md-4">
           <div>
             <p>Resultados de la ultima simulacion</p>
-            <app-dona [Puntos]="Puntos" [TotalPuntos]="Puntos"></app-dona>
+            <app-dona [Puntos]="PuntosUltimaSimulacion" [TotalPuntos]="PuntosUltimaSimulacion"></app-dona>
             <div class="item-leyenda-dona-principal">
-              <div>[Nombre de la simulacion]</div>
+              <div>Nombre: {{NombreUltimaSimulacion}}</div>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <p>Mejor puntaje obtenido</p>
-          <app-dona [Puntos]="Puntos" [TotalPuntos]="Puntos"></app-dona>
+          <app-dona [Puntos]="PuntosMejorSimulacion" [TotalPuntos]="PuntosMejorSimulacion"></app-dona>
           <div class="item-leyenda-dona-principal">
-            <div>[Nombre de la simulacion]</div>
+            <div>Simulación: {{NombreMejorSimulacion}}</div>
           </div>
         </div>
         <div class="col-md-4">
-
           <p>Puntaje general por categorias</p>
+          <div>
+            <app-barras
+              [ResultadoDominio1]="ResultadoDominio1"
+              [ResultadoDominio2]="ResultadoDominio2"
+              [ResultadoDominio3]="ResultadoDominio3">
+            </app-barras>
+          </div>
         </div>
       </div>
     </div>
@@ -256,4 +304,5 @@
       </nz-table>
   </div>
   </ng-container>
+</div>
 </div>

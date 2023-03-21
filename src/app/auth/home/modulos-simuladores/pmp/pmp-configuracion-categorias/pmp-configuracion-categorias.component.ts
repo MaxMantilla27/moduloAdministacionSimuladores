@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PmpModalAgregarSubcategoriaComponent } from './pmp-modal-agregar-subcategoria/pmp-modal-agregar-subcategoria.component';
 import { PmpModalAgregarCategoriaComponent } from './pmp-modal-agregar-categoria/pmp-modal-agregar-categoria.component';
@@ -7,7 +7,9 @@ import { PmpCategoriasService } from 'src/app/shared/Services/Pmp-Categorias/pmp
 @Component({
   selector: 'app-pmp-configuracion-categorias',
   templateUrl: './pmp-configuracion-categorias.component.html',
-  styleUrls: ['./pmp-configuracion-categorias.component.scss']
+  styleUrls: ['./pmp-configuracion-categorias.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+
 })
 export class PmpConfiguracionCategoriasComponent implements OnInit {
 
@@ -45,7 +47,6 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
     this.CantTotalPreguntasPorExamenCategoria=0;
     this._TipoDominio.ObtenerCategorias().subscribe({
       next: (x: any) => {
-        console.log(x)
         this.listaCategorias = x;
         this.listaCategorias.forEach((y:any)=>{
           this.CantTotalPreguntasPorExamenCategoria=this.CantTotalPreguntasPorExamenCategoria+y.cantidadPreguntasPorExamen

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 import { PmpExamenService } from 'src/app/shared/Services/Pmp-examen/pmp-examen.service';
@@ -9,7 +9,8 @@ import { PmpAbrirModalDetalleExamenComponent } from './pmp-abrir-modal-detalle-e
 @Component({
   selector: 'app-pmp-reporte-usuarios',
   templateUrl: './pmp-reporte-usuarios.component.html',
-  styleUrls: ['./pmp-reporte-usuarios.component.scss']
+  styleUrls: ['./pmp-reporte-usuarios.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class PmpReporteUsuariosComponent implements OnInit {
 
@@ -20,28 +21,33 @@ export class PmpReporteUsuariosComponent implements OnInit {
     private _Examen: PmpExamenService,
     public dialog: MatDialog,
   ) { }
-  ngOnInit(): void {
-
-  }
-
-  tresDigitos = true
-  Puntos = 100
+  public PuntosUltimaSimulacion = 0;
+  public NombreUltimaSimulacion = '';
+  public PuntosMejorSimulacion = 0;
+  public NombreMejorSimulacion = '';
   public Modo=0;
   public codigoMatricula:'';
-  public IdAlumno=0;
+  public IdAlumno='';
   public Alumno='';
-  public ExamenesActivos=0;
-  public ExamenesCompletados=0;
+  public ExamenesActivos='';
+  public ExamenesCompletados='';
   public Nivel=''
   public IdAspNetUsers=''
   public Ranking:any;
   public listOfDisplayData:any;
+  public ResumenSimulacionesCategoriaModo:any;
+  public ResultadoDominio1=0;
+  public ResultadoDominio2=0;
+  public ResultadoDominio3=0;
+  public PuntajesCategoria:any;
 
+  ngOnInit(): void {
+
+  }
 
   filtroReporteUsuarios() {
     this._Examen.ObtenerReporteUsuario(this.codigoMatricula).subscribe({
       next: (x) => {
-        console.log(x)
          this.IdAlumno= x.idAlumno,
          this.Alumno = x.alumno,
          this.ExamenesActivos = x.examenesActivos,
@@ -50,41 +56,68 @@ export class PmpReporteUsuariosComponent implements OnInit {
          this.IdAspNetUsers = x.idAspNetUsers
       },
       error:(e)=>{
-        console.log(e)
       },
       complete: () => {
 
       },
     });
+  }
+  ObtenerResumenSimulacionesPorModoUsuario(IdModo:number){
+    this.Modo=IdModo;
+    if(this.IdAspNetUsers!=''){
+      this._Examen.ObtenerResumenSimulacionesPorModoUsuario(this.IdAspNetUsers,this.Modo).subscribe({
+        next: (x) => {
+          console.log(x)
+          this.ResumenSimulacionesCategoriaModo=x;
+          this.PuntajesCategoria=x.puntajesCategoria;
+          this.PuntosUltimaSimulacion = Math.floor(x.puntajeUltimoExamen);
+          console.log(this.PuntosUltimaSimulacion)
+          this.NombreUltimaSimulacion = x.nombreUltimoExamen;
+          this.PuntosMejorSimulacion = Math.floor(x.puntajeMejorExamen);
+          console.log(this.PuntosMejorSimulacion)
+          this.NombreMejorSimulacion = x.nombreMejorExamen;
+          this.ResultadoDominio1=Math.floor(this.PuntajesCategoria[0].promedio);
+          this.ResultadoDominio2=Math.floor(this.PuntajesCategoria[1].promedio);
+          this.ResultadoDominio3=Math.floor(this.PuntajesCategoria[2].promedio);
+        },
+        error:(e)=>{
+        },
+        complete: () => {
+          this.ObtenerRankingPorModoUsuario(IdModo);
+        },
+      });
+    }
   }
   ObtenerRankingPorModoUsuario(IdModo:number){
     this.Modo=IdModo;
-    this._Examen.ObtenerRankingPorModoUsuario(this.IdAspNetUsers,this.Modo).subscribe({
-      next: (x) => {
-        console.log(x)
-        this.Ranking=x
-        this.listOfDisplayData=x
-        let contRanking =1;
-        this.Ranking.forEach((d:any)=> {
-          d.ranking2=contRanking;
-          contRanking=contRanking+1;
-        });
+    if(this.IdAspNetUsers!=''){
+      this._Examen.ObtenerRankingPorModoUsuario(this.IdAspNetUsers,this.Modo).subscribe({
+        next: (x) => {
+          this.Ranking=x
+          this.listOfDisplayData=x
+          let contRanking =1;
+          this.Ranking.forEach((d:any)=> {
+            d.ranking2=contRanking;
+            contRanking=contRanking+1;
+          });
 
-      },
-      error:(e)=>{
-        console.log(e)
-      },
-      complete: () => {
+        },
+        error:(e)=>{
+        },
+        complete: () => {
 
-      },
-    });
+        },
+      });
+    }
   }
   VerExamen(IdExamen:number){
     const dialogRef = this.dialog.open(PmpAbrirModalDetalleExamenComponent, {
-       width: '60%',
-      panelClass: 'dialog-agregar-categoria',
+      width: '100%',
+      height: '100%',
+      maxHeight: '95%',
+      maxWidth: '100%',
+      panelClass: 'dialog-ver-respuestas-examen',
       data:[IdExamen],
-      disableClose: true
     });
   }
 

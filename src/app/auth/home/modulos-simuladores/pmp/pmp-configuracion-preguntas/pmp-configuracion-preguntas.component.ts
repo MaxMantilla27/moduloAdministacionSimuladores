@@ -71,7 +71,6 @@ export class PmpConfiguracionPreguntasComponent implements OnInit, OnChanges {
       next: (x: any) => {
         this.datasource = x;
         this.listOfDisplayData = this.datasource;
-        console.log(x);
       },
     });
   }

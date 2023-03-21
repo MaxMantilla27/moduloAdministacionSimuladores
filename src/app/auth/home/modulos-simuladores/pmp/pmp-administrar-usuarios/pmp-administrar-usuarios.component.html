@@ -6,30 +6,34 @@
     Puedes administrar las solicitudes de acceso a simuladores enviadas por alumnos
   </div>
   <div class="titulo2">
-    <div class="inp">
-      <div class="half">
-        <div class="tit">
+    <div class="row">
+      <div class="col-12 col-md-6" style="display:flex">
+        <div class="col-12 col-md-4">
           <p>Codigo de matricula:</p>
         </div>
-        <input placeholder="[Codigo]" />
-        <button
-          mat-raised-button
-          style="background-color: #23CAE4; color: white"
-        >
-          Buscar
-        </button>
-      </div>
-      <div class="half">
-        <div class="tit">
-          <p>Centro de costos:</p>
+        <div class="col-12 col-md-5">
+          <input class="inputAdmUsuarioBuscar" placeholder="Código de matrícula" />
         </div>
-        <input placeholder="[Centro de Costo]" />
-        <button
-          mat-raised-button
-          style="background-color: #23CAE4; color: white"
-        >
+        <div class="col-12 col-md-2">
+          <button mat-raised-button style="background-color: #04BAFF; color: white">
+            <i class="material-icons">search</i>
           Buscar
         </button>
+        </div>
+      </div>
+      <div class="col-12 col-md-6" style="display:flex">
+        <div class="col-12 col-md-4">
+          Centro de costos:
+        </div>
+        <div class="col-12 col-md-5">
+          <input class="inputAdmUsuarioBuscar" placeholder="Centro de Costos" />
+        </div>
+        <div class="col-12 col-md-2">
+          <button mat-raised-button style="background-color: #04BAFF; color: white">
+            <i class="material-icons">search</i>
+            Buscar
+          </button>
+        </div>
       </div>
     </div>
 

@@ -35,7 +35,6 @@ export class PmpConfiguracionTipoPreguntasComponent implements OnInit {
   ObtenerTipoRespuesta() {
     this._TipoRespuesta.ObtenerTipoRespuesta().subscribe({
       next: (x: any) => {
-        console.log(x)
         this.datasource = x;
         this.listOfDisplayData = this.datasource
         this.datasource.forEach((d:any)=> {
