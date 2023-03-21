@@ -42,7 +42,7 @@ export class PmpConfiguracionPreguntasComponent implements OnInit, OnChanges {
     console.log(data);
     //Editar Pregunta
     const dialogRef = this.dialog.open(PmpModalAgregarPreguntasComponent, {
-      width: '1000px',
+      width: '1500px',
       maxHeight: '90vh',
       panelClass: 'dialog-gestor',
       data: data,
