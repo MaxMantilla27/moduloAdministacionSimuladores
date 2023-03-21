@@ -1,14 +1,11 @@
-.contenedor {
-  padding: 15px;
-  padding-left: 70px;
+.titulo{
+  color: #7E7E7E;
+  font-size: 30px;
+  font-weight: bold;
 }
-
-.titulo {
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-p {
-  color: grey;
+.subTitulo{
+  color: #7E7E7E;
+  font-size: 15px;
 }
 
 h1 {
@@ -16,30 +13,6 @@ h1 {
   color: grey;
 }
 
-.inp {
-  width: 100%;
-  display: flex;
-  margin-bottom: 15px;
-}
-
-.inp input {
-  margin-right: 20px;
-}
-
-.inp button {
-  margin-right: 20px;
-}
-
-.inp .tit {
-  margin-right: 20px;
-  width: 200px;
-}
-
-.inp p {
-  margin-right: 20px;
-  color: grey;
-  font-size: 15px;
-}
 
 .colorin {
   background-color: #323232;
@@ -76,19 +49,48 @@ h1 {
   padding-bottom: 20px;
 }
 
-.ContenidoDonaPuntos2 {
-  line-height: 20px;
-  text-align: center;
-  font-size: 50px;
-  color: #0684f2;
-  border-radius: 100%;
-  font-weight: 700;
-}
 
 ::placeholder {
   text-align: center;
 }
 
-input {
-  width: 300px;
+.detalle{
+  background-color: #094D82;
+  color: white;
+
+}
+.inputRUsuarioBuscar{
+  border-radius: 10px;
+  text-align: center;
+  width: 14rem;
+  height: 36px;
+}
+.inputRUsuario{
+  border-radius: 10px;
+  text-align: center;
+  width: 21rem;
+}
+.nombreInput{
+  font-size: 15px;
+}
+.mat-progress-bar-fill::after {
+  background: #00C356;
+}
+.mat-progress-bar {
+  border-radius: 10px;
+}
+.item-leyenda-barras{
+  font-size: 14px;
+  color: #878787;
+}
+.item-leyenda-dona{
+  text-align: center;
+  color: #878787;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+.item-leyenda-dona-principal{
+  color: #af9f9f;
+  padding-top: 20px;
+  padding-bottom: 5px;
 }

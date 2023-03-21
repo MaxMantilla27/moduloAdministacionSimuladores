@@ -23,10 +23,9 @@ export class PmpConfiguracionTipoPreguntasComponent implements OnInit {
   editId: string | null = null;
   idMandar: number
 
-  public envio: actualizarTipoRespuestaDTO={
+  public ActualizarTipoRespuesta: actualizarTipoRespuestaDTO={
     id : 0,
     nombre: '',
-    fechaModificacion: new Date()
   }
 
   ngOnInit(): void {
@@ -38,22 +37,20 @@ export class PmpConfiguracionTipoPreguntasComponent implements OnInit {
       next: (x: any) => {
         this.datasource = x;
         this.listOfDisplayData = this.datasource
-
         this.datasource.forEach((d:any)=> {
           d.select=false;
-          d.NombreNuevo=d.nombre
+          d.nombreNuevo=d.nombre
         });
 
         this.listOfDisplayData.forEach((d:any)=> {
           d.select=false;
-          d.NombreNuevo=d.nombre
+          d.nombreNuevo=d.nombre
         });
       },
     });
   }
 
   editar(index:number) {
-
     this.listOfDisplayData.forEach((d:any)=> {
       d.select=false;
     });
@@ -62,60 +59,23 @@ export class PmpConfiguracionTipoPreguntasComponent implements OnInit {
 
   cancelar(index:number) {
     this.listOfDisplayData[index].select = false;
-    this.listOfDisplayData[index].NombreNuevo = this.listOfDisplayData[index].nombre;
+    this.listOfDisplayData[index].nombreNuevo = this.listOfDisplayData[index].nombre;
   }
 
   aceptar(index:number) {
     this.listOfDisplayData[index].select = false;
-    this.listOfDisplayData[index].NombreNuevo = this.listOfDisplayData[index].nombre;
-
-    this.envio.id = this.listOfDisplayData[index].id,
-      this.envio.nombre = this.listOfDisplayData[index].NombreNuevo,
-      this.envio.fechaModificacion= new Date()
-      console.log(this.envio)
-      this.actualizarTipoRespuesta()
-  }
-
-
-
-  actualizarTipoRespuesta() {
-    console.log(this.actualizarTipoRespuesta)
-    this._TipoRespuesta.actualizarTipoRespuesta(this.envio).subscribe({
+    this.listOfDisplayData[index].nombre = this.listOfDisplayData[index].nombreNuevo;
+    this.ActualizarTipoRespuesta.id = this.listOfDisplayData[index].id,
+    this.ActualizarTipoRespuesta.nombre= this.listOfDisplayData[index].nombreNuevo,
+    this._TipoRespuesta.actualizarTipoRespuesta(this.ActualizarTipoRespuesta).subscribe({
       next: (x) => {
-        console.log(x)
       },
       error:(e)=>{
-        console.log(e)
+
       },
       complete: () => {
 
       },
-    });
-  }
-
-  reset(): void {
-    this.searchValue = '';
-    this.search();
-  }
-
-  search(): void {
-    this.visible = false;
-    this.listOfDisplayData = this.datasource.filter((item: actualizarTipoRespuestaDTO) => item.nombre.indexOf(this.searchValue) !== -1);
-  }
-
-  startEdit(id: string): void {
-    this.editId = id;
-    this.idMandar = parseInt(id);
-    this.listOfDisplayData.forEach((d:any)=> {
-      d.select=false;
-    });
-    this.listOfDisplayData[this.idMandar].select = true;
-
-  }
-
-  stopEdit(): void {
-    this.listOfDisplayData.forEach((d:any)=> {
-      d.select=false;
     });
   }
 }

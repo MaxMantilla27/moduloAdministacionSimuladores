@@ -1,58 +1,34 @@
-<div class="row">
+<div class="row" style="padding: 40px 30px 10px 30px;">
   <div class="titulo">
-    <h1>Configuracion de preguntas</h1>
-    <p>
-      Puedes modificar el enunciado de las preguntas, sus alternativas, su
-      retroalimentacion o el tipo de pregunta
-    </p>
+    Configuración de preguntas
+  </div>
+  <div class="subTitulo">
+    Puedes modificar el enunciado de las preguntas, sus alternativas, su retroalimentacion o el tipo de pregunta
+  </div>
+  <div>
+    <button mat-button class="agregar"
+            (click)="agregar()">
+              Añadir
+            </button>
   </div>
   <div id="test">
     <nz-table
       #columnTable
       [nzData]="listOfDisplayData"
-      [nzScroll]="{ x: '1100px' }"
+       nzTableLayout="fixed" class="table"
     >
       <thead>
         <tr>
-          <th
-            style="
-              width: 100px;
-              text-align: center;
-              background-color: #e1dcdc;
-              border: 1px solid #cacaca;
-            "
-          >
+          <th style="border: solid 1px #b2b2b2;width:30px; text-align: center; background-color: #E7E7E7;color: #222222;">
             Id
           </th>
-          <th
-            style="
-              width: 300px;
-              text-align: center;
-              background-color: #e1dcdc;
-              border: 1px solid #cacaca;
-            "
-          >
+          <th style="border: solid 1px #b2b2b2;width:130px; text-align: center; background-color: #E7E7E7;color: #222222;">
             Enunciado
           </th>
-          <th
-            style="
-              width: 100px;
-              text-align: center;
-              background-color: #e1dcdc;
-              border: 1px solid #cacaca;
-            "
-          >
+          <th style="border: solid 1px #b2b2b2;width:40px; text-align: center; background-color: #E7E7E7;color: #222222;">
             Id Categoria
           </th>
-          <th
-            nzCustomFilter
-            style="
-              width: 200px;
-              text-align: center;
-              background-color: #e1dcdc;
-              border: 1px solid #cacaca;
-            "
-          >
+          <th style="border: solid 1px #b2b2b2;width:50px; text-align: center; background-color: #E7E7E7;color: #222222;">
             Nombre Categoria
             <nz-filter-trigger
               [(nzVisible)]="visible"
@@ -62,22 +38,11 @@
               <span nz-icon nzType="search"></span>
             </nz-filter-trigger>
           </th>
-          <th
-            style="
-              width: 200px;
-              text-align: center;
-              background-color: #e1dcdc;
-              border: 1px solid #cacaca;
-            "
+          <th style="border: solid 1px #b2b2b2;width:80px; text-align: center; background-color: #E7E7E7;color: #222222;"
           >
             Nombre Subcategoria
           </th>
-          <th style="width: 200px">
-            <button mat-button class="agregar" 
-            (click)="agregar()">
-              Añadir
-            </button>
-          </th>
+          <th style="border: solid 1px #b2b2b2;width:70px; text-align: center; background-color: #E7E7E7;color: #222222;">Opciones</th>
         </tr>
       </thead>
 
@@ -87,7 +52,7 @@
             {{ data.id }}
           </td>
           <td style="text-align: center; border: 1px solid #cacaca">
-            {{ data.pregunta }}
+            {{ data.enunciado }}
           </td>
           <td style="text-align: center; border: 1px solid #cacaca">
             {{ data.idCategoria }}
@@ -99,8 +64,9 @@
             {{ data.subcategoria }}
           </td>
 
-          <td nzRight>
-            <button
+          <td  style="justify-content: center;display: flex;">
+            <ng-container>
+              <button
               mat-button
               class="edit"
               (click)="openDialog(data)"
@@ -112,6 +78,7 @@
             <button mat-button class="cancel" (click)="eliminar(i)">
               <i class="material-icons">close</i>
             </button>
+            </ng-container>
           </td>
         </tr>
       </tbody>

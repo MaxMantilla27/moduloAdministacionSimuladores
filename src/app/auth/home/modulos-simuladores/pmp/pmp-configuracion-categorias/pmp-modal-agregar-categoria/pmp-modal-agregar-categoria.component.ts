@@ -1,11 +1,13 @@
-import { Component, OnInit,Inject } from '@angular/core';
+import { Component, OnInit,Inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-pmp-modal-agregar-categoria',
   templateUrl: './pmp-modal-agregar-categoria.component.html',
-  styleUrls: ['./pmp-modal-agregar-categoria.component.scss']
+  styleUrls: ['./pmp-modal-agregar-categoria.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+
 })
 export class PmpModalAgregarCategoriaComponent implements OnInit {
 

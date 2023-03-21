@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-pmp-modal-agregar-subcategoria',
   templateUrl: './pmp-modal-agregar-subcategoria.component.html',
-  styleUrls: ['./pmp-modal-agregar-subcategoria.component.scss']
+  styleUrls: ['./pmp-modal-agregar-subcategoria.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+
 })
 export class PmpModalAgregarSubcategoriaComponent implements OnInit {
 

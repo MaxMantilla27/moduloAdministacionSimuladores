@@ -1,36 +1,26 @@
-<div class="row">
+<div class="row" style="padding: 40px 30px 10px 30px;">
   <div class="titulo">
-    <h1>Configuracion de tipo de pregunta</h1>
-    <p>
-      Puedes modificar los tipos de pregunta que seran asignados a las preguntas
+    Configuración de tipo de preguntas.
+  </div>
+  <div class="subTitulo">
+    Puedes modificar los tipos de pregunta que seran asignados a las preguntas
       del simulador
-    </p>
   </div>
 
   <div id="test">
-    <nz-table
-      #nzTable
-      [nzData]="listOfDisplayData"
-      nzTableLayout="fixed"
-      class="table"
-    >
+
+    <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed" class="table">
       <thead>
         <tr>
-          <th
-            nzCustomFilter
-            style="width: 120px; text-align: center; background-color: #e1dcdc; border: 1px solid #CACACA"
-          >
-            Id
-          </th>
-          <th style="text-align: center; background-color: #e1dcdc; border:1px solid #CACACA ">
-            Tipo de pregunta
-          </th>
+          <th nzCustomFilter style="border: solid 1px #b2b2b2;width:100px; text-align: center; background-color: #E7E7E7;color: #222222;">Id</th>
+          <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Tipo de pregunta</th>
+          <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Opciones</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of nzTable.data; let i = index">
-          <td  style="text-align: center; border:1px solid #CACACA ">{{ data.id }}</td>
-          <td style="text-align: center; border:1px solid #CACACA ">
+          <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.id }}</td>
+          <td style="border: solid 1px #b2b2b2;">
             <ng-container *ngIf="data.select == false">
               {{ data.nombre }}
             </ng-container>
@@ -38,12 +28,11 @@
               <input
                 type="text"
                 nz-input
-                [(ngModel)]="data.NombreNUevo"
-                (blur)="stopEdit()"
+                [(ngModel)]="data.nombreNuevo"
               />
             </ng-container>
           </td>
-          <td>
+          <td style="border: solid 1px #b2b2b2;justify-content: center;display: flex;">
             <ng-container *ngIf="data.select == false">
               <button mat-button class="edit" (click)="editar(i)">
                 <i class="material-icons">edit</i>

@@ -2,9 +2,14 @@
   padding: 15px;
   padding-left: 70px;
 }
-.titulo {
-  padding-top: 15px;
-  padding-bottom: 15px;
+.titulo{
+  color: #7E7E7E;
+  font-size: 30px;
+  font-weight: bold;
+}
+.subTitulo{
+  color: #7E7E7E;
+  font-size: 15px;
 }
 
 p {
@@ -16,9 +21,6 @@ h1 {
   color: grey;
 }
 
-input {
-  width: 400px;
-}
 
 h3 {
   font-size: 15px;
@@ -45,17 +47,18 @@ table {
 }
 
 .edit{
-  background-color: #F0E500;
+  background-color: #094D82;
   color: white;
 
 }
 
 .cancel{
-  background-color: red;
+  background-color: #FC5757;
   color: white;
   margin-left: 10px;
 }
 .aceptar{
-  background-color: blue;
+  background-color: #28A745;
   color: white;
 }
+

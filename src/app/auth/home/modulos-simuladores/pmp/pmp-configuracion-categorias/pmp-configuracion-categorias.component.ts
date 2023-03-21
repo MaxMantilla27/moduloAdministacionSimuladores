@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
 import { PmpModalAgregarSubcategoriaComponent } from './pmp-modal-agregar-subcategoria/pmp-modal-agregar-subcategoria.component';
 import { PmpModalAgregarCategoriaComponent } from './pmp-modal-agregar-categoria/pmp-modal-agregar-categoria.component';
+import { PmpCategoriasService } from 'src/app/shared/Services/Pmp-Categorias/pmp-categorias.service';
 
 @Component({
   selector: 'app-pmp-configuracion-categorias',
   templateUrl: './pmp-configuracion-categorias.component.html',
-  styleUrls: ['./pmp-configuracion-categorias.component.scss']
+  styleUrls: ['./pmp-configuracion-categorias.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+
 })
 export class PmpConfiguracionCategoriasComponent implements OnInit {
 
@@ -16,7 +18,7 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private _TipoRespuesta: PmpTipoRespuestaService
+    private _TipoDominio: PmpCategoriasService
   ) { }
 
   public listaCategorias:any;
@@ -24,7 +26,7 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
   public isNew=false;
 
   ngOnInit(): void {
-    this.ObtenerDominioCategorias()
+    this.ObtenerCategorias()
   }
 
 
@@ -41,11 +43,10 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
   }
 
 
-  ObtenerDominioCategorias() {
+  ObtenerCategorias() {
     this.CantTotalPreguntasPorExamenCategoria=0;
-    this._TipoRespuesta.ObtenerDominioCategorias().subscribe({
+    this._TipoDominio.ObtenerCategorias().subscribe({
       next: (x: any) => {
-        console.log(x)
         this.listaCategorias = x;
         this.listaCategorias.forEach((y:any)=>{
           this.CantTotalPreguntasPorExamenCategoria=this.CantTotalPreguntasPorExamenCategoria+y.cantidadPreguntasPorExamen

@@ -39,6 +39,8 @@ export class DonaPuntosComponent implements OnInit {
   public dosDigitos=false;
   public unDigito=false;
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.Puntos)
+
     if(this.Puntos>=0){
       this.Puntos=Math.floor(this.Puntos)
       if(this.Puntos==100){
@@ -50,6 +52,9 @@ export class DonaPuntosComponent implements OnInit {
       else{
         this.unDigito=true;
       }
+      console.log(this.tresDigitos)
+      console.log(this.dosDigitos)
+      console.log(this.unDigito)
       this.ValoresChart()
     }
     else{
@@ -58,6 +63,8 @@ export class DonaPuntosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.Puntos)
+
   }
   ValoresChart(){
     //Opciones

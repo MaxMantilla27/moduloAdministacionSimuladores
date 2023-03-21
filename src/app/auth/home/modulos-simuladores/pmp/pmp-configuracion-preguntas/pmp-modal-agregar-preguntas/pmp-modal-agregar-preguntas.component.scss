@@ -28,11 +28,11 @@ h1 {
 }
 
 .inp button {
-  margin-right: 20px;
+  margin-right: 100px;
 }
 
 .inp .tit {
-  margin-right: 20px;
+  margin-right: -70px;
   width: 200px;
 }
 
@@ -71,27 +71,20 @@ h1 {
 }
 
 .datos1{
-  border: 1px solid white; 
+  border: 1px solid white;
   text-align: center;
 }
 
 
 .datos{
-  border: 1px solid grey; 
+  border: 1px solid grey;
   text-align: center;
   padding-top: 20px;
   padding-bottom: 20px;
 }
 
 
-.ContenidoDonaPuntos2{
-  line-height: 20px;
-  text-align: center;
-  font-size: 50px;
-  color: #0684f2;
-  border-radius: 100%;
-  font-weight: 700;
-}
+
 
 ::placeholder{
   text-align: center;
@@ -99,8 +92,13 @@ h1 {
 
 input{
   width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
+.example-full-width{
+  width: 500px;
+}
 .botonAgregar{
   width: 150px;
   background-color: #23CAE4;
@@ -119,7 +117,8 @@ input{
   border-radius: 10px;
   padding: 20px;
   padding-bottom: 0px;
-  margin-bottom:20px ;
+  width: 100%;
+
 }
 
 
@@ -128,6 +127,8 @@ textarea {
   height: 70px;
   padding: 10px;
   margin-bottom: 10px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
 }
 
 
@@ -135,23 +136,8 @@ table{
   margin-bottom: 15px;
 }
 
-.edit{
-  background-color: yellow;
-  color: white;
-
+.buttonGroup{
+  margin-left: 10%;
 }
 
 
-.cancel{
-  background-color: red;
-  color: white;
-
-}
-
-
-.agregar{
-  width: 150px;
-  background-color: #31CE12;
-  color: white;
-
-}
