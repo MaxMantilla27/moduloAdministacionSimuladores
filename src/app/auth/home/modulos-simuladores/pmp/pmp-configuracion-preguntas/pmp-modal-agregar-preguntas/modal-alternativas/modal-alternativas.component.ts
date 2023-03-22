@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup  } from '@angular/forms';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PmpPreguntaRespuestaService } from 'src/app/shared/Services/Pmp-PreguntaRespuesta/pmp-preguntaRespuesta.service';
 
 @Component({
   selector: 'app-modal-alternativas',
@@ -9,35 +11,37 @@ import { FormBuilder, FormGroup  } from '@angular/forms';
 export class ModalAlternativasComponent implements OnInit {
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<ModalAlternativasComponent>,
+    private _alternativa: PmpPreguntaRespuestaService,
     private formBuilder: FormBuilder,
+    
   ) { }
 
   loading:any
   loader:any;
-  data:any;
+  //data:any;
   formAlternativa: FormGroup = this.formBuilder.group({
     Id: 0,
-    NombreCategoria: '',
-    Leyenda: '',
-    CantidadPreguntasTotales: 0,
-    CantidadPreguntasExamen: 0,
-    Proporcion: 0,
-    TieneSubCategoria: 0,
-    Logo: 0
+    Alternativa: '',
+    Correcto: true,
+    Puntaje: 0,
+    UrlVideo: '',
+    Texto: '',
+    Imagen: ''
   });
   
   ngOnInit(): void {
     console.log(this.data)
     if(this.data!=undefined)
     {
-      this.formAlternativa.get('Id')?.setValue(this.data[0].id)
-      this.formAlternativa.get('NombreCategoria')?.setValue(this.data[0].nombre)
-      this.formAlternativa.get('Leyenda')?.setValue(this.data[0].leyenda)
-      this.formAlternativa.get('CantidadPreguntasTotales')?.setValue(this.data[0].cantidadTotal)
-      this.formAlternativa.get('CantidadPreguntasExamen')?.setValue(this.data[0].cantidadPreguntasPorExamen)
-      this.formAlternativa.get('Proporcion')?.setValue(this.data[0].proporcion)
-      this.formAlternativa.get('TieneSubCategoria')?.setValue(this.data[0].tieneSubCategoria)
-      this.formAlternativa.get('Logo')?.setValue(this.data[0].imgLogo)
+      this.formAlternativa.get('Id')?.setValue(this.data[0].idAlternativa)
+      this.formAlternativa.get('Alternativa')?.setValue(this.data[0].respuesta)
+      this.formAlternativa.get('Correcto')?.setValue(this.data[0].correcto)
+      this.formAlternativa.get('Puntaje')?.setValue(this.data[0].puntaje)
+      this.formAlternativa.get('UrlVideo')?.setValue(this.data[0].urlRetroalimentacionVideo)
+      this.formAlternativa.get('Texto')?.setValue(this.data[0].retroalimentacion)
+      this.formAlternativa.get('Imagen')?.setValue(this.data[0].imagen)
       console.log(this.formAlternativa)
     }
     else{
@@ -63,7 +67,7 @@ export class ModalAlternativasComponent implements OnInit {
   }
 
   Cancelar(){
-
+    this.dialogRef.close();
   }
 
 }

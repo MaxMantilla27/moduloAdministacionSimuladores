@@ -106,7 +106,7 @@
             {{item.respuesta}}
           </td>
           <td>
-            {{item.valor}}
+           <input type="checkbox">
           </td>
           <td>
             {{item.puntaje}} %
@@ -116,7 +116,7 @@
           </td>
           <td>
             <ng-container>
-              <button mat-button class="edit" (click)="openDialog()">
+              <button mat-button class="edit" (click)="abrirModalAlternativas(item)">
                 <i class="material-icons">edit</i>
               </button>
             </ng-container>
