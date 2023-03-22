@@ -7,7 +7,7 @@
       ></mat-progress-spinner>
     </div>
   </ng-container>
-  <div class="titulo">Configuracion de Pregunta</div>
+  <div class="tituloModal">Configuracion de Pregunta</div>
   <div class="contenedor">
     <div class="inp">
       <div class="tit">
@@ -112,7 +112,7 @@
             {{item.puntaje}} %
           </td>
           <td>
-            {{item.retroalimentacion}} 
+            {{item.retroalimentacion}}
           </td>
           <td>
             <ng-container>
@@ -159,7 +159,7 @@
         </th>
         <td mat-cell *matCellDef="let element">{{ element.retroalimentacion }}</td>
       </ng-container>
-      
+
       <ng-container matColumnDef="acciones">
         <button
         mat-button
@@ -174,11 +174,11 @@
         <i class="material-icons">close</i>
       </button>
       </ng-container>
-      
+
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDe f="let row; columns: displayedColumns"></tr>
-    </table> -->  
+    </table> -->
 
     <div class="inp">
       <div class="tit">
@@ -189,7 +189,7 @@
         <mat-button-toggle (click)="toggle()" id="btn-show">SI</mat-button-toggle>
         <mat-button-toggle (click)="toggle()" id="btn-hide">NO</mat-button-toggle>
       </mat-button-toggle-group>
-      
+
     </div>
     <ng-container *ngIf="show">
       <div class="box">
