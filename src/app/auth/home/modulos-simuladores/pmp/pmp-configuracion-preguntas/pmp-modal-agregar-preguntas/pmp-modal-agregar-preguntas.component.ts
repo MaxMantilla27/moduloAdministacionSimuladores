@@ -81,7 +81,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
         this.formPregunta.get('ImagenPregunta')?.setValue(this.data.imgPregunta)
         this.formPregunta.get('UrlVideo')?.setValue(this.data.urlVideo)
         this.formPregunta.get('Retroalimentacion')?.setValue(this.data.retroalimentacion)
-        this.formPregunta.get('ImgPreguntaRetroalimentacion')?.setValue(this.data.imgPreguntaRetroalimentacion)
+        this.formPregunta.get('ImgPreguntaRetroalimentacion')?.setValue(this.data.ImgPreguntaRetroalimentacion)
         this.formPregunta.get('TieneRetroalimentacion')?.setValue(true)
         
         console.log(this.formPregunta)
@@ -130,13 +130,14 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
 
   }
 
-  openDialog(){
+  abrirModalAlternativas(data: any){
     console.log();
     //Editar Pregunta
     const dialogRef = this.dialog.open(ModalAlternativasComponent, {
       width: '1500px',
       maxHeight: '90vh',
       panelClass: 'dialog-gestor',
+      data:[data]
     });
 
     dialogRef.afterClosed().subscribe((result) => {});

@@ -1,4 +1,4 @@
-<div class="titulo">Añadir Categoría</div>
+<div class="titulo">Añadir Alternativa</div>
 <form [formGroup]="formAlternativa">
 
   <div class="agregarCategoria">
@@ -6,26 +6,42 @@
       <div class="contenedor">
         <div class="inre">
           <div class="ver">
+            <p>Alternativa</p>
             <mat-form-field class="example-full-width" appearance="outline" >
-              <mat-label>Alternativa</mat-label>
-              <input type="text"  formControlName="NombreCategoria" matInput />
-              <mat-error *ngIf="formAlternativa.invalid">{{obtenerErrorCampoNombre('NombreCategoria')}}</mat-error>
+              <mat-label>Ingrese a la alternativa</mat-label>
+              <input type="text"  formControlName="Alternativa" matInput />
+              <mat-error *ngIf="formAlternativa.invalid">{{obtenerErrorCampoNombre('Alternativa')}}</mat-error>
             </mat-form-field>
           </div>
         </div>
         <div class="inre">
-            <div style="font-size:12px">Correcto</div>
+            <div style="font-size:12px"></div>
             <div class="ver">
-              <mat-checkbox style="margin-top: -13px;" color="primary"  formControlName="TieneSubCategoria" class="example-full-width" appearance="outline">
-              </mat-checkbox>
+              <p>Correcto</p>
+              <mat-checkbox style="margin-top: -13px;" color="primary"  formControlName="Correcto" class="example-full-width" appearance="outline">
+            </mat-checkbox>
             </div>
           </div>
+        
+      </div>
+      <div class="contenedor">
         <div class="inre">
           <div class="ver">
+            <p>Puntaje</p>
             <mat-form-field class="example-full-width" appearance="outline" >
-              <mat-label>Puntaje</mat-label>
-              <input type="text"  formControlName="Leyenda" matInput />
-              <mat-error *ngIf="formAlternativa.invalid">{{obtenerErrorCampoNombre('Leyenda')}}</mat-error>
+              <mat-label>Ingrese el puntaje</mat-label>
+              <input type="text"  formControlName="Puntaje" matInput />
+              <mat-error *ngIf="formAlternativa.invalid">{{obtenerErrorCampoNombre('Puntaje')}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="inre">
+          <div class="ver">
+            <p>Video</p>
+            <mat-form-field class="example-full-width" appearance="outline" >
+              <mat-label>Url del video</mat-label>
+              <input type="text"  formControlName="UrlVideo" matInput />
+              <mat-error *ngIf="formAlternativa.invalid">{{obtenerErrorCampoNombre('UrlVideo')}}</mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -33,47 +49,26 @@
 
       <div class="contenedor">
         <div class="inre">
-          <div class="ver">
-            <mat-form-field class="example-full-width" appearance="outline" >
-              <mat-label>Video</mat-label>
-              <input type="number"  formControlName="CantidadPreguntasTotales" matInput />
-              <mat-error *ngIf="formAlternativa.invalid">{{obtenerErrorCampoNombre('CantidadPreguntasTotales')}}</mat-error>
-            </mat-form-field>
+            <div class="ver">
+              <p>Texto</p>
+                <textarea
+                style="width: 100%"
+                name="textarea"
+                rows="5"
+                cols="80"
+                placeholder="[Ingrese el texto]"
+                formControlName="Texto"
+                ></textarea>
+            </div>
           </div>
-        </div>
-        <div class="inre">
-          <div class="ver">
-            <p>Texto</p>
-            <mat-form-field class="example-full-width" appearance="outline" >
-              <mat-label>Texto</mat-label>
-              <input type="number"  formControlName="CantidadPreguntasExamen" matInput />
-              <mat-error *ngIf="formAlternativa.invalid">{{obtenerErrorCampoNombre('CantidadPreguntasExamen')}}</mat-error>
-            </mat-form-field>
+          <div class="inre">
+            <p>Imagen</p>
+            <div style="font-size: 13px;margin-top: -13px;">
+            </div>
+            <div class="ver">
+              <input id="file" type="file" formControlName="Imagen"/>
+            </div>
           </div>
-        </div>
-      </div>
-
-      <!-- <div class="contenedor">
-        <div class="inre">
-          <div class="ver">
-            <mat-form-field class="example-full-width" appearance="outline" >
-              <mat-label>Proporcion</mat-label>
-              <input type="number"  formControlName="Proporcion" matInput />
-              <mat-error *ngIf="formAlternativa.invalid">{{obtenerErrorCampoNombre('Proporcion')}}</mat-error>
-            </mat-form-field>
-          </div>
-        </div> 
-      </div> -->
-
-      <div class="contenedor">
-        <div class="inre">
-          <div style="font-size: 13px;margin-top: -13px;">
-            Logo:
-          </div>
-          <div class="ver">
-            <input id="file" type="file"  />
-          </div>
-        </div>
       </div>
 
       <div class="crear">
