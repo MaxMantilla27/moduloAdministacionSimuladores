@@ -1,6 +1,9 @@
 import { Component, OnInit,Inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { pmpPreguntaDTO } from 'src/app/Models/PreguntaDTO';
+import { PmpCategoriasService } from 'src/app/shared/Services/Pmp-Categorias/pmp-categorias.service';
+import { PmpPreguntaService } from 'src/app/shared/Services/Pmp-Pregunta/pmp-pregunta.service';
 
 @Component({
   selector: 'app-pmp-modal-agregar-categoria',
@@ -15,7 +18,7 @@ export class PmpModalAgregarCategoriaComponent implements OnInit {
     public dialogRef: MatDialogRef<PmpModalAgregarCategoriaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder,
-
+    private _Dominio: PmpCategoriasService
   ) { }
 
   loading:any
@@ -36,6 +39,18 @@ export class PmpModalAgregarCategoriaComponent implements OnInit {
   public file:any;
   public filestatus=false
   public fileErrorMsg=''
+
+
+
+  public jsonEnvio:pmpPreguntaDTO = {
+    Nombre: 'Prueba',
+    CantidadPreguntasPorExamen: 5,
+    CantidadTotal: 5,
+    ImgLogo: 'asdasd',
+    Leyenda: 'asdas',
+    Proporcion: 5,
+    TieneSubCategoria: true,
+  }
 
   ngOnInit(): void {
     console.log(this.data)
@@ -75,4 +90,19 @@ export class PmpModalAgregarCategoriaComponent implements OnInit {
 
     return '';
   }
+
+  Agregar(){
+    this._Dominio.AgregarCategoria(this.jsonEnvio).subscribe({
+      next: (x) => {
+      },
+      error:(e)=>{
+
+      },
+      complete: () => {
+
+      },
+    });
+  }
+
+
 }

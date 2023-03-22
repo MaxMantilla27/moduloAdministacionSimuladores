@@ -20,6 +20,7 @@ export class PmpConfiguracionPreguntasComponent implements OnInit, OnChanges {
   searchValue = '';
   visible = false;
   listOfDisplayData: any = [];
+  
 
   displayedColumns: string[] = [
     'id',

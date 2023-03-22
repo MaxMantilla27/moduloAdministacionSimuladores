@@ -34,6 +34,4 @@ export class PmpTipoRespuestaService {
     return this.http.get<any>(this.urlBase2+'/ObtenerParametrosNivelEntity');
   }
 
-
-
 }
