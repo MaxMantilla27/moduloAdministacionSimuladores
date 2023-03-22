@@ -34,9 +34,4 @@ export class PmpTipoRespuestaService {
     return this.http.get<any>(this.urlBase2+'/ObtenerParametrosNivelEntity');
   }
 
-
-
-  public ObtenerSubcategoriaCombo(idDominio:any): Observable<any> {
-    return this.http.post<any>(this.urlBase6 + '/ObtenerComboTarea' , idDominio[0 ]);
-  }
 }

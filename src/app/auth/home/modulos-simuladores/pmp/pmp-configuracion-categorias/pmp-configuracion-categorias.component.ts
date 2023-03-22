@@ -22,11 +22,13 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
   ) { }
 
   public listaCategorias:any;
+  public listaSubCategorias:any;
   public CantTotalPreguntasPorExamenCategoria=0;
   public isNew=false;
 
   ngOnInit(): void {
     this.ObtenerCategorias()
+    this.ObtenerSubCategorias()
   }
 
 
@@ -58,6 +60,16 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
       },
     });
   }
+
+  ObtenerSubCategorias() {
+    this._TipoDominio.ObtenerComboCategorias().subscribe({
+      next: (x: any) => {
+        console.log(x.subCategorias)
+        this.listaSubCategorias= x.subCategorias
+      },
+    });
+  }
+
   EditarCategoria(data:any){
     console.log(data)
     // Editar Categoria
@@ -86,6 +98,15 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
     // }
   }
   EliminarCategoria(data:any){
+    this._TipoDominio.EliminarCategoria(data.id).subscribe({
+      next: (x) => {
+      },
+      error:(e)=>{
 
+      },
+      complete: () => {
+
+      },
+    });
   }
 }
