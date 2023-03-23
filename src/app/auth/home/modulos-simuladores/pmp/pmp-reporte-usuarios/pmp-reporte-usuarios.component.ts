@@ -40,6 +40,7 @@ export class PmpReporteUsuariosComponent implements OnInit {
   public ResultadoDominio2=0;
   public ResultadoDominio3=0;
   public PuntajesCategoria:any;
+  public isDisabled=true;
 
   ngOnInit(): void {
 

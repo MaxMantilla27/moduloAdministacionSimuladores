@@ -44,41 +44,41 @@
 
   </div>
 
-  <div *ngIf="CodigoMatriculaBuscar=='' && CentroCostosBuscar==''">
-    <nz-table #nzTable [nzData]="ReporteResumen" nzTableLayout="fixed"class="table">
+  <div *ngIf="CodigoMatriculaBuscar=='' && CentroCostosBuscar=='' && ReporteResumen!=undefined">
+    <nz-table  #nzTable [nzData]="ReporteResumen" nzTableLayout="fixed"class="table">
       <thead>
         <tr>
-          <th nzCustomFilter style="border: solid 1px #b2b2b2;width:120px ; text-align: center; background-color: #E7E7E7;color: #222222;">Código de Matrícula</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Alumno</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Correo Electrónico</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Nombre de programa</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Centro de Costos</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Fecha de matrícula al simulador</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Estado de Curso</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Estado de Pagos</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Pagos Realizados</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Estado de Solicitud</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Habilitar</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Fecha de Caducidad</th>
+          <th nzCustomFilter class="encabezadoTablaAdmUsuarios" style="width:140px;">Código de Matrícula</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Alumno</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Correo Electrónico</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:220px;">Nombre de programa</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:150px;">Centro de Costos</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:150px;">Fecha de matrícula al simulador</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Estado de Curso</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Estado de Pagos</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Pagos Realizados</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Estado de Solicitud</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Habilitar</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Fecha de Caducidad</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of nzTable.data; let i = index">
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.codigoMatricula }}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.alumno }}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.correo }}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.nombrePrograma }}</td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.centroCostos }}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             <div *ngIf="data.fechaAccesoSimulador==null">
               00/00/0000
             </div>
@@ -86,26 +86,26 @@
               {{ data.fechaAccesoSimulador|date: 'dd/MM/yyyy'}}
             </div>
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             <div *ngIf="data.estadoCurso==true">
               {{ data.avance }}%
             </div>
             <div *ngIf="data.estadoCurso==false">
             </div>
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.estadoPagos }}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.cuotasPagadas }} / {{data.numeroCuotas}}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.estadoSolicitud }}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
-            <input type="checkbox" [(ngModel)]="data.habilitar">
+          <td class="contenidoTablaAdmUsuarios">
+            <input [disabled]="editarReporte" type="checkbox" [(ngModel)]="data.habilitar" >
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             <div *ngIf="data.fechaCaducidadSimulador==null">
               00/00/0000
             </div>
@@ -117,41 +117,54 @@
       </tbody>
     </nz-table>
   </div>
-  <div *ngIf="CodigoMatriculaBuscar!=''">
+  <div class="loadingTablaReporteUsuario" *ngIf="CodigoMatriculaBuscar=='' && CentroCostosBuscar==''&& ReporteResumen==undefined">
+    <div class="container" style="width: 63%;">
+      <div style="padding:0.75rem 1.25rem;width: 100%;height: 450px;">
+        <div style="margin-top: 100px; display: flex;justify-content: center;">
+          <mat-spinner></mat-spinner>
+        </div>
+        <div style="margin-top: 20px;text-align: center">
+          Los registros se están cargando ...
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="CodigoMatriculaBuscar!='' && ReporteCodigoMatricula!=undefined">
     <nz-table #nzTable [nzData]="ReporteCodigoMatricula" nzTableLayout="fixed"class="table">
       <thead>
         <tr>
-          <th nzCustomFilter style="border: solid 1px #b2b2b2;width:120px ; text-align: center; background-color: #E7E7E7;color: #222222;">Código de Matrícula</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Alumno</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Correo Electrónico</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Nombre de programa</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Centro de Costos</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Fecha de matrícula al simulador</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Estado de Curso</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Estado de Pagos</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Pagos Realizados</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Estado de Solicitud</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Habilitar</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Fecha de Caducidad</th>
+          <th nzCustomFilter class="encabezadoTablaAdmUsuarios" style="width:140px;">Código de Matrícula</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Alumno</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Correo Electrónico</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:220px;">Nombre de programa</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:150px;">Centro de Costos</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:150px;">Fecha de matrícula al simulador</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Estado de Curso</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Estado de Pagos</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Pagos Realizados</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Estado de Solicitud</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Habilitar</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Fecha de Caducidad</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Guardar</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of nzTable.data; let i = index">
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.codigoMatricula }}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.alumno }}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.correo }}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.nombrePrograma }}</td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.centroCostos }}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             <div *ngIf="data.fechaAccesoSimulador==null">
               00/00/0000
             </div>
@@ -159,72 +172,91 @@
               {{ data.fechaAccesoSimulador|date: 'dd/MM/yyyy'}}
             </div>
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             <div *ngIf="data.estadoCurso==true">
               {{ data.avance }}%
             </div>
             <div *ngIf="data.estadoCurso==false">
             </div>
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.estadoPagos }}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.cuotasPagadas }} / {{data.numeroCuotas}}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.estadoSolicitud }}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
-            <input type="checkbox" [(ngModel)]="data.habilitar">
+          <td class="contenidoTablaAdmUsuarios">
+            <input [disabled]="editarReporte" type="checkbox" [(ngModel)]="data.habilitar" >
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             <div *ngIf="data.fechaCaducidadSimulador==null">
               00/00/0000
             </div>
-            <div *ngIf="data.fechaCaducidadSimulador!=null">
-              {{ data.fechaCaducidadSimulador|date: 'dd/MM/yyyy'}}
+            <div *ngIf="data.fechaCaducidadSimulador!=null" >
+              <input type="date" [(ngModel)]="data.fechaCaducidadSimulador"
+              min="2022-01-01" max="2026-12-31">
             </div>
+          </td>
+          <td class="contenidoTablaAdmUsuarios">
+            <button mat-button class="guardar" (click)="GuardarCambios(data)">
+              <i class="material-icons">save</i>
+            </button>
           </td>
         </tr>
       </tbody>
     </nz-table>
   </div>
-  <div *ngIf="CentroCostosBuscar!=''">
+  <div class="loadingTablaReporteUsuario" *ngIf="CodigoMatriculaBuscar!='' && ReporteCodigoMatricula==undefined">
+    <div class="container" style="width: 63%;">
+      <div style="padding:0.75rem 1.25rem;width: 100%;height: 450px;">
+        <div style="margin-top: 100px; display: flex;justify-content: center;">
+          <mat-spinner></mat-spinner>
+        </div>
+        <div style="margin-top: 20px;text-align: center">
+          Los registros se están cargando ...
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="CentroCostosBuscar!='' &&  ReporteCentroCostos!=undefined">
     <nz-table #nzTable [nzData]="ReporteCentroCostos" nzTableLayout="fixed"class="table">
       <thead>
         <tr>
-          <th nzCustomFilter style="border: solid 1px #b2b2b2;width:130px ; text-align: center; background-color: #E7E7E7;color: #222222;">Código de Matrícula</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Alumno</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Correo Electrónico</th>
-          <th style="border: solid 1px #b2b2b2;width:150px;text-align: center; background-color: #E7E7E7;color: #222222;">Nombre de programa</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Centro de Costos</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Fecha de matrícula al simulador</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Estado de Curso</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Estado de Pagos</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Pagos Realizados</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Estado de Solicitud</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Habilitar</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Fecha de Caducidad</th>
+          <th nzCustomFilter class="encabezadoTablaAdmUsuarios" style="width:140px;">Código de Matrícula</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Alumno</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Correo Electrónico</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:220px;">Nombre de programa</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:150px;">Centro de Costos</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:150px;">Fecha de matrícula al simulador</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Estado de Curso</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Estado de Pagos</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Pagos Realizados</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Estado de Solicitud</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Habilitar</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Fecha de Caducidad</th>
+          <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Guardar</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of nzTable.data; let i = index">
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.codigoMatricula }}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.alumno }}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.correo }}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.nombrePrograma }}</td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.centroCostos }}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             <div *ngIf="data.fechaAccesoSimulador==null">
               00/00/0000
             </div>
@@ -232,35 +264,53 @@
               {{ data.fechaAccesoSimulador|date: 'dd/MM/yyyy'}}
             </div>
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             <div *ngIf="data.estadoCurso==true">
               {{ data.avance }}%
             </div>
             <div *ngIf="data.estadoCurso==false">
             </div>
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.estadoPagos }}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.cuotasPagadas }} / {{data.numeroCuotas}}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             {{ data.estadoSolicitud }}
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
-            <input type="checkbox" [(ngModel)]="data.habilitar">
+          <td class="contenidoTablaAdmUsuarios">
+            <input [disabled]="editarReporte" type="checkbox" [(ngModel)]="data.habilitar" >
           </td>
-          <td style="text-align: center;border: solid 1px #b2b2b2;">
+          <td class="contenidoTablaAdmUsuarios">
             <div *ngIf="data.fechaCaducidadSimulador==null">
               00/00/0000
             </div>
             <div *ngIf="data.fechaCaducidadSimulador!=null">
-              {{ data.fechaCaducidadSimulador|date: 'dd/MM/yyyy'}}
+              <input type="date" [(ngModel)]="data.fechaCaducidadSimulador"
+              min="2022-01-01" max="2026-12-31">
             </div>
+          </td>
+          <td class="contenidoTablaAdmUsuarios">
+            <button mat-button class="guardar" (click)="GuardarCambios(data)">
+              <i class="material-icons">save</i>
+            </button>
           </td>
         </tr>
       </tbody>
     </nz-table>
+  </div>
+  <div class="loadingTablaReporteUsuario" *ngIf="CentroCostosBuscar!='' && ReporteCentroCostos==undefined">
+    <div class="container" style="width: 63%;">
+      <div style="padding:0.75rem 1.25rem;width: 100%;height: 450px;">
+        <div style="margin-top: 100px; display: flex;justify-content: center;">
+          <mat-spinner></mat-spinner>
+        </div>
+        <div style="margin-top: 20px;text-align: center">
+          Los registros se están cargando ...
+        </div>
+      </div>
+    </div>
   </div>
 </div>

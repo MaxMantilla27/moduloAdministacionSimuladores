@@ -25,7 +25,7 @@
         Id Alumno:
       </div>
       <div class="col-12 col-md-9">
-        <input class="inputRUsuario"  placeholder="[IdAlumno]" [(ngModel)]="IdAlumno" />
+        <input [disabled]="isDisabled" class="inputRUsuario"  placeholder="[IdAlumno]" [(ngModel)]="IdAlumno" />
       </div>
     </div>
 
@@ -34,7 +34,7 @@
         Nombres y Apellidos:
       </div>
       <div class="col-12 col-md-9">
-        <input class="inputRUsuario"  placeholder="[Nombres y Apellidos]" [(ngModel)]="Alumno" />
+        <input  [disabled]="isDisabled"  class="inputRUsuario"  placeholder="[Nombres y Apellidos]" [(ngModel)]="Alumno" />
       </div>
     </div>
     <div style="display: flex;margin-top: 10px;margin-bottom: 10px;">
@@ -42,7 +42,7 @@
         Nivel:
       </div>
       <div class="col-12 col-md-9">
-        <input class="inputRUsuario"  placeholder="[Nivel]" [(ngModel)]="Nivel"/>
+        <input  [disabled]="isDisabled"  class="inputRUsuario"  placeholder="[Nivel]" [(ngModel)]="Nivel"/>
       </div>
     </div>
     <div style="display: flex;margin-top: 10px;margin-bottom: 10px;">
@@ -50,7 +50,7 @@
         Examenes activos:
       </div>
       <div class="col-12 col-md-9">
-        <input class="inputRUsuario"  placeholder="[Examenes Activos]" [(ngModel)]="ExamenesActivos"/>
+        <input  [disabled]="isDisabled"  class="inputRUsuario"  placeholder="[Examenes Activos]" [(ngModel)]="ExamenesActivos"/>
       </div>
     </div>
     <div style="display: flex;margin-top: 10px;margin-bottom: 10px;">
@@ -58,7 +58,7 @@
         Examenes Completados:
       </div>
       <div class="col-12 col-md-9">
-        <input class="inputRUsuario"  placeholder="[Examenes Completados]" [(ngModel)]="ExamenesCompletados" />
+        <input  [disabled]="isDisabled"  class="inputRUsuario"  placeholder="[Examenes Completados]" [(ngModel)]="ExamenesCompletados" />
       </div>
     </div>
   </div>
