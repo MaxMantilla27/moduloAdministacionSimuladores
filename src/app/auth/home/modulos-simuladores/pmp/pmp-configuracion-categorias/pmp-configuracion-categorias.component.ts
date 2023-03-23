@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PmpModalAgregarSubcategoriaComponent } from './pmp-modal-agregar-subcategoria/pmp-modal-agregar-subcategoria.component';
 import { PmpModalAgregarCategoriaComponent } from './pmp-modal-agregar-categoria/pmp-modal-agregar-categoria.component';
 import { PmpCategoriasService } from 'src/app/shared/Services/Pmp-Categorias/pmp-categorias.service';
+import { PmpTareaService } from 'src/app/shared/Services/Pmp-Tarea/pmp-tarea.service';
 
 @Component({
   selector: 'app-pmp-configuracion-categorias',
@@ -18,7 +19,8 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private _TipoDominio: PmpCategoriasService
+    private _TipoDominio: PmpCategoriasService,
+    private _tarea: PmpTareaService,
   ) { }
 
   public listaCategorias:any;
@@ -62,11 +64,25 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
   }
 
   ObtenerSubCategorias() {
-    this._TipoDominio.ObtenerComboCategorias().subscribe({
+    this._tarea.ObtenerTareas().subscribe({
       next: (x: any) => {
-        console.log(x.subCategorias)
-        this.listaSubCategorias= x.subCategorias
+        console.log(x)
+        this.listaSubCategorias= x
       },
+    });
+  }
+
+  agregar(){
+    // Editar Categoria
+    this.isNew=false;
+    const dialogRef = this.dialog.open(PmpModalAgregarCategoriaComponent, {
+       width: '60%',
+      panelClass: 'dialog-agregar-categoria',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerCategorias()
     });
   }
 
@@ -82,21 +98,12 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerCategorias()
+
     });
-    // if(data==undefined){
-    //   //Agregar Categoria
-    //   this.isNew=true;
-    //   const dialogRef = this.dialog.open(PmpModalAgregarCategoriaComponent, {
-    //     panelClass: 'dialog-agregar-categoria',
-    //   });
 
-    //   dialogRef.afterClosed().subscribe((result) => {
-    //   });
-    // }
-    // else{
-
-    // }
   }
+
   EliminarCategoria(data:any){
     this._TipoDominio.EliminarCategoria(data.id).subscribe({
       next: (x) => {
@@ -105,6 +112,39 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
 
       },
       complete: () => {
+        this.ObtenerCategorias()
+
+      },
+    });
+  }
+
+  EditarSubCategoria(data:any){
+    console.log(data)
+    // Editar Categoria
+    this.isNew=false;
+    const dialogRef = this.dialog.open(PmpModalAgregarSubcategoriaComponent, {
+       width: '60%',
+      panelClass: 'dialog-agregar-categoria',
+      data:[data],
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerCategorias()
+
+    });
+
+  }
+
+  EliminarSubCategoria(data:any){
+    this._TipoDominio.EliminarCategoria(data.id).subscribe({
+      next: (x) => {
+      },
+      error:(e)=>{
+
+      },
+      complete: () => {
+        this.ObtenerCategorias()
 
       },
     });

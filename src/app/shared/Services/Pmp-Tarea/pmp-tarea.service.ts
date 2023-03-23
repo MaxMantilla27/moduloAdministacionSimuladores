@@ -15,4 +15,10 @@ export class PmpTareaService {
     console.log(idDominio[0])
     return this.http.post<any>(this.urlBase + '/ObtenerComboTarea?idDominio=' + idDominio[0].idDominio,'');
   }
+
+  public ObtenerTareas(): Observable<any> {
+    return this.http.get<any>(this.urlBase + '/ObtenerTareas');
+  }
+
+  
 }
