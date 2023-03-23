@@ -71,13 +71,19 @@
             Logo:
           </div>
           <div class="ver">
-            <input id="file" type="file"  />
+            <input id="file" type="file" (change)="getFileDetails($event)" />
           </div>
         </div>
       </div>
 
       <div class="crear">
+        <ng-container *ngIf="data== undefined">
         <button style="background: #FF850C;" mat-flat-button class="botonAgregar" (click)="Agregar()">Guardar Cambios</button>
+      </ng-container>
+
+      <ng-container *ngIf="data != undefined">
+        <button style="background: #FF850C;" mat-flat-button class="botonAgregar" (click)="Editar()">Guardar Cambios</button>
+      </ng-container>
         <button mat-flat-button class="cancelar" (click)="Cancelar()">Cancelar</button>
       </div>
     </mat-dialog-content>

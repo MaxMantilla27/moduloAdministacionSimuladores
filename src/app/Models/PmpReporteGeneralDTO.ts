@@ -4,3 +4,4 @@ export interface PmpEnvioEstadoCertificacionAlumnoDTO{
   idAlumno:number,
   idEstadoCertificacionSimulador:number
 }
+

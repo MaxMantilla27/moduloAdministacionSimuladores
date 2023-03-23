@@ -3,110 +3,158 @@ import { MatDialog } from '@angular/material/dialog';
 import { PmpModalAgregarSubcategoriaComponent } from './pmp-modal-agregar-subcategoria/pmp-modal-agregar-subcategoria.component';
 import { PmpModalAgregarCategoriaComponent } from './pmp-modal-agregar-categoria/pmp-modal-agregar-categoria.component';
 import { PmpCategoriasService } from 'src/app/shared/Services/Pmp-Categorias/pmp-categorias.service';
+import { PmpTareaService } from 'src/app/shared/Services/Pmp-Tarea/pmp-tarea.service';
+import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 
 @Component({
   selector: 'app-pmp-configuracion-categorias',
   templateUrl: './pmp-configuracion-categorias.component.html',
   styleUrls: ['./pmp-configuracion-categorias.component.scss'],
   encapsulation: ViewEncapsulation.None,
-
 })
 export class PmpConfiguracionCategoriasComponent implements OnInit {
-
   displayedColumns: string[] = ['id', 'nombre', 'cantidad', 'proporcion'];
-
 
   constructor(
     public dialog: MatDialog,
-    private _TipoDominio: PmpCategoriasService
-  ) { }
+    private _TipoDominio: PmpCategoriasService,
+    private _tarea: PmpTareaService,
+    private alertaService: AlertaService
+  ) {}
 
-  public listaCategorias:any;
-  public listaSubCategorias:any;
-  public CantTotalPreguntasPorExamenCategoria=0;
-  public isNew=false;
+  public listaCategorias: any;
+  public listaSubCategorias: any;
+  public CantTotalPreguntasPorExamenCategoria = 0;
+  public isNew = false;
 
   ngOnInit(): void {
-    this.ObtenerCategorias()
-    this.ObtenerSubCategorias()
+    this.ObtenerCategorias();
+    this.ObtenerSubCategorias();
   }
 
-
-
-  openDialogSub(){
+  openDialogSub() {
     const dialogRef = this.dialog.open(PmpModalAgregarSubcategoriaComponent, {
       width: '1000px',
       maxHeight: '90vh',
       panelClass: 'dialog-gestor',
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-    });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 
-
   ObtenerCategorias() {
-    this.CantTotalPreguntasPorExamenCategoria=0;
+    this.CantTotalPreguntasPorExamenCategoria = 0;
     this._TipoDominio.ObtenerCategorias().subscribe({
       next: (x: any) => {
         this.listaCategorias = x;
-        this.listaCategorias.forEach((y:any)=>{
-          this.CantTotalPreguntasPorExamenCategoria=this.CantTotalPreguntasPorExamenCategoria+y.cantidadPreguntasPorExamen
-        })
-        this.listaCategorias.forEach((y:any)=>{
-          var auxProporcion = (y.cantidadPreguntasPorExamen/this.CantTotalPreguntasPorExamenCategoria)*100
-          y.proporcion = Math.round(auxProporcion)
-        })
+        this.listaCategorias.forEach((y: any) => {
+          this.CantTotalPreguntasPorExamenCategoria =
+            this.CantTotalPreguntasPorExamenCategoria +
+            y.cantidadPreguntasPorExamen;
+        });
+        this.listaCategorias.forEach((y: any) => {
+          var auxProporcion =
+            (y.cantidadPreguntasPorExamen /
+              this.CantTotalPreguntasPorExamenCategoria) *
+            100;
+          y.proporcion = Math.round(auxProporcion);
+        });
       },
     });
   }
 
   ObtenerSubCategorias() {
-    this._TipoDominio.ObtenerComboCategorias().subscribe({
+    this._tarea.ObtenerTareas().subscribe({
       next: (x: any) => {
-        console.log(x.subCategorias)
-        this.listaSubCategorias= x.subCategorias
+        console.log(x);
+        this.listaSubCategorias = x;
       },
     });
   }
 
-  EditarCategoria(data:any){
-    console.log(data)
-    // Editar Categoria
-    this.isNew=false;
+  agregar() {
+    this.isNew = false;
     const dialogRef = this.dialog.open(PmpModalAgregarCategoriaComponent, {
-       width: '60%',
+      width: '60%',
       panelClass: 'dialog-agregar-categoria',
-      data:[data],
-      disableClose: true
+      disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerCategorias();
     });
-    // if(data==undefined){
-    //   //Agregar Categoria
-    //   this.isNew=true;
-    //   const dialogRef = this.dialog.open(PmpModalAgregarCategoriaComponent, {
-    //     panelClass: 'dialog-agregar-categoria',
-    //   });
-
-    //   dialogRef.afterClosed().subscribe((result) => {
-    //   });
-    // }
-    // else{
-
-    // }
   }
-  EliminarCategoria(data:any){
-    this._TipoDominio.EliminarCategoria(data.id).subscribe({
-      next: (x) => {
-      },
-      error:(e)=>{
 
-      },
-      complete: () => {
+  agregarSubCategoria() {
+    this.isNew = false;
+    const dialogRef = this.dialog.open(PmpModalAgregarSubcategoriaComponent, {
+      width: '60%',
+      panelClass: 'dialog-agregar-categoria',
+      disableClose: true,
+    });
 
-      },
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerSubCategorias();
+    });
+  }
+
+  EditarCategoria(data: any) {
+    console.log(data);
+    // Editar Categoria
+    this.isNew = false;
+    const dialogRef = this.dialog.open(PmpModalAgregarCategoriaComponent, {
+      width: '60%',
+      panelClass: 'dialog-agregar-categoria',
+      data: [data],
+      disableClose: true,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerCategorias();
+    });
+  }
+
+  EditarSubCategoria(data: any) {
+    console.log(data);
+    // Editar Categoria
+    this.isNew = false;
+    const dialogRef = this.dialog.open(PmpModalAgregarSubcategoriaComponent, {
+      width: '60%',
+      panelClass: 'dialog-agregar-categoria',
+      data: [data],
+      disableClose: true,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerSubCategorias();
+    });
+  }
+
+  EliminarCategoria(data: any) {
+    this.alertaService.mensajeEliminarTemporal().then((result) => {
+      if (result.isConfirmed) {
+        this._TipoDominio.EliminarCategoria(data.id).subscribe({
+          next: (x) => {},
+          error: (e) => {},
+          complete: () => {
+            this.ObtenerCategorias();
+          },
+        });
+      }
+    });
+  }
+
+  EliminarSubCategoria(data: any) {
+    this.alertaService.mensajeEliminarTemporal().then((result) => {
+      if (result.isConfirmed) {
+        this._tarea.EliminarCategoria(data.id).subscribe({
+          next: (x) => {},
+          error: (e) => {},
+          complete: () => {
+            this.ObtenerSubCategorias();
+          },
+        });
+      }
     });
   }
 }

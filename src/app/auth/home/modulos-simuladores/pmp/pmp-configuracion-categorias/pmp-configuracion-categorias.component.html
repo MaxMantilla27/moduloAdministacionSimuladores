@@ -1,103 +1,130 @@
-<div class="row" style="padding: 40px 30px 10px 30px;">
-  <div class="titulo">
-    Configuración de categorías
-  </div>
+<div class="row" style="padding: 40px 30px 10px 30px">
+  <div class="titulo">Configuración</div>
   <mat-tab-group class="tabHorizontalCategorias">
     <mat-tab label="Categorias">
+      <div class="titulo">Categorias</div>
       <div class="subTitulo">
-          Puedes modificar los nombres de las categorías, la cantidad de preguntas por examen y su proporcion dentro del examen,
-          este determinara cuantas preguntas apareceran para cada categoria en los modos entrenamiento y examen.
+        Puedes modificar los nombres de las categorías, la cantidad de preguntas
+        por examen y su proporcion dentro del examen, este determinara cuantas
+        preguntas apareceran para cada categoria en los modos entrenamiento y
+        examen.
       </div>
-      <div *ngIf="listaCategorias!=undefined" id="test">
-        <table class="tableCategorias">
-          <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Cant. de preguntas por examen</th>
-            <th>Proporción</th>
-            <th>Opciones</th>
-          </tr>
-          <ng-container *ngFor="let item of listaCategorias ;let i=index">
+      <div>
+        <button mat-button class="agregar2" (click)="agregar()">Añadir</button>
+      </div>
+
+      <div *ngIf="listaCategorias != undefined" id="test">
+        <nz-table #basicTable [nzData]="listaCategorias">
+          <thead>
             <tr>
+              <th>Id</th>
+              <th>Nombre</th>
+              <th>Cant. de preguntas por examen</th>
+              <th>Proporción</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of basicTable.data">
               <td>
-                {{item.id}}
+                {{ data.id }}
               </td>
               <td>
-                {{item.nombre}}
+                {{ data.nombre }}
               </td>
               <td>
-                {{item.cantidadPreguntasPorExamen}}
+                {{ data.cantidadPreguntasPorExamen }}
               </td>
-              <td>
-                {{item.proporcion}} %
-              </td>
+              <td>{{ data.proporcion }} %</td>
               <td>
                 <ng-container>
-                  <button mat-button class="edit" (click)="EditarCategoria(item)">
+                  <button
+                    mat-button
+                    class="edit"
+                    (click)="EditarCategoria(data)"
+                  >
                     <i class="material-icons">edit</i>
                   </button>
                 </ng-container>
                 <ng-container>
-                  <button mat-button class="delete" (click)="EliminarCategoria(item)">
+                  <button
+                    mat-button
+                    class="delete"
+                    (click)="EliminarCategoria(data)"
+                  >
                     <i class="material-icons">delete</i>
                   </button>
                 </ng-container>
               </td>
             </tr>
-          </ng-container>
-        </table>
-
+          </tbody>
+        </nz-table>
       </div>
     </mat-tab>
     <mat-tab label="SubCategorias">
+      <div class="titulo">Subcategorias</div>
       <div class="subTitulo">
-        Puedes modificar los nombres de las subcategorías, la cantidad de preguntas por examen y su proporcion dentro del examen,
-        este determinara cuantas preguntas apareceran para cada categoria en los modos entrenamiento y examen.
-       </div>
-       <div *ngIf="listaCategorias!=undefined" id="test">
-        <table class="tableCategorias">
-          <tr>
-            <th>Id</th>
-            <th>Nombre de la subcategoría</th>
-            <th>Categoria Asignada</th>
-            <th>Cant. de preguntas por examen</th>
-            <th>Proporción</th>
-            <th>Opciones</th>
-          </tr>
-          <ng-container *ngFor="let item of listaSubCategorias ;let i=index">
+        Puedes modificar los nombres de las subcategorías, la cantidad de
+        preguntas por examen y su proporcion dentro del examen, este determinara
+        cuantas preguntas apareceran para cada categoria en los modos
+        entrenamiento y examen.
+      </div>
+      <div>
+        <button mat-button class="agregar2" (click)="agregarSubCategoria()">
+          Añadir
+        </button>
+      </div>
+      <div *ngIf="listaSubCategorias != undefined" id="test">
+        <nz-table #basicTable [nzData]="listaSubCategorias">
+          <thead>
             <tr>
+              <th>Id</th>
+              <th>Nombre de la subcategoría</th>
+              <th>Categoria Asignada</th>
+              <th>Cant. de preguntas por examen</th>
+              <th>Proporción</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of basicTable.data">
               <td>
-                {{item.id}}
+                {{ data.id }}
               </td>
               <td>
-                {{item.nombre}}
+                {{ data.nombre }}
               </td>
               <td>
-                {{item.cantidadPreguntasPorExamen}}
+                {{ data.categoria }}
               </td>
               <td>
-                {{item.proporcion}} %
+                {{ data.cantidadPreguntasPorExamen }}
               </td>
+              <td>{{ data.proporcion }} %</td>
               <td>
                 <ng-container>
-                  <button mat-button class="edit" (click)="EditarCategoria(item)">
+                  <button
+                    mat-button
+                    class="edit"
+                    (click)="EditarSubCategoria(data)"
+                  >
                     <i class="material-icons">edit</i>
                   </button>
                 </ng-container>
                 <ng-container>
-                  <button mat-button class="delete" (click)="EliminarCategoria(item)">
+                  <button
+                    mat-button
+                    class="delete"
+                    (click)="EliminarSubCategoria(data)"
+                  >
                     <i class="material-icons">delete</i>
                   </button>
                 </ng-container>
               </td>
             </tr>
-          </ng-container>
-        </table>
-
+          </tbody>
+        </nz-table>
       </div>
-
-
-
     </mat-tab>
   </mat-tab-group>
 </div>
