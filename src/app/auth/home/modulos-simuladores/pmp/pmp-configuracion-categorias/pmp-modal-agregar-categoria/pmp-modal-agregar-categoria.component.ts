@@ -2,6 +2,7 @@ import { Component, OnInit,Inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { pmpPreguntaActualizarDTO, pmpPreguntaDTO } from 'src/app/Models/PreguntaDTO';
+import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { PmpCategoriasService } from 'src/app/shared/Services/Pmp-Categorias/pmp-categorias.service';
 import { PmpPreguntaService } from 'src/app/shared/Services/Pmp-Pregunta/pmp-pregunta.service';
 
@@ -17,6 +18,7 @@ export class PmpModalAgregarCategoriaComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<PmpModalAgregarCategoriaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private alertaService: AlertaService,
     private formBuilder: FormBuilder,
     private _Dominio: PmpCategoriasService
   ) { }
@@ -126,9 +128,16 @@ export class PmpModalAgregarCategoriaComponent implements OnInit {
     this._Dominio.AgregarCategoria(this.jsonEnvio).subscribe({
 
       next: (x) => {
+        this.alertaService.mensajeIcon(
+          'Aviso',
+          'La lista se agrego correctamente',
+          'success'
+        );
+
+        this.dialogRef.close()
       },
       error:(e)=>{
-
+        this.alertaService.mensajeError(e);
       },
       complete: () => {
 
@@ -158,8 +167,17 @@ export class PmpModalAgregarCategoriaComponent implements OnInit {
     this._Dominio.ActualizarCategoria(this.jsonActualizar).subscribe({
 
       next: (x) => {
+        this.alertaService.mensajeIcon(
+          'Aviso',
+          'La lista se actualizo correctamente',
+          'success'
+        );
+
+        this.dialogRef.close()
       },
       error:(e)=>{
+        this.alertaService.mensajeError(e);
+
 
       },
       complete: () => {
