@@ -20,6 +20,7 @@ export class ModalAlternativasComponent implements OnInit {
 
   loading:any
   loader:any;
+  listaAlternativasEnvio:any = []
   //data:any;
   formAlternativa: FormGroup = this.formBuilder.group({
     Id: 0,
@@ -68,6 +69,14 @@ export class ModalAlternativasComponent implements OnInit {
 
   Cancelar(){
     this.dialogRef.close();
+  }
+
+  Enviar(){
+    console.log(this.formAlternativa.value)
+
+    this.listaAlternativasEnvio=this.formAlternativa.value
+    console.log(this.listaAlternativasEnvio)
+    this.dialogRef.close(this.listaAlternativasEnvio);
   }
 
 }
