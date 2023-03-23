@@ -9,17 +9,15 @@
             <p>Alternativa</p>
             <mat-form-field class="example-full-width" appearance="outline" >
               <mat-label>Ingrese a la alternativa</mat-label>
-              <input type="text"  formControlName="Alternativa" matInput />
-              <mat-error *ngIf="formAlternativa.invalid">{{obtenerErrorCampoNombre('Alternativa')}}</mat-error>
+              <input type="text"  formControlName="respuesta" matInput />
+              <mat-error *ngIf="formAlternativa.invalid">{{obtenerErrorCampoNombre('respuesta')}}</mat-error>
             </mat-form-field>
           </div>
         </div>
         <div class="inre">
-            <div style="font-size:12px"></div>
+            <div style="font-size:12px; margin-bottom: 50px"></div>
             <div class="ver">
-              <p>Correcto</p>
-              <mat-checkbox style="margin-top: -13px;" color="primary"  formControlName="Correcto" class="example-full-width" appearance="outline">
-            </mat-checkbox>
+              <mat-checkbox style="margin-top: -13px;" color="primary"  formControlName="correcto" class="example-full-width" appearance="outline">Correcto</mat-checkbox>
             </div>
           </div>
 
@@ -30,7 +28,7 @@
             <p>Puntaje</p>
             <mat-form-field class="example-full-width" appearance="outline" >
               <mat-label>Ingrese el puntaje</mat-label>
-              <input type="text"  formControlName="Puntaje" matInput />
+              <input type="number"  formControlName="puntaje" matInput />
               <mat-error *ngIf="formAlternativa.invalid">{{obtenerErrorCampoNombre('Puntaje')}}</mat-error>
             </mat-form-field>
           </div>
@@ -40,8 +38,8 @@
             <p>Video</p>
             <mat-form-field class="example-full-width" appearance="outline" >
               <mat-label>Url del video</mat-label>
-              <input type="text"  formControlName="UrlVideo" matInput />
-              <mat-error *ngIf="formAlternativa.invalid">{{obtenerErrorCampoNombre('UrlVideo')}}</mat-error>
+              <input type="text"  formControlName="urlRetroalimentacionVideo" matInput />
+              <mat-error *ngIf="formAlternativa.invalid">{{obtenerErrorCampoNombre('urlRetroalimentacionVideo')}}</mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -57,18 +55,18 @@
                 rows="5"
                 cols="80"
                 placeholder="[Ingrese el texto]"
-                formControlName="Texto"
+                formControlName="retroalimentacion"
                 ></textarea>
             </div>
           </div>
-          <div class="inre">
-            <p>Imagen</p>
-            <div style="font-size: 13px;margin-top: -13px;">
-            </div>
-            <div class="ver">
-              <input id="file" type="file" formControlName="Imagen"/>
-            </div>
-          </div>
+      </div>
+      <div class="inre">
+        <p>Imagen</p>
+        <div style="font-size: 13px;margin-top: -13px;">
+        </div>
+        <div class="ver">
+          <input id="file" type="file" formControlName="imagen"/>
+        </div>
       </div>
 
       <div class="crear">
