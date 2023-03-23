@@ -7,7 +7,7 @@
       ></mat-progress-spinner>
     </div>
   </ng-container>
-  <div class="tituloModal">Configuracion de Pregunta</div>
+  <div class="titulo">Configuracion de Pregunta</div>
   <div class="contenedor">
     <div class="inp">
       <div class="tit">
@@ -33,7 +33,10 @@
       <mat-form-field appearance="fill">
         <mat-label>SubCategorias</mat-label>
         <mat-select formControlName="IdSubCategoria">
-          <mat-option *ngFor="let a of lisSubCategoriaPorCategoria" [value]="a.id">
+          <mat-option
+            *ngFor="let a of lisSubCategoriaPorCategoria"
+            [value]="a.id"
+          >
             {{ a.nombre }}
           </mat-option>
         </mat-select>
@@ -82,114 +85,128 @@
       </div>
     </div>
 
+
+
     <div class="inp">
       <div class="tit">
         <p>Alternativas:</p>
       </div>
     </div>
 
-    <table class="tableCategorias">
-      <tr>
-        <th>Id</th>
-        <th>Alternativa</th>
-        <th>Correcto</th>
-        <th>Puntaje</th>
-        <th>Retroalimentacion</th>
-        <th>Opciones</th>
-      </tr>
-      <ng-container *ngFor="let item of listaAlternativas ;let i=index">
+    <div>
+      <button mat-button class="agregar" (click)="agregar()">Añadir</button>
+    </div>
+
+    <ng-container *ngIf="agregarv != false">
+      <table class="tableCategorias">
         <tr>
-          <td>
-            {{item.idAlternativa}}
-          </td>
-          <td>
-            {{item.respuesta}}
-          </td>
-          <td>
-           <input type="checkbox">
-          </td>
-          <td>
-            {{item.puntaje}} %
-          </td>
-          <td>
-            {{item.retroalimentacion}}
-          </td>
-          <td>
-            <ng-container>
-              <button mat-button class="edit" (click)="abrirModalAlternativas(item)">
-                <i class="material-icons">edit</i>
-              </button>
-            </ng-container>
-            <ng-container>
-              <button mat-button class="delete" (click)="eliminar()">
-                <i class="material-icons">delete</i>
-              </button>
-            </ng-container>
-          </td>
+          <!-- <th>Id</th> -->
+          <th>Alternativa</th>
+          <th>Correcto</th>
+          <th>Puntaje</th>
+          <!-- <th>Retroalimentacion</th> -->
+          <th>Opciones</th>
         </tr>
-      </ng-container>
-    </table>
+        <ng-container *ngFor="let item of listaAlternativas; let i = index">
+          <tr>
+            <!-- <td>
+              {{ item.Id }}
+            </td> -->
+            <td>
+              {{ item.Alternativa }}
+            </td>
+            <td>
+              <input type="checkbox" />
+            </td>
+            <td>{{ item.Puntaje }} %</td>
+            <!-- <td>
+              {{ item.Retroalimentacion }}
+            </td> -->
+            <td>
+              <ng-container>
+                <button
+                  mat-button
+                  class="edit"
+                  (click)="abrirModalAlternativas(item)"
+                >
+                  <i class="material-icons">edit</i>
+                </button>
+              </ng-container>
+              <ng-container>
+                <button mat-button class="delete" (click)="eliminar()">
+                  <i class="material-icons">delete</i>
+                </button>
+              </ng-container>
+            </td>
+          </tr>
+        </ng-container>
+      </table>
+    </ng-container>
 
-    <!-- <table mat-table class="mat-elevation-z8 w-100" [dataSource]="listaAlternativas">
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef style="width: 10px">Id</th>
-        <td mat-cell *matCellDef="let element">{{ element.idAlternativa }}</td>
-      </ng-container>
+    <ng-container *ngIf="agregarv == false">
+      <table class="tableCategorias">
+        <tr>
+          <th>Id</th>
+          <th>Alternativa</th>
+          <th>Correcto</th>
+          <th>Puntaje</th>
+          <th>Retroalimentacion</th>
+          <th>Opciones</th>
+        </tr>
+        <ng-container *ngFor="let item of listaAlternativas; let i = index">
+          <tr>
+            <td>
+              {{ item.idAlternativa }}
+            </td>
+            <td>
+              {{ item.respuesta }}
+            </td>
+            <td>
+              <input type="checkbox" />
+            </td>
+            <td>{{ item.puntaje }} %</td>
+            <td>
+              {{ item.retroalimentacion }}
+            </td>
+            <td>
+              <ng-container>
+                <button
+                  mat-button
+                  class="edit"
+                  (click)="abrirModalAlternativas(item)"
+                >
+                  <i class="material-icons">edit</i>
+                </button>
+              </ng-container>
+              <ng-container>
+                <button mat-button class="delete" (click)="eliminar()">
+                  <i class="material-icons">delete</i>
+                </button>
+              </ng-container>
+            </td>
+          </tr>
+        </ng-container>
+      </table>
+    </ng-container>
 
-      <ng-container matColumnDef="alternativa">
-        <th mat-header-cell *matHeaderCellDef style="width: 200px">
-          Alternativa
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.respuesta }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="correcto">
-        <th mat-header-cell *matHeaderCellDef style="width: 100px">Correcto</th>
-        <td mat-cell *matCellDef="let element">{{ element.valor }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="puntaje">
-        <th mat-header-cell *matHeaderCellDef style="width: 100px">Puntaje</th>
-        <td mat-cell *matCellDef="let element">{{ element.puntaje }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="retroalimentacion">
-        <th mat-header-cell *matHeaderCellDef style="width: 400px">
-          Retroalimentacion
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.retroalimentacion }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="acciones">
-        <button
-        mat-button
-        class="edit"
-        (click)="openDialog()"
-        style="margin-right: 10px"
-      >
-        <i class="material-icons">edit</i>
-      </button>
-
-      <button mat-button class="cancel" (click)="eliminar()">
-        <i class="material-icons">close</i>
-      </button>
-      </ng-container>
-
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDe f="let row; columns: displayedColumns"></tr>
-    </table> -->
 
     <div class="inp">
       <div class="tit">
         <p>Tiene retroalimentacion unica:</p>
       </div>
 
-      <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="buttonGroup">
-        <mat-button-toggle (click)="toggle()" id="btn-show">SI</mat-button-toggle>
-        <mat-button-toggle (click)="toggle()" id="btn-hide">NO</mat-button-toggle>
+      <mat-button-toggle-group
+        name="fontStyle"
+        aria-label="Font Style"
+        class="buttonGroup"
+      >
+        <mat-button-toggle (click)="toggle()" id="btn-show"
+          >SI</mat-button-toggle
+        >
+        <mat-button-toggle (click)="toggle()" id="btn-hide"
+          >NO</mat-button-toggle
+        >
       </mat-button-toggle-group>
-
     </div>
     <ng-container *ngIf="show">
       <div class="box">
@@ -234,7 +251,7 @@
   </div>
 
   <div class="crear">
-    <button mat-flat-button class="botonAgregar">Guardar</button>
+    <button mat-flat-button class="botonAgregar" (click)="Enviar()">Guardar</button>
     <button mat-flat-button class="cancelar" (click)="Cancelar()">
       Cancelar
     </button>

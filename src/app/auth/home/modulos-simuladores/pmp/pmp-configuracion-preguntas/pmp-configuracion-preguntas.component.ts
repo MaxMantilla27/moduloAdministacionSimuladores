@@ -40,13 +40,14 @@ export class PmpConfiguracionPreguntasComponent implements OnInit, OnChanges {
   }
 
   openDialog(data: any) {
+    var agregar = false
     console.log(data);
     //Editar Pregunta
     const dialogRef = this.dialog.open(PmpModalAgregarPreguntasComponent, {
       width: '1500px',
       maxHeight: '90vh',
       panelClass: 'dialog-gestor',
-      data: data,
+      data: [agregar, data],
     });
 
     dialogRef.afterClosed().subscribe((result) => {});
@@ -54,11 +55,12 @@ export class PmpConfiguracionPreguntasComponent implements OnInit, OnChanges {
 
 
   agregar() {
+    var agregar = true
     const dialogRef = this.dialog.open(PmpModalAgregarPreguntasComponent, {
       width: '1000px',
       maxHeight: '90vh',
       panelClass: 'dialog-gestor',
-
+      data: agregar
     });
 
     dialogRef.afterClosed().subscribe((result) => {});

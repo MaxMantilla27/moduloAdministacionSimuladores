@@ -19,7 +19,5 @@ export class PmpPreguntaService {
     return this.http.post<any>(this.urlBase+'/ObtenerPmpPregunta?Id='+idPregunta,'');
   }
 
-  public AgregarPmpPregunta(datos: any ):Observable<any>{
-    return this.http.post<any>(this.urlBase + '/GuardarArchivo?Id='+ datos, '');
-  }
+  
 }
