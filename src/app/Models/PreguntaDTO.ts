@@ -37,7 +37,7 @@ export interface PmpEnvioRespuesDTO{
    IdSimuladorPmpPregunta: number; 
    Alternativa: string; 
    Valor: number; 
-   correcto: true; 
+   Correcto: boolean; 
    IdAspNetUsers: string; 
    Puntaje: number; 
    UrlRetroalimentacionVideo: string; 

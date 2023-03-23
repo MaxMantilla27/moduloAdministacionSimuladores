@@ -140,4 +140,24 @@ table{
   margin-left: 10%;
 }
 
+.contenidoTablaAdmUsuarios{
+  text-align: center;
+  border: solid 1px #b2b2b2;
+  padding-left: 5px;
+    padding-right: 5px;
+}
+.encabezadoTablaAdmUsuarios{
+  border: solid 1px #b2b2b2;
+  text-align: center;
+  background-color: #E7E7E7;
+  color: #222222;
+  padding-left: 5px;
+  padding-right: 5px;
+}
 
+.checkBoxCorrectoAlternativo.ant-table-tbody>tr.ant-table-row:hover>td, .ant-table-tbody>tr>td.ant-table-cell-row-hover{
+  background: none;
+}
+.tablaclase{
+  background: none;
+}

@@ -19,5 +19,15 @@ export class PmpPreguntaService {
     return this.http.post<any>(this.urlBase+'/ObtenerPmpPregunta?Id='+idPregunta,'');
   }
 
-  
+  // public AgregarPregunta(idPregunta: any):Observable<any>{
+  //   const formData: FormData = new FormData();
+  //   formData.append('ImgLogo', listaPregunta.ImgLogo);
+  //   formData.append('Nombre', listaPregunta.Nombre.toString());
+  //   formData.append('CantidadPreguntasPorExamen', listaPregunta.CantidadPreguntasPorExamen.toString());
+  //   formData.append('CantidadTotal', listaPregunta.CantidadTotal.toString());
+  //   formData.append('Proporcion', listaPregunta.Proporcion.toString());
+  //   formData.append('IdSimuladorPmpDominio', listaPregunta.IdSimuladorPmpDominio.toString());
+  //  console.log(formData)
+  //  return null;
+  // }
 }

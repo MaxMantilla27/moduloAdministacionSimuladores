@@ -23,13 +23,13 @@ export class ModalAlternativasComponent implements OnInit {
   listaAlternativasEnvio:any = []
   //data:any;
   formAlternativa: FormGroup = this.formBuilder.group({
-    Id: 0,
-    Alternativa: '',
-    Correcto: true,
-    Puntaje: 0,
-    UrlVideo: '',
-    Texto: '',
-    Imagen: ''
+    id: 0,
+    respuesta: '',
+    correcto: true,
+    puntaje: 0,
+    urlRetroalimentacionVideo: '',
+    retroalimentacion: '',
+    imagen: ''
   });
   
   ngOnInit(): void {
@@ -37,12 +37,12 @@ export class ModalAlternativasComponent implements OnInit {
     if(this.data!=undefined)
     {
       this.formAlternativa.get('Id')?.setValue(this.data[0].idAlternativa)
-      this.formAlternativa.get('Alternativa')?.setValue(this.data[0].respuesta)
-      this.formAlternativa.get('Correcto')?.setValue(this.data[0].correcto)
-      this.formAlternativa.get('Puntaje')?.setValue(this.data[0].puntaje)
-      this.formAlternativa.get('UrlVideo')?.setValue(this.data[0].urlRetroalimentacionVideo)
-      this.formAlternativa.get('Texto')?.setValue(this.data[0].retroalimentacion)
-      this.formAlternativa.get('Imagen')?.setValue(this.data[0].imagen)
+      this.formAlternativa.get('respuesta')?.setValue(this.data[0].respuesta)
+      this.formAlternativa.get('correcto')?.setValue(this.data[0].correcto)
+      this.formAlternativa.get('puntaje')?.setValue(this.data[0].puntaje)
+      this.formAlternativa.get('urlRetroalimentacionVideo')?.setValue(this.data[0].urlRetroalimentacionVideo)
+      this.formAlternativa.get('retroalimentacion')?.setValue(this.data[0].retroalimentacion)
+      this.formAlternativa.get('imagen')?.setValue(this.data[0].imagen)
       console.log(this.formAlternativa)
     }
     else{
