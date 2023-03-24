@@ -29,7 +29,7 @@ export interface PmpEnvioFilePreguntaDTO{
    UrlRetroalimentacionVideo: string;
    Retroalimentacion: string;
    Imagen: File;
-   ImgRetroalimentacion?: File;
+   ImgRetroalimentacion: File;
    Respuestas : Array<PmpEnvioRespuesDTO> 
 }
 export interface PmpEnvioRespuesDTO{
@@ -43,7 +43,7 @@ export interface PmpEnvioRespuesDTO{
    UrlRetroalimentacionVideo: string; 
    Imagen: File; 
    Retroalimentacion: string; 
-   UrlImagen?: string 
+   UrlImagen: string 
 }
 
 

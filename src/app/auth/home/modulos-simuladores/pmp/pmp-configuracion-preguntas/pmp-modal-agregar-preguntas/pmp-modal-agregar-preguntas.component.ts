@@ -10,6 +10,7 @@ import {
   PmpEnvioRespuesDTO,
 } from 'src/app/Models/PreguntaDTO';
 import { PmpCategoriasService } from 'src/app/shared/Services/Pmp-Categorias/pmp-categorias.service';
+import { PmpPreguntaService } from 'src/app/shared/Services/Pmp-Pregunta/pmp-pregunta.service';
 import { PmpPreguntaRespuestaService } from 'src/app/shared/Services/Pmp-PreguntaRespuesta/pmp-preguntaRespuesta.service';
 import { PmpTareaService } from 'src/app/shared/Services/Pmp-Tarea/pmp-tarea.service';
 import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
@@ -28,6 +29,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     private _Categorias: PmpCategoriasService,
     private _Tareas: PmpTareaService,
     private _alternativa: PmpPreguntaRespuestaService,
+    private _pregunta: PmpPreguntaService,
     private formBuilder: FormBuilder,
     public dialog: MatDialog
   ) {}
@@ -158,7 +160,6 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   }
 
   Enviar() {
-    console.log(this.formPregunta.value);
 
     this.json.Id = this.formPregunta.value.Id;
     this.json.nombreArchivo = '';
@@ -173,7 +174,10 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     this.json.Respuestas = [];
     console.log(this.listaAlternativas);
     this.listaAlternativas.forEach((e: any) => {
+      
+      
       var alternativas: PmpEnvioRespuesDTO = {
+        
         Id: e.Id,
         IdSimuladorPmpPregunta: 0,
         Alternativa: e.alternativa,
@@ -182,7 +186,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
         IdAspNetUsers: '',
         Puntaje: e.puntaje,
         UrlRetroalimentacionVideo: e.urlRetroalimentacionVideo,
-        Imagen: new File([], ''),
+        Imagen: this.json.Imagen,
         Retroalimentacion: e.retroalimentacion,
         UrlImagen: '',
       };
@@ -204,35 +208,62 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   // }
 
   guardarPregunta() {
-    this.json.Id = this.formPregunta.value.Id;
-    this.json.nombreArchivo = '';
-    this.json.IdSimuladorPmpTarea = this.formPregunta.value.IdSubCategoria;
-    this.json.IdSimuladorTipoRespuesta =
-      this.formPregunta.value.IdTipoRespuesta;
-    this.json.Enunciado = this.formPregunta.value.Enunciado;
+
+    console.log(this.formPregunta.value);
+    if(this.selectedFiles){
+      const file: File | null = this.selectedFiles.item(0);
+      if (file) {
+        this.json.Imagen = file;
+        this.json.ImgRetroalimentacion = file;
+      }
+    }
+
+
+    this.json.Id = 0;
+    this.json.nombreArchivo = 'olu';
+    this.json.IdSimuladorPmpTarea = 0;
+    this.json.IdSimuladorTipoRespuesta =0;
+    this.json.Enunciado = 'olu';
     this.json.TieneRetroalimentacion = true;
-    this.json.UrlRetroalimentacionVideo = '';
-    this.json.Retroalimentacion = '';
+    //this.json.UrlRetroalimentacionVideo = null;
+    this.json.Retroalimentacion = 'oi';
+    // this.json.Imagen = new File([],'');
+    // this.json.ImgRetroalimentacion = new File([],'');
+    
     // this.json.
     // this.json.Respuestas = []
     console.log(this.listaAlternativas);
     this.listaAlternativas.forEach((e: any) => {
       var alternativas: PmpEnvioRespuesDTO = {
-        Id: e.Id,
+        Id: 0,
         IdSimuladorPmpPregunta: 0,
-        Alternativa: e.Alternativa,
+        Alternativa: e.respuesta,
         Valor: 0,
         Correcto: e.correcto,
         IdAspNetUsers: '',
-        Puntaje: e.Puntaje,
+        Puntaje: e.puntaje,
         UrlRetroalimentacionVideo: '',
-        Imagen: new File([], ''),
-        Retroalimentacion: e.Texto,
+        Imagen: this.json.Imagen,
+        Retroalimentacion: e.retroalimentacion,
         UrlImagen: '',
       };
 
       this.json.Respuestas.push(alternativas);
     });
+
+    console.log(this.json)
+    this._pregunta.AgregarPregunta(this.json).subscribe({
+      next: (x:any) => {
+        console.log(x)
+      },
+      error:(e:any)=>{
+
+
+      },
+      complete: () => {
+
+      },
+    })
   }
 
   seleccionar(e: any) {
@@ -382,6 +413,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
         this.filestatus = false;
       }
       this.selectedFiles = event.target.files;
+      console.log(this.selectedFiles)
       // console.log ('Name: ' + name + "\n" +
       //   'Type: ' + extencion + "\n" +
       //   'Last-Modified-Date: ' + modifiedDate + "\n" +
