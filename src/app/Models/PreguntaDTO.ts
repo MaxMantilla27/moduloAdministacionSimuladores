@@ -21,31 +21,29 @@ export interface pmpPreguntaActualizarDTO {
 
 export interface PmpEnvioFilePreguntaDTO{
    Id: number;
-   nombreArchivo: string; 
+   IdSimuladorPmpDominio: number;
    IdSimuladorPmpTarea: number;
    IdSimuladorTipoRespuesta: number;
+   IdPmpTipoPreguntaClasificacion: number;
    Enunciado: string;
-   TieneRetroalimentacion: true; 
+   UrlImagenPreguntaArchivo: File;
+   TieneRetroalimentacionUnica: boolean; 
    UrlRetroalimentacionVideo: string;
    Retroalimentacion: string;
-   Imagen: File;
-   ImgRetroalimentacion: File;
+   ImgRetroalimentacionArchivo: File;
    Respuestas : Array<PmpEnvioRespuesDTO> 
 }
 export interface PmpEnvioRespuesDTO{
    Id: number; 
    IdSimuladorPmpPregunta: number; 
-   Alternativa: string; 
+   Respuesta: string; 
    Valor: number; 
    Correcto: boolean; 
-   IdAspNetUsers: string; 
    Puntaje: number; 
    UrlRetroalimentacionVideo: string; 
-   Imagen: File; 
-   Retroalimentacion: string; 
-   UrlImagen: string 
+   Explicacion: string; 
+   UrlImagenArchivo: File;  
 }
-
 
 export interface Alternativa{
   Id: number,

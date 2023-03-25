@@ -6,7 +6,15 @@
     ></mat-progress-spinner>
   </div>
 </ng-container>
-<div class="titulo">Configuracion de Pregunta</div>
+<div class="tituloModalPregunta row">
+  <div class="col-12 col-md-9" style="margin-left: 1rem; font-size: 20px;" >
+    Configuracion de Pregunta
+  </div>
+  <div class="col-12 col-md-2" style="margin-left: auto;">
+    <button mat-button class="cerrarModalPregunta" (click)="dialogRef.close()">Cerrar</button>
+  </div>
+
+</div>
 <div class="contenedor">
   <div class="inp">
     <div class="tit">
@@ -77,7 +85,7 @@
       <div class="tit">
         <p>Imagen:</p>
       </div>
-      <input type="file" id="imagenPregunta" (change)="getFileDetails($event)"/>
+      <input type="file" id="imagenPregunta" (change)="getFileDetailsPregunta($event)"/>
     </div>
   </div>
 
@@ -150,19 +158,20 @@
         <tbody>
           <tr *ngFor="let data of nzTable.data; let i = index">
             <td class="contenidoTablaAdmUsuarios">
-              {{ data.respuesta }}
+              {{ data.Respuesta }}
             </td>
             <td class="contenidoTablaAdmUsuarios">
-              <i class="material-icons" *ngIf="data.correcto!=true" >check_box_outline_blank</i>
-              <i class="material-icons" *ngIf="data.correcto==true">check_box</i>
+              <i class="material-icons" *ngIf="data.Correcto!=true" >check_box_outline_blank</i>
+              <i class="material-icons" *ngIf="data.Correcto==true">check_box</i>
+              <!-- <input type="checkbox" [(ngModel)]="data.Correcto"> -->
               <!-- <input  type="checkbox" style="background: none  !important;" 
                  [(ngModel)]="data.Correcto" > -->
             </td>
             <td class="contenidoTablaAdmUsuarios">
-              {{ data.puntaje }}
+              {{ data.Puntaje }}
             </td>
             <td class="contenidoTablaAdmUsuarios">
-              {{ data.retroalimentacion }}
+              {{ data.Retroalimentacion }}
             </td>
             <td>
               <ng-container>
@@ -244,16 +253,17 @@
       name="fontStyle"
       aria-label="Font Style"
       class="buttonGroup"
+      [(ngModel)]="TieneRetroalimentacionUnica"
     >
-      <mat-button-toggle (click)="toggle()" id="btn-show"
+      <mat-button-toggle (click)="TieneRetroalimentacionUnica=true" id="btn-show"
         >SI</mat-button-toggle
       >
-      <mat-button-toggle (click)="toggle()" id="btn-hide"
+      <mat-button-toggle (click)="TieneRetroalimentacionUnica=false"id="btn-hide"
         >NO</mat-button-toggle
       >
     </mat-button-toggle-group>
   </div>
-  <ng-container *ngIf="show">
+  <ng-container *ngIf="TieneRetroalimentacionUnica==true">
     <div class="box">
       <div class="inp">
         <div class="tit">
@@ -283,7 +293,7 @@
           <p>Imagen:</p>
         </div>
         
-        <input type="file" id="ImgPreguntaRetroalimentacion" (change)="getFileDetails($event)"/>
+        <input type="file" id="ImgPreguntaRetroalimentacion" (change)="getFileDetailsPreguntaRetroalimentacion($event)"/>
       </div>
     </div>
   </ng-container>

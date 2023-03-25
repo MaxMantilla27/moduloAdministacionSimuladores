@@ -46,32 +46,32 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   loading: any;
   loader: any;
   public show: boolean = false;
-  public botonMostrar: any = 'Show';
-  public botonOcultar: any = 'Hide';
-  formPregunta: FormGroup = this.formBuilder.group({
-    Id: 0,
-    IdCategoria: 0,
-    IdSubCategoria: 0,
-    IdTipoRespuesta: 0,
-    Enunciado: '',
-    ImagenPregunta: '',
-    UrlVideo: '',
-    Retroalimentacion: '',
-    ImgPreguntaRetroalimentacion: '',
-    TieneRetroalimentacion: true,
-  });
+ 
+  // formPregunta: FormGroup = this.formBuilder.group({
+  //   Id: 0,
+  //   IdCategoria: 0,
+  //   IdSubCategoria: 0,
+  //   IdTipoRespuesta: 0,
+  //   Enunciado: '',
+  //   ImagenPregunta: '',
+  //   UrlVideo: '',
+  //   Retroalimentacion: '',
+  //   ImgPreguntaRetroalimentacion: '',
+  //   TieneRetroalimentacion: true,
+  // });
 
   public json: PmpEnvioFilePreguntaDTO = {
     Id: 0,
-    nombreArchivo: '',
+    IdSimuladorPmpDominio: 0,
     IdSimuladorPmpTarea: 0,
     IdSimuladorTipoRespuesta: 0,
     Enunciado: '',
-    TieneRetroalimentacion: true,
+    UrlImagenPreguntaArchivo: new File([], ''),
+    IdPmpTipoPreguntaClasificacion: 0,
+    TieneRetroalimentacionUnica: true,
     UrlRetroalimentacionVideo: '',
     Retroalimentacion: '',
-    Imagen: new File([], ''),
-    ImgRetroalimentacion: new File([], ''),
+    ImgRetroalimentacionArchivo: new File([], ''),
     Respuestas: [],
   };
 
@@ -100,60 +100,31 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   public IdTipoRespuesta = 0;
   public Enunciado = '';
   public ImagenPregunta: any;
+  public TieneRetroalimentacionUnica = true;
   public UrlVideo = '';
   public Retroalimentacion = '';
   public ImgPreguntaRetroalimentacion: any;
 
-  public selectedFiles?: FileList;
-  public file: any;
-  public filestatus = false;
-  public fileErrorMsg = '';
-  public nombrefile = 'Ningún archivo seleccionado';
+  public selectedFilesPregunta?: FileList;
+  public filePregunta: any;
+  public filestatusPregunta = false;
+  public fileErrorMsgPregunta = '';
+  public nombrefilePregunta = 'Ningún archivo seleccionado';
+
+  public selectedFilesPreguntaRetroalimentacion?: FileList;
+  public filePreguntaRetroalimentacion: any;
+  public filestatusPreguntaRetroalimentacion = false;
+  public fileErrorMsgPreguntaRetroalimentacion = '';
+  public nombrefilePreguntaRetroalimentacion = 'Ningún archivo seleccionado';
+
 
   ngOnInit(): void {
     console.log(this.data);
     console.log(this.agregarv);
-    if (this.data[1] != undefined) {
-      // this.formPregunta.patchValue({
-      //   IdCategoria:this.data.idCategoria
-
-      // })
-      this.formPregunta.get('Id')?.setValue(this.data[1].id);
-      this.formPregunta.get('IdCategoria')?.setValue(this.data[1].idCategoria);
-      this.formPregunta
-        .get('IdSubCategoria')
-        ?.setValue(this.data[1].idSubCategoria);
-      this.formPregunta
-        .get('IdTipoRespuesta')
-        ?.setValue(this.data[1].idTipoRespuesta);
-      this.formPregunta.get('Enunciado')?.setValue(this.data[1].enunciado);
-      this.formPregunta
-        .get('ImagenPregunta')
-        ?.setValue(this.data[1].imgPregunta);
-      this.formPregunta.get('UrlVideo')?.setValue(this.data[1].urlVideo);
-      this.formPregunta
-        .get('Retroalimentacion')
-        ?.setValue(this.data[1].retroalimentacion);
-      this.formPregunta
-        .get('ImgPreguntaRetroalimentacion')
-        ?.setValue(this.data[1].ImgPreguntaRetroalimentacion);
-      this.formPregunta.get('TieneRetroalimentacion')?.setValue(true);
-
-      console.log(this.formPregunta);
-    } else {
-      this.formPregunta.reset();
-    }
-    // this.ObtenerCombo(),
     this.ObtenerComboCategorias();
     this.ObtenerAlternativa();
   }
 
-  toggle() {
-    this.show = !this.show;
-
-    if (this.show) this.botonMostrar = 'Show';
-    else this.botonOcultar = 'Hide';
-  }
 
   Cancelar() {
     this.dialogRef.close();
@@ -161,40 +132,39 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
 
   Enviar() {
 
-    this.json.Id = this.formPregunta.value.Id;
-    this.json.nombreArchivo = '';
-    this.json.IdSimuladorPmpTarea = this.formPregunta.value.IdSubCategoria;
-    this.json.IdSimuladorTipoRespuesta =
-      this.formPregunta.value.IdTipoRespuesta;
-    this.json.Enunciado = this.formPregunta.value.Enunciado;
-    this.json.TieneRetroalimentacion = true;
-    this.json.UrlRetroalimentacionVideo = '';
-    this.json.Retroalimentacion = '';
-    // this.json.
-    this.json.Respuestas = [];
-    console.log(this.listaAlternativas);
-    this.listaAlternativas.forEach((e: any) => {
+    // this.json.Id = this.formPregunta.value.Id;
+    // this.json.IdSimuladorPmpTarea = this.formPregunta.value.IdSubCategoria;
+    // this.json.IdSimuladorTipoRespuesta =
+    //   this.formPregunta.value.IdTipoRespuesta;
+    // this.json.Enunciado = this.formPregunta.value.Enunciado;
+    // this.json.TieneRetroalimentacion = true;
+    // this.json.UrlRetroalimentacionVideo = '';
+    // this.json.Retroalimentacion = '';
+    // // this.json.
+    // this.json.Respuestas = [];
+    // console.log(this.listaAlternativas);
+    // this.listaAlternativas.forEach((e: any) => {
       
       
-      var alternativas: PmpEnvioRespuesDTO = {
+    //   var alternativas: PmpEnvioRespuesDTO = {
         
-        Id: e.Id,
-        IdSimuladorPmpPregunta: 0,
-        Alternativa: e.alternativa,
-        Valor: e.valor,
-        Correcto: e.correcto,
-        IdAspNetUsers: '',
-        Puntaje: e.puntaje,
-        UrlRetroalimentacionVideo: e.urlRetroalimentacionVideo,
-        Imagen: this.json.Imagen,
-        Retroalimentacion: e.retroalimentacion,
-        UrlImagen: '',
-      };
+    //     Id: e.Id,
+    //     IdSimuladorPmpPregunta: 0,
+    //     Alternativa: e.alternativa,
+    //     Valor: e.valor,
+    //     Correcto: e.correcto,
+    //     IdAspNetUsers: '',
+    //     Puntaje: e.puntaje,
+    //     UrlRetroalimentacionVideo: e.urlRetroalimentacionVideo,
+    //     Imagen: this.json.Imagen,
+    //     Retroalimentacion: e.retroalimentacion,
+    //     UrlImagen: '',
+    //   };
 
-      this.json.Respuestas.push(alternativas);
-    });
+    //   this.json.Respuestas.push(alternativas);
+    // });
 
-    console.log(this.json);
+    // console.log(this.json);
   }
 
   // ObtenerCombo() {
@@ -209,43 +179,48 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
 
   guardarPregunta() {
 
-    console.log(this.formPregunta.value);
-    if(this.selectedFiles){
-      const file: File | null = this.selectedFiles.item(0);
+    if(this.selectedFilesPregunta){
+      const file: File | null = this.selectedFilesPregunta.item(0);
       if (file) {
-        this.json.Imagen = file;
-        this.json.ImgRetroalimentacion = file;
+        this.json.UrlImagenPreguntaArchivo = file;
       }
     }
 
+    if(this.selectedFilesPreguntaRetroalimentacion){
+      const file: File | null = this.selectedFilesPreguntaRetroalimentacion.item(0);
+      if (file) {
+        this.json.ImgRetroalimentacionArchivo = file;
+      }
+    }
 
     this.json.Id = 0;
-    this.json.nombreArchivo = 'olu';
-    this.json.IdSimuladorPmpTarea = 0;
-    this.json.IdSimuladorTipoRespuesta =0;
-    this.json.Enunciado = 'olu';
-    this.json.TieneRetroalimentacion = true;
-    //this.json.UrlRetroalimentacionVideo = null;
-    this.json.Retroalimentacion = 'oi';
-    // this.json.Imagen = new File([],'');
-    // this.json.ImgRetroalimentacion = new File([],'');
-    
-    // this.json.
-    // this.json.Respuestas = []
+    this.json.IdSimuladorPmpDominio = this.IdCategoria;
+    this.json.IdSimuladorPmpTarea = this.IdSubCategoria;
+    this.json.IdSimuladorTipoRespuesta = this.IdTipoRespuesta;
+    this.json.Enunciado = this.Enunciado;
+    this.json.TieneRetroalimentacionUnica = this.TieneRetroalimentacionUnica;
+    this.json.IdPmpTipoPreguntaClasificacion = 2;
+    this.json.UrlRetroalimentacionVideo = this.UrlVideo;
+    this.json.Retroalimentacion = this.Retroalimentacion;
     console.log(this.listaAlternativas);
     this.listaAlternativas.forEach((e: any) => {
+      if(e.Correcto == true){
+        e.Valor = 1
+      }
+      else{
+        e.Valor = 0
+      }
       var alternativas: PmpEnvioRespuesDTO = {
         Id: 0,
         IdSimuladorPmpPregunta: 0,
-        Alternativa: e.respuesta,
-        Valor: 0,
-        Correcto: e.correcto,
-        IdAspNetUsers: '',
-        Puntaje: e.puntaje,
-        UrlRetroalimentacionVideo: '',
-        Imagen: this.json.Imagen,
-        Retroalimentacion: e.retroalimentacion,
-        UrlImagen: '',
+        Respuesta: e.Respuesta,
+        Valor: e.Valor,
+        Correcto: e.Correcto,
+        Puntaje: e.Puntaje,
+        UrlRetroalimentacionVideo: e.UrlRetroalimentacionVideo,
+        Explicacion: e.Retroalimentacion,
+        UrlImagenArchivo: e.UrlImagenArchivo
+        
       };
 
       this.json.Respuestas.push(alternativas);
@@ -281,7 +256,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalAlternativasComponent, {
       width: '1500px',
       maxHeight: '90vh',
-      panelClass: 'dialog-gestor',
+      panelClass: 'dialog-abrir-alternativa',
       data: [data],
     });
     dialogRef.afterClosed().subscribe((result: any) => {
@@ -307,7 +282,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalAlternativasComponent, {
       width: '1500px',
       maxHeight: '90vh',
-      panelClass: 'dialog-gestor',
+      panelClass: 'dialog-abrir-alternativa',
       data: [data],
     });
     dialogRef.afterClosed().subscribe((result: any) => {
@@ -341,9 +316,8 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   }
 
   FiltrarSubs(e: any) {
-    this.formPregunta.get('IdSubCategoria')?.setValue(null);
     this.lisSubCategoriaPorCategoria = [];
-    var idcat = this.formPregunta.get('IdCategoria')?.value;
+    var idcat = this.IdCategoria
     console.log(idcat);
     this.listaSubCategorias.forEach((ss: any) => {
       if (ss.idSimuladorPmpDominio == idcat) {
@@ -354,19 +328,19 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   }
 
   obtenerErrorCampoNombre(val = '') {
-    var campo = this.formPregunta.get(val);
-    if (campo!.hasError('required')) {
-      if (val == 'IdSimuladorPmpTarea') {
-        return 'Ingresa el nombre';
-      }
-      if (val == 'Enunciado') {
-        return 'Ingresa una leyenda';
-      }
-      if (val == 'IdSimuladorTipoRespuesta') {
-        return 'Confirma tu nueva contraseña';
-      }
-    }
-    return '';
+    // var campo = this.formPregunta.get(val);
+    // if (campo!.hasError('required')) {
+    //   if (val == 'IdSimuladorPmpTarea') {
+    //     return 'Ingresa el nombre';
+    //   }
+    //   if (val == 'Enunciado') {
+    //     return 'Ingresa una leyenda';
+    //   }
+    //   if (val == 'IdSimuladorTipoRespuesta') {
+    //     return 'Confirma tu nueva contraseña';
+    //   }
+    // }
+    // return '';
   }
 
   agregar() {
@@ -374,7 +348,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalAlternativasComponent, {
       width: '1500px',
       maxHeight: '90vh',
-      panelClass: 'dialog-gestor',
+      panelClass: 'dialog-abrir-alternativa',
     });
 
     this.valorAgregado = false;
@@ -399,25 +373,47 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   //   });
   // }
 
-  getFileDetails(event: any) {
+  getFileDetailsPregunta(event: any) {
     for (var i = 0; i < event.target.files.length; i++) {
-      this.filestatus = true;
+      this.filestatusPregunta = true;
       var name = event.target.files[i].name;
-      this.nombrefile = name;
+      this.nombrefilePregunta = name;
       var type = event.target.files[i].type;
       var size = event.target.files[i].size;
       var modifiedDate = event.target.files[i].lastModifiedDate;
       var extencion = name.split('.')[name.split('.').length - 1];
       if (Math.round(size / 1024 / 1024) > 150) {
-        this.fileErrorMsg = 'El tamanio del archivo no debe superar los 25 MB';
-        this.filestatus = false;
+        this.fileErrorMsgPregunta = 'El tamanio del archivo no debe superar los 25 MB';
+        this.filestatusPregunta = false;
       }
-      this.selectedFiles = event.target.files;
-      console.log(this.selectedFiles)
+      this.selectedFilesPregunta = event.target.files;
+      console.log(this.selectedFilesPregunta)
       // console.log ('Name: ' + name + "\n" +
       //   'Type: ' + extencion + "\n" +
       //   'Last-Modified-Date: ' + modifiedDate + "\n" +
       //   'Size: ' + Math.round((size/1024)/1024) + " MB");
     }
   }
+  getFileDetailsPreguntaRetroalimentacion(event: any) {
+    for (var i = 0; i < event.target.files.length; i++) {
+      this.filestatusPreguntaRetroalimentacion = true;
+      var name = event.target.files[i].name;
+      this.nombrefilePreguntaRetroalimentacion = name;
+      var type = event.target.files[i].type;
+      var size = event.target.files[i].size;
+      var modifiedDate = event.target.files[i].lastModifiedDate;
+      var extencion = name.split('.')[name.split('.').length - 1];
+      if (Math.round(size / 1024 / 1024) > 150) {
+        this.fileErrorMsgPreguntaRetroalimentacion = 'El tamanio del archivo no debe superar los 25 MB';
+        this.filestatusPreguntaRetroalimentacion = false;
+      }
+      this.selectedFilesPreguntaRetroalimentacion = event.target.files;
+      console.log(this.selectedFilesPreguntaRetroalimentacion)
+      // console.log ('Name: ' + name + "\n" +
+      //   'Type: ' + extencion + "\n" +
+      //   'Last-Modified-Date: ' + modifiedDate + "\n" +
+      //   'Size: ' + Math.round((size/1024)/1024) + " MB");
+    }
+  }
+ 
 }

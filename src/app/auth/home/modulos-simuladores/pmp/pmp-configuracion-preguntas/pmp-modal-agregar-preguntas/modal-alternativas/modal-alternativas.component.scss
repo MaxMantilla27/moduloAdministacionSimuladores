@@ -1,12 +1,14 @@
+
+
 .agregarCategoria
   .mat-form-field.mat-form-field-appearance-outline
   > div.mat-form-field-infix{
     padding: 0.5em 0 0.5em 0;
   }
-.dialog-agregar-categoria{
+.dialog-abrir-alternativa{
   mat-dialog-container{
     padding: 0px !important;
-    height: auto;
+    margin-top: 50px;
   }
 }
 .contenido{
@@ -160,3 +162,14 @@
   border: 2px solid #ccc;
   border-radius: 10px;
   }
+
+  .tituloModal{
+    width: 100%;
+    background-color: #23CAE4;
+    color: white;
+    font-size: 20px;
+    height: 50px;
+    padding: 10px;
+    text-align: left;
+    justify-content: center;
+}

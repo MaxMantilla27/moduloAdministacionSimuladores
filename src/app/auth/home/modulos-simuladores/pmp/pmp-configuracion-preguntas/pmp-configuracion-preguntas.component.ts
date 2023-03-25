@@ -46,7 +46,7 @@ export class PmpConfiguracionPreguntasComponent implements OnInit, OnChanges {
     const dialogRef = this.dialog.open(PmpModalAgregarPreguntasComponent, {
       width: '1500px',
       maxHeight: '90vh',
-      panelClass: 'dialog-gestor',
+      panelClass: 'dialog-abrir-pregunta',
       data: [agregar, data],
     });
 
@@ -59,7 +59,7 @@ export class PmpConfiguracionPreguntasComponent implements OnInit, OnChanges {
     const dialogRef = this.dialog.open(PmpModalAgregarPreguntasComponent, {
       width: '1000px',
       maxHeight: '90vh',
-      panelClass: 'dialog-gestor',
+      panelClass: 'dialog-abrir-pregunta',
       data: agregar
     });
 
