@@ -46,7 +46,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   loading: any;
   loader: any;
   public show: boolean = false;
- 
+
   // formPregunta: FormGroup = this.formBuilder.group({
   //   Id: 0,
   //   IdCategoria: 0,
@@ -88,7 +88,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   listaAlternativas: any = [];
   agregarv = this.data[0];
   public listaAlternativasAnterior: any[];
-  public valorAgregado = false;
+  public valorAgregado = true;
 
   envio: any = [
     {
@@ -144,10 +144,10 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     // this.json.Respuestas = [];
     // console.log(this.listaAlternativas);
     // this.listaAlternativas.forEach((e: any) => {
-      
-      
+
+
     //   var alternativas: PmpEnvioRespuesDTO = {
-        
+
     //     Id: e.Id,
     //     IdSimuladorPmpPregunta: 0,
     //     Alternativa: e.alternativa,
@@ -220,7 +220,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
         UrlRetroalimentacionVideo: e.UrlRetroalimentacionVideo,
         Explicacion: e.Retroalimentacion,
         UrlImagenArchivo: e.UrlImagenArchivo
-        
+
       };
 
       this.json.Respuestas.push(alternativas);
@@ -254,8 +254,6 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     console.log(data);
     //Editar Pregunta
     const dialogRef = this.dialog.open(ModalAlternativasComponent, {
-      width: '1500px',
-      maxHeight: '90vh',
       panelClass: 'dialog-abrir-alternativa',
       data: [data],
     });
@@ -280,8 +278,6 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   editarAlternativa(data: any, index: number) {
     console.log(data);
     const dialogRef = this.dialog.open(ModalAlternativasComponent, {
-      width: '1500px',
-      maxHeight: '90vh',
       panelClass: 'dialog-abrir-alternativa',
       data: [data],
     });
@@ -346,8 +342,6 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   agregar() {
     //Editar Pregunta
     const dialogRef = this.dialog.open(ModalAlternativasComponent, {
-      width: '1500px',
-      maxHeight: '90vh',
       panelClass: 'dialog-abrir-alternativa',
     });
 
@@ -362,16 +356,9 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
         this.listaAlternativas.push(result);
         console.log(this.listaAlternativas);
       }
+      this.valorAgregado = true;
     });
   }
-  // ObtenerPmpPregunta(){
-  //   this._Tareas.ObtenerSubcategoriaCombo(this.data.id).subscribe({
-  //     next: (x: any) => {
-  //       this.listaPregunta = x;
-  //       console.log(x)
-  //     },
-  //   });
-  // }
 
   getFileDetailsPregunta(event: any) {
     for (var i = 0; i < event.target.files.length; i++) {
@@ -388,10 +375,6 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
       }
       this.selectedFilesPregunta = event.target.files;
       console.log(this.selectedFilesPregunta)
-      // console.log ('Name: ' + name + "\n" +
-      //   'Type: ' + extencion + "\n" +
-      //   'Last-Modified-Date: ' + modifiedDate + "\n" +
-      //   'Size: ' + Math.round((size/1024)/1024) + " MB");
     }
   }
   getFileDetailsPreguntaRetroalimentacion(event: any) {
@@ -409,11 +392,6 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
       }
       this.selectedFilesPreguntaRetroalimentacion = event.target.files;
       console.log(this.selectedFilesPreguntaRetroalimentacion)
-      // console.log ('Name: ' + name + "\n" +
-      //   'Type: ' + extencion + "\n" +
-      //   'Last-Modified-Date: ' + modifiedDate + "\n" +
-      //   'Size: ' + Math.round((size/1024)/1024) + " MB");
     }
   }
- 
 }

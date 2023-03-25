@@ -4,9 +4,6 @@
     margin-top:50px;
   }
 }
-.contenedor {
-  padding: 15px;
-}
 
 .tituloModalPregunta {
   padding: 15px;
@@ -121,21 +118,20 @@ input{
 }
 
 .box{
-  border: 1px solid grey;
+  border: 3px solid #E1E1E1;
   border-radius: 10px;
-  padding: 20px;
+  padding: 5px;
   padding-bottom: 0px;
   width: 100%;
-
+  margin-top: 5px;
 }
 
 
-textarea {
+.inputEnunciadoPregunta {
   resize: vertical;
-  height: 70px;
   padding: 10px;
   margin-bottom: 10px;
-  border: 2px solid #ccc;
+  border: 2px solid #848484;
   border-radius: 10px;
 }
 
@@ -171,10 +167,19 @@ table{
 }
 
 .cerrarModalPregunta{
-    width: 130px;
-    background-color: #FC5757;
-    color: white;
-    margin-right: 20px;
-    font-size: 17px;
-    border-radius: 6px;
+  width: 130px;
+  background-color: #FC5757;
+  color: white;
+  margin-right: 20px;
+  font-size: 17px;
+  border-radius: 6px;
+}
+.textoInputModalPregunta{
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+.btnNuevaAlternativa{
+  background-color: #28A745;
+  color: white;
 }
