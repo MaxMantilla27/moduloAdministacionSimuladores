@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PmpEnvioEstadoCertificacionAlumnoDTO } from 'src/app/Models/PmpReporteGeneralDTO';
+import { PmpEnvioEstadoCertificacionAlumnoDTO } from 'src/app/Models/Pmp/PmpReporteGeneralDTO';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
-import { PmpReporteGeneralService } from 'src/app/shared/Services/Pmp-Reporte-General/pmp-reporte-general.service';
+import { PmpReporteGeneralService } from 'src/app/shared/Services/Pmp/Pmp-Reporte-General/pmp-reporte-general.service';
 
 @Component({
   selector: 'app-pmp-reporte-general',
@@ -57,7 +57,7 @@ export class PmpReporteGeneralComponent implements OnInit {
       next: (x: any) => {
         this.alertaService.mensajeExitoso();
       },
-      error: (error) => {
+      error: (error:any) => {
         this.alertaService.notificationError(error.message);
       },
     });

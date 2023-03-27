@@ -1,7 +1,7 @@
 import { HttpClient,HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { actualizarInterfaz } from 'src/app/Models/TipoRespuesta';
+import { actualizarInterfaz } from 'src/app/Models/Pmp/TipoRespuesta';
 import { environment } from 'src/environments/environment';
 
 

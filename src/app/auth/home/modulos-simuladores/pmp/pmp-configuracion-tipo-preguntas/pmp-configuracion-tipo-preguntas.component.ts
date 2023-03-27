@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { takeUntil } from 'rxjs';
-import { actualizarTipoRespuestaDTO } from 'src/app/Models/TipoRespuesta';
-import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
+import { actualizarTipoRespuestaDTO } from 'src/app/Models/Pmp/TipoRespuesta';
+import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
 
 @Component({
   selector: 'app-pmp-configuracion-tipo-preguntas',

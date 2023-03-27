@@ -1,10 +1,10 @@
 import { Component, OnInit,Inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { pmpPreguntaActualizarDTO, pmpPreguntaDTO } from 'src/app/Models/PreguntaDTO';
+import { pmpPreguntaActualizarDTO, pmpPreguntaDTO } from 'src/app/Models/Pmp/PreguntaDTO';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
-import { PmpCategoriasService } from 'src/app/shared/Services/Pmp-Categorias/pmp-categorias.service';
-import { PmpPreguntaService } from 'src/app/shared/Services/Pmp-Pregunta/pmp-pregunta.service';
+import { PmpCategoriasService } from 'src/app/shared/Services/Pmp/Pmp-Categorias/pmp-categorias.service';
+import { PmpPreguntaService } from 'src/app/shared/Services/Pmp/Pmp-Pregunta/pmp-pregunta.service';
 
 @Component({
   selector: 'app-pmp-modal-agregar-categoria',
@@ -54,7 +54,7 @@ export class PmpModalAgregarCategoriaComponent implements OnInit {
     TieneSubCategoria: true,
   }
 
-  
+
   public jsonActualizar:pmpPreguntaActualizarDTO = {
     Id: 0,
     Nombre: 'Prueba',
@@ -114,14 +114,14 @@ export class PmpModalAgregarCategoriaComponent implements OnInit {
         this.jsonEnvio.ImgLogo = file;
       }
     }
-    
+
     this.jsonEnvio.Nombre = this.formCategoria.get('NombreCategoria')?.value
     this.jsonEnvio.Leyenda = this.formCategoria.get('Leyenda')?.value
     this.jsonEnvio.CantidadPreguntasPorExamen = this.formCategoria.get('CantidadPreguntasExamen')?.value
     this.jsonEnvio.CantidadTotal= this.formCategoria.get('CantidadPreguntasTotales')?.value
     this.jsonEnvio.Proporcion = this.formCategoria.get('Proporcion')?.value
     this.jsonEnvio.TieneSubCategoria = this.formCategoria.get('TieneSubCategoria')?.value
-    
+
 
     console.log(this.jsonEnvio)
 

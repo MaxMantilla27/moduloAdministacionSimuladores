@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup  } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PmpPreguntaRespuestaService } from 'src/app/shared/Services/Pmp-PreguntaRespuesta/pmp-preguntaRespuesta.service';
+import { PmpPreguntaRespuestaService } from 'src/app/shared/Services/Pmp/Pmp-PreguntaRespuesta/pmp-preguntaRespuesta.service';
 
 @Component({
   selector: 'app-modal-alternativas',
@@ -16,8 +16,8 @@ export class ModalAlternativasComponent implements OnInit {
     public dialogRef: MatDialogRef<ModalAlternativasComponent>,
     private _alternativa: PmpPreguntaRespuestaService,
     private formBuilder: FormBuilder,
-    
-    
+
+
   ) { }
 
   loading:any
@@ -40,7 +40,7 @@ export class ModalAlternativasComponent implements OnInit {
   public fileErrorMsgRespuesta = '';
   public nombrefileRespuesta = 'Ningún archivo seleccionado';
 
-  
+
   ngOnInit(): void {
     console.log(this.data)
     if(this.data!=undefined)
@@ -51,7 +51,7 @@ export class ModalAlternativasComponent implements OnInit {
       this.formAlternativa.get('Puntaje')?.setValue(this.data[0].puntaje)
       this.formAlternativa.get('UrlRetroalimentacionVideo')?.setValue(this.data[0].urlRetroalimentacionVideo)
       this.formAlternativa.get('Retroalimentacion')?.setValue(this.data[0].retroalimentacion)
-      
+
       console.log(this.formAlternativa)
     }
     else{

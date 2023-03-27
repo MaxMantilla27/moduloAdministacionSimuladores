@@ -1,6 +1,6 @@
 import { Component, OnInit,Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PmpExamenService } from 'src/app/shared/Services/Pmp-examen/pmp-examen.service';
+import { PmpExamenService } from 'src/app/shared/Services/Pmp/Pmp-examen/pmp-examen.service';
 
 @Component({
   selector: 'app-pmp-abrir-modal-detalle-examen',

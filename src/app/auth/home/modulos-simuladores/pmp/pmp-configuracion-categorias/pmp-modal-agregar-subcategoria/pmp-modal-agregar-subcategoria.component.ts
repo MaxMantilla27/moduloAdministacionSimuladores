@@ -1,11 +1,11 @@
 import { Component, OnInit,Inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { pmpPreguntaActualizarDTO, pmpPreguntaDTO } from 'src/app/Models/PreguntaDTO';
-import { pmpActualizarTareaDTO, pmpAgregarTareaDTO } from 'src/app/Models/TareaDTO';
+import { pmpPreguntaActualizarDTO, pmpPreguntaDTO } from 'src/app/Models/Pmp/PreguntaDTO';
+import { pmpActualizarTareaDTO, pmpAgregarTareaDTO } from 'src/app/Models/Pmp/TareaDTO';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
-import { PmpCategoriasService } from 'src/app/shared/Services/Pmp-Categorias/pmp-categorias.service';
-import { PmpTareaService } from 'src/app/shared/Services/Pmp-Tarea/pmp-tarea.service';
+import { PmpCategoriasService } from 'src/app/shared/Services/Pmp/Pmp-Categorias/pmp-categorias.service';
+import { PmpTareaService } from 'src/app/shared/Services/Pmp/Pmp-Tarea/pmp-tarea.service';
 
 @Component({
   selector: 'app-pmp-modal-agregar-subcategoria',
@@ -95,7 +95,7 @@ public jsonActualizar:pmpActualizarTareaDTO = {
     console.log(e)
    }
 
-   
+
   ObtenerComboCategorias() {
     this._Categorias.ObtenerComboCategorias().subscribe({
       next: (x: any) => {
@@ -107,7 +107,7 @@ public jsonActualizar:pmpActualizarTareaDTO = {
 
 
 
-  
+
   Agregar(){
 
     if(this.selectedFiles){
@@ -116,14 +116,14 @@ public jsonActualizar:pmpActualizarTareaDTO = {
         this.jsonEnvio.ImgLogo = file;
       }
     }
-    
+
     this.jsonEnvio.Nombre = this.formCategoria.get('NombreCategoria')?.value
     this.jsonEnvio.IdSimuladorPmpDominio = this.formCategoria.get('IdCategoria')?.value
     this.jsonEnvio.CantidadPreguntasPorExamen = this.formCategoria.get('CantidadPreguntasExamen')?.value
     this.jsonEnvio.CantidadTotal= this.formCategoria.get('CantidadPreguntasTotales')?.value
     this.jsonEnvio.Proporcion = this.formCategoria.get('Proporcion')?.value
 
-    
+
 
     console.log(this.jsonEnvio)
 
@@ -163,7 +163,7 @@ public jsonActualizar:pmpActualizarTareaDTO = {
     this.jsonActualizar.CantidadPreguntasPorExamen = this.formCategoria.get('CantidadPreguntasExamen')?.value
     this.jsonActualizar.CantidadTotal= this.formCategoria.get('CantidadPreguntasTotales')?.value
     this.jsonActualizar.Proporcion = this.formCategoria.get('Proporcion')?.value
-   
+
     console.log(this.jsonActualizar)
 
     this._Tarea.ActualizarSubCategoria(this.jsonActualizar).subscribe({

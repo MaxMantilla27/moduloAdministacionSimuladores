@@ -1,7 +1,7 @@
 import { HttpClient,HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PmpEnvioEstadoCertificacionAlumnoDTO } from 'src/app/Models/PmpReporteGeneralDTO';
+import { PmpEnvioEstadoCertificacionAlumnoDTO } from 'src/app/Models/Pmp/PmpReporteGeneralDTO';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

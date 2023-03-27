@@ -4,9 +4,9 @@ import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
-import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
-import { actualizarParametrosNivel, actualizarTipoRespuestaDTO,actualizarInterfaz } from 'src/app/Models/TipoRespuesta';
-import { PmpConfiguracionSimuladorService } from 'src/app/shared/Services/Pmp-Configuracion-Simulador/pmp-configuracion-simulador.service';
+import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
+import { actualizarParametrosNivel, actualizarTipoRespuestaDTO,actualizarInterfaz } from 'src/app/Models/Pmp/TipoRespuesta';
+import { PmpConfiguracionSimuladorService } from 'src/app/shared/Services/Pmp/Pmp-Configuracion-Simulador/pmp-configuracion-simulador.service';
 
 @Component({
   selector: 'app-pmp-configuracion-interfaz',

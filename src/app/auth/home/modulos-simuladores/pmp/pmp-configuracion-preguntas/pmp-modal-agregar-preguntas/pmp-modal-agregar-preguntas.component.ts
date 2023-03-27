@@ -8,13 +8,14 @@ import {
 import {
   PmpEnvioFilePreguntaDTO,
   PmpEnvioRespuesDTO,
-} from 'src/app/Models/PreguntaDTO';
-import { PmpCategoriasService } from 'src/app/shared/Services/Pmp-Categorias/pmp-categorias.service';
-import { PmpPreguntaService } from 'src/app/shared/Services/Pmp-Pregunta/pmp-pregunta.service';
-import { PmpPreguntaRespuestaService } from 'src/app/shared/Services/Pmp-PreguntaRespuesta/pmp-preguntaRespuesta.service';
-import { PmpTareaService } from 'src/app/shared/Services/Pmp-Tarea/pmp-tarea.service';
-import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
-import { ModalAlternativasComponent } from './modal-alternativas/modal-alternativas.component';
+} from 'src/app/Models/Pmp/PreguntaDTO';
+import { PmpCategoriasService } from 'src/app/shared/Services/Pmp/Pmp-Categorias/pmp-categorias.service';
+import { PmpPreguntaService } from 'src/app/shared/Services/Pmp/Pmp-Pregunta/pmp-pregunta.service';
+import { PmpPreguntaRespuestaService } from 'src/app/shared/Services/Pmp/Pmp-PreguntaRespuesta/pmp-preguntaRespuesta.service';
+import { PmpTareaService } from 'src/app/shared/Services/Pmp/Pmp-Tarea/pmp-tarea.service';
+import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
+import Swal from 'sweetalert2';
+import { ModalAlternativasComponent } from './pmp-modal-alternativas/modal-alternativas.component';
 
 @Component({
   selector: 'app-pmp-modal-agregar-preguntas',
@@ -177,7 +178,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   //   });
   // }
 
-  guardarPregunta() {
+  AgregarNuevaPregunta() {
 
     if(this.selectedFilesPregunta){
       const file: File | null = this.selectedFilesPregunta.item(0);
@@ -227,18 +228,18 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     });
 
     console.log(this.json)
-    this._pregunta.AgregarPregunta(this.json).subscribe({
-      next: (x:any) => {
-        console.log(x)
-      },
-      error:(e:any)=>{
+    // this._pregunta.AgregarPregunta(this.json).subscribe({
+    //   next: (x:any) => {
+    //     console.log(x)
+    //   },
+    //   error:(e:any)=>{
 
 
-      },
-      complete: () => {
+    //   },
+    //   complete: () => {
 
-      },
-    })
+    //   },
+    // })
   }
 
   seleccionar(e: any) {
@@ -394,4 +395,5 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
       console.log(this.selectedFilesPreguntaRetroalimentacion)
     }
   }
+
 }

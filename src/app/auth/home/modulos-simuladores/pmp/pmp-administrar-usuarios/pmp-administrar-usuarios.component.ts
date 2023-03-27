@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { PmpAdministrarUsuariosAccesoDTO } from 'src/app/Models/Pmp/PmpAdministrarUsuariosDTO';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
-import { PmpAdministrarUsuariosService } from 'src/app/shared/Services/Pmp-Administrar-Usuarios/pmp-administrar-usuarios.service';
+import { PmpAdministrarUsuariosService } from 'src/app/shared/Services/Pmp/Pmp-Administrar-Usuarios/pmp-administrar-usuarios.service';
 @Component({
   selector: 'app-pmp-administrar-usuarios',
   templateUrl: './pmp-administrar-usuarios.component.html',

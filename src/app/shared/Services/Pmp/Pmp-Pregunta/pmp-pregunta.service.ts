@@ -1,7 +1,7 @@
 import { HttpClient,HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { PmpEnvioFilePreguntaDTO, pmpPreguntaDTO } from 'src/app/Models/PreguntaDTO';
+import { PmpEnvioFilePreguntaDTO, pmpPreguntaDTO } from 'src/app/Models/Pmp/PreguntaDTO';
 import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class PmpPreguntaService {
 
   public ObtenerPregunta(): Observable<any> {
     return this.http.get<any>(this.urlBase + '/ObtenerListaModoDapper');
-  } 
+  }
 
   public ObtenerPmpPregunta(idPregunta: any):Observable<any>{
     return this.http.post<any>(this.urlBase+'/ObtenerPmpPregunta?Id='+idPregunta,'');
@@ -47,7 +47,11 @@ export class PmpPreguntaService {
     }
    console.log(formData)
 
-   
+
    return this.http.post<any>(this.urlBase+'/GuardarArchivo',formData);
   }
+  public EliminarPreguntaPmp(IdPregunta: number):Observable<any>{
+    return this.http.post<any>(this.urlBase+'/EliminarPreguntaPmp?IdPregunta='+IdPregunta,'');
+  }
+
 }

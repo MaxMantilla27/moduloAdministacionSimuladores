@@ -24,6 +24,7 @@
               {{ a.nombre }}
             </mat-option>
             </mat-select>
+            <mat-error>Debe seleccionas una categoría</mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -136,7 +137,7 @@
           </ng-container>
         </table>-->
 
-        <div *ngIf="valorAgregado == true">
+        <div *ngIf="valorAgregado == true" style="padding: 0px; margin-top: 10px;">
           <nz-table #nzTable [nzData]="listaAlternativas" nzTableLayout="fixed"class="table">
             <thead>
               <tr>
@@ -237,7 +238,7 @@
     </div>
     <div class="row">
       <div class="col-12 col-md-3 textoInputModalPregunta">
-        Tiene retroalimentacion unica:
+        Tiene retroalimentacion única:
       </div>
       <div class="col-12 col-md-9">
         <mat-button-toggle-group
@@ -301,7 +302,7 @@
   </div>
   <div class="row" style="margin-top:15px">
     <div class="col-12 col-md-6" style="text-align: right;">
-      <button mat-flat-button style="background: #FF850C; color: white;width: 9rem;border-radius: 15px;" (click)="guardarPregunta()">Guardar Cambios</button>
+      <button mat-flat-button style="background: #FF850C; color: white;width: 9rem;border-radius: 15px;" (click)="AgregarNuevaPregunta()">Guardar Cambios</button>
     </div>
     <div  class="col-12 col-md-6">
       <button mat-flat-button style="background: #FC5757;color:white;width: 9rem;border-radius: 15px;" (click)="Cancelar()">Cancelar</button>

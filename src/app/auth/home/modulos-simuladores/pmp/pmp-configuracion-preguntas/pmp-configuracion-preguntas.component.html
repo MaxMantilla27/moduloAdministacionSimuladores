@@ -6,10 +6,9 @@
     Puedes modificar el enunciado de las preguntas, sus alternativas, su retroalimentacion o el tipo de pregunta
   </div>
   <div>
-    <button mat-button class="agregar"
-            (click)="agregar()">
-              Añadir
-            </button>
+    <button mat-button class="agregar"(click)="agregarPregunta()">
+      Añadir
+    </button>
   </div>
   <div id="test" *ngIf="listOfDisplayData!=undefined">
     <nz-table
@@ -38,11 +37,10 @@
               <span nz-icon nzType="search"></span>
             </nz-filter-trigger>
           </th>
-          <th style="border: solid 1px #b2b2b2;width:80px; text-align: center; background-color: #E7E7E7;color: #222222;"
-          >
+          <th style="border: solid 1px #b2b2b2;width:80px; text-align: center; background-color: #E7E7E7;color: #222222;">
             Nombre Subcategoria
           </th>
-          <th style="border: solid 1px #b2b2b2;width:70px; text-align: center; background-color: #E7E7E7;color: #222222;">Opciones</th>
+          <th style="border: solid 1px #b2b2b2;width:80px; text-align: center; background-color: #E7E7E7;color: #222222;">Opciones</th>
         </tr>
       </thead>
 
@@ -64,18 +62,18 @@
             {{ data.subcategoria }}
           </td>
 
-          <td  style="justify-content: center;display: flex;">
+          <td  style="text-align: center; border: 1px solid #cacaca">
             <ng-container>
               <button
               mat-button
               class="edit"
-              (click)="openDialog(data)"
+              (click)="editarPregunta(data)"
               style="margin-right: 10px"
             >
               <i class="material-icons">edit</i>
             </button>
 
-            <button mat-button class="cancel" (click)="eliminar(i)">
+            <button mat-button class="cancel" (click)="mostrarMensajeEliminarPregunta(data.id)">
               <i class="material-icons">close</i>
             </button>
             </ng-container>
