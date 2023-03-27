@@ -1,10 +1,11 @@
-import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, Inject, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   MatDialog,
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import { formulario } from 'src/app/Models/Formulario';
 import {
   PmpEnvioFilePreguntaDTO,
   PmpEnvioRespuesDTO,
@@ -31,10 +32,22 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     private _Tareas: PmpTareaService,
     private _alternativa: PmpPreguntaRespuestaService,
     private _pregunta: PmpPreguntaService,
-    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
     public dialog: MatDialog
-  ) {}
-
+  ) { this.userForm =fb.group({
+      Id:0,
+      IdCategoria: ['', [Validators.required]],
+      IdSubCategoria: ['', [Validators.required]],
+      IdTipoRespuesta: ['', [Validators.required]],
+      Enunciado: ['', [Validators.required]],
+      ImagenPregunta: [''],
+      Alternativas: [null],
+      TieneRetroalimentacionUnica: ['', [Validators.required]],
+      UrlVideo: [''],
+      Retroalimentacion: [''],
+      ImgPreguntaRetroalimentacion: ['']
+    });
+  }
   displayedColumns = [
     'id',
     'alternativa',
@@ -47,19 +60,9 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   loading: any;
   loader: any;
   public show: boolean = false;
+  public userForm: FormGroup = new FormGroup({});
 
-  // formPregunta: FormGroup = this.formBuilder.group({
-  //   Id: 0,
-  //   IdCategoria: 0,
-  //   IdSubCategoria: 0,
-  //   IdTipoRespuesta: 0,
-  //   Enunciado: '',
-  //   ImagenPregunta: '',
-  //   UrlVideo: '',
-  //   Retroalimentacion: '',
-  //   ImgPreguntaRetroalimentacion: '',
-  //   TieneRetroalimentacion: true,
-  // });
+
 
   public json: PmpEnvioFilePreguntaDTO = {
     Id: 0,
@@ -118,6 +121,8 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   public fileErrorMsgPreguntaRetroalimentacion = '';
   public nombrefilePreguntaRetroalimentacion = 'Ningún archivo seleccionado';
 
+  public min=0
+  public max=0
 
   ngOnInit(): void {
     console.log(this.data);
@@ -130,7 +135,9 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   Cancelar() {
     this.dialogRef.close();
   }
+  eliminar(){
 
+  }
   Enviar() {
 
     // this.json.Id = this.formPregunta.value.Id;
@@ -179,7 +186,6 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   // }
 
   AgregarNuevaPregunta() {
-
     if(this.selectedFilesPregunta){
       const file: File | null = this.selectedFilesPregunta.item(0);
       if (file) {
@@ -240,6 +246,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
 
     //   },
     // })
+
   }
 
   seleccionar(e: any) {
@@ -249,7 +256,6 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
 
     // this.ObtenerComboSubcategoria()
   }
-  eliminar() {}
 
   abrirModalAlternativas(data: any,index: number) {
     console.log(data);
@@ -322,22 +328,6 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
       }
     });
     console.log(this.lisSubCategoriaPorCategoria);
-  }
-
-  obtenerErrorCampoNombre(val = '') {
-    // var campo = this.formPregunta.get(val);
-    // if (campo!.hasError('required')) {
-    //   if (val == 'IdSimuladorPmpTarea') {
-    //     return 'Ingresa el nombre';
-    //   }
-    //   if (val == 'Enunciado') {
-    //     return 'Ingresa una leyenda';
-    //   }
-    //   if (val == 'IdSimuladorTipoRespuesta') {
-    //     return 'Confirma tu nueva contraseña';
-    //   }
-    // }
-    // return '';
   }
 
   agregar() {

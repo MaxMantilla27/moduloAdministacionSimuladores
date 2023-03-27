@@ -8,170 +8,173 @@
 </div>
 
 <div class="row" style="padding:25px">
-  <div class="col-12" >
-    <div style="display: flex;">
-      <div class="col-12 col-md-6" style="display: flex;">
-        <div class="col-12 col-md-4 textoInputModalPregunta">
-          Categoria:
-        </div>
-        <div class="col-12 col-md-6">
-          <mat-form-field>
-            <mat-label>Categorias</mat-label>
-            <mat-select
-            (selectionChange)="FiltrarSubs($event)"
-            [(ngModel)]="IdCategoria">
-            <mat-option *ngFor="let a of listaCategorias" [value]="a.id">
-              {{ a.nombre }}
-            </mat-option>
-            </mat-select>
-            <mat-error>Debe seleccionas una categoría</mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="col-12 col-md-6" style="display: flex;">
-        <div class="col-12 col-md-4 textoInputModalPregunta">
-          Sub Categoria:
-        </div>
-        <div class="col-12 col-md-6">
-          <mat-form-field>
-            <mat-label>Sub Categorias</mat-label>
-            <mat-select [(ngModel)]="IdSubCategoria">
-              <mat-option
-                *ngFor="let a of lisSubCategoriaPorCategoria"
-                [value]="a.id"
-              >
-                {{ a.nombre }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-md-6" style="display:flex">
-      <div class="col-12 col-md-4 textoInputModalPregunta">
-        Tipo de Pregunta:
-      </div>
-      <div class="col-12 col-md-6">
-        <mat-form-field>
-          <mat-label>Tipo de Pregunta</mat-label>
-          <mat-select [(ngModel)]="IdSubCategoria">
-            <mat-option
-              *ngFor="let a of listaTipoPregunta"
-              [value]="a.id"
-            >
-              {{ a.nombre }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-    </div>
-    <div class="col-12 col-md-12 textoInputModalPregunta">
-      Enunciado:
-    </div>
-    <div class="box">
-      <textarea style="width: 100%"
-        name="inputEnunciadoPregunta"
-        rows="3"
-        placeholder="[Contenido del enunciado]"
-        [(ngModel)]="Enunciado">
-      </textarea>
-      <div class="row">
-        <div class="col-12 col-md-12" style="display:flex; margin-bottom: 10px;">
-          <div class="col-12 col-md-2" style="font-size: 15px;font-weight: bold;">
-            Imagen:
+  <form [formGroup]="userForm">
+    <div class="col-12" >
+      <div style="display: flex;">
+        <div class="col-12 col-md-6" style="display: flex;">
+          <div class="col-12 col-md-4 textoInputModalPregunta">
+            Categoria:
           </div>
-          <div class="col-12 col-md-10">
-            <input type="file" id="imagenPregunta" (change)="getFileDetailsPregunta($event)"/>
+          <div class="col-12 col-md-6">
+            <mat-form-field>
+              <mat-label>Categorias</mat-label>
+              <mat-select type="number" formControlName="IdCategoria" required
+              (selectionChange)="FiltrarSubs($event)">
+              <mat-option *ngFor="let a of listaCategorias" [value]="a.id">{{ a.nombre }}</mat-option>
+              </mat-select>
+              <mat-error  *ngIf="userForm.invalid">Seleccione una categoría</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-12 col-md-6" style="display: flex;">
+          <div class="col-12 col-md-4 textoInputModalPregunta">
+            Sub Categoria:
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field>
+              <mat-label>Subcategorias</mat-label>
+              <mat-select  type="number" formControlName="IdSubCategoria">
+                <mat-option
+                  *ngFor="let a of lisSubCategoriaPorCategoria"
+                  [value]="a.id"
+                >
+                  {{ a.nombre }}
+                </mat-option>
+              </mat-select>
+              <mat-error  *ngIf="userForm.invalid">Seleccione una subcategoría</mat-error>
+            </mat-form-field>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-12 col-md-12 textoInputModalPregunta">
-      Alternativas:
-    </div>
-    <button mat-button class="btnNuevaAlternativa" (click)="agregar()">
-      Añadir
-      <i class="material-icons">add</i>
-    </button>
-    <div>
-      <ng-container *ngIf="agregarv != false">
-        <!-- <table class="tableCategorias">
-          <tr>
+      <div class="col-12 col-md-6" style="display:flex">
+        <div class="col-12 col-md-4 textoInputModalPregunta">
+          Tipo de Pregunta:
+        </div>
+        <div class="col-12 col-md-6">
+          <mat-form-field>
+            <mat-label>Tipo de pregunta</mat-label>
+            <mat-select type="number" formControlName="IdTipoRespuesta" >
+            <mat-option *ngFor="let a of listaTipoPregunta" [value]="a.id">{{ a.nombre }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="userForm.invalid">Seleccione un tipo de respuesta</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-12 col-md-12 textoInputModalPregunta">
+        Enunciado:
+      </div>
+      <div class="box">
+        <textarea style="width: 100%"
+          name="inputEnunciadoPregunta"
+          rows="3"
+          placeholder="[Contenido del enunciado]"
+          formControlName="Enunciado">
+        </textarea>
+        <mat-error *ngIf="userForm.invalid">Campo obligatorio</mat-error>
+        <div class="row">
+          <div class="col-12 col-md-12" style="display:flex; margin-bottom: 10px;">
+            <div class="col-12 col-md-2" style="font-size: 15px;font-weight: bold;">
+              Imagen:
+            </div>
+            <div class="col-12 col-md-10">
+              <input type="file" formControlName="ImagenPregunta" (change)="getFileDetailsPregunta($event)"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-12 textoInputModalPregunta">
+        Alternativas:
+      </div>
+      <button mat-button class="btnNuevaAlternativa" (click)="agregar()">
+        Añadir
+        <i class="material-icons">add</i>
+      </button>
+      <div>
+        <ng-container *ngIf="agregarv != false">
+          <div *ngIf="valorAgregado == true" style="padding: 0px; margin-top: 10px;">
+            <nz-table #nzTable [nzData]="listaAlternativas" nzTableLayout="fixed"class="table">
+              <thead>
+                <tr>
+                  <th nzCustomFilter class="encabezadoTablaAdmUsuarios" style="width:140px;">Alternativa</th>
+                  <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Correcto</th>
+                  <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Puntaje</th>
+                  <th class="encabezadoTablaAdmUsuarios" style="width:220px;">Retroalimentacion</th>
+                  <th class="encabezadoTablaAdmUsuarios" style="width:150px;">Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of nzTable.data; let i = index">
+                  <td class="contenidoTablaAdmUsuarios">
+                    {{ data.Respuesta }}
+                  </td>
+                  <td class="contenidoTablaAdmUsuarios">
+                    <i class="material-icons" *ngIf="data.Correcto!=true" >check_box_outline_blank</i>
+                    <i class="material-icons" *ngIf="data.Correcto==true">check_box</i>
+                    <!-- <input type="checkbox" [(ngModel)]="data.Correcto"> -->
+                    <!-- <input  type="checkbox" style="background: none  !important;"
+                       [(ngModel)]="data.Correcto" > -->
+                  </td>
+                  <td class="contenidoTablaAdmUsuarios">
+                    {{ data.Puntaje }}
+                  </td>
+                  <td class="contenidoTablaAdmUsuarios">
+                    {{ data.Retroalimentacion }}
+                  </td>
+                  <td>
+                    <ng-container>
+                      <button
+                        mat-button
+                        class="edit"
+                        (click)="abrirModalAlternativas(data,i)"
+                      >
+                        <i class="material-icons">edit</i>
+                      </button>
+                    </ng-container>
+                    <ng-container>
+                      <button mat-button class="delete" (click)="eliminar()">
+                        <i class="material-icons">delete</i>
+                      </button>
+                    </ng-container>
+                  </td>
+                </tr>
+              </tbody>
+            </nz-table>
+          </div>
+        </ng-container>
 
-            <th>Alternativa</th>
-            <th>Correcto</th>
-            <th>Puntaje</th>
-            <th>Retroalimentacion</th>
-            <th>Opciones</th>
-          </tr>
-          <ng-container *ngFor="let item of listaAlternativas; let i = index">
+
+        <ng-container *ngIf="agregarv == false">
+          <table class="tableCategorias">
             <tr>
-
-              <td>
-                {{ item.Alternativa }}
-              </td>
-              <td>
-                <input type="checkbox" [(ngModel)]="item.Correcto" >
-              </td>
-              <td>{{ item.Puntaje }} %</td>
-              <td>
-                {{ item.Texto }}
-              </td>
-              <td>
-                <ng-container>
-                  <button
-                    mat-button
-                    class="edit"
-                    (click)="abrirModalAlternativas(item)"
-                  >
-                    <i class="material-icons">edit</i>
-                  </button>
-                </ng-container>
-                <ng-container>
-                  <button mat-button class="delete" (click)="eliminar()">
-                    <i class="material-icons">delete</i>
-                  </button>
-                </ng-container>
-              </td>
+              <th>Id</th>
+              <th>Alternativa</th>
+              <th>Correcto</th>
+              <th>Puntaje</th>
+              <th>Retroalimentacion</th>
+              <th>Opciones</th>
             </tr>
-          </ng-container>
-        </table>-->
-
-        <div *ngIf="valorAgregado == true" style="padding: 0px; margin-top: 10px;">
-          <nz-table #nzTable [nzData]="listaAlternativas" nzTableLayout="fixed"class="table">
-            <thead>
+            <ng-container *ngFor="let item of listaAlternativas; let i = index">
               <tr>
-                <th nzCustomFilter class="encabezadoTablaAdmUsuarios" style="width:140px;">Alternativa</th>
-                <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Correcto</th>
-                <th class="encabezadoTablaAdmUsuarios" style="width:120px;">Puntaje</th>
-                <th class="encabezadoTablaAdmUsuarios" style="width:220px;">Retroalimentacion</th>
-                <th class="encabezadoTablaAdmUsuarios" style="width:150px;">Opciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let data of nzTable.data; let i = index">
-                <td class="contenidoTablaAdmUsuarios">
-                  {{ data.Respuesta }}
+                <td>
+                  {{ i+1 }}
                 </td>
-                <td class="contenidoTablaAdmUsuarios">
-                  <i class="material-icons" *ngIf="data.Correcto!=true" >check_box_outline_blank</i>
-                  <i class="material-icons" *ngIf="data.Correcto==true">check_box</i>
-                  <!-- <input type="checkbox" [(ngModel)]="data.Correcto"> -->
-                  <!-- <input  type="checkbox" style="background: none  !important;"
-                     [(ngModel)]="data.Correcto" > -->
+                <td>
+                  {{ item.respuesta }}
                 </td>
-                <td class="contenidoTablaAdmUsuarios">
-                  {{ data.Puntaje }}
+                <td>
+                  <i class="material-icons" *ngIf="data.correcto!=true" >check_box_outline_blank</i>
+                  <i class="material-icons" *ngIf="data.correcto==true">check_box</i>
                 </td>
-                <td class="contenidoTablaAdmUsuarios">
-                  {{ data.Retroalimentacion }}
+                <td>{{ item.puntaje }} %</td>
+                <td>
+                  {{ item.retroalimentacion }}
                 </td>
                 <td>
                   <ng-container>
                     <button
                       mat-button
                       class="edit"
-                      (click)="abrirModalAlternativas(data,i)"
+                      (click)="editarAlternativa(item, i)"
                     >
                       <i class="material-icons">edit</i>
                     </button>
@@ -183,131 +186,83 @@
                   </ng-container>
                 </td>
               </tr>
-            </tbody>
-          </nz-table>
+            </ng-container>
+          </table>
+        </ng-container>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-3 textoInputModalPregunta">
+          Tiene retroalimentacion única:
+        </div>
+        <div class="col-12 col-md-9">
+          <mat-button-toggle-group
+          name="fontStyle"
+          aria-label="Font Style"
+          class="buttonGroup"
+          formControlName="TieneRetroalimentacionUnica">
+          <mat-button-toggle *ngIf="TieneRetroalimentacionUnica==true"  [value]="true" style="background:#28A745;width: 45px;color: white;" (click)="TieneRetroalimentacionUnica=true">
+            SI
+          </mat-button-toggle>
+          <mat-button-toggle *ngIf="TieneRetroalimentacionUnica==false" [value]="true" (click)="TieneRetroalimentacionUnica=true">
+            SI
+          </mat-button-toggle>
+          <mat-button-toggle *ngIf="TieneRetroalimentacionUnica==false" [value]="true" style="background:#28A745;;width: 45px;color: white;" (click)="TieneRetroalimentacionUnica=false">
+            NO
+          </mat-button-toggle>
+          <mat-button-toggle *ngIf="TieneRetroalimentacionUnica==true" [value]="true" (click)="TieneRetroalimentacionUnica=false">
+            NO
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+        </div>
+      </div>
+    </div>
+    <div>
+      <ng-container *ngIf="TieneRetroalimentacionUnica==true">
+        <div class="box">
+          <div class="row" style="padding: 15px 15px 0px 15px;">
+            <div  class="col-12 col-md-1"style="font-size: 15px;font-weight: bold;">
+              Video:
+            </div>
+            <div class="col-12 col-md-11" >
+              <input placeholder="[Link/IDVideo]"
+                formControlName="UrlVideo"
+                style="width: 100%; margin-right: 50px"/>
+            </div>
+          </div>
+          <div class="row" style="padding: 15px;">
+            <div  class="col-12 col-md-1"style="font-size: 15px;font-weight: bold;">
+              Texto:
+            </div>
+            <div class="col-12 col-md-11" >
+              <textarea
+                name="textarea"
+                formControlName="Retroalimentacion"
+                rows="3"
+                placeholder="[Contenido del enunciado]"
+                style="width: 100%; margin-right: 50px; border-radius:5px"
+            ></textarea>
+            </div>
+          </div>
+          <div class="row" style="padding: 0px 15px 15px 15px;">
+            <div  class="col-12 col-md-1"style="font-size: 15px;font-weight: bold;">
+              Imagen:
+            </div>
+            <div class="col-12 col-md-11" >
+              <input type="file" formControlName="ImgPreguntaRetroalimentacion" (change)="getFileDetailsPreguntaRetroalimentacion($event)"/>
+            </div>
+          </div>
         </div>
       </ng-container>
-
-
-      <ng-container *ngIf="agregarv == false">
-        <table class="tableCategorias">
-          <tr>
-            <th>Id</th>
-            <th>Alternativa</th>
-            <th>Correcto</th>
-            <th>Puntaje</th>
-            <th>Retroalimentacion</th>
-            <th>Opciones</th>
-          </tr>
-          <ng-container *ngFor="let item of listaAlternativas; let i = index">
-            <tr>
-              <td>
-                {{ i+1 }}
-              </td>
-              <td>
-                {{ item.respuesta }}
-              </td>
-              <td>
-                <i class="material-icons" *ngIf="data.correcto!=true" >check_box_outline_blank</i>
-                <i class="material-icons" *ngIf="data.correcto==true">check_box</i>
-              </td>
-              <td>{{ item.puntaje }} %</td>
-              <td>
-                {{ item.retroalimentacion }}
-              </td>
-              <td>
-                <ng-container>
-                  <button
-                    mat-button
-                    class="edit"
-                    (click)="editarAlternativa(item, i)"
-                  >
-                    <i class="material-icons">edit</i>
-                  </button>
-                </ng-container>
-                <ng-container>
-                  <button mat-button class="delete" (click)="eliminar()">
-                    <i class="material-icons">delete</i>
-                  </button>
-                </ng-container>
-              </td>
-            </tr>
-          </ng-container>
-        </table>
-      </ng-container>
     </div>
-    <div class="row">
-      <div class="col-12 col-md-3 textoInputModalPregunta">
-        Tiene retroalimentacion única:
+    <div class="row" style="margin-top:15px">
+      <div class="col-12 col-md-6" style="text-align: right;">
+        <button [disabled]="!userForm.valid" mat-flat-button style="background: #FF850C; color: white;width: 9rem;border-radius: 15px;" (click)="AgregarNuevaPregunta()">Guardar Cambios</button>
       </div>
-      <div class="col-12 col-md-9">
-        <mat-button-toggle-group
-        name="fontStyle"
-        aria-label="Font Style"
-        class="buttonGroup"
-        [(ngModel)]="TieneRetroalimentacionUnica">
-        <mat-button-toggle *ngIf="TieneRetroalimentacionUnica==true"  [value]="true" style="background:#28A745;width: 45px;color: white;" (click)="TieneRetroalimentacionUnica=true">
-          SI
-        </mat-button-toggle>
-        <mat-button-toggle *ngIf="TieneRetroalimentacionUnica==false" [value]="true" (click)="TieneRetroalimentacionUnica=true">
-          SI
-        </mat-button-toggle>
-        <mat-button-toggle *ngIf="TieneRetroalimentacionUnica==false" [value]="true" style="background:#28A745;;width: 45px;color: white;" (click)="TieneRetroalimentacionUnica=false">
-          NO
-        </mat-button-toggle>
-        <mat-button-toggle *ngIf="TieneRetroalimentacionUnica==true" [value]="true" (click)="TieneRetroalimentacionUnica=false">
-          NO
-        </mat-button-toggle>
-      </mat-button-toggle-group>
+      <div  class="col-12 col-md-6">
+        <button mat-flat-button style="background: #FC5757;color:white;width: 9rem;border-radius: 15px;" (click)="Cancelar()">Cancelar</button>
       </div>
     </div>
-  </div>
-  <div>
-    <ng-container *ngIf="TieneRetroalimentacionUnica==true">
-      <div class="box">
-        <div class="row" style="padding: 15px 15px 0px 15px;">
-          <div  class="col-12 col-md-1"style="font-size: 15px;font-weight: bold;">
-            Video:
-          </div>
-          <div class="col-12 col-md-11" >
-            <input placeholder="[Link/IDVideo]"
-              [(ngModel)]="UrlVideo"
-              style="width: 100%; margin-right: 50px"/>
-          </div>
-        </div>
-        <div class="row" style="padding: 15px;">
-          <div  class="col-12 col-md-1"style="font-size: 15px;font-weight: bold;">
-            Texto:
-          </div>
-          <div class="col-12 col-md-11" >
-            <textarea
-              name="textarea"
-              [(ngModel)]="Retroalimentacion"
-              rows="3"
-              placeholder="[Contenido del enunciado]"
-              style="width: 100%; margin-right: 50px; border-radius:5px"
-          ></textarea>
-          </div>
-        </div>
-        <div class="row" style="padding: 0px 15px 15px 15px;">
-          <div  class="col-12 col-md-1"style="font-size: 15px;font-weight: bold;">
-            Imagen:
-          </div>
-          <div class="col-12 col-md-11" >
-            <input type="file" id="ImgPreguntaRetroalimentacion" (change)="getFileDetailsPreguntaRetroalimentacion($event)"/>
-          </div>
-        </div>
-      </div>
-    </ng-container>
-  </div>
-  <div class="row" style="margin-top:15px">
-    <div class="col-12 col-md-6" style="text-align: right;">
-      <button mat-flat-button style="background: #FF850C; color: white;width: 9rem;border-radius: 15px;" (click)="AgregarNuevaPregunta()">Guardar Cambios</button>
-    </div>
-    <div  class="col-12 col-md-6">
-      <button mat-flat-button style="background: #FC5757;color:white;width: 9rem;border-radius: 15px;" (click)="Cancelar()">Cancelar</button>
-    </div>
-  </div>
+  </form>
 </div>
 
 
