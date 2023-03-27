@@ -17,7 +17,9 @@ export class PmpConfiguracionPreguntasComponent implements OnInit {
     public dialog: MatDialog,
     private _Pregunta: PmpPreguntaService,
     public alertaService:AlertaService,
+  ){
 
+  }
   datasource: any = [];
   searchValue = '';
   visible = false;
@@ -31,7 +33,7 @@ export class PmpConfiguracionPreguntasComponent implements OnInit {
   visible5 = false;
   listOfDisplayData: any = [];
 
-  
+
 
   displayedColumns: string[] = [
     'id',
@@ -156,7 +158,7 @@ export class PmpConfiguracionPreguntasComponent implements OnInit {
     this._Pregunta.EliminarPreguntaPmp(IdPregunta).subscribe({
       next: (x: any) => {
       },
-      error: (error) => {
+      error: (error:any) => {
         this.alertaService.notificationError(error.message);
       },
       complete: () => {

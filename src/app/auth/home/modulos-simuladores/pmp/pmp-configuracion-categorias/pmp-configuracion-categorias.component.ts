@@ -9,7 +9,7 @@ import {
   actualizarTipoRespuestaDTO,
   filtradoPreguntaDTO,
   filtro,
-} from 'src/app/Models/TipoRespuesta';
+} from 'src/app/Models/Pmp/TipoRespuesta';
 
 @Component({
   selector: 'app-pmp-configuracion-categorias',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PmpEnvioEstadoCertificacionAlumnoDTO } from 'src/app/Models/Pmp/PmpReporteGeneralDTO';
-import { filtradoAdminsitradorDTO, filtradoReporteGeneralDTO } from 'src/app/Models/Pmp/TipoRespuesta';
+import { filtradoReporteGeneralDTO } from 'src/app/Models/Pmp/TipoRespuesta';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { PmpReporteGeneralService } from 'src/app/shared/Services/Pmp/Pmp-Reporte-General/pmp-reporte-general.service';
 

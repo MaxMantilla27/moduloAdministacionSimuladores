@@ -11,7 +11,7 @@ export interface filtradoPreguntaDTO{
   subcategoria:string,
 }
 
-export interface filtradoAdminsitradorDTO{
+export interface filtradoAdministradorDTO{
   codigoMatricula:string,
   alumno:string,
   correo:string,

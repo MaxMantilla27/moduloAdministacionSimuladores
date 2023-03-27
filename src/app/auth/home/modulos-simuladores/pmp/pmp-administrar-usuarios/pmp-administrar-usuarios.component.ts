@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { PmpAdministrarUsuariosAccesoDTO, filtradoPreguntaDTO } from 'src/app/Models/Pmp/PmpAdministrarUsuariosDTO';
+import { PmpAdministrarUsuariosAccesoDTO } from 'src/app/Models/Pmp/PmpAdministrarUsuariosDTO';
+import { filtradoAdministradorDTO } from 'src/app/Models/Pmp/TipoRespuesta';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { PmpAdministrarUsuariosService } from 'src/app/shared/Services/Pmp/Pmp-Administrar-Usuarios/pmp-administrar-usuarios.service';
 @Component({
@@ -179,7 +180,7 @@ export class PmpAdministrarUsuariosComponent implements OnInit {
     console.log(this.searchValue)
     this.visible = false;
     this.listOfDisplayData = this.ReporteResumen.filter(
-      (item: filtradoAdminsitradorDTO) =>
+      (item: filtradoAdministradorDTO) =>
         (item.codigoMatricula && item.codigoMatricula!=null && item.codigoMatricula.indexOf(this.searchValue) !== -1)
     );
     console.log(this.listOfDisplayData)
@@ -189,7 +190,7 @@ export class PmpAdministrarUsuariosComponent implements OnInit {
     console.log(this.searchValue)
     this.visible2 = false;
     this.listOfDisplayData = this.ReporteResumen.filter(
-      (item: filtradoAdminsitradorDTO) =>
+      (item: filtradoAdministradorDTO) =>
         (item.alumno && item.alumno!=null && item.alumno.indexOf(this.searchValue2) !== -1)
     );
   }
@@ -197,7 +198,7 @@ export class PmpAdministrarUsuariosComponent implements OnInit {
     console.log(this.searchValue)
     this.visible3 = false;
     this.listOfDisplayData = this.ReporteResumen.filter(
-      (item: filtradoAdminsitradorDTO) =>
+      (item: filtradoAdministradorDTO) =>
         (item.correo && item.correo!=null && item.correo.indexOf(this.searchValue3) !== -1)
     );
     console.log(this.listOfDisplayData)
@@ -208,7 +209,7 @@ export class PmpAdministrarUsuariosComponent implements OnInit {
     console.log(this.searchValue)
     this.visible4 = false;
     this.listOfDisplayData = this.ReporteResumen.filter(
-      (item: filtradoAdminsitradorDTO) =>
+      (item: filtradoAdministradorDTO) =>
        (item.nombrePrograma && item.nombrePrograma!=null && item.nombrePrograma.toString().indexOf(this.searchValue4) !== -1)
     );
     console.log(this.listOfDisplayData)
@@ -218,7 +219,7 @@ export class PmpAdministrarUsuariosComponent implements OnInit {
     console.log(this.searchValue)
     this.visible5 = false;
     this.listOfDisplayData = this.ReporteResumen.filter(
-      (item: filtradoAdminsitradorDTO) =>
+      (item: filtradoAdministradorDTO) =>
         (item.centroCostos && item.centroCostos!=null && item.centroCostos.indexOf(this.searchValue5) !== -1)
     );
     console.log(this.listOfDisplayData)
@@ -227,7 +228,7 @@ export class PmpAdministrarUsuariosComponent implements OnInit {
     console.log(this.searchValue)
     this.visible6 = false;
     this.listOfDisplayData = this.ReporteResumen.filter(
-      (item: filtradoAdminsitradorDTO) =>
+      (item: filtradoAdministradorDTO) =>
         (item.estadoCurso && item.estadoCurso!=null && item.estadoCurso.indexOf(this.searchValue6) !== -1)
     );
     console.log(this.listOfDisplayData)
@@ -238,17 +239,17 @@ export class PmpAdministrarUsuariosComponent implements OnInit {
     console.log(this.searchValue)
     this.visible7 = false;
     this.listOfDisplayData = this.ReporteResumen.filter(
-      (item: filtradoAdminsitradorDTO) =>
+      (item: filtradoAdministradorDTO) =>
        (item.estadoPagos && item.estadoPagos!=null && item.estadoPagos.indexOf(this.searchValue7) !== -1)
     );
     console.log(this.listOfDisplayData)
   }
-  
+
   search8(): void {
     console.log(this.searchValue)
     this.visible8 = false;
     this.listOfDisplayData = this.ReporteResumen.filter(
-      (item: filtradoAdminsitradorDTO) =>
+      (item: filtradoAdministradorDTO) =>
         (item.estadoSolicitud && item.estadoSolicitud!=null && item.estadoSolicitud.indexOf(this.searchValue8) !== -1)
     );
     console.log(this.listOfDisplayData)
