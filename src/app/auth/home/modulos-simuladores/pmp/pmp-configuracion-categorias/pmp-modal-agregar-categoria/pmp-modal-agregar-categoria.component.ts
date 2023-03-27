@@ -1,5 +1,5 @@
 import { Component, OnInit,Inject, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { pmpPreguntaActualizarDTO, pmpPreguntaDTO } from 'src/app/Models/PreguntaDTO';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
@@ -26,14 +26,14 @@ export class PmpModalAgregarCategoriaComponent implements OnInit {
   loading:any
   loader:any;
   formCategoria: FormGroup = this.formBuilder.group({
-    Id: 0,
-    NombreCategoria: '',
-    Leyenda: '',
-    CantidadPreguntasTotales: 0,
-    CantidadPreguntasExamen: 0,
-    Proporcion: 0,
-    TieneSubCategoria: 0,
-    Logo: 0
+    Id: [0,[Validators.required]],
+    NombreCategoria: ['', [Validators.required]],
+    Leyenda: ['', [Validators.required]],
+    CantidadPreguntasTotales: [0,[Validators.required]],
+    CantidadPreguntasExamen: [0,[Validators.required]],
+    Proporcion: [0,[Validators.required]],
+    TieneSubCategoria: true,
+    Logo: [ new File([],''), [Validators.required]]
   });
   public nombrefile='Ningún archivo seleccionado'
 
@@ -60,7 +60,7 @@ export class PmpModalAgregarCategoriaComponent implements OnInit {
     Nombre: 'Prueba',
     CantidadPreguntasPorExamen: 5,
     CantidadTotal: 5,
-    ImgLogo: new File([],''),
+    ImgLogo:  new File([],''),
     Leyenda: 'asdas',
     Proporcion: 5,
     TieneSubCategoria: true,

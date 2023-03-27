@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { filtradoAdminsitradorDTO, filtradoPreguntaDTO } from 'src/app/Models/TipoRespuesta';
 import { PmpAdministrarUsuariosService } from 'src/app/shared/Services/Pmp-Administrar-Usuarios/pmp-administrar-usuarios.service';
 
 @Component({
@@ -22,6 +23,24 @@ export class PmpAdministrarUsuariosComponent implements OnInit {
   public CentroCostos='';
   public CodigoMatriculaBuscar='';
   public CentroCostosBuscar='';
+
+  searchValue = '';
+  visible = false;
+  searchValue2 = '';
+  visible2 = false;
+  searchValue3 = '';
+  visible3 = false;
+  searchValue4 = '';
+  visible4 = false;
+  searchValue5 = '';
+  visible5 = false;
+  searchValue6 = '';
+  visible6 = false;
+  searchValue7 = '';
+  visible7 = false;
+  searchValue8 = '';
+  visible8 = false;
+  listOfDisplayData: any = [];
 
   ngOnInit(): void {
     this.ObtenerReporteAdministrarUsuarioResumen();
@@ -53,6 +72,8 @@ export class PmpAdministrarUsuariosComponent implements OnInit {
             }
           }
         })
+
+        this.listOfDisplayData = this.ReporteResumen
       },
     });
   }
@@ -115,5 +136,97 @@ export class PmpAdministrarUsuariosComponent implements OnInit {
         })
       },
     });
+  }
+
+  reset(): void {
+    this.listOfDisplayData = this.ReporteResumen
+    this.searchValue = '';
+    this.searchValue2 = '';
+    this.searchValue3 = '';
+    this.searchValue4 = '';
+    this.searchValue5 = '';
+    this.searchValue6 = '';
+    this.searchValue7 = '';
+    this.searchValue8 = '';
+    this.search();
+  }
+
+  search(): void {
+    console.log(this.searchValue)
+    this.visible = false;
+    this.listOfDisplayData = this.ReporteResumen.filter(
+      (item: filtradoAdminsitradorDTO) =>
+        (item.codigoMatricula && item.codigoMatricula!=null && item.codigoMatricula.indexOf(this.searchValue) !== -1)
+    );
+    console.log(this.listOfDisplayData)
+  }
+
+  search2(): void {
+    console.log(this.searchValue)
+    this.visible2 = false;
+    this.listOfDisplayData = this.ReporteResumen.filter(
+      (item: filtradoAdminsitradorDTO) =>
+        (item.alumno && item.alumno!=null && item.alumno.indexOf(this.searchValue2) !== -1)
+    );
+  }
+  search3(): void {
+    console.log(this.searchValue)
+    this.visible3 = false;
+    this.listOfDisplayData = this.ReporteResumen.filter(
+      (item: filtradoAdminsitradorDTO) =>
+        (item.correo && item.correo!=null && item.correo.indexOf(this.searchValue3) !== -1)
+    );
+    console.log(this.listOfDisplayData)
+  }
+
+
+  search4(): void {
+    console.log(this.searchValue)
+    this.visible4 = false;
+    this.listOfDisplayData = this.ReporteResumen.filter(
+      (item: filtradoAdminsitradorDTO) =>
+       (item.nombrePrograma && item.nombrePrograma!=null && item.nombrePrograma.toString().indexOf(this.searchValue4) !== -1)
+    );
+    console.log(this.listOfDisplayData)
+  }
+
+  search5(): void {
+    console.log(this.searchValue)
+    this.visible5 = false;
+    this.listOfDisplayData = this.ReporteResumen.filter(
+      (item: filtradoAdminsitradorDTO) =>
+        (item.centroCostos && item.centroCostos!=null && item.centroCostos.indexOf(this.searchValue5) !== -1)
+    );
+    console.log(this.listOfDisplayData)
+  }
+  search6(): void {
+    console.log(this.searchValue)
+    this.visible6 = false;
+    this.listOfDisplayData = this.ReporteResumen.filter(
+      (item: filtradoAdminsitradorDTO) =>
+        (item.estadoCurso && item.estadoCurso!=null && item.estadoCurso.indexOf(this.searchValue6) !== -1)
+    );
+    console.log(this.listOfDisplayData)
+  }
+
+
+  search7(): void {
+    console.log(this.searchValue)
+    this.visible7 = false;
+    this.listOfDisplayData = this.ReporteResumen.filter(
+      (item: filtradoAdminsitradorDTO) =>
+       (item.estadoPagos && item.estadoPagos!=null && item.estadoPagos.indexOf(this.searchValue7) !== -1)
+    );
+    console.log(this.listOfDisplayData)
+  }
+  
+  search8(): void {
+    console.log(this.searchValue)
+    this.visible8 = false;
+    this.listOfDisplayData = this.ReporteResumen.filter(
+      (item: filtradoAdminsitradorDTO) =>
+        (item.estadoSolicitud && item.estadoSolicitud!=null && item.estadoSolicitud.indexOf(this.searchValue8) !== -1)
+    );
+    console.log(this.listOfDisplayData)
   }
 }
