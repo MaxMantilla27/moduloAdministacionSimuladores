@@ -13,7 +13,7 @@ export interface pmpPreguntaActualizarDTO {
   Nombre: string;
   CantidadPreguntasPorExamen: number;
   CantidadTotal: number;
-  ImgLogo: File;
+  ImgLogo: File ;
   Leyenda: string;
   Proporcion: number;
   TieneSubCategoria: boolean;

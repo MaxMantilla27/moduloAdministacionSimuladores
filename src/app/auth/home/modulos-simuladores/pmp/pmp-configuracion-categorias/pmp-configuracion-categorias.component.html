@@ -14,11 +14,27 @@
       </div>
 
       <div *ngIf="listaCategorias != undefined" id="test">
-        <nz-table #basicTable [nzData]="listaCategorias">
+        <nz-table #basicTable [nzData]="listOfDisplayData">
           <thead>
             <tr>
-              <th>Id</th>
-              <th>Nombre</th>
+              <th>Id
+                <nz-filter-trigger
+                [(nzVisible)]="visible2"
+                [nzActive]="searchValue2.length > 0"
+                [nzDropdownMenu]="menu2"
+              >
+                <span nz-icon nzType="search"></span>
+              </nz-filter-trigger>
+              </th>
+              <th>Nombre
+                <nz-filter-trigger
+                [(nzVisible)]="visible"
+                [nzActive]="searchValue.length > 0"
+                [nzDropdownMenu]="menu"
+              >
+                <span nz-icon nzType="search"></span>
+              </nz-filter-trigger>
+              </th>
               <th>Cant. de preguntas por examen</th>
               <th>Proporción</th>
               <th>Opciones</th>
@@ -59,6 +75,52 @@
             </tr>
           </tbody>
         </nz-table>
+            
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+          <input
+            type="text"
+            nz-input
+            placeholder="Search name"
+            [(ngModel)]="searchValue"
+          />
+          <button
+            nz-button
+            nzSize="small"
+            nzType="primary"
+            (click)="search()"
+            class="search-button"
+          >
+            Search
+          </button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </div>
+    </nz-dropdown-menu>
+
+    <nz-dropdown-menu #menu2="nzDropdownMenu">
+      <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+          <input
+            type="text"
+            nz-input
+            placeholder="Search name"
+            [(ngModel)]="searchValue2"
+          />
+          <button
+            nz-button
+            nzSize="small"
+            nzType="primary"
+            (click)="search2()"
+            class="search-button"
+          >
+            Search
+          </button>
+          <button nz-button nzSize="small" (click)="reset2()">Reset</button>
+        </div>
+      </div>
+    </nz-dropdown-menu>
       </div>
     </mat-tab>
     <mat-tab label="SubCategorias">
@@ -75,12 +137,37 @@
         </button>
       </div>
       <div *ngIf="listaSubCategorias != undefined" id="test">
-        <nz-table #basicTable [nzData]="listaSubCategorias">
+        <nz-table #basicTable [nzData]="listOfDisplayData2">
           <thead>
             <tr>
-              <th>Id</th>
-              <th>Nombre de la subcategoría</th>
-              <th>Categoria Asignada</th>
+              <th>Id
+                <nz-filter-trigger
+                [(nzVisible)]="visible4"
+                [nzActive]="searchValue4.length > 0"
+                [nzDropdownMenu]="menu4"
+              >
+                <span nz-icon nzType="search"></span>
+              </nz-filter-trigger>
+              </th>
+              <th>Nombre de la subcategoría
+                <nz-filter-trigger
+                [(nzVisible)]="visible3"
+                [nzActive]="searchValue3.length > 0"
+                [nzDropdownMenu]="menu3"
+              >
+                <span nz-icon nzType="search"></span>
+              </nz-filter-trigger>
+              </th>
+              <th>Categoria Asignada
+
+                <nz-filter-trigger
+                [(nzVisible)]="visible5"
+                [nzActive]="searchValue5.length > 0"
+                [nzDropdownMenu]="menu5"
+              >
+                <span nz-icon nzType="search"></span>
+              </nz-filter-trigger>
+              </th>
               <th>Cant. de preguntas por examen</th>
               <th>Proporción</th>
               <th>Opciones</th>
@@ -124,6 +211,72 @@
             </tr>
           </tbody>
         </nz-table>
+        <nz-dropdown-menu #menu4="nzDropdownMenu">
+          <div class="ant-table-filter-dropdown">
+            <div class="search-box">
+              <input
+                type="text"
+                nz-input
+                placeholder="Search name"
+                [(ngModel)]="searchValue4"
+              />
+              <button
+                nz-button
+                nzSize="small"
+                nzType="primary"
+                (click)="search4()"
+                class="search-button"
+              >
+                Search
+              </button>
+              <button nz-button nzSize="small" (click)="reset4()">Reset</button>
+            </div>
+          </div>
+        </nz-dropdown-menu>
+        <nz-dropdown-menu #menu3="nzDropdownMenu">
+          <div class="ant-table-filter-dropdown">
+            <div class="search-box">
+              <input
+                type="text"
+                nz-input
+                placeholder="Search name"
+                [(ngModel)]="searchValue3"
+              />
+              <button
+                nz-button
+                nzSize="small"
+                nzType="primary"
+                (click)="search3()"
+                class="search-button"
+              >
+                Search
+              </button>
+              <button nz-button nzSize="small" (click)="reset3()">Reset</button>
+            </div>
+          </div>
+        </nz-dropdown-menu>
+        <nz-dropdown-menu #menu5="nzDropdownMenu">
+          <div class="ant-table-filter-dropdown">
+            <div class="search-box">
+              <input
+                type="text"
+                nz-input
+                placeholder="Search name"
+                [(ngModel)]="searchValue5"
+              />
+              <button
+                nz-button
+                nzSize="small"
+                nzType="primary"
+                (click)="search5()"
+                class="search-button"
+              >
+                Search
+              </button>
+              <button nz-button nzSize="small" (click)="reset5()">Reset</button>
+            </div>
+          </div>
+        </nz-dropdown-menu>
       </div>
     </mat-tab>
   </mat-tab-group>

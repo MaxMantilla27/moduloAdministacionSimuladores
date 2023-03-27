@@ -1,5 +1,5 @@
 import { Component, OnInit,Inject, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { pmpPreguntaActualizarDTO, pmpPreguntaDTO } from 'src/app/Models/Pmp/PreguntaDTO';
 import { pmpActualizarTareaDTO, pmpAgregarTareaDTO } from 'src/app/Models/Pmp/TareaDTO';
@@ -28,13 +28,13 @@ export class PmpModalAgregarSubcategoriaComponent implements OnInit {
 loading:any
 loader:any;
 formCategoria: FormGroup = this.formBuilder.group({
-  Id: 0,
-  NombreCategoria: '',
-  IdCategoria:0,
-  CantidadPreguntasTotales: 0,
-  CantidadPreguntasExamen: 0,
-  Proporcion: 0,
-  Logo: 0
+  Id: [0,[Validators.required]],
+  NombreCategoria: ['', [Validators.required]],
+  IdCategoria:[0,[Validators.required]],
+  CantidadPreguntasTotales: [0,[Validators.required]],
+  CantidadPreguntasExamen: [0,[Validators.required]],
+  Proporcion: [0,[Validators.required]],
+  Logo: [ new File([],''), [Validators.required]]
 });
 public nombrefile='Ningún archivo seleccionado'
 
@@ -44,6 +44,7 @@ public filestatus=false
 public fileErrorMsg=''
 
 public listaComboCategorias:any;
+
 
 public jsonEnvio:pmpAgregarTareaDTO = {
   IdSimuladorPmpDominio:0 ,
@@ -222,5 +223,8 @@ public jsonActualizar:pmpActualizarTareaDTO = {
 
     return '';
   }
+
+
+
 
 }

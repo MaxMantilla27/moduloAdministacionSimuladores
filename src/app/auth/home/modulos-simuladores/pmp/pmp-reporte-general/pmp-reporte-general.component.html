@@ -9,16 +9,51 @@
     <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed"class="table">
       <thead>
         <tr>
-          <th nzCustomFilter style="border: solid 1px #b2b2b2;width:120px ; text-align: center; background-color: #E7E7E7;color: #222222;">Código de Matrícula</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Alumno</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Centro de Costos</th>
-          <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Tipo de Matrícula</th>
+          <th nzCustomFilter style="border: solid 1px #b2b2b2;width:120px ; text-align: center; background-color: #E7E7E7;color: #222222;">Código de Matrícula
+            <nz-filter-trigger
+            [(nzVisible)]="visible"
+            [nzActive]="searchValue.length > 0"
+            [nzDropdownMenu]="menu"
+          >
+            <span nz-icon nzType="search"></span>
+          </nz-filter-trigger></th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Alumno
+            <nz-filter-trigger
+            [(nzVisible)]="visible2"
+            [nzActive]="searchValue2.length > 0"
+            [nzDropdownMenu]="menu2"
+          >
+            <span nz-icon nzType="search"></span>
+          </nz-filter-trigger></th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Centro de Costos
+            <nz-filter-trigger
+            [(nzVisible)]="visible3"
+            [nzActive]="searchValue3.length > 0"
+            [nzDropdownMenu]="menu3"
+          >
+            <span nz-icon nzType="search"></span>
+          </nz-filter-trigger></th>
+          <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Tipo de Matrícula
+            <nz-filter-trigger
+            [(nzVisible)]="visible4"
+            [nzActive]="searchValue4.length > 0"
+            [nzDropdownMenu]="menu4"
+          >
+            <span nz-icon nzType="search"></span>
+          </nz-filter-trigger></th>
           <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Fecha de Matrícula al Simulador</th>
           <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Ptje. máx M. exámen</th>
           <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Ptje. prom M. exámen</th>
           <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Simulaciones Finalizadas</th>
           <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Fecha de últimas simulación</th>
-          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Nivel</th>
+          <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Nivel
+            <nz-filter-trigger
+            [(nzVisible)]="visible5"
+            [nzActive]="searchValue5.length > 0"
+            [nzDropdownMenu]="menu5"
+          >
+            <span nz-icon nzType="search"></span>
+          </nz-filter-trigger></th>
           <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Certificación</th>
           <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Guardar</th>
         </tr>
@@ -69,6 +104,117 @@
         </tr>
       </tbody>
     </nz-table>
+
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+          <input
+            type="text"
+            nz-input
+            placeholder="Search name"
+            [(ngModel)]="searchValue"
+          />
+          <button
+            nz-button
+            nzSize="small"
+            nzType="primary"
+            (click)="search()"
+            class="search-button"
+          >
+            Search
+          </button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </div>
+    </nz-dropdown-menu>
+    <nz-dropdown-menu #menu2="nzDropdownMenu">
+      <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+          <input
+            type="text"
+            nz-input
+            placeholder="Search name"
+            [(ngModel)]="searchValue2"
+          />
+          <button
+            nz-button
+            nzSize="small"
+            nzType="primary"
+            (click)="search2()"
+            class="search-button"
+          >
+            Search
+          </button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </div>
+    </nz-dropdown-menu>
+    <nz-dropdown-menu #menu3="nzDropdownMenu">
+      <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+          <input
+            type="text"
+            nz-input
+            placeholder="Search name"
+            [(ngModel)]="searchValue3"
+          />
+          <button
+            nz-button
+            nzSize="small"
+            nzType="primary"
+            (click)="search3()"
+            class="search-button"
+          >
+            Search
+          </button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </div>
+    </nz-dropdown-menu>
+    <nz-dropdown-menu #menu4="nzDropdownMenu">
+      <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+          <input
+            type="text"
+            nz-input
+            placeholder="Search name"
+            [(ngModel)]="searchValue4"
+          />
+          <button
+            nz-button
+            nzSize="small"
+            nzType="primary"
+            (click)="search4()"
+            class="search-button"
+          >
+            Search
+          </button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </div>
+    </nz-dropdown-menu>
+    <nz-dropdown-menu #menu5="nzDropdownMenu">
+      <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+          <input
+            type="text"
+            nz-input
+            placeholder="Search name"
+            [(ngModel)]="searchValue5"
+          />
+          <button
+            nz-button
+            nzSize="small"
+            nzType="primary"
+            (click)="search5()"
+            class="search-button"
+          >
+            Search
+          </button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </div>
+    </nz-dropdown-menu>
   </div>
   <div class="loadingTablaReporteGeneral" *ngIf="listOfDisplayData==undefined">
     <div class="container" style="width: 63%;">
