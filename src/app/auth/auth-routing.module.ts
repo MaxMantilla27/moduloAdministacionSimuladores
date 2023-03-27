@@ -11,6 +11,14 @@ import { PmpConfiguracionPreguntasComponent } from './home/modulos-simuladores/p
 import { PmpConfiguracionTipoPreguntasComponent } from './home/modulos-simuladores/pmp/pmp-configuracion-tipo-preguntas/pmp-configuracion-tipo-preguntas.component';
 import { PmpReporteGeneralComponent } from './home/modulos-simuladores/pmp/pmp-reporte-general/pmp-reporte-general.component';
 import { PmpReporteUsuariosComponent } from './home/modulos-simuladores/pmp/pmp-reporte-usuarios/pmp-reporte-usuarios.component';
+import { AwsComponent } from './home/modulos-simuladores/aws/aws.component';
+import { AwsConfiguracionCategoriasComponent } from './home/modulos-simuladores/aws/aws-configuracion-categorias/aws-configuracion-categorias.component';
+import { AwsConfiguracionTipoPreguntasComponent } from './home/modulos-simuladores/aws/aws-configuracion-tipo-preguntas/aws-configuracion-tipo-preguntas.component';
+import { AwsConfiguracionPreguntasComponent } from './home/modulos-simuladores/aws/aws-configuracion-preguntas/aws-configuracion-preguntas.component';
+import { AwsConfiguracionInterfazComponent } from './home/modulos-simuladores/aws/aws-configuracion-interfaz/aws-configuracion-interfaz.component';
+import { AwsAdministrarUsuariosComponent } from './home/modulos-simuladores/aws/aws-administrar-usuarios/aws-administrar-usuarios.component';
+import { AwsReporteGeneralComponent } from './home/modulos-simuladores/aws/aws-reporte-general/aws-reporte-general.component';
+import { AwsReporteUsuariosComponent } from './home/modulos-simuladores/aws/aws-reporte-usuarios/aws-reporte-usuarios.component';
 
 const routes: Routes = [
   {
@@ -24,7 +32,16 @@ const routes: Routes = [
         { path: 'pmp/configuracionInterfaz', component: PmpConfiguracionInterfazComponent},
         { path: 'pmp/administrarUsuarios', component: PmpAdministrarUsuariosComponent},
         { path: 'pmp/reporteGeneral', component: PmpReporteGeneralComponent},
-        { path: 'pmp/reporteUsuario', component: PmpReporteUsuariosComponent}
+        { path: 'pmp/reporteUsuario', component: PmpReporteUsuariosComponent},
+        { path: 'aws', component: AwsComponent},
+        { path: 'aws/configuracionCategorias',component: AwsConfiguracionCategoriasComponent},
+        { path: 'aws/configuracionTipoPreguntas',component: AwsConfiguracionTipoPreguntasComponent},
+        { path: 'aws/configuracionPreguntas',component: AwsConfiguracionPreguntasComponent},
+        { path: 'aws/configuracionInterfaz',component: AwsConfiguracionInterfazComponent},
+        { path: 'aws/administrarUsuarios',component: AwsAdministrarUsuariosComponent},
+        { path: 'aws/reporteGeneral',component: AwsReporteGeneralComponent},
+        { path: 'aws/reporteUsuario',component: AwsReporteUsuariosComponent},
+        
       ],
   },
 ];

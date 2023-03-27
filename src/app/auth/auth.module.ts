@@ -19,6 +19,14 @@ import { PmpReporteUsuariosComponent } from './home/modulos-simuladores/pmp/pmp-
 import { PmpComponent } from './home/modulos-simuladores/pmp/pmp.component';
 import { PmpAbrirModalDetalleExamenComponent } from './home/modulos-simuladores/pmp/pmp-reporte-usuarios/pmp-abrir-modal-detalle-examen/pmp-abrir-modal-detalle-examen/pmp-abrir-modal-detalle-examen.component';
 import { ModalAlternativasComponent } from './home/modulos-simuladores/pmp/pmp-configuracion-preguntas/pmp-modal-agregar-preguntas/pmp-modal-alternativas/modal-alternativas.component';
+import { AwsComponent } from './home/modulos-simuladores/aws/aws.component';
+import { AwsAdministrarUsuariosComponent } from './home/modulos-simuladores/aws/aws-administrar-usuarios/aws-administrar-usuarios.component';
+import { AwsConfiguracionCategoriasComponent } from './home/modulos-simuladores/aws/aws-configuracion-categorias/aws-configuracion-categorias.component';
+import { AwsConfiguracionInterfazComponent } from './home/modulos-simuladores/aws/aws-configuracion-interfaz/aws-configuracion-interfaz.component';
+import { AwsConfiguracionPreguntasComponent } from './home/modulos-simuladores/aws/aws-configuracion-preguntas/aws-configuracion-preguntas.component';
+import { AwsConfiguracionTipoPreguntasComponent } from './home/modulos-simuladores/aws/aws-configuracion-tipo-preguntas/aws-configuracion-tipo-preguntas.component';
+import { AwsReporteGeneralComponent } from './home/modulos-simuladores/aws/aws-reporte-general/aws-reporte-general.component';
+import { AwsReporteUsuariosComponent } from './home/modulos-simuladores/aws/aws-reporte-usuarios/aws-reporte-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +47,15 @@ import { ModalAlternativasComponent } from './home/modulos-simuladores/pmp/pmp-c
     PmpModalAgregarPreguntasComponent,
     PmpModalAgregarSubcategoriaComponent,
     PmpAbrirModalDetalleExamenComponent,
-    ModalAlternativasComponent
+    ModalAlternativasComponent,
+    AwsComponent,
+    AwsAdministrarUsuariosComponent,
+    AwsConfiguracionCategoriasComponent,
+    AwsConfiguracionInterfazComponent,
+    AwsConfiguracionPreguntasComponent,
+    AwsConfiguracionTipoPreguntasComponent,
+    AwsReporteGeneralComponent,
+    AwsReporteUsuariosComponent
 
   ],
   imports: [
