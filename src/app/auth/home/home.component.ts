@@ -78,5 +78,6 @@ export class HomeComponent implements OnInit {
   }
   RedirigirModuloSimulador(Esquema:string){
     this.router.navigate([Esquema])
+    console.log(Esquema);
   }
 }
