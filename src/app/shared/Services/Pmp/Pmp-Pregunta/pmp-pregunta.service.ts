@@ -1,7 +1,7 @@
 import { HttpClient,HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { PmpEnvioFilePreguntaDTO, pmpPreguntaDTO } from 'src/app/Models/Pmp/PreguntaDTO';
+import { PmpEnvioFilePreguntaActualizarDTO, PmpEnvioFilePreguntaDTO, pmpPreguntaDTO } from 'src/app/Models/Pmp/PreguntaDTO';
 import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
@@ -15,8 +15,8 @@ export class PmpPreguntaService {
     return this.http.get<any>(this.urlBase + '/ObtenerListaModoDapper');
   }
 
-  public ObtenerPmpPregunta(idPregunta: any):Observable<any>{
-    return this.http.post<any>(this.urlBase+'/ObtenerPmpPregunta?Id='+idPregunta,'');
+  public ObtenerPmpPregunta(IdPregunta: number):Observable<any>{
+    return this.http.post<any>(this.urlBase+'/ObtenerPmpPregunta?IdPregunta='+IdPregunta,'');
   }
 
   public AgregarPregunta(listaPregunta: PmpEnvioFilePreguntaDTO):Observable<any>{
@@ -48,10 +48,26 @@ export class PmpPreguntaService {
    console.log(formData)
 
 
-   return this.http.post<any>(this.urlBase+'/GuardarArchivo',formData);
+   return this.http.post<any>(this.urlBase+'/RegistrarPmpPregunta',formData);
   }
   public EliminarPreguntaPmp(IdPregunta: number):Observable<any>{
     return this.http.post<any>(this.urlBase+'/EliminarPreguntaPmp?IdPregunta='+IdPregunta,'');
   }
-
+  public ActualizarPregunta(listaPregunta: PmpEnvioFilePreguntaActualizarDTO):Observable<any>{
+    const formData: FormData = new FormData();
+    console.log(listaPregunta);
+    formData.append('Id', listaPregunta.Id.toString());
+    formData.append('IdSimuladorPmpDominio', listaPregunta.IdSimuladorPmpDominio.toString());
+    formData.append('IdSimuladorPmpTarea', listaPregunta.IdSimuladorPmpTarea.toString());
+    formData.append('IdSimuladorTipoRespuesta', listaPregunta.IdSimuladorTipoRespuesta.toString());
+    formData.append('Enunciado', listaPregunta.Enunciado.toString());
+    formData.append('UrlImagenPreguntaArchivo', listaPregunta.UrlImagenPreguntaArchivo);
+    formData.append('IdPmpTipoPreguntaClasificacion', listaPregunta.IdPmpTipoPreguntaClasificacion.toString());
+    formData.append('TieneRetroalimentacionUnica', listaPregunta.TieneRetroalimentacionUnica.toString());
+    formData.append('UrlRetroalimentacionVideo', listaPregunta.UrlRetroalimentacionVideo.toString() );
+    formData.append('Retroalimentacion', listaPregunta.Retroalimentacion.toString() );
+    formData.append('ImgRetroalimentacionArchivo', listaPregunta.ImgRetroalimentacionArchivo);
+   console.log(formData)
+   return this.http.post<any>(this.urlBase+'/ActualizarPmpPregunta',formData);
+  }
 }

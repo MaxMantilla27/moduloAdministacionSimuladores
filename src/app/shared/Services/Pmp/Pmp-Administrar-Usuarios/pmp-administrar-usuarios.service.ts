@@ -11,18 +11,17 @@ export class PmpAdministrarUsuariosService {
   public urlBase=environment.url_api+'PmpAdministrarUsuarios';
   constructor(private http: HttpClient) { }
 
-  public ObtenerReporteAdministrarUsuarioResumen():Observable<any>{
-    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumen');
+  public ObtenerReporteAdministrarUsuarioResumenPmp():Observable<any>{
+    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumenPmp');
   }
-  public ObtenerReporteAdministrarUsuarioPorCodigoMatricula(CodigoMatricula:string): Observable<any> {
+  public ObtenerReporteAdministrarUsuarioPorCodigoMatriculaPmp(CodigoMatricula:string): Observable<any> {
     console.log(CodigoMatricula)
-    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCodigoMatricula?CodigoMatricula='+CodigoMatricula,'');
-
+    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCodigoMatriculaPmp?CodigoMatricula='+CodigoMatricula,'');
   }
-  public ObtenerReporteAdministrarUsuarioPorCentroCostos(CentroCostos:string): Observable<any> {
-    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCentroCostos?CentroCostos='+CentroCostos,'');
+  public ObtenerReporteAdministrarUsuarioPorCentroCostosPmp(CentroCostos:string): Observable<any> {
+    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCentroCostosPmp?CentroCostos='+CentroCostos,'');
   }
-  public GuardarCambiosAccesoSimulador(json:PmpAdministrarUsuariosAccesoDTO): Observable<any> {
-    return this.http.post<any>(this.urlBase + '/GuardarCambiosAccesoSimulador',json);
+  public GuardarCambiosAccesoSimuladorPmp(json:PmpAdministrarUsuariosAccesoDTO): Observable<any> {
+    return this.http.post<any>(this.urlBase + '/GuardarCambiosAccesoSimuladorPmp',json);
   }
 }

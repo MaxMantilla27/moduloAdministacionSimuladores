@@ -59,22 +59,30 @@ export class PmpConfiguracionPreguntasComponent implements OnInit {
 
   agregarPregunta() {
     var isNew = true;
-    var data=undefined;
+    var IdPregunta=undefined;
     const dialogRef = this.dialog.open(PmpModalAgregarPreguntasComponent, {
       panelClass: 'dialog-abrir-pregunta',
-      data: [isNew, data]
+      data: [isNew, IdPregunta]
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((Recargar:boolean) => {
+      if(Recargar==true){
+        this.ObtenerPreguntasPmp();
+      }
+    });
   }
 
-  editarPregunta(data: any) {
+  editarPregunta(IdPregunta: any) {
     var isNew = false
-    console.log(data);
+    console.log(IdPregunta);
     const dialogRef = this.dialog.open(PmpModalAgregarPreguntasComponent, {
       panelClass: 'dialog-abrir-pregunta',
-      data: [isNew, data],
+      data: [isNew, IdPregunta],
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((Recargar:boolean) => {
+      if(Recargar==true){
+        this.ObtenerPreguntasPmp();
+      }
+    });
   }
 
   reset(): void {
@@ -138,13 +146,13 @@ export class PmpConfiguracionPreguntasComponent implements OnInit {
 
   mostrarMensajeEliminarPregunta(IdPregunta: number) {
     Swal.fire({
-      title: '�Est� seguro de eliminar el registro?',
-      text: '�No podr�s revertir esto!',
+      title: 'Est seguro de eliminar el registro?',
+      text: 'No podrás revertir esto!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#4C5FC0',
       cancelButtonColor: '#d33',
-      confirmButtonText: '�Si, Eliminalo!',
+      confirmButtonText: 'Si, Eliminalo!',
       allowOutsideClick: false
     }).then((result) => {
       if (result.isConfirmed) {
