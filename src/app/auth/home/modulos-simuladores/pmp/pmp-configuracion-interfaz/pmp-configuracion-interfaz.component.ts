@@ -42,7 +42,7 @@ export class PmpConfiguracionInterfazComponent implements OnInit {
 
   public envio: actualizarParametrosNivel={
     id : 0,
-    nombre:'',
+    fechaModificacion: new Date(),
     valorMinimo: 0,
     valorMaximo: 0
   }
@@ -112,7 +112,7 @@ export class PmpConfiguracionInterfazComponent implements OnInit {
     this.envio.id = this.listOfDisplayData[index].id,
       this.envio.valorMinimo= this.listOfDisplayData[index].valorMinimo,
       this.envio.valorMaximo= this.listOfDisplayData[index].valorMaximo
-      // this.Actualizar()
+      this.Actualizar()
   }
   handleFile(event:any): void {
 
@@ -163,44 +163,19 @@ ActualizarInterfaz(){
     },
   });
 }
-  // Actualizar() {
-  //   this._TipoRespuesta.actualizarTipoRespuesta(this.envio).subscribe({
-  //     next: (x) => {
-  //     },
-  //     error:(e)=>{
+  Actualizar() {
+    this._TipoRespuesta.actualizarParametrosNivel(this.envio).subscribe({
+      next: (x) => {
+      },
+      error:(e)=>{
 
-  //     },
-  //     complete: () => {
+      },
+      complete: () => {
 
-  //     },
-  //   });
-  // }
+      },
+    });
+  }
 
-  // reset(): void {
-  //   this.searchValue = '';
-  //   this.search();
-  // }
-
-  // search(): void {
-  //   this.visible = false;
-  //   this.listOfDisplayData = this.datasource.filter((item: actualizarTipoRespuestaDTO) => item.nombre.indexOf(this.searchValue) !== -1);
-  // }
-
-
-  // startEdit(id: string): void {
-  //   this.editId = id;
-  //   this.idMandar = parseInt(id);
-  //   this.listOfDisplayData.forEach((d:any)=> {
-  //     d.select=false;
-  //   });
-  //   this.listOfDisplayData[this.idMandar].select = true;
-
-  // }
-
-  // stopEdit(): void {
-  //   this.listOfDisplayData.forEach((d:any)=> {
-  //     d.select=false;
-  //   });
-  // }
+  
 
 }

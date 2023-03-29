@@ -1,0 +1,101 @@
+.titulo{
+    color: #7E7E7E;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  .subTitulo{
+    color: #7E7E7E;
+    font-size: 15px;
+  }
+  
+  h1 {
+    font-size: 30px;
+    color: grey;
+  }
+  
+  
+  .colorin {
+    background-color: #323232;
+    border: 1px solid #323232;
+    color: white !important;
+  }
+  
+  .modos {
+    margin: auto;
+    padding: auto;
+    width: 250px;
+    height: 40px;
+    text-align: center;
+    border: 1px solid grey;
+    border-radius: 5px;
+    color: black;
+  }
+  
+  .item-leyenda-dona-principal {
+    color: #af9f9f;
+    padding-top: 20px;
+    padding-bottom: 5px;
+  }
+  
+  .datos1 {
+    border: 1px solid white;
+    text-align: center;
+  }
+  
+  .datos {
+    border: 1px solid grey;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  
+  
+  ::placeholder {
+    text-align: center;
+  }
+  
+  .detalle{
+    background-color: #094D82;
+    color: white;
+  
+  }
+  .inputRUsuarioBuscar{
+    border-radius: 10px;
+    text-align: center;
+    width: 14rem;
+    height: 36px;
+  }
+  .inputRUsuario{
+    border-radius: 10px;
+    text-align: center;
+    width: 21rem;
+  }
+  .nombreInput{
+    font-size: 15px;
+  }
+  .mat-progress-bar-fill::after {
+    background: #00C356;
+  }
+  .mat-progress-bar {
+    border-radius: 10px;
+  }
+  .item-leyenda-barras{
+    font-size: 14px;
+    color: #878787;
+  }
+  .item-leyenda-dona{
+    text-align: center;
+    color: #878787;
+    padding-top: 5px;
+    padding-bottom: 10px;
+  }
+  .item-leyenda-dona-principal{
+    color: #af9f9f;
+    padding-top: 20px;
+    padding-bottom: 5px;
+  }
+  .loadingTablaReporteGeneral{
+    justify-content: center;
+    display: flex;
+  }
+  

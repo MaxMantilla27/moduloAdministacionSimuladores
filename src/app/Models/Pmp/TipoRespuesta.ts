@@ -33,7 +33,7 @@ export interface filtradoReporteGeneralDTO{
 
 export interface actualizarParametrosNivel {
   id:number,
-  nombre:string,
+  fechaModificacion:Date,
   valorMinimo: number,
   valorMaximo: number,
 

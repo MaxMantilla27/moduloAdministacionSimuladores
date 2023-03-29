@@ -13,12 +13,12 @@ import { HelperService } from './shared/Services/helper.service';
 import { NotificationModule } from '@progress/kendo-angular-notification';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ErrorPageComponent,
-
   ],
   imports: [
     BrowserModule,
