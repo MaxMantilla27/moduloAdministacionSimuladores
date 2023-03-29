@@ -1,1 +1,97 @@
-<p>devops-modal-alternativas works!</p>
+<div class="tituloModal">
+    <div style="font-weight: bold;">
+      Configuracion alternativa
+    </div>
+    <div>
+      <div class="botonCerrarModalAlternativa" (click)="this.dialogRef.close();">
+        X
+      </div>
+    </div>
+  </div>
+  <form [formGroup]="formAlternativa">
+    <div class="agregarCategoria" style="padding: 25px;">
+      <div class="row" style="display:flex">
+        <div class="col-12 col-md-6"style="display:flex">
+          <div class="col-12 col-md-4 textoInputModalAlternativa">
+            Alternativa*:
+          </div>
+          <div class="col-12 col-md-8">
+            <mat-form-field class="example-full-width" appearance="outline" >
+              <mat-label>Ingrese a la alternativa</mat-label>
+              <input type="text"  formControlName="Respuesta" matInput />
+              <!-- <mat-error *ngIf="formAlternativa.invalid">{{obtenerErrorCampoNombre('respuesta')}}</mat-error> -->
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-12 col-md-2"style="display:flex">
+          <div class="col-12 col-md-7 textoInputModalAlternativa">
+            Correcto*:
+          </div>
+          <div class="col-12 col-md-5" style="align-items: center;display: flex;margin-top: -10px;">
+            <mat-checkbox style="margin-top: -13px;" color="primary"  formControlName="Correcto"
+               class="example-full-width" appearance="outline"></mat-checkbox>
+          </div>
+        </div>
+        <div class="col-12 col-md-4"style="display:flex">
+          <div class="col-12 col-md-3 textoInputModalAlternativa">
+            Puntaje*:
+          </div>
+          <div class="col-12 col-md-9">
+            <mat-form-field class="example-full-width" appearance="outline" >
+              <mat-label>Ingrese el puntaje</mat-label>
+              <input type="number"  formControlName="Puntaje" min="0" max="1" matInput />
+              <!-- <mat-error *ngIf="formAlternativa.invalid">{{obtenerErrorCampoNombre('Puntaje')}}</mat-error> -->
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-12"style="display:flex">
+          <div class="col-12 col-md-2 textoInputModalAlternativa">
+            Video:
+          </div>
+          <div class="col-12 col-md-10">
+           <mat-form-field class="example-full-width" appearance="outline" >
+              <mat-label>Url del video</mat-label>
+              <input type="text"  formControlName="UrlRetroalimentacionVideo" matInput />
+              <!-- <mat-error *ngIf="formAlternativa.invalid">{{obtenerErrorCampoNombre('urlRetroalimentacionVideo')}}</mat-error> -->
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-12"style="display:flex">
+          <div class="col-12 col-md-2 textoInputModalAlternativa">
+            Texto:
+          </div>
+          <div class="col-12 col-md-10">
+            <textarea style="width: 100%; border-radius: 5px;"
+            name="textarea"
+            rows="4"
+            placeholder="[Ingrese el texto]"
+            formControlName="Retroalimentacion"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-12" style="display:flex; margin-bottom: 10px;margin-top:10px">
+          <div class="col-12 col-md-2" style="font-size: 15px;font-weight: bold;">
+            Imagen:
+          </div>
+          <div class="col-12 col-md-10">
+            <input type="file" id="UrlImagenArchivo" (change)="getFileDetailsRespuesta($event)"/>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:15px">
+        <div class="col-12 col-md-6" style="text-align: right;">
+          <button mat-flat-button style="background: #FF850C; color: white;width: 9rem;border-radius: 15px;" (click)="Enviar()">Guardar Cambios</button>
+        </div>
+        <div  class="col-12 col-md-6">
+          <button mat-flat-button style="background: #FC5757;color:white;width: 9rem;border-radius: 15px;" (click)="Cancelar()">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  
