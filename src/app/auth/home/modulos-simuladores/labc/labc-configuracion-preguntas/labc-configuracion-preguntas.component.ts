@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { filtradoPreguntaDTO } from 'src/app/Models/Labc/LabcTipoRespuesta';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
-import { PacpPreguntaService } from 'src/app/shared/Services/Pacp/Pacp-Pregunta/pacp-pregunta.service';
+import { LabcPreguntaService } from 'src/app/shared/Services/Labc/Labc-Pregunta/labc-pregunta.service';
 import Swal from 'sweetalert2';
-import { PacpModalAgregarPreguntasComponent } from '../../pacp/pacp-configuracion-preguntas/pacp-modal-agregar-preguntas/pacp-modal-agregar-preguntas.component';
+import { LabcModalAgregarPreguntasComponent } from './labc-modal-agregar-preguntas/labc-modal-agregar-preguntas.component';
 
 @Component({
   selector: 'app-labc-configuracion-preguntas',
@@ -15,7 +15,7 @@ export class LabcConfiguracionPreguntasComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private _Pregunta: PacpPreguntaService,
+    private _Pregunta: LabcPreguntaService,
     public alertaService:AlertaService,
   ){
 
@@ -44,10 +44,10 @@ export class LabcConfiguracionPreguntasComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.ObtenerPreguntasPacp();
+    this.ObtenerPreguntasLabc();
   }
 
-  ObtenerPreguntasPacp() {
+  ObtenerPreguntasLabc() {
     this.listOfDisplayData=undefined;
     this._Pregunta.ObtenerPregunta().subscribe({
       next: (x: any) => {
@@ -60,7 +60,7 @@ export class LabcConfiguracionPreguntasComponent implements OnInit {
   agregarPregunta() {
     var isNew = true;
     var data=undefined;
-    const dialogRef = this.dialog.open(PacpModalAgregarPreguntasComponent, {
+    const dialogRef = this.dialog.open(LabcModalAgregarPreguntasComponent, {
       panelClass: 'dialog-abrir-pregunta',
       data: [isNew, data]
     });
@@ -70,7 +70,7 @@ export class LabcConfiguracionPreguntasComponent implements OnInit {
   editarPregunta(data: any) {
     var isNew = false
     console.log(data);
-    const dialogRef = this.dialog.open(PacpModalAgregarPreguntasComponent, {
+    const dialogRef = this.dialog.open(LabcModalAgregarPreguntasComponent, {
       panelClass: 'dialog-abrir-pregunta',
       data: [isNew, data],
     });
@@ -149,20 +149,20 @@ export class LabcConfiguracionPreguntasComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(IdPregunta)
-        this.EliminarPreguntaPacp(IdPregunta);
+        this.EliminarPreguntaLabc(IdPregunta);
       }
     });
   }
 
-  EliminarPreguntaPacp(IdPregunta:number){
-    this._Pregunta.EliminarPreguntaPacp(IdPregunta).subscribe({
+  EliminarPreguntaLabc(IdPregunta:number){
+    this._Pregunta.EliminarPreguntaLabc(IdPregunta).subscribe({
       next: (x: any) => {
       },
       error: (error:any) => {
         this.alertaService.notificationError(error.message);
       },
       complete: () => {
-        this.ObtenerPreguntasPacp();
+        this.ObtenerPreguntasLabc();
         this.alertaService.mensajeExitoso();
       },
     });
