@@ -57,15 +57,15 @@ export class PmpAdministrarUsuariosComponent implements OnInit {
   listOfDisplayData: any = [];
 
   ngOnInit(): void {
-    this.ObtenerReporteAdministrarUsuarioResumen();
+    this.ObtenerReporteAdministrarUsuarioResumenPmp();
   }
-  ObtenerReporteAdministrarUsuarioResumen(){
+  ObtenerReporteAdministrarUsuarioResumenPmp(){
     this.editarReporte=true;
     this.CodigoMatricula=''
     this.CentroCostos=''
     this.CodigoMatriculaBuscar=''
     this.CentroCostosBuscar=''
-    this._PmpAdministrarUsuarios.ObtenerReporteAdministrarUsuarioResumen().subscribe({
+    this._PmpAdministrarUsuarios.ObtenerReporteAdministrarUsuarioResumenPmp().subscribe({
       next: (x: any) => {
         console.log(x)
         this.ReporteResumen=x;
@@ -92,14 +92,14 @@ export class PmpAdministrarUsuariosComponent implements OnInit {
       },
     });
   }
-  ObtenerReporteAdministrarUsuarioPorCodigoMatricula(CodigoMatricula:string){
+  ObtenerReporteAdministrarUsuarioPorCodigoMatriculaPmp(CodigoMatricula:string){
     var datePipe = new DatePipe('en-US');
     this.editarReporte=false;
     this.CentroCostosBuscar=''
     this.CentroCostos=''
     this.CodigoMatriculaBuscar=CodigoMatricula
     this.ReporteCodigoMatricula=undefined
-    this._PmpAdministrarUsuarios.ObtenerReporteAdministrarUsuarioPorCodigoMatricula(this.CodigoMatriculaBuscar).subscribe({
+    this._PmpAdministrarUsuarios.ObtenerReporteAdministrarUsuarioPorCodigoMatriculaPmp(this.CodigoMatriculaBuscar).subscribe({
       next: (x: any) => {
         console.log(x)
         this.ReporteCodigoMatricula=x;
@@ -127,14 +127,14 @@ export class PmpAdministrarUsuariosComponent implements OnInit {
       },
     });
   }
-  ObtenerReporteAdministrarUsuarioPorCentroCostos(CentroCostos:string){
+  ObtenerReporteAdministrarUsuarioPorCentroCostosPmp(CentroCostos:string){
     var datePipe = new DatePipe('en-US');
     this.editarReporte=false;
     this.CodigoMatriculaBuscar=''
     this.CodigoMatricula=''
     this.CentroCostosBuscar=CentroCostos,
     this.ReporteCentroCostos=undefined
-    this._PmpAdministrarUsuarios.ObtenerReporteAdministrarUsuarioPorCentroCostos(this.CentroCostosBuscar).subscribe({
+    this._PmpAdministrarUsuarios.ObtenerReporteAdministrarUsuarioPorCentroCostosPmp(this.CentroCostosBuscar).subscribe({
       next: (x: any) => {
         console.log(x)
         this.ReporteCentroCostos=x;
@@ -266,7 +266,7 @@ export class PmpAdministrarUsuariosComponent implements OnInit {
     this.EnvioAcceso.descripcion = 'Acceso solicitado desde administrador con estado matriculado por centro de costos '+ data.centroCostos;
     this.EnvioAcceso.habilitar = data.habilitar;
     console.log(this.EnvioAcceso)
-    this._PmpAdministrarUsuarios.GuardarCambiosAccesoSimulador(this.EnvioAcceso).subscribe({
+    this._PmpAdministrarUsuarios.GuardarCambiosAccesoSimuladorPmp(this.EnvioAcceso).subscribe({
       next: (x: any) => {
         this.alertaService.mensajeExitoso();
       },

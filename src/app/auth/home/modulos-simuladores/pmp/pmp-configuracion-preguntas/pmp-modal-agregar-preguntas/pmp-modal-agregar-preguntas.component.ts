@@ -1,5 +1,5 @@
-import { Component, Inject, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AfterViewInit, Component, Inject, Input, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import {
   MatDialog,
   MatDialogRef,
@@ -7,9 +7,12 @@ import {
 } from '@angular/material/dialog';
 import { formulario } from 'src/app/Models/Formulario';
 import {
+  DetallePreguntaDTO,
+  PmpEnvioFilePreguntaActualizarDTO,
   PmpEnvioFilePreguntaDTO,
   PmpEnvioRespuesDTO,
 } from 'src/app/Models/Pmp/PreguntaDTO';
+import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { PmpCategoriasService } from 'src/app/shared/Services/Pmp/Pmp-Categorias/pmp-categorias.service';
 import { PmpPreguntaService } from 'src/app/shared/Services/Pmp/Pmp-Pregunta/pmp-pregunta.service';
 import { PmpPreguntaRespuestaService } from 'src/app/shared/Services/Pmp/Pmp-PreguntaRespuesta/pmp-preguntaRespuesta.service';
@@ -25,6 +28,7 @@ import { ModalAlternativasComponent } from './pmp-modal-alternativas/modal-alter
   encapsulation: ViewEncapsulation.None,
 })
 export class PmpModalAgregarPreguntasComponent implements OnInit {
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<PmpModalAgregarPreguntasComponent>,
@@ -33,21 +37,12 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     private _alternativa: PmpPreguntaRespuestaService,
     private _pregunta: PmpPreguntaService,
     private fb: FormBuilder,
-    public dialog: MatDialog
-  ) { this.userForm =fb.group({
-      Id:0,
-      IdCategoria: ['', [Validators.required]],
-      IdSubCategoria: ['', [Validators.required]],
-      IdTipoRespuesta: ['', [Validators.required]],
-      Enunciado: ['', [Validators.required]],
-      ImagenPregunta: [''],
-      Alternativas: [null],
-      TieneRetroalimentacionUnica: ['', [Validators.required]],
-      UrlVideo: [''],
-      Retroalimentacion: [''],
-      ImgPreguntaRetroalimentacion: ['']
-    });
+    public dialog: MatDialog,
+    public alertaService:AlertaService,
+  ) {
   }
+
+
   displayedColumns = [
     'id',
     'alternativa',
@@ -60,10 +55,6 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   loading: any;
   loader: any;
   public show: boolean = false;
-  public userForm: FormGroup = new FormGroup({});
-
-
-
   public json: PmpEnvioFilePreguntaDTO = {
     Id: 0,
     IdSimuladorPmpDominio: 0,
@@ -78,37 +69,39 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     ImgRetroalimentacionArchivo: new File([], ''),
     Respuestas: [],
   };
-
-  datasource: any;
-  listaCategorias: any;
-  listaSubCategorias: any;
-  listaTipoPregunta: any;
-  listaPregunta: any;
-  lisSubCategoriaPorCategoria: Array<any> = [];
-  categoria: any;
-  subcategoria: any;
-  tipoPregunta: any;
+  public jsonActualizar: PmpEnvioFilePreguntaActualizarDTO = {
+    Id: 0,
+    IdSimuladorPmpDominio: 0,
+    IdSimuladorPmpTarea: 0,
+    IdSimuladorTipoRespuesta: 0,
+    Enunciado: '',
+    UrlImagenPreguntaArchivo: new File([], ''),
+    IdPmpTipoPreguntaClasificacion: 0,
+    TieneRetroalimentacionUnica: true,
+    UrlRetroalimentacionVideo: '',
+    Retroalimentacion: '',
+    ImgRetroalimentacionArchivo: new File([], ''),
+  };
+  public TieneRetroalimentacionUnica = true;
+  public datasource: any;
+  public listaCategorias: any;
+  public listaSubCategorias: any;
+  public listaTipoPregunta: any;
+  public listaPregunta: any;
+  public lisSubCategoriaPorCategoria: Array<any> = [];
+  public categoria: any;
+  public subcategoria: any;
+  public tipoPregunta: any;
   public idDominio: 0;
-  listaAlternativas: any = [];
-  agregarv = this.data[0];
+  public listaAlternativas: any = [];
+  public isNew = this.data[0];
   public listaAlternativasAnterior: any[];
   public valorAgregado = true;
-
   envio: any = [
     {
       idDominio: 0,
     },
   ];
-  public IdCategoria = 0;
-  public IdSubCategoria = 0;
-  public IdTipoRespuesta = 0;
-  public Enunciado = '';
-  public ImagenPregunta: any;
-  public TieneRetroalimentacionUnica = true;
-  public UrlVideo = '';
-  public Retroalimentacion = '';
-  public ImgPreguntaRetroalimentacion: any;
-
   public selectedFilesPregunta?: FileList;
   public filePregunta: any;
   public filestatusPregunta = false;
@@ -121,101 +114,115 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   public fileErrorMsgPreguntaRetroalimentacion = '';
   public nombrefilePreguntaRetroalimentacion = 'Ningún archivo seleccionado';
 
-  public min=0
-  public max=0
+  public DetallePregunta:DetallePreguntaDTO={
+    id:0,
+    idAspenetUsers:'',
+    idSimuladorPmpDominio:0,
+    idSimuladorPmpTarea:0,
+    idSimuladorTipoRespuesta:0,
+    enunciado:'',
+    urlImagenPregunta:'',
+    tieneRetroalimentacionUnica:false,
+    tieneRetroalimentacion:false,
+    urlRetroalimentacionVideo:'',
+    imgRetroalimentacion:'',
+    retroalimentacion:'',
+    idPmpTipoPreguntaClasificacion:0
+  };
+  public formPregunta :FormGroup=new FormGroup({
+    Id:new FormControl(0,Validators.required),
+    IdCategoria:new FormControl(0,Validators.required),
+    IdSubCategoria:new FormControl(0,Validators.required),
+    IdTipoRespuesta:new FormControl(0,Validators.required),
+    Enunciado:new FormControl('',Validators.required),
+    ImagenPregunta:new FormControl(''),
+    Alternativas:new FormControl(null,),
+    TieneRetroalimentacionUnica:new FormControl(''),
+    UrlVideo:new FormControl('',),
+    Retroalimentacion :new FormControl(''),
+    ImgPreguntaRetroalimentacion:new FormControl('',)
+  })
 
   ngOnInit(): void {
     console.log(this.data);
-    console.log(this.agregarv);
+    console.log(this.isNew);
     this.ObtenerComboCategorias();
-    this.ObtenerAlternativa();
   }
-
-
+  ObtenerDetallePregunta(){
+    if (this.data[1] != undefined) {
+      console.log(this.data[1]);
+      this._pregunta.ObtenerPmpPregunta(this.data[1]).subscribe({
+        next: (x: any) => {
+          console.log(x)
+          this.DetallePregunta = x;
+          console.log(this.DetallePregunta)
+          this.formPregunta.patchValue({
+            Id:x.id,
+            IdCategoria:x.idSimuladorPmpDominio,
+            IdSubCategoria:x.idSimuladorPmpTarea,
+            IdTipoRespuesta:x.idSimuladorTipoRespuesta,
+            Enunciado:x.enunciado,
+            // ImagenPregunta: null,
+            // Alternativas:[]
+            TieneRetroalimentacionUnica:x.tieneRetroalimentacionUnica,
+            UrlVideo:x.urlRetroalimentacionVideo,
+            Retroalimentacion:x.retroalimentacion,
+            // ImgPreguntaRetroalimentacion:undefined
+          })
+          console.log(this.formPregunta)
+          this.FiltrarSubCategoritas();
+        },
+      });
+    }
+    console.log(this.listaCategorias)
+  }
   Cancelar() {
     this.dialogRef.close();
   }
-  eliminar(){
-
-  }
-  Enviar() {
-
-    // this.json.Id = this.formPregunta.value.Id;
-    // this.json.IdSimuladorPmpTarea = this.formPregunta.value.IdSubCategoria;
-    // this.json.IdSimuladorTipoRespuesta =
-    //   this.formPregunta.value.IdTipoRespuesta;
-    // this.json.Enunciado = this.formPregunta.value.Enunciado;
-    // this.json.TieneRetroalimentacion = true;
-    // this.json.UrlRetroalimentacionVideo = '';
-    // this.json.Retroalimentacion = '';
-    // // this.json.
-    // this.json.Respuestas = [];
-    // console.log(this.listaAlternativas);
-    // this.listaAlternativas.forEach((e: any) => {
-
-
-    //   var alternativas: PmpEnvioRespuesDTO = {
-
-    //     Id: e.Id,
-    //     IdSimuladorPmpPregunta: 0,
-    //     Alternativa: e.alternativa,
-    //     Valor: e.valor,
-    //     Correcto: e.correcto,
-    //     IdAspNetUsers: '',
-    //     Puntaje: e.puntaje,
-    //     UrlRetroalimentacionVideo: e.urlRetroalimentacionVideo,
-    //     Imagen: this.json.Imagen,
-    //     Retroalimentacion: e.retroalimentacion,
-    //     UrlImagen: '',
-    //   };
-
-    //   this.json.Respuestas.push(alternativas);
-    // });
-
-    // console.log(this.json);
-  }
-
-  // ObtenerCombo() {
-  //   this._Categorias.ObtenerCategorias().subscribe({
-  //     next: (x: any) => {
-  //       console.log(x)
-  //       this.listaCategorias = x;
-  //       console.log(x)
-  //     },
-  //   });
-  // }
 
   AgregarNuevaPregunta() {
+    //Imagen de Pregunta
     if(this.selectedFilesPregunta){
       const file: File | null = this.selectedFilesPregunta.item(0);
       if (file) {
         this.json.UrlImagenPreguntaArchivo = file;
       }
     }
-
-    if(this.selectedFilesPreguntaRetroalimentacion){
-      const file: File | null = this.selectedFilesPreguntaRetroalimentacion.item(0);
-      if (file) {
-        this.json.ImgRetroalimentacionArchivo = file;
+    this.json.Id = 0;
+    this.json.IdPmpTipoPreguntaClasificacion = 2;
+    this.json.IdSimuladorPmpDominio = this.formPregunta.get('IdCategoria')?.value;
+    this.json.IdSimuladorPmpTarea = this.formPregunta.get('IdSubCategoria')?.value;
+    this.json.IdSimuladorTipoRespuesta = this.formPregunta.get('IdTipoRespuesta')?.value;
+    this.json.Enunciado = this.formPregunta.get('Enunciado')?.value;
+    this.json.TieneRetroalimentacionUnica = this.TieneRetroalimentacionUnica;
+    if(this.TieneRetroalimentacionUnica==true){
+      this.json.UrlRetroalimentacionVideo = this.formPregunta.get('UrlVideo')?.value;
+      this.json.Retroalimentacion = this.formPregunta.get('Retroalimentacion')?.value;
+      //Imagen de Retroalimentación
+      if(this.selectedFilesPreguntaRetroalimentacion){
+        const file: File | null = this.selectedFilesPreguntaRetroalimentacion.item(0);
+        if (file) {
+          this.json.ImgRetroalimentacionArchivo = file;
+        }
       }
     }
-
-    this.json.Id = 0;
-    this.json.IdSimuladorPmpDominio = this.IdCategoria;
-    this.json.IdSimuladorPmpTarea = this.IdSubCategoria;
-    this.json.IdSimuladorTipoRespuesta = this.IdTipoRespuesta;
-    this.json.Enunciado = this.Enunciado;
-    this.json.TieneRetroalimentacionUnica = this.TieneRetroalimentacionUnica;
-    this.json.IdPmpTipoPreguntaClasificacion = 2;
-    this.json.UrlRetroalimentacionVideo = this.UrlVideo;
-    this.json.Retroalimentacion = this.Retroalimentacion;
-    console.log(this.listaAlternativas);
+    else{
+      this.json.UrlRetroalimentacionVideo = '';
+      this.json.Retroalimentacion = ''
+    }
+    console.log(this.listaAlternativas)
     this.listaAlternativas.forEach((e: any) => {
       if(e.Correcto == true){
         e.Valor = 1
       }
       else{
         e.Valor = 0
+      }
+      if(e.UrlRetroalimentacionVideo==undefined){
+        e.UrlRetroalimentacionVideo='';
+      }
+      if(e.Retroalimentacion==undefined){
+        e.Retroalimentacion='';
       }
       var alternativas: PmpEnvioRespuesDTO = {
         Id: 0,
@@ -227,26 +234,65 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
         UrlRetroalimentacionVideo: e.UrlRetroalimentacionVideo,
         Explicacion: e.Retroalimentacion,
         UrlImagenArchivo: e.UrlImagenArchivo
-
       };
-
       this.json.Respuestas.push(alternativas);
     });
-
+    console.log(this.json.Respuestas)
     console.log(this.json)
-    // this._pregunta.AgregarPregunta(this.json).subscribe({
-    //   next: (x:any) => {
-    //     console.log(x)
-    //   },
-    //   error:(e:any)=>{
-
-
-    //   },
-    //   complete: () => {
-
-    //   },
-    // })
-
+    this._pregunta.AgregarPregunta(this.json).subscribe({
+      next: (x:any) => {
+        console.log(x)
+      },
+      error: (error:any) => {
+      },
+      complete: () => {
+        this.dialogRef.close(true);
+        this.mensajeExitoso();
+        this.listaAlternativas=undefined;
+      },
+    })
+  }
+  ActualizarPregunta(){
+    if(this.selectedFilesPregunta){
+      const file: File | null = this.selectedFilesPregunta.item(0);
+      if (file) {
+        this.jsonActualizar.UrlImagenPreguntaArchivo = file;
+      }
+    }
+    this.jsonActualizar.Id = this.formPregunta.get('Id')?.value;
+    this.jsonActualizar.IdPmpTipoPreguntaClasificacion = 2;
+    this.jsonActualizar.IdSimuladorPmpDominio = this.formPregunta.get('IdCategoria')?.value;
+    this.jsonActualizar.IdSimuladorPmpTarea = this.formPregunta.get('IdSubCategoria')?.value;
+    this.jsonActualizar.IdSimuladorTipoRespuesta = this.formPregunta.get('IdTipoRespuesta')?.value;
+    this.jsonActualizar.Enunciado = this.formPregunta.get('Enunciado')?.value;
+    this.jsonActualizar.TieneRetroalimentacionUnica = this.TieneRetroalimentacionUnica;
+    if(this.TieneRetroalimentacionUnica==true){
+      this.jsonActualizar.UrlRetroalimentacionVideo = this.formPregunta.get('UrlVideo')?.value;
+      this.jsonActualizar.Retroalimentacion = this.formPregunta.get('Retroalimentacion')?.value;
+      //Imagen de Retroalimentación
+      if(this.selectedFilesPreguntaRetroalimentacion){
+        const file: File | null = this.selectedFilesPreguntaRetroalimentacion.item(0);
+        if (file) {
+          this.jsonActualizar.ImgRetroalimentacionArchivo = file;
+        }
+      }
+    }
+    else{
+      this.jsonActualizar.UrlRetroalimentacionVideo = '';
+      this.jsonActualizar.Retroalimentacion = ''
+    }
+    this._pregunta.ActualizarPregunta(this.jsonActualizar).subscribe({
+      next: (x:any) => {
+        console.log(x)
+      },
+      error: (error:any) => {
+      },
+      complete: () => {
+        this.dialogRef.close(true);
+        this.mensajeExitoso();
+        this.listaAlternativas=undefined;
+      },
+    })
   }
 
   seleccionar(e: any) {
@@ -257,12 +303,14 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     // this.ObtenerComboSubcategoria()
   }
 
-  abrirModalAlternativas(data: any,index: number) {
+  editarAlternativasTemporal(data: any,index: number) {
+    var isNewAlternativa=false
+    var TieneRetroalimentacionUnica=this.TieneRetroalimentacionUnica
     console.log(data);
     //Editar Pregunta
     const dialogRef = this.dialog.open(ModalAlternativasComponent, {
       panelClass: 'dialog-abrir-alternativa',
-      data: [data],
+      data: [data,isNewAlternativa,TieneRetroalimentacionUnica],
     });
     dialogRef.afterClosed().subscribe((result: any) => {
       console.log(result);
@@ -272,25 +320,18 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     });
   }
 
-  // ObtenerComboSubcategoria() {
-  //   console.log(this.envio[0])
-  //   this._Tareas.ObtenerSubcategoriaCombo(this.envio).subscribe({
-  //     next: (x: any) => {
-  //       this.listaSubCategorias = x;
-  //       console.log(x)
-  //     },
-  //   });
-  // }ç
-
-  editarAlternativa(data: any, index: number) {
+  editarAlternativas(data: any, index: number) {
+    var isNewAlternativa=false
+    var TieneRetroalimentacionUnica=this.TieneRetroalimentacionUnica
     console.log(data);
     const dialogRef = this.dialog.open(ModalAlternativasComponent, {
       panelClass: 'dialog-abrir-alternativa',
-      data: [data],
+      data: [data,isNewAlternativa,TieneRetroalimentacionUnica],
     });
-    dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(result);
-      Object.assign(this.listaAlternativas[index], result);
+    dialogRef.afterClosed().subscribe((Recargar: boolean) => {
+      if(Recargar==true){
+        this.ObtenerAlternativa();
+      }
     });
   }
 
@@ -300,16 +341,24 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
         this.listaCategorias = x.categorias;
         this.listaSubCategorias = x.subCategorias;
         this.listaTipoPregunta = x.tipoRespuesta;
-        this.FiltrarSubs(null);
         console.log(x);
+      },
+      error: (error:any) => {
+      },
+      complete: () => {
+        if(this.data[1]!=0){
+          this.ObtenerDetallePregunta();
+          this.ObtenerAlternativa();
+        }
       },
     });
   }
 
+
   ObtenerAlternativa() {
     if (this.data[1] != undefined) {
-      console.log(this.data[1].id);
-      this._alternativa.ObtenerAlternativa(this.data[1].id).subscribe({
+      console.log(this.data[1]);
+      this._alternativa.ObtenerAlternativa(this.data[1]).subscribe({
         next: (x: any) => {
           this.listaAlternativas = x;
           console.log(x);
@@ -318,22 +367,29 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     }
   }
 
-  FiltrarSubs(e: any) {
+  FiltrarSubCategoritas() {
     this.lisSubCategoriaPorCategoria = [];
-    var idcat = this.IdCategoria
+    var idcat = this.formPregunta.get('IdCategoria')?.value
     console.log(idcat);
-    this.listaSubCategorias.forEach((ss: any) => {
-      if (ss.idSimuladorPmpDominio == idcat) {
-        this.lisSubCategoriaPorCategoria.push(ss);
-      }
-    });
+    console.log(this.listaCategorias)
+    console.log(this.listaSubCategorias)
+    // if(this.listaCategorias!=undefined){
+      this.listaSubCategorias.forEach((ss: any) => {
+        if (ss.idSimuladorPmpDominio == idcat) {
+          this.lisSubCategoriaPorCategoria.push(ss);
+        }
+      });
+    // }
     console.log(this.lisSubCategoriaPorCategoria);
   }
 
-  agregar() {
+  agregarNuevaAlternativa() {
     //Editar Pregunta
+    var isNewAlternativa=true
+    var TieneRetroalimentacionUnica=this.TieneRetroalimentacionUnica
     const dialogRef = this.dialog.open(ModalAlternativasComponent, {
       panelClass: 'dialog-abrir-alternativa',
+      data:[undefined,isNewAlternativa,TieneRetroalimentacionUnica]
     });
 
     this.valorAgregado = false;
@@ -384,6 +440,80 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
       this.selectedFilesPreguntaRetroalimentacion = event.target.files;
       console.log(this.selectedFilesPreguntaRetroalimentacion)
     }
+  }
+  mostrarMensajeEliminarPreguntaRespuestaTemporal(index: number) {
+    console.log(this.listaAlternativas)
+    this.valorAgregado = false;
+    Swal.fire({
+      title: 'Esta seguro de eliminar el registro?',
+      text: 'No podrás revertir esto!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#4C5FC0',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, Eliminalo!',
+      allowOutsideClick: false
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(index)
+        this.listaAlternativas.splice(index,1)
+        console.log(this.listaAlternativas)
+      }
+      this.valorAgregado = true;
+    });
+  }
+  mostrarMensajeEliminarPreguntaRespuesta(IdRespuesta: number) {
+    Swal.fire({
+      title: 'Está seguro de eliminar el registro?',
+      text: 'No podrás revertir esto!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#4C5FC0',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Eliminalo!',
+      allowOutsideClick: false
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(IdRespuesta)
+        this.EliminarPreguntaRespuestaPmp(IdRespuesta);
+      }
+    });
+  }
+  mensajeExitoso(mensaje?: string) {
+    const Toast = Swal.mixin({
+      toast: true,
+      target: '#content-drawer-component',
+      customClass: {
+        container: 'swal2-container-integra',
+      },
+      position: 'top-right',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: false,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+      },
+    });
+    return Toast.fire({
+      icon: 'success',
+      title: mensaje != null ? mensaje : 'Guardado con exito',
+    });
+  }
+  EliminarPreguntaRespuestaPmp(IdRespuesta:number){
+    this._alternativa.EliminarPreguntaRespuestaPmp(IdRespuesta).subscribe({
+      next: (x: any) => {
+      },
+      error: (error:any) => {
+        this.alertaService.notificationError(error.message);
+      },
+      complete: () => {
+        this.ObtenerAlternativa();
+        this.valorAgregado = false;
+        this.alertaService.mensajeExitoso();
+        this.valorAgregado = true;
+      },
+    });
   }
 
 }

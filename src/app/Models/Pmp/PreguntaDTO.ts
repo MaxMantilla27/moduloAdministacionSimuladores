@@ -27,22 +27,22 @@ export interface PmpEnvioFilePreguntaDTO{
    IdPmpTipoPreguntaClasificacion: number;
    Enunciado: string;
    UrlImagenPreguntaArchivo: File;
-   TieneRetroalimentacionUnica: boolean; 
+   TieneRetroalimentacionUnica: boolean;
    UrlRetroalimentacionVideo: string;
    Retroalimentacion: string;
    ImgRetroalimentacionArchivo: File;
-   Respuestas : Array<PmpEnvioRespuesDTO> 
+   Respuestas : Array<PmpEnvioRespuesDTO>
 }
 export interface PmpEnvioRespuesDTO{
-   Id: number; 
-   IdSimuladorPmpPregunta: number; 
-   Respuesta: string; 
-   Valor: number; 
-   Correcto: boolean; 
-   Puntaje: number; 
-   UrlRetroalimentacionVideo: string; 
-   Explicacion: string; 
-   UrlImagenArchivo: File;  
+   Id: number;
+   IdSimuladorPmpPregunta: number;
+   Respuesta: string;
+   Valor: number;
+   Correcto: boolean;
+   Puntaje: number;
+   UrlRetroalimentacionVideo: string;
+   Explicacion: string;
+   UrlImagenArchivo: File;
 }
 
 export interface Alternativa{
@@ -53,4 +53,32 @@ export interface Alternativa{
   UrlVideo: string,
   Texto:string,
   Imagen: string
+}
+export interface DetallePreguntaDTO{
+  id:number,
+  idAspenetUsers:string,
+  idSimuladorPmpDominio:number,
+  idSimuladorPmpTarea:number,
+  idSimuladorTipoRespuesta:number,
+  enunciado:string,
+  urlImagenPregunta:string,
+  tieneRetroalimentacionUnica:boolean,
+  tieneRetroalimentacion:boolean,
+  urlRetroalimentacionVideo:string,
+  imgRetroalimentacion:string,
+  retroalimentacion:string,
+  idPmpTipoPreguntaClasificacion:number
+}
+export interface PmpEnvioFilePreguntaActualizarDTO{
+  Id: number;
+  IdSimuladorPmpDominio: number;
+  IdSimuladorPmpTarea: number;
+  IdSimuladorTipoRespuesta: number;
+  IdPmpTipoPreguntaClasificacion: number;
+  Enunciado: string;
+  UrlImagenPreguntaArchivo: File;
+  TieneRetroalimentacionUnica: boolean;
+  UrlRetroalimentacionVideo: string;
+  Retroalimentacion: string;
+  ImgRetroalimentacionArchivo: File;
 }

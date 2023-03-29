@@ -1,0 +1,93 @@
+<div class="row " style="margin-left:0px">
+    <div class="col-12 col-md-12 col-lg-12" style="position: relative;padding: 0px;">
+      <div style="margin-top: 10px;display: flex;margin-bottom: -40px;">
+        <div style="cursor:pointer" [routerLink]="'/'">
+          <i style="color:#FFA218;font-size:3rem" class="material-icons">arrow_back</i>
+        </div>
+        <div *ngIf="Esquema!=undefined" style="margin-top:10px;">
+          <img style="width:13rem" src="https://repositorioweb.blob.core.windows.net/repositorioweb/simulador/{{Esquema}}/imagenes/{{LogoSimulador}}" />
+        </div>
+      </div>
+      <mat-tab-group class="tabVertical" [(selectedIndex)]="tabIndex" >
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Configuración de categorías</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-devops-configuracion-categorias>
+            </app-devops-configuracion-categorias>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Configuración de tipo de preguntas</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-devops-configuracion-tipo-preguntas>
+            </app-devops-configuracion-tipo-preguntas>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Configuración de preguntas</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-devops-configuracion-preguntas>
+            </app-devops-configuracion-preguntas>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Configuración de interfaz</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-devops-configuracion-interfaz>
+            </app-devops-configuracion-interfaz>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Administrador de usuarios</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-devops-administrar-usuarios>
+            </app-devops-administrar-usuarios>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Reporte General</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-devops-reporte-general>
+            </app-devops-reporte-general>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Reporte de Usuarios</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-devops-reporte-usuarios>
+            </app-devops-reporte-usuarios>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+  
+    </div>
+  </div>
+  

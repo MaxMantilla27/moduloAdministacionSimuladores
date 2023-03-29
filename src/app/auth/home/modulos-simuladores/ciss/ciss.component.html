@@ -1,0 +1,93 @@
+<div class="row " style="margin-left:0px">
+    <div class="col-12 col-md-12 col-lg-12" style="position: relative;padding: 0px;">
+      <div style="margin-top: 10px;display: flex;margin-bottom: -40px;">
+        <div style="cursor:pointer" [routerLink]="'/'">
+          <i style="color:#FFA218;font-size:3rem" class="material-icons">arrow_back</i>
+        </div>
+        <div *ngIf="Esquema!=undefined" style="margin-top:10px;">
+          <img style="width:13rem" src="https://repositorioweb.blob.core.windows.net/repositorioweb/simulador/{{Esquema}}/imagenes/{{LogoSimulador}}" />
+        </div>
+      </div>
+      <mat-tab-group class="tabVertical" [(selectedIndex)]="tabIndex" >
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Configuración de categorías</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-ciss-configuracion-categorias>
+            </app-ciss-configuracion-categorias>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Configuración de tipo de preguntas</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-ciss-configuracion-tipo-preguntas>
+            </app-ciss-configuracion-tipo-preguntas>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Configuración de preguntas</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-ciss-configuracion-preguntas>
+            </app-ciss-configuracion-preguntas>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Configuración de interfaz</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-ciss-configuracion-interfaz>
+            </app-ciss-configuracion-interfaz>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Administrador de usuarios</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-ciss-administrar-usuarios>
+            </app-ciss-administrar-usuarios>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Reporte General</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-ciss-reporte-general>
+            </app-ciss-reporte-general>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Reporte de Usuarios</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-ciss-reporte-usuarios>
+            </app-ciss-reporte-usuarios>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+  
+    </div>
+  </div>
+  
