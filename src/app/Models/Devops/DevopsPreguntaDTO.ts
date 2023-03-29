@@ -53,3 +53,34 @@ export interface DevopsPreguntaDTO {
     Imagen: string
   }
   
+
+  export interface DevopsEnvioFilePreguntaActualizarDTO{
+    Id: number;
+    IdSimuladorDevopsDominio: number;
+    IdSimuladorDevopsTarea: number;
+    IdSimuladorTipoRespuesta: number;
+    IdDevopsTipoPreguntaClasificacion: number;
+    Enunciado: string;
+    UrlImagenPreguntaArchivo: File;
+    TieneRetroalimentacionUnica: boolean;
+    UrlRetroalimentacionVideo: string;
+    Retroalimentacion: string;
+    ImgRetroalimentacionArchivo: File;
+  }
+  
+
+  export interface DetallePreguntaDTO{
+    id:number,
+    idAspenetUsers:string,
+    idSimuladorDevopsDominio:number,
+    idSimuladorDevopsTarea:number,
+    idSimuladorTipoRespuesta:number,
+    enunciado:string,
+    urlImagenPregunta:string,
+    tieneRetroalimentacionUnica:boolean,
+    tieneRetroalimentacion:boolean,
+    urlRetroalimentacionVideo:string,
+    imgRetroalimentacion:string,
+    retroalimentacion:string,
+    idDevopsTipoPreguntaClasificacion:number
+  }

@@ -52,4 +52,34 @@ export interface PacpPreguntaDTO {
     Texto:string,
     Imagen: string
   }
+
+
+  export interface PacpEnvioFilePreguntaActualizarDTO{
+    Id: number;
+    IdSimuladorPacpDominio: number;
+    IdSimuladorPacpTarea: number;
+    IdSimuladorTipoRespuesta: number;
+    IdPacpTipoPreguntaClasificacion: number;
+    Enunciado: string;
+    UrlImagenPreguntaArchivo: File;
+    TieneRetroalimentacionUnica: boolean;
+    UrlRetroalimentacionVideo: string;
+    Retroalimentacion: string;
+    ImgRetroalimentacionArchivo: File;
+  }
   
+  export interface DetallePreguntaDTO{
+    id:number,
+    idAspenetUsers:string,
+    idSimuladorPacpDominio:number,
+    idSimuladorPacpTarea:number,
+    idSimuladorTipoRespuesta:number,
+    enunciado:string,
+    urlImagenPregunta:string,
+    tieneRetroalimentacionUnica:boolean,
+    tieneRetroalimentacion:boolean,
+    urlRetroalimentacionVideo:string,
+    imgRetroalimentacion:string,
+    retroalimentacion:string,
+    idPacpTipoPreguntaClasificacion:number
+  }

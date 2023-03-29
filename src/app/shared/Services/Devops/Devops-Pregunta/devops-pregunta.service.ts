@@ -1,7 +1,7 @@
 import { HttpClient,HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { DevopsEnvioFilePreguntaDTO, DevopsPreguntaDTO } from 'src/app/Models/Devops/DevopsPreguntaDTO';
+import { DevopsEnvioFilePreguntaActualizarDTO, DevopsEnvioFilePreguntaDTO, DevopsPreguntaDTO } from 'src/app/Models/Devops/DevopsPreguntaDTO';
 import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
@@ -52,5 +52,24 @@ export class DevopsPreguntaService {
   }
   public EliminarPreguntaDevops(IdPregunta: number):Observable<any>{
     return this.http.post<any>(this.urlBase+'/EliminarPreguntaDevops?IdPregunta='+IdPregunta,'');
+  }
+
+
+  public ActualizarPregunta(listaPregunta: DevopsEnvioFilePreguntaActualizarDTO):Observable<any>{
+    const formData: FormData = new FormData();
+    console.log(listaPregunta);
+    formData.append('Id', listaPregunta.Id.toString());
+    formData.append('IdSimuladorDevopsDominio', listaPregunta.IdSimuladorDevopsDominio.toString());
+    formData.append('IdSimuladorDevopsTarea', listaPregunta.IdSimuladorDevopsTarea.toString());
+    formData.append('IdSimuladorTipoRespuesta', listaPregunta.IdSimuladorTipoRespuesta.toString());
+    formData.append('Enunciado', listaPregunta.Enunciado.toString());
+    formData.append('UrlImagenPreguntaArchivo', listaPregunta.UrlImagenPreguntaArchivo);
+    formData.append('IdDevopsTipoPreguntaClasificacion', listaPregunta.IdDevopsTipoPreguntaClasificacion.toString());
+    formData.append('TieneRetroalimentacionUnica', listaPregunta.TieneRetroalimentacionUnica.toString());
+    formData.append('UrlRetroalimentacionVideo', listaPregunta.UrlRetroalimentacionVideo.toString() );
+    formData.append('Retroalimentacion', listaPregunta.Retroalimentacion.toString() );
+    formData.append('ImgRetroalimentacionArchivo', listaPregunta.ImgRetroalimentacionArchivo);
+   console.log(formData)
+   return this.http.post<any>(this.urlBase+'/ActualizarDevopsPregunta',formData);
   }
 }

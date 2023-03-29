@@ -64,7 +64,9 @@ export class DevopsConfiguracionPreguntasComponent implements OnInit {
       panelClass: 'dialog-abrir-pregunta',
       data: [isNew, data]
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerPreguntasDevops()
+    });
   }
 
   editarPregunta(data: any) {
@@ -74,7 +76,9 @@ export class DevopsConfiguracionPreguntasComponent implements OnInit {
       panelClass: 'dialog-abrir-pregunta',
       data: [isNew, data],
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerPreguntasDevops()
+    });
   }
 
   reset(): void {

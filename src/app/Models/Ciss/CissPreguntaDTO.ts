@@ -18,19 +18,19 @@ export interface CissPreguntaDTO {
   }
   
   export interface CissEnvioFilePreguntaDTO{
-     Id: number;
-     IdSimuladorCissDominio: number;
-     IdSimuladorCissTarea: number;
-     IdSimuladorTipoRespuesta: number;
-     IdCissTipoPreguntaClasificacion: number;
-     Enunciado: string;
-     UrlImagenPreguntaArchivo: File;
-     TieneRetroalimentacionUnica: boolean; 
-     UrlRetroalimentacionVideo: string;
-     Retroalimentacion: string;
-     ImgRetroalimentacionArchivo: File;
-     Respuestas : Array<CissEnvioRespuesDTO> 
-  }
+    Id: number;
+    IdSimuladorCissDominio: number;
+    IdSimuladorCissTarea: number;
+    IdSimuladorTipoRespuesta: number;
+    IdCissTipoPreguntaClasificacion: number;
+    Enunciado: string;
+    UrlImagenPreguntaArchivo: File;
+    TieneRetroalimentacionUnica: boolean;
+    UrlRetroalimentacionVideo: string;
+    Retroalimentacion: string;
+    ImgRetroalimentacionArchivo: File;
+    Respuestas : Array<CissEnvioRespuesDTO>
+ }
   export interface CissEnvioRespuesDTO{
      Id: number; 
      IdSimuladorCissPregunta: number; 
@@ -51,5 +51,36 @@ export interface CissPreguntaDTO {
     UrlVideo: string,
     Texto:string,
     Imagen: string
+  }
+
+  export interface DetallePreguntaDTO{
+    id:number,
+    idAspenetUsers:string,
+    idSimuladorCissDominio:number,
+    idSimuladorCissTarea:number,
+    idSimuladorTipoRespuesta:number,
+    enunciado:string,
+    urlImagenPregunta:string,
+    tieneRetroalimentacionUnica:boolean,
+    tieneRetroalimentacion:boolean,
+    urlRetroalimentacionVideo:string,
+    imgRetroalimentacion:string,
+    retroalimentacion:string,
+    idCissTipoPreguntaClasificacion:number
+  }
+
+
+  export interface CissEnvioFilePreguntaActualizarDTO{
+    Id: number;
+    IdSimuladorCissDominio: number;
+    IdSimuladorCissTarea: number;
+    IdSimuladorTipoRespuesta: number;
+    IdCissTipoPreguntaClasificacion: number;
+    Enunciado: string;
+    UrlImagenPreguntaArchivo: File;
+    TieneRetroalimentacionUnica: boolean;
+    UrlRetroalimentacionVideo: string;
+    Retroalimentacion: string;
+    ImgRetroalimentacionArchivo: File;
   }
   

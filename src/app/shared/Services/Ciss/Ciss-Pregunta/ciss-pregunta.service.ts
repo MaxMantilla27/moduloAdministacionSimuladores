@@ -1,7 +1,7 @@
 import { HttpClient,HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { CissEnvioFilePreguntaDTO, CissPreguntaDTO } from 'src/app/Models/Ciss/CissPreguntaDTO';
+import { CissEnvioFilePreguntaActualizarDTO, CissEnvioFilePreguntaDTO, CissPreguntaDTO } from 'src/app/Models/Ciss/CissPreguntaDTO';
 import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
@@ -52,5 +52,24 @@ export class CissPreguntaService {
   }
   public EliminarPreguntaCiss(IdPregunta: number):Observable<any>{
     return this.http.post<any>(this.urlBase+'/EliminarPreguntaCiss?IdPregunta='+IdPregunta,'');
+  }
+
+
+  public ActualizarPregunta(listaPregunta: CissEnvioFilePreguntaActualizarDTO):Observable<any>{
+    const formData: FormData = new FormData();
+    console.log(listaPregunta);
+    formData.append('Id', listaPregunta.Id.toString());
+    formData.append('IdSimuladorCissDominio', listaPregunta.IdSimuladorCissDominio.toString());
+    formData.append('IdSimuladorCissTarea', listaPregunta.IdSimuladorCissTarea.toString());
+    formData.append('IdSimuladorTipoRespuesta', listaPregunta.IdSimuladorTipoRespuesta.toString());
+    formData.append('Enunciado', listaPregunta.Enunciado.toString());
+    formData.append('UrlImagenPreguntaArchivo', listaPregunta.UrlImagenPreguntaArchivo);
+    formData.append('IdCissTipoPreguntaClasificacion', listaPregunta.IdCissTipoPreguntaClasificacion.toString());
+    formData.append('TieneRetroalimentacionUnica', listaPregunta.TieneRetroalimentacionUnica.toString());
+    formData.append('UrlRetroalimentacionVideo', listaPregunta.UrlRetroalimentacionVideo.toString() );
+    formData.append('Retroalimentacion', listaPregunta.Retroalimentacion.toString() );
+    formData.append('ImgRetroalimentacionArchivo', listaPregunta.ImgRetroalimentacionArchivo);
+   console.log(formData)
+   return this.http.post<any>(this.urlBase+'/ActualizarCissPregunta',formData);
   }
 }

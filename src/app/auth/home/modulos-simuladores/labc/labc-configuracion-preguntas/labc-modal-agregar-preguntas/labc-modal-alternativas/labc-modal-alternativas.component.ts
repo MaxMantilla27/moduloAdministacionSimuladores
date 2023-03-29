@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { LabcPreguntaRespuestaEnvioDTO } from 'src/app/Models/Labc/LabcPreguntaRespuestaDTO';
 import { LabcPreguntaRespuestaService } from 'src/app/shared/Services/Labc/Labc-PreguntaRespuesta/labc-pregunta-respuesta.service';
 
 @Component({
@@ -16,21 +17,21 @@ export class LabcModalAlternativasComponent implements OnInit {
     private _alternativa: LabcPreguntaRespuestaService,
     private formBuilder: FormBuilder,
 
-
   ) { }
 
   loading:any
   loader:any;
   listaAlternativasEnvio:any = []
+  public TieneRetroalimentacionUnica=this.data[2];
   //data:any;
-  formAlternativa: FormGroup = this.formBuilder.group({
-    Id : 0,
-    Respuesta: '',
-    Correcto : false,
-    Puntaje: 0,
-    UrlRetroalimentacionVideo: '',
-    Retroalimentacion: '',
-    UrlImagenArchivo: new File([], ''),
+  public formAlternativa: FormGroup = this.formBuilder.group({
+    Id :new FormControl(0),
+    Respuesta:new FormControl('',Validators.required),
+    Correcto:new FormControl(false),
+    Puntaje:new FormControl(0,Validators.required),
+    UrlRetroalimentacionVideo:new FormControl({value:'',disabled:this.TieneRetroalimentacionUnica}),
+    Retroalimentacion:new FormControl({value:'',disabled:this.TieneRetroalimentacionUnica}),
+    UrlImagenArchivo: new File([], '')
   });
 
   public selectedFilesRespuesta?: FileList;
@@ -38,58 +39,47 @@ export class LabcModalAlternativasComponent implements OnInit {
   public filestatusRespuesta = false;
   public fileErrorMsgRespuesta = '';
   public nombrefileRespuesta = 'Ningún archivo seleccionado';
+  public isDisabled=true
 
+  public ActualizarAlternativaDTO: LabcPreguntaRespuestaEnvioDTO={
+    Id:0,
+    Respuesta:'',
+    Correcto:false,
+    Puntaje:0,
+    UrlVideo:'',
+    Explicacion:'',
+    ImagenArchivo: new File([], '')
+  }
 
   ngOnInit(): void {
+    this.formAlternativa.reset();
     console.log(this.data)
-    if(this.data!=undefined)
+    console.log(this.data[2])
+    this.TieneRetroalimentacionUnica=this.data[2]
+    console.log(this.data)
+    if(this.data[0]!=undefined)
     {
-      this.formAlternativa.get('Id')?.setValue(this.data[0].idAlternativa)
-      this.formAlternativa.get('Respuesta')?.setValue(this.data[0].respuesta)
-      this.formAlternativa.get('Correcto')?.setValue(this.data[0].correcto)
-      this.formAlternativa.get('Puntaje')?.setValue(this.data[0].puntaje)
-      this.formAlternativa.get('UrlRetroalimentacionVideo')?.setValue(this.data[0].urlRetroalimentacionVideo)
-      this.formAlternativa.get('Retroalimentacion')?.setValue(this.data[0].retroalimentacion)
+      this.formAlternativa.patchValue({
+        Id:this.data[0].idAlternativa,
+        Respuesta:this.data[0].respuesta,
+        Correcto:this.data[0].correcto,
+        Puntaje:this.data[0].puntaje,
+        UrlRetroalimentacionVideo:this.data[0].urlRetroalimentacionVideo,
+        Retroalimentacion:this.data[0].retroalimentacion
+      })
 
       console.log(this.formAlternativa)
     }
-    else{
-      this.formAlternativa.reset();
-    }
   }
 
-  obtenerErrorCampoNombre(val: string) {
-    var campo = this.formAlternativa.get(val);
-    if (campo!.hasError('required')) {
-      if(val=='NombreCategoria'){
-        return 'Ingresa el nombre';
-      }
-      if(val=='Leyenda'){
-        return 'Ingresa una leyenda';
-      }
-      if(val=='contraNuevaRepeat'){
-        return 'Confirma tu nueva contraseña';
-      }
-    }
-
-    return '';
-  }
-
-  Cancelar(){
-    this.dialogRef.close();
-  }
-
-  Enviar(){
+  EnviarRegistrosAlternativas(){
     if(this.selectedFilesRespuesta){
       const file: File | null = this.selectedFilesRespuesta.item(0);
       if (file) {
         this.formAlternativa.get('UrlImagenArchivo')?.setValue(file)
       }
     }
-    console.log(this.formAlternativa.value)
-
     this.listaAlternativasEnvio=this.formAlternativa.value
-
     console.log(this.listaAlternativasEnvio)
     this.dialogRef.close(this.listaAlternativasEnvio);
   }
@@ -109,12 +99,37 @@ export class LabcModalAlternativasComponent implements OnInit {
       }
       this.selectedFilesRespuesta = event.target.files;
       console.log(this.selectedFilesRespuesta)
-      // console.log ('Name: ' + name + "\n" +
-      //   'Type: ' + extencion + "\n" +
-      //   'Last-Modified-Date: ' + modifiedDate + "\n" +
-      //   'Size: ' + Math.round((size/1024)/1024) + " MB");
     }
   }
-
+  Cancelar(){
+    this.dialogRef.close();
+  }
+  ActualizarAlternativa(){
+    if(this.selectedFilesRespuesta){
+      const file: File | null = this.selectedFilesRespuesta.item(0);
+      if (file) {
+        this.formAlternativa.get('UrlImagenArchivo')?.setValue(file)
+        this.ActualizarAlternativaDTO.ImagenArchivo=this.formAlternativa.get('UrlImagenArchivo')?.value
+      }
+    }
+    this.listaAlternativasEnvio=this.formAlternativa.value
+    this.ActualizarAlternativaDTO.Id=this.formAlternativa.get('Id')?.value
+    this.ActualizarAlternativaDTO.Respuesta=this.formAlternativa.get('Respuesta')?.value
+    this.ActualizarAlternativaDTO.Correcto=this.formAlternativa.get('Correcto')?.value
+    this.ActualizarAlternativaDTO.Puntaje=this.formAlternativa.get('Puntaje')?.value
+    this.ActualizarAlternativaDTO.UrlVideo=this.formAlternativa.get('UrlRetroalimentacionVideo')?.value
+    this.ActualizarAlternativaDTO.Explicacion=this.formAlternativa.get('Retroalimentacion')?.value
+    console.log(this.ActualizarAlternativa)
+    this._alternativa.ActualizarLabcPreguntaRespuesta(this.ActualizarAlternativaDTO).subscribe({
+      next: (x:any) => {
+        console.log(x)
+      },
+      error: (error:any) => {
+      },
+      complete: () => {
+        this.dialogRef.close(true);
+      },
+    })
+  }
 
 }
