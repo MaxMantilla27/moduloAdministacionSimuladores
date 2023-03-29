@@ -94,3 +94,44 @@
     </div>
   </div>
 </form>
+
+
+
+CREATE VIEW pw.V_PW_ObtenerReporteGeneralSimuladorPbi
+AS
+
+SELECT
+		MC.Id AS IdMatriculaCabecera,
+		MC.CodigoMatricula AS CodigoMatricula,
+		AL.Id AS IdAlumno,
+		CONCAT(AL.Nombre1,' ',AL.Nombre2,' ',AL.ApellidoPaterno,' ',AL.ApellidoMaterno) AS Alumno,
+		CC.Nombre AS CentroCostos,
+		(CASE
+		WHEN MC.IdPaquete=1 THEN 
+			'Versión Básica'
+		WHEN MC.IdPaquete=2 THEN 
+			'Versión Profesional'
+		WHEN MC.IdPaquete=3 THEN 
+			'Versión Gerencial'
+		ELSE 
+			'Sin Versión'
+	END) AS TipoMatricula,
+	ASWM2.FechaCreacion AS FechaMatriculaSimulador,
+	(SELECT MAX(Desempenio) FROM [40.76.216.5].[integraDB_Simulador].Pbi.t_Pbi_examen AS PbiE WHERE IdAspNetUsers=ASP.Id AND PbiE.EstadoExamen=3 and IdSimuladorPbiModo=3) AS PuntajeMaximo,
+	(SELECT ROUND(CAST (AVG(Desempenio) AS DECIMAL (6,2)),2) FROM [40.76.216.5].[integraDB_Simulador].Pbi.t_Pbi_examen AS PbiE WHERE IdAspNetUsers=ASP.Id AND PbiE.EstadoExamen=3 and IdSimuladorPbiModo=3) AS PuntajePromedio,
+	(SELECT COUNT(*)
+ FROM [40.76.216.5].[integraDB_Simulador].Pbi.t_Pbi_examen AS PbiE WHERE IdAspNetUsers=ASP.Id AND PbiE.EstadoExamen=3 and IdSimuladorPbiModo=3) AS SimulacionesFinalizadas,
+	(SELECT TOP 1 FechaCreacion FROM [40.76.216.5].[integraDB_Simulador].Pbi.t_Pbi_examen AS PbiE WHERE IdAspNetUsers=ASP.Id AND PbiE.EstadoExamen=3 and IdSimuladorPbiModo=3 ORDER BY FechaCreacion DESC) AS FechaUltimaSimulacion,
+	'Intermedio' AS Nivel,
+	ISNULL(CAS.IdEstadoCertificacionSimulador,1) AS IdCertificacion
+	FROM [40.76.216.5].[integraDB_PortalWeb].dbo.AspNetUsers AS ASP
+	INNER JOIN fin.T_MatriculaCabecera AS MC ON MC.IdAlumno=ASP.IdAlumno
+	INNER JOIN pla.T_Pespecifico AS PE ON MC.IdPespecifico= PE.Id
+	INNER JOIN pla.T_CentroCosto AS CC ON CC.Id=PE.IdCentroCosto
+	INNER JOIN pla.T_Pgeneral AS PG on PG.Id = PE.IdProgramaGeneral
+	INNER JOIN mkt.T_Alumno AS AL ON AL.Id=MC.IdAlumno
+	CROSS APPLY (SELECT TOP 1 * from ope.T_AccesosSimuladoreWebMatricula AS ASWM where ASWM.IdMatriculaCabecera=MC.Id AND ASWM.Estado=1 AND IdTipoSimuladorWeb=1) AS ASWM2
+	LEFT JOIN pw.T_PW_CertificacionAlumnoSimulador AS CAS ON CAS.IdMatriculaCabecera=MC.Id AND CAS.Estado=1
+	WHERE ASP.Id!='dffb3b89-2348-4054-bb28-8a306d47ead5'
+
+	GO
