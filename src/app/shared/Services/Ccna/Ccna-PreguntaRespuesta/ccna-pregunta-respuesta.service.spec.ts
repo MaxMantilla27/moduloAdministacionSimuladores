@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CcnaPreguntaRespuestaService } from './ccna-preguntaRespuesta.service';
+import { CcnaPreguntaRespuestaService } from './ccna-pregunta-respuesta.service';
 
 describe('ccnaPreguntaRespuestaService', () => {
   let service: CcnaPreguntaRespuestaService;

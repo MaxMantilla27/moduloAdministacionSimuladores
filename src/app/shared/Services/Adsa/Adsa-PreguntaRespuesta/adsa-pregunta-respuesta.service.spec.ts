@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AdsaPreguntaRespuestaService } from './adsa-preguntaRespuesta.service';
+import { AdsaPreguntaRespuestaService } from './adsa-pregunta-respuesta.service';
 
 describe('AdsaPreguntaRespuestaService', () => {
   let service: AdsaPreguntaRespuestaService;

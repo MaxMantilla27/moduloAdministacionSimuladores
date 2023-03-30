@@ -5,9 +5,9 @@ import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { PbiReporteGeneralService } from 'src/app/shared/Services/Pbi/Pbi-Reporte-General/pbi-reporte-general.service';
 
 @Component({
-  selector: 'app-Pbi-reporte-general',
-  templateUrl: './Pbi-reporte-general.component.html',
-  styleUrls: ['./Pbi-reporte-general.component.scss']
+  selector: 'app-pbi-reporte-general',
+  templateUrl: './pbi-reporte-general.component.html',
+  styleUrls: ['./pbi-reporte-general.component.scss']
 })
 export class PbiReporteGeneralComponent implements OnInit {
 

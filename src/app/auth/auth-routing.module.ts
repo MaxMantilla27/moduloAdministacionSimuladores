@@ -97,7 +97,12 @@ const routes: Routes = [
       { path: 'capm', component: CapmComponent },
       { path: 'itil', component: ItilComponent },
       { path: 'lssb', component: LssbComponent },
+      { path: 'adsa', component: AdsaComponent },
+      { path: 'aws', component: AwsComponent },
+      { path: 'ccna', component: CcnaComponent },
+      { path: 'pbi', component: PbiComponent },
       { path: 'tog', component: TogComponent },
+      
     ],
   },
   // {
@@ -230,130 +235,130 @@ const routes: Routes = [
   //     { path: 'pacp/reporteUsuario', component: PacpReporteUsuariosComponent },
   //   ],
   // },
-  {
-    path: '',
-    component: AuthComponent,
-    canActivateChild: [AuthGuard],
-    children: [
-      { path: '', component: HomeComponent },
-      { path: 'aws', component: AwsComponent },
-      {
-        path: 'aws/configuracionCategorias',
-        component: AwsConfiguracionCategoriasComponent,
-      },
-      {
-        path: 'aws/configuracionTipoPreguntas',
-        component: AwsConfiguracionTipoPreguntasComponent,
-      },
-      {
-        path: 'aws/configuracionPreguntas',
-        component: AwsConfiguracionPreguntasComponent,
-      },
-      {
-        path: 'aws/configuracionInterfaz',
-        component: AwsConfiguracionInterfazComponent,
-      },
-      {
-        path: 'aws/administrarUsuarios',
-        component: AwsAdministrarUsuariosComponent,
-      },
-      { path: 'aws/reporteGeneral', component: AwsReporteGeneralComponent },
-      { path: 'aws/reporteUsuario', component: AwsReporteUsuariosComponent },
-    ],
-  },
-  {
-    path: '',
-    component: AuthComponent,
-    canActivateChild: [AuthGuard],
-    children: [
-      { path: '', component: HomeComponent },
-      { path: 'adsa', component: AdsaComponent },
-      {
-        path: 'adsa/configuracionCategorias',
-        component: AdsaConfiguracionCategoriasComponent,
-      },
-      {
-        path: 'adsa/configuracionTipoPreguntas',
-        component: AdsaConfiguracionTipoPreguntasComponent,
-      },
-      {
-        path: 'adsa/configuracionPreguntas',
-        component: AdsaConfiguracionPreguntasComponent,
-      },
-      {
-        path: 'adsa/configuracionInterfaz',
-        component: AdsaConfiguracionInterfazComponent,
-      },
-      {
-        path: 'adsa/administrarUsuarios',
-        component: AdsaAdministrarUsuariosComponent,
-      },
-      { path: 'adsa/reporteGeneral', component: AdsaReporteGeneralComponent },
-      { path: 'adsa/reporteUsuario', component: AdsaReporteUsuariosComponent },
-    ],
-  },
-  {
-    path: '',
-    component: AuthComponent,
-    canActivateChild: [AuthGuard],
-    children: [
-      { path: '', component: HomeComponent },
-      { path: 'ccna', component: CcnaComponent },
-      {
-        path: 'ccna/configuracionCategorias',
-        component: CcnaConfiguracionCategoriasComponent,
-      },
-      {
-        path: 'ccna/configuracionTipoPreguntas',
-        component: CcnaConfiguracionTipoPreguntasComponent,
-      },
-      {
-        path: 'ccna/configuracionPreguntas',
-        component: CcnaConfiguracionPreguntasComponent,
-      },
-      {
-        path: 'ccna/configuracionInterfaz',
-        component: CcnaConfiguracionInterfazComponent,
-      },
-      {
-        path: 'ccna/administrarUsuarios',
-        component: CcnaAdministrarUsuariosComponent,
-      },
-      { path: 'ccna/reporteGeneral', component: CcnaReporteGeneralComponent },
-      { path: 'ccna/reporteUsuario', component: CcnaReporteUsuariosComponent },
-    ],
-  },
-  {
-    path: '',
-    component: AuthComponent,
-    canActivateChild: [AuthGuard],
-    children: [
-      { path: '', component: HomeComponent },
-      { path: 'pbi', component: PbiComponent },
-      {
-        path: 'pbi/configuracionCategorias',
-        component: PbiConfiguracionCategoriasComponent,
-      },
-      {
-        path: 'pbi/configuracionTipoPreguntas',
-        component: PbiConfiguracionTipoPreguntasComponent,
-      },
-      {
-        path: 'pbi/configuracionPreguntas',
-        component: PbiConfiguracionPreguntasComponent,
-      },
-      {
-        path: 'pbi/configuracionInterfaz',
-        component: PbiConfiguracionInterfazComponent,
-      },
-      {
-        path: 'pbi/administrarUsuarios',
-        component: PbiAdministrarUsuariosComponent,
-      },
-      { path: 'pbi/reporteGeneral', component: PbiReporteGeneralComponent },
-      { path: 'pbi/reporteUsuario', component: PbiReporteUsuariosComponent },
-    ],
-  },
+  // {
+  //   path: '',
+  //   component: AuthComponent,
+  //   canActivateChild: [AuthGuard],
+  //   children: [
+  //     { path: '', component: HomeComponent },
+  //     { path: 'aws', component: AwsComponent },
+  //     {
+  //       path: 'aws/configuracionCategorias',
+  //       component: AwsConfiguracionCategoriasComponent,
+  //     },
+  //     {
+  //       path: 'aws/configuracionTipoPreguntas',
+  //       component: AwsConfiguracionTipoPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'aws/configuracionPreguntas',
+  //       component: AwsConfiguracionPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'aws/configuracionInterfaz',
+  //       component: AwsConfiguracionInterfazComponent,
+  //     },
+  //     {
+  //       path: 'aws/administrarUsuarios',
+  //       component: AwsAdministrarUsuariosComponent,
+  //     },
+  //     { path: 'aws/reporteGeneral', component: AwsReporteGeneralComponent },
+  //     { path: 'aws/reporteUsuario', component: AwsReporteUsuariosComponent },
+  //   ],
+  // },
+  // {
+  //   path: '',
+  //   component: AuthComponent,
+  //   canActivateChild: [AuthGuard],
+  //   children: [
+  //     { path: '', component: HomeComponent },
+  //     { path: 'adsa', component: AdsaComponent },
+  //     {
+  //       path: 'adsa/configuracionCategorias',
+  //       component: AdsaConfiguracionCategoriasComponent,
+  //     },
+  //     {
+  //       path: 'adsa/configuracionTipoPreguntas',
+  //       component: AdsaConfiguracionTipoPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'adsa/configuracionPreguntas',
+  //       component: AdsaConfiguracionPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'adsa/configuracionInterfaz',
+  //       component: AdsaConfiguracionInterfazComponent,
+  //     },
+  //     {
+  //       path: 'adsa/administrarUsuarios',
+  //       component: AdsaAdministrarUsuariosComponent,
+  //     },
+  //     { path: 'adsa/reporteGeneral', component: AdsaReporteGeneralComponent },
+  //     { path: 'adsa/reporteUsuario', component: AdsaReporteUsuariosComponent },
+  //   ],
+  // },
+  // {
+  //   path: '',
+  //   component: AuthComponent,
+  //   canActivateChild: [AuthGuard],
+  //   children: [
+  //     { path: '', component: HomeComponent },
+  //     { path: 'ccna', component: CcnaComponent },
+  //     {
+  //       path: 'ccna/configuracionCategorias',
+  //       component: CcnaConfiguracionCategoriasComponent,
+  //     },
+  //     {
+  //       path: 'ccna/configuracionTipoPreguntas',
+  //       component: CcnaConfiguracionTipoPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'ccna/configuracionPreguntas',
+  //       component: CcnaConfiguracionPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'ccna/configuracionInterfaz',
+  //       component: CcnaConfiguracionInterfazComponent,
+  //     },
+  //     {
+  //       path: 'ccna/administrarUsuarios',
+  //       component: CcnaAdministrarUsuariosComponent,
+  //     },
+  //     { path: 'ccna/reporteGeneral', component: CcnaReporteGeneralComponent },
+  //     { path: 'ccna/reporteUsuario', component: CcnaReporteUsuariosComponent },
+  //   ],
+  // },
+  // {
+  //   path: '',
+  //   component: AuthComponent,
+  //   canActivateChild: [AuthGuard],
+  //   children: [
+  //     { path: '', component: HomeComponent },
+  //     { path: 'pbi', component: PbiComponent },
+  //     {
+  //       path: 'pbi/configuracionCategorias',
+  //       component: PbiConfiguracionCategoriasComponent,
+  //     },
+  //     {
+  //       path: 'pbi/configuracionTipoPreguntas',
+  //       component: PbiConfiguracionTipoPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'pbi/configuracionPreguntas',
+  //       component: PbiConfiguracionPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'pbi/configuracionInterfaz',
+  //       component: PbiConfiguracionInterfazComponent,
+  //     },
+  //     {
+  //       path: 'pbi/administrarUsuarios',
+  //       component: PbiAdministrarUsuariosComponent,
+  //     },
+  //     { path: 'pbi/reporteGeneral', component: PbiReporteGeneralComponent },
+  //     { path: 'pbi/reporteUsuario', component: PbiReporteUsuariosComponent },
+  //   ],
+  // },
 ];
 
 @NgModule({

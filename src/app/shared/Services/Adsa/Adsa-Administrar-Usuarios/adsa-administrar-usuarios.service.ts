@@ -12,17 +12,17 @@ export class AdsaAdministrarUsuariosService {
   constructor(private http: HttpClient) { }
 
   public ObtenerReporteAdministrarUsuarioResumen():Observable<any>{
-    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumen');
+    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumenAdsa');
   }
   public ObtenerReporteAdministrarUsuarioPorCodigoMatricula(CodigoMatricula:string): Observable<any> {
     console.log(CodigoMatricula)
-    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCodigoMatricula?CodigoMatricula='+CodigoMatricula,'');
+    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCodigoMatricula?CodigoMatriculaAdsa='+CodigoMatricula,'');
 
   }
   public ObtenerReporteAdministrarUsuarioPorCentroCostos(CentroCostos:string): Observable<any> {
-    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCentroCostos?CentroCostos='+CentroCostos,'');
+    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCentroCostosAdsa?CentroCostos='+CentroCostos,'');
   }
   public GuardarCambiosAccesoSimulador(json:AdsaAdministrarUsuariosAccesoDTO): Observable<any> {
-    return this.http.post<any>(this.urlBase + '/GuardarCambiosAccesoSimulador',json);
+    return this.http.post<any>(this.urlBase + '/GuardarCambiosAccesoSimuladorAdsa',json);
   }
 }

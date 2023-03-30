@@ -1,34 +1,21 @@
-import { AfterViewInit, Component, Inject, Input, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
-import { formulario } from 'src/app/Models/Formulario';
-import {
-  DetallePreguntaDTO,
-  PbiEnvioFilePreguntaActualizarDTO,
-  PbiEnvioFilePreguntaDTO,
-  PbiEnvioRespuesDTO,
-} from 'src/app/Models/Pbi/PbiPreguntaDTO';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PbiEnvioFilePreguntaActualizarDTO, PbiEnvioFilePreguntaDTO, PbiEnvioRespuesDTO, DetallePreguntaDTO } from 'src/app/Models/Pbi/PbiPreguntaDTO';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { PbiCategoriasService } from 'src/app/shared/Services/Pbi/Pbi-Categorias/pbi-categorias.service';
 import { PbiPreguntaService } from 'src/app/shared/Services/Pbi/Pbi-Pregunta/pbi-pregunta.service';
-import { PbiPreguntaRespuestaService } from 'src/app/shared/Services/Pbi/Pbi-PreguntaRespuesta/pbi-preguntaRespuesta.service';
+import { PbiPreguntaRespuestaService } from 'src/app/shared/Services/Pbi/Pbi-PreguntaRespuesta/pbi-pregunta-respuesta.service';
 import { PbiTareaService } from 'src/app/shared/Services/Pbi/Pbi-Tarea/pbi-tarea.service';
-import { PbiTipoRespuestaService } from 'src/app/shared/Services/Pbi/Pbi-Tipo-Respuesta/pbi-tipo-respuesta.service';
 import Swal from 'sweetalert2';
 import { PbiModalAlternativasComponent } from './pbi-modal-alternativas/pbi-modal-alternativas.component';
 
 @Component({
-  selector: 'app-pbi-modal-agregar-preguntas',
-  templateUrl: './pbi-modal-agregar-preguntas.component.html',
-  styleUrls: ['./pbi-modal-agregar-preguntas.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  selector: 'app-Pbi-modal-agregar-preguntas',
+  templateUrl: './Pbi-modal-agregar-preguntas.component.html',
+  styleUrls: ['./Pbi-modal-agregar-preguntas.component.scss']
 })
 export class PbiModalAgregarPreguntasComponent implements OnInit {
-
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<PbiModalAgregarPreguntasComponent>,
@@ -151,22 +138,22 @@ export class PbiModalAgregarPreguntasComponent implements OnInit {
   ObtenerDetallePregunta(){
     if (this.data[1] != undefined) {
       console.log(this.data[1]);
-      this._pregunta.ObtenerPbiPregunta(this.data[1]).subscribe({
+      this._pregunta.ObtenerPbiPregunta(this.data[1].id).subscribe({
         next: (x: any) => {
           console.log(x)
           this.DetallePregunta = x;
           console.log(this.DetallePregunta)
           this.formPregunta.patchValue({
-            Id:x.id,
-            IdCategoria:x.idSimuladorPbiDominio,
-            IdSubCategoria:x.idSimuladorPbiTarea,
-            IdTipoRespuesta:x.idSimuladorTipoRespuesta,
-            Enunciado:x.enunciado,
+            Id:x[0].id,
+            IdCategoria:x[0].idSimuladorPbiDominio,
+            IdSubCategoria:x[0].idSimuladorPbiTarea,
+            IdTipoRespuesta:x[0].idSimuladorTipoRespuesta,
+            Enunciado:x[0].enunciado,
             // ImagenPregunta: null,
             // Alternativas:[]
-            TieneRetroalimentacionUnica:x.tieneRetroalimentacionUnica,
-            UrlVideo:x.urlRetroalimentacionVideo,
-            Retroalimentacion:x.retroalimentacion,
+            TieneRetroalimentacionUnica:x[0].tieneRetroalimentacionUnica,
+            UrlVideo:x[0].urlRetroalimentacionVideo,
+            Retroalimentacion:x[0].retroalimentacion,
             // ImgPreguntaRetroalimentacion:undefined
           })
           console.log(this.formPregunta)
@@ -191,7 +178,7 @@ export class PbiModalAgregarPreguntasComponent implements OnInit {
     this.json.Id = 0;
     this.json.IdPbiTipoPreguntaClasificacion = 2;
     this.json.IdSimuladorPbiDominio = this.formPregunta.get('IdCategoria')?.value;
-    this.json.IdSimuladorPbiTarea = this.formPregunta.get('IdSubCategoria')?.value;
+    this.json.IdSimuladorPbiTarea = this.formPregunta.get('IdCategoria')?.value;
     this.json.IdSimuladorTipoRespuesta = this.formPregunta.get('IdTipoRespuesta')?.value;
     this.json.Enunciado = this.formPregunta.get('Enunciado')?.value;
     this.json.TieneRetroalimentacionUnica = this.TieneRetroalimentacionUnica;
@@ -262,7 +249,7 @@ export class PbiModalAgregarPreguntasComponent implements OnInit {
     this.jsonActualizar.Id = this.formPregunta.get('Id')?.value;
     this.jsonActualizar.IdPbiTipoPreguntaClasificacion = 2;
     this.jsonActualizar.IdSimuladorPbiDominio = this.formPregunta.get('IdCategoria')?.value;
-    this.jsonActualizar.IdSimuladorPbiTarea = this.formPregunta.get('IdSubCategoria')?.value;
+    this.jsonActualizar.IdSimuladorPbiTarea = this.formPregunta.get('IdCategoria')?.value;
     this.jsonActualizar.IdSimuladorTipoRespuesta = this.formPregunta.get('IdTipoRespuesta')?.value;
     this.jsonActualizar.Enunciado = this.formPregunta.get('Enunciado')?.value;
     this.jsonActualizar.TieneRetroalimentacionUnica = this.TieneRetroalimentacionUnica;
@@ -314,6 +301,7 @@ export class PbiModalAgregarPreguntasComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result: any) => {
       console.log(result);
+      this.ObtenerAlternativa();
       Object.assign(this.listaAlternativas[index], result);
       //this.listaAlternativas[index]=result
       console.log(this.listaAlternativas)
@@ -358,7 +346,7 @@ export class PbiModalAgregarPreguntasComponent implements OnInit {
   ObtenerAlternativa() {
     if (this.data[1] != undefined) {
       console.log(this.data[1]);
-      this._alternativa.ObtenerAlternativa(this.data[1]).subscribe({
+      this._alternativa.ObtenerAlternativa(this.data[1].id).subscribe({
         next: (x: any) => {
           this.listaAlternativas = x;
           console.log(x);
@@ -389,21 +377,25 @@ export class PbiModalAgregarPreguntasComponent implements OnInit {
     var TieneRetroalimentacionUnica=this.TieneRetroalimentacionUnica
     const dialogRef = this.dialog.open(PbiModalAlternativasComponent, {
       panelClass: 'dialog-abrir-alternativa',
-      data:[undefined,isNewAlternativa,TieneRetroalimentacionUnica]
+      data:[undefined,isNewAlternativa,TieneRetroalimentacionUnica,this.data[1] ]
     });
 
     this.valorAgregado = false;
     dialogRef.afterClosed().subscribe((result: any) => {
+      this.ObtenerAlternativa();
       console.log(result);
       this.listaAlternativasAnterior = this.listaAlternativas;
       console.log(this.listaAlternativasAnterior);
       console.log(this.listaAlternativas);
       if (result != undefined) {
+        console.log(result)
         this.valorAgregado = true;
-        this.listaAlternativas.push(result);
+       this.listaAlternativas.push(result);
+        Object.assign(result, result);
         console.log(this.listaAlternativas);
       }
       this.valorAgregado = true;
+      this.ObtenerAlternativa();
     });
   }
 

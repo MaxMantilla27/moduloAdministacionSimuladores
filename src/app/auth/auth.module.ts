@@ -313,7 +313,7 @@ import { AwsModalAgregarCategoriasComponent } from './home/modulos-simuladores/a
     LssbModalAlternativasComponent,
     ItilModalAlternativasComponent,
     CmrpModalAlternativasComponent,
-    CapmModalAlternativasComponent
+    CapmModalAlternativasComponent,
 
     PacpModalAlternativasComponent,
     AwsComponent,

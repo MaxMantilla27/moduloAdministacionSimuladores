@@ -1,34 +1,21 @@
-import { AfterViewInit, Component, Inject, Input, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
-import { formulario } from 'src/app/Models/Formulario';
-import {
-  DetallePreguntaDTO,
-  AwsEnvioFilePreguntaActualizarDTO,
-  AwsEnvioFilePreguntaDTO,
-  AwsEnvioRespuesDTO,
-} from 'src/app/Models/Aws/AwsPreguntaDTO';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AwsEnvioFilePreguntaActualizarDTO, AwsEnvioFilePreguntaDTO, AwsEnvioRespuesDTO, DetallePreguntaDTO } from 'src/app/Models/Aws/AwsPreguntaDTO';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { AwsCategoriasService } from 'src/app/shared/Services/Aws/Aws-Categorias/aws-categorias.service';
 import { AwsPreguntaService } from 'src/app/shared/Services/Aws/Aws-Pregunta/aws-pregunta.service';
-import { AwsPreguntaRespuestaService } from 'src/app/shared/Services/Aws/Aws-PreguntaRespuesta/aws-preguntaRespuesta.service';
+import { AwsPreguntaRespuestaService } from 'src/app/shared/Services/Aws/Aws-PreguntaRespuesta/aws-pregunta-respuesta.service';
 import { AwsTareaService } from 'src/app/shared/Services/Aws/Aws-Tarea/aws-tarea.service';
-import { AwsTipoRespuestaService } from 'src/app/shared/Services/Aws/Aws-Tipo-Respuesta/aws-tipo-respuesta.service';
 import Swal from 'sweetalert2';
 import { AwsModalAlternativasComponent } from './aws-modal-alternativas/aws-modal-alternativas.component';
 
 @Component({
   selector: 'app-aws-modal-agregar-preguntas',
   templateUrl: './aws-modal-agregar-preguntas.component.html',
-  styleUrls: ['./aws-modal-agregar-preguntas.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./aws-modal-agregar-preguntas.component.scss']
 })
 export class AwsModalAgregarPreguntasComponent implements OnInit {
-
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<AwsModalAgregarPreguntasComponent>,
@@ -151,22 +138,22 @@ export class AwsModalAgregarPreguntasComponent implements OnInit {
   ObtenerDetallePregunta(){
     if (this.data[1] != undefined) {
       console.log(this.data[1]);
-      this._pregunta.ObtenerAwsPregunta(this.data[1]).subscribe({
+      this._pregunta.ObtenerAwsPregunta(this.data[1].id).subscribe({
         next: (x: any) => {
           console.log(x)
           this.DetallePregunta = x;
           console.log(this.DetallePregunta)
           this.formPregunta.patchValue({
-            Id:x.id,
-            IdCategoria:x.idSimuladorAwsDominio,
-            IdSubCategoria:x.idSimuladorAwsTarea,
-            IdTipoRespuesta:x.idSimuladorTipoRespuesta,
-            Enunciado:x.enunciado,
+            Id:x[0].id,
+            IdCategoria:x[0].idSimuladorAwsDominio,
+            IdSubCategoria:x[0].idSimuladorAwsTarea,
+            IdTipoRespuesta:x[0].idSimuladorTipoRespuesta,
+            Enunciado:x[0].enunciado,
             // ImagenPregunta: null,
             // Alternativas:[]
-            TieneRetroalimentacionUnica:x.tieneRetroalimentacionUnica,
-            UrlVideo:x.urlRetroalimentacionVideo,
-            Retroalimentacion:x.retroalimentacion,
+            TieneRetroalimentacionUnica:x[0].tieneRetroalimentacionUnica,
+            UrlVideo:x[0].urlRetroalimentacionVideo,
+            Retroalimentacion:x[0].retroalimentacion,
             // ImgPreguntaRetroalimentacion:undefined
           })
           console.log(this.formPregunta)
@@ -191,7 +178,7 @@ export class AwsModalAgregarPreguntasComponent implements OnInit {
     this.json.Id = 0;
     this.json.IdAwsTipoPreguntaClasificacion = 2;
     this.json.IdSimuladorAwsDominio = this.formPregunta.get('IdCategoria')?.value;
-    this.json.IdSimuladorAwsTarea = this.formPregunta.get('IdSubCategoria')?.value;
+    this.json.IdSimuladorAwsTarea = this.formPregunta.get('IdCategoria')?.value;
     this.json.IdSimuladorTipoRespuesta = this.formPregunta.get('IdTipoRespuesta')?.value;
     this.json.Enunciado = this.formPregunta.get('Enunciado')?.value;
     this.json.TieneRetroalimentacionUnica = this.TieneRetroalimentacionUnica;
@@ -262,7 +249,7 @@ export class AwsModalAgregarPreguntasComponent implements OnInit {
     this.jsonActualizar.Id = this.formPregunta.get('Id')?.value;
     this.jsonActualizar.IdAwsTipoPreguntaClasificacion = 2;
     this.jsonActualizar.IdSimuladorAwsDominio = this.formPregunta.get('IdCategoria')?.value;
-    this.jsonActualizar.IdSimuladorAwsTarea = this.formPregunta.get('IdSubCategoria')?.value;
+    this.jsonActualizar.IdSimuladorAwsTarea = this.formPregunta.get('IdCategoria')?.value;
     this.jsonActualizar.IdSimuladorTipoRespuesta = this.formPregunta.get('IdTipoRespuesta')?.value;
     this.jsonActualizar.Enunciado = this.formPregunta.get('Enunciado')?.value;
     this.jsonActualizar.TieneRetroalimentacionUnica = this.TieneRetroalimentacionUnica;
@@ -314,6 +301,7 @@ export class AwsModalAgregarPreguntasComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result: any) => {
       console.log(result);
+      this.ObtenerAlternativa();
       Object.assign(this.listaAlternativas[index], result);
       //this.listaAlternativas[index]=result
       console.log(this.listaAlternativas)
@@ -358,7 +346,7 @@ export class AwsModalAgregarPreguntasComponent implements OnInit {
   ObtenerAlternativa() {
     if (this.data[1] != undefined) {
       console.log(this.data[1]);
-      this._alternativa.ObtenerAlternativa(this.data[1]).subscribe({
+      this._alternativa.ObtenerAlternativa(this.data[1].id).subscribe({
         next: (x: any) => {
           this.listaAlternativas = x;
           console.log(x);
@@ -389,21 +377,25 @@ export class AwsModalAgregarPreguntasComponent implements OnInit {
     var TieneRetroalimentacionUnica=this.TieneRetroalimentacionUnica
     const dialogRef = this.dialog.open(AwsModalAlternativasComponent, {
       panelClass: 'dialog-abrir-alternativa',
-      data:[undefined,isNewAlternativa,TieneRetroalimentacionUnica]
+      data:[undefined,isNewAlternativa,TieneRetroalimentacionUnica,this.data[1] ]
     });
 
     this.valorAgregado = false;
     dialogRef.afterClosed().subscribe((result: any) => {
+      this.ObtenerAlternativa();
       console.log(result);
       this.listaAlternativasAnterior = this.listaAlternativas;
       console.log(this.listaAlternativasAnterior);
       console.log(this.listaAlternativas);
       if (result != undefined) {
+        console.log(result)
         this.valorAgregado = true;
-        this.listaAlternativas.push(result);
+       this.listaAlternativas.push(result);
+        Object.assign(result, result);
         console.log(this.listaAlternativas);
       }
       this.valorAgregado = true;
+      this.ObtenerAlternativa();
     });
   }
 

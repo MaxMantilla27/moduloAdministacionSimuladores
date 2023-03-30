@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PbiPreguntaRespuestaService } from './pbi-preguntaRespuesta.service';
+import { PbiPreguntaRespuestaService } from './pbi-pregunta-respuesta.service';
 
 describe('PbiPreguntaRespuestaService', () => {
   let service: PbiPreguntaRespuestaService;
