@@ -64,7 +64,7 @@ export class CissConfiguracionPreguntasComponent implements OnInit {
       data: [isNew, data]
     });
     dialogRef.afterClosed().subscribe((result) => {
-      this.ObtenerPreguntasCiss
+      this.ObtenerPreguntasCiss()
     });
   }
 
