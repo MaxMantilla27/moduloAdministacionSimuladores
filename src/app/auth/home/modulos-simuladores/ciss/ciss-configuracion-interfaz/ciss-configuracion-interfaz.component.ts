@@ -108,7 +108,7 @@ export class CissConfiguracionInterfazComponent implements OnInit {
     this.envio.id = this.listOfDisplayData[index].id,
       this.envio.valorMinimo= this.listOfDisplayData[index].valorMinimo,
       this.envio.valorMaximo= this.listOfDisplayData[index].valorMaximo
-      // this.Actualizar()
+      this.Actualizar()
   }
   handleFile(event:any): void {
 

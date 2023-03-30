@@ -177,7 +177,7 @@ export class DevopsModalAgregarPreguntasComponent implements OnInit {
       }
     }
     this.json.Id = 0;
-    this.json.IdDevopsTipoPreguntaClasificacion = 2;
+    this.json.IdDevopsTipoPreguntaClasificacion = 6;
     this.json.IdSimuladorDevopsDominio = this.formPregunta.get('IdCategoria')?.value;
     this.json.IdSimuladorDevopsTarea = this.formPregunta.get('IdCategoria')?.value;
     this.json.IdSimuladorTipoRespuesta = this.formPregunta.get('IdTipoRespuesta')?.value;
@@ -200,6 +200,9 @@ export class DevopsModalAgregarPreguntasComponent implements OnInit {
     }
     console.log(this.listaAlternativas)
     this.listaAlternativas.forEach((e: any) => {
+      if(e.Correcto == null){
+        e.Correcto = false;
+      }
       if(e.Correcto == true){
         e.Valor = 1
       }

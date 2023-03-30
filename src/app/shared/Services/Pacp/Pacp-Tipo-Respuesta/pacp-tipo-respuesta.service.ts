@@ -34,7 +34,7 @@ export class PacpTipoRespuestaService {
   }
 
   public actualizarParametrosNivel(Json:actualizarParametrosNivel):Observable<any>{
-    return this.http.post<any>(this.urlBase2+'/actualizarPmpParametroNivel',Json);
+    return this.http.post<any>(this.urlBase2+'/actualizarPacpParametroNivel',Json);
   }
 
 

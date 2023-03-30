@@ -202,6 +202,10 @@ export class LabcModalAgregarPreguntasComponent implements OnInit {
     }
     console.log(this.listaAlternativas)
     this.listaAlternativas.forEach((e: any) => {
+
+      if(e.Correcto == null){
+        e.Correcto = false;
+      }
       if(e.Correcto == true){
         e.Valor = 1
       }

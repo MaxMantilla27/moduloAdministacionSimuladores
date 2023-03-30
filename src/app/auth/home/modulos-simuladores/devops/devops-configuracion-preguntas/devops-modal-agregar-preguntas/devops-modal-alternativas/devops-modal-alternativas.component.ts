@@ -168,7 +168,7 @@ export class DevopsModalAlternativasComponent implements OnInit {
       this.AgregarAlternativaDTO.IdSimuladorDevopsPregunta = 0
     }
     else{
-      this.AgregarAlternativaDTO.IdSimuladorDevopsPregunta = this.data[3]
+      this.AgregarAlternativaDTO.IdSimuladorDevopsPregunta = this.data[3].id
     }
    
 
