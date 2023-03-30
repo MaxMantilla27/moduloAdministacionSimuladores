@@ -44,6 +44,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   loading: any;
   loader: any;
   public show: boolean = false;
+  public dataPregunta = this.data
   public json: PmpEnvioFilePreguntaDTO = {
     Id: 0,
     IdSimuladorPmpDominio: 0,
@@ -299,9 +300,12 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     //Editar Pregunta
     const dialogRef = this.dialog.open(ModalAlternativasComponent, {
       panelClass: 'dialog-abrir-alternativa',
-      data: [data,isNewAlternativa,TieneRetroalimentacionUnica],
+      data: [data,isNewAlternativa,TieneRetroalimentacionUnica, 1],
     });
     dialogRef.afterClosed().subscribe((result: any) => {
+      console.log("uno")
+      this.ObtenerAlternativa();
+
       console.log(result);
       Object.assign(this.listaAlternativas[index], result);
       //this.listaAlternativas[index]=result
@@ -309,7 +313,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     });
   }
 
-  editarAlternativas(data: any, index: number) {
+  editarAlternativas(data: any, index: number) { 
     var isNewAlternativa=false
     var TieneRetroalimentacionUnica=this.TieneRetroalimentacionUnica
     console.log(data);
@@ -318,6 +322,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
       data: [data,isNewAlternativa,TieneRetroalimentacionUnica],
     });
     dialogRef.afterClosed().subscribe((Recargar: boolean) => {
+      this.ObtenerAlternativa();
       if(Recargar==true){
         this.ObtenerAlternativa();
       }
@@ -378,21 +383,26 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     var TieneRetroalimentacionUnica=this.TieneRetroalimentacionUnica
     const dialogRef = this.dialog.open(ModalAlternativasComponent, {
       panelClass: 'dialog-abrir-alternativa',
-      data:[undefined,isNewAlternativa,TieneRetroalimentacionUnica]
+      data:[undefined,isNewAlternativa,TieneRetroalimentacionUnica,this.data[1] ]
     });
 
     this.valorAgregado = false;
     dialogRef.afterClosed().subscribe((result: any) => {
+      console.log("tres")
+    
       console.log(result);
       this.listaAlternativasAnterior = this.listaAlternativas;
       console.log(this.listaAlternativasAnterior);
       console.log(this.listaAlternativas);
       if (result != undefined) {
+        console.log(result)
         this.valorAgregado = true;
-        this.listaAlternativas.push(result);
+       this.listaAlternativas.push(result);
+        Object.assign(result, result);
         console.log(this.listaAlternativas);
       }
       this.valorAgregado = true;
+      this.ObtenerAlternativa();
     });
   }
 

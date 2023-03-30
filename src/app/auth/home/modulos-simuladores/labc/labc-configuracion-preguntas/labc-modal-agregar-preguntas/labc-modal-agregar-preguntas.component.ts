@@ -303,6 +303,7 @@ export class LabcModalAgregarPreguntasComponent implements OnInit {
       data: [data,isNewAlternativa,TieneRetroalimentacionUnica],
     });
     dialogRef.afterClosed().subscribe((result: any) => {
+      this.ObtenerAlternativa();
       console.log(result);
       Object.assign(this.listaAlternativas[index], result);
       //this.listaAlternativas[index]=result
@@ -372,25 +373,28 @@ export class LabcModalAgregarPreguntasComponent implements OnInit {
     // }
     console.log(this.lisSubCategoriaPorCategoria);
   }
-
+  
   agregarNuevaAlternativa() {
     //Editar Pregunta
     var isNewAlternativa=true
     var TieneRetroalimentacionUnica=this.TieneRetroalimentacionUnica
     const dialogRef = this.dialog.open(LabcModalAlternativasComponent, {
       panelClass: 'dialog-abrir-alternativa',
-      data:[undefined,isNewAlternativa,TieneRetroalimentacionUnica]
+      data:[undefined,isNewAlternativa,TieneRetroalimentacionUnica,this.data[1] ]
     });
 
     this.valorAgregado = false;
     dialogRef.afterClosed().subscribe((result: any) => {
+      this.ObtenerAlternativa();
       console.log(result);
       this.listaAlternativasAnterior = this.listaAlternativas;
       console.log(this.listaAlternativasAnterior);
       console.log(this.listaAlternativas);
       if (result != undefined) {
+        console.log(result)
         this.valorAgregado = true;
-        this.listaAlternativas.push(result);
+       this.listaAlternativas.push(result);
+        Object.assign(result, result);
         console.log(this.listaAlternativas);
       }
       this.valorAgregado = true;

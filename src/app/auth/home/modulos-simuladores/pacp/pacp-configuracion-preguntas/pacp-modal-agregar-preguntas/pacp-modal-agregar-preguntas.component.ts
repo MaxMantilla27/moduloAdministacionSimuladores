@@ -304,6 +304,7 @@ export class PacpModalAgregarPreguntasComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result: any) => {
       console.log(result);
+      this.ObtenerAlternativa();
       Object.assign(this.listaAlternativas[index], result);
       //this.listaAlternativas[index]=result
       console.log(this.listaAlternativas)
@@ -379,23 +380,28 @@ export class PacpModalAgregarPreguntasComponent implements OnInit {
     var TieneRetroalimentacionUnica=this.TieneRetroalimentacionUnica
     const dialogRef = this.dialog.open(PacpModalAlternativasComponent, {
       panelClass: 'dialog-abrir-alternativa',
-      data:[undefined,isNewAlternativa,TieneRetroalimentacionUnica]
+      data:[undefined,isNewAlternativa,TieneRetroalimentacionUnica,this.data[1]]
     });
 
     this.valorAgregado = false;
     dialogRef.afterClosed().subscribe((result: any) => {
+      this.ObtenerAlternativa();
       console.log(result);
       this.listaAlternativasAnterior = this.listaAlternativas;
       console.log(this.listaAlternativasAnterior);
       console.log(this.listaAlternativas);
       if (result != undefined) {
+        console.log(result)
         this.valorAgregado = true;
-        this.listaAlternativas.push(result);
+       this.listaAlternativas.push(result);
+        Object.assign(result, result);
         console.log(this.listaAlternativas);
       }
       this.valorAgregado = true;
     });
   }
+
+
 
   getFileDetailsPregunta(event: any) {
     for (var i = 0; i < event.target.files.length; i++) {

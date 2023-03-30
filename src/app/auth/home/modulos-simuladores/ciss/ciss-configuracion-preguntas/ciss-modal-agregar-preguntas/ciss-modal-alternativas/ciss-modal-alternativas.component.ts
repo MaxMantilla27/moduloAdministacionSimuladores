@@ -1,13 +1,14 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators  } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CissPreguntaRespuestaEnvioDTO } from 'src/app/Models/Ciss/CissPreguntaRespuestaDTO';
+import { CissPreguntaRespuestaEnvioAgregarDTO, CissPreguntaRespuestaEnvioDTO } from 'src/app/Models/Ciss/CissPreguntaRespuestaDTO';
 import { CissPreguntaRespuestaService } from 'src/app/shared/Services/Ciss/Ciss-PreguntaRespuesta/ciss-pregunta-respuesta.service';
 
 @Component({
   selector: 'app-ciss-modal-alternativas',
   templateUrl: './ciss-modal-alternativas.component.html',
-  styleUrls: ['./ciss-modal-alternativas.component.scss']
+  styleUrls: ['./ciss-modal-alternativas.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CissModalAlternativasComponent implements OnInit {
 
@@ -51,13 +52,22 @@ export class CissModalAlternativasComponent implements OnInit {
     ImagenArchivo: new File([], '')
   }
 
+  public AgregarAlternativaDTO: CissPreguntaRespuestaEnvioAgregarDTO = {
+    Id:0,
+    Respuesta:'',
+    Correcto:false,
+    Puntaje:0,
+    UrlVideo:'',
+    Explicacion:'',
+    ImagenArchivo: new File([], ''),
+    IdSimuladorCissPregunta: 0,
+  }
+
   ngOnInit(): void {
     this.formAlternativa.reset();
-    console.log(this.data)
-    console.log(this.data[2])
     this.TieneRetroalimentacionUnica=this.data[2]
     console.log(this.data)
-    if(this.data[0]!=undefined)
+    if(this.data[0]!=undefined && this.data[1]==true )
     {
       this.formAlternativa.patchValue({
         Id:this.data[0].idAlternativa,
@@ -67,10 +77,64 @@ export class CissModalAlternativasComponent implements OnInit {
         UrlRetroalimentacionVideo:this.data[0].urlRetroalimentacionVideo,
         Retroalimentacion:this.data[0].retroalimentacion
       })
-
-      console.log(this.formAlternativa)
+    }
+    if(this.data[0]!=undefined && this.data[1]==false && this.data[0].idPregunta==undefined)
+    {
+      this.formAlternativa.patchValue({
+        Id:0,
+        Respuesta:this.data[0].Respuesta,
+        Correcto:this.data[0].Correcto,
+        Puntaje:this.data[0].Puntaje,
+        UrlRetroalimentacionVideo:this.data[0].UrlRetroalimentacionVideo,
+        Retroalimentacion:this.data[0].Retroalimentacion
+      })
+    }
+    if(this.data[0]!=undefined && this.data[1]==false && this.data[0].idPregunta!=undefined)
+    {
+      this.formAlternativa.patchValue({
+        Id:this.data[0].idAlternativa,
+        Respuesta:this.data[0].respuesta,
+        Correcto:this.data[0].correcto,
+        Puntaje:this.data[0].puntaje,
+        UrlRetroalimentacionVideo:this.data[0].urlRetroalimentacionVideo,
+        Retroalimentacion:this.data[0].retroalimentacion
+      })
     }
   }
+
+  EnviarNuevo(){
+    if(this.selectedFilesRespuesta){
+      const file: File | null = this.selectedFilesRespuesta.item(0);
+      if (file) {
+        this.formAlternativa.get('UrlImagenArchivo')?.setValue(file)
+      }
+    }
+    this.listaAlternativasEnvio=this.formAlternativa.value
+    console.log(this.listaAlternativasEnvio)
+    this.dialogRef.close(this.listaAlternativasEnvio);
+
+
+    console.log("este es nuevo")
+
+  }
+
+
+  ActualizarNuevo(){
+    console.log(this.listaAlternativasEnvio)
+    if(this.selectedFilesRespuesta){
+      const file: File | null = this.selectedFilesRespuesta.item(0);
+      if (file) {
+        this.formAlternativa.get('UrlImagenArchivo')?.setValue(file)
+      }
+    }
+    this.listaAlternativasEnvio=this.formAlternativa.value
+    console.log(this.listaAlternativasEnvio)
+    this.dialogRef.close(this.listaAlternativasEnvio);
+
+
+    console.log("este es nuevo")
+  }
+
 
   EnviarRegistrosAlternativas(){
     if(this.selectedFilesRespuesta){
@@ -81,7 +145,45 @@ export class CissModalAlternativasComponent implements OnInit {
     }
     this.listaAlternativasEnvio=this.formAlternativa.value
     console.log(this.listaAlternativasEnvio)
-    this.dialogRef.close(this.listaAlternativasEnvio);
+
+
+
+    if(this.selectedFilesRespuesta){
+      const file: File | null = this.selectedFilesRespuesta.item(0);
+      if (file) {
+        this.formAlternativa.get('UrlImagenArchivo')?.setValue(file)
+        this.ActualizarAlternativaDTO.ImagenArchivo=this.formAlternativa.get('UrlImagenArchivo')?.value
+      }
+    }
+
+    //-----Prueba
+    this.listaAlternativasEnvio=this.formAlternativa.value
+    this.AgregarAlternativaDTO.Id=0
+    this.AgregarAlternativaDTO.Respuesta=this.formAlternativa.get('Respuesta')?.value
+    this.AgregarAlternativaDTO.Correcto=this.formAlternativa.get('Correcto')?.value
+    this.AgregarAlternativaDTO.Puntaje=this.formAlternativa.get('Puntaje')?.value
+    this.AgregarAlternativaDTO.UrlVideo=this.formAlternativa.get('UrlRetroalimentacionVideo')?.value
+    this.AgregarAlternativaDTO.Explicacion=this.formAlternativa.get('Retroalimentacion')?.value
+    if(this.data[3]== undefined ){
+      this.AgregarAlternativaDTO.IdSimuladorCissPregunta = 0
+    }
+    else{
+      this.AgregarAlternativaDTO.IdSimuladorCissPregunta = this.data[3]
+    }
+   
+
+    this._alternativa.AgregarCissPreguntaRespuesta(this.AgregarAlternativaDTO).subscribe({
+      next: (x:any) => {
+        console.log(x)
+
+      },
+      error: (error:any) => {
+        
+      },
+      complete: () => {
+        this.dialogRef.close(this.listaAlternativasEnvio);
+      },
+    })
   }
 
   getFileDetailsRespuesta(event: any) {
@@ -105,6 +207,7 @@ export class CissModalAlternativasComponent implements OnInit {
     this.dialogRef.close();
   }
   ActualizarAlternativa(){
+    console.log("actualizarviejo")
     if(this.selectedFilesRespuesta){
       const file: File | null = this.selectedFilesRespuesta.item(0);
       if (file) {
@@ -123,8 +226,10 @@ export class CissModalAlternativasComponent implements OnInit {
     this._alternativa.ActualizarCissPreguntaRespuesta(this.ActualizarAlternativaDTO).subscribe({
       next: (x:any) => {
         console.log(x)
+      
       },
       error: (error:any) => {
+      
       },
       complete: () => {
         this.dialogRef.close(true);
