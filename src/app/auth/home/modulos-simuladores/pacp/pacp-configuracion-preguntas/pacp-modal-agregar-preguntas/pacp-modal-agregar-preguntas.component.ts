@@ -300,7 +300,7 @@ export class PacpModalAgregarPreguntasComponent implements OnInit {
     //Editar Pregunta
     const dialogRef = this.dialog.open(PacpModalAlternativasComponent, {
       panelClass: 'dialog-abrir-alternativa',
-      data: [data,isNewAlternativa,TieneRetroalimentacionUnica],
+      data: [data,isNewAlternativa,TieneRetroalimentacionUnica, 1],
     });
     dialogRef.afterClosed().subscribe((result: any) => {
       console.log(result);

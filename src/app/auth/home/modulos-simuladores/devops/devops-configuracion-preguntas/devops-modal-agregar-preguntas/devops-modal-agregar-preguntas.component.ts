@@ -298,7 +298,7 @@ export class DevopsModalAgregarPreguntasComponent implements OnInit {
     //Editar Pregunta
     const dialogRef = this.dialog.open(DevopsModalAlternativasComponent, {
       panelClass: 'dialog-abrir-alternativa',
-      data: [data,isNewAlternativa,TieneRetroalimentacionUnica],
+      data: [data,isNewAlternativa,TieneRetroalimentacionUnica, 1],
     });
     dialogRef.afterClosed().subscribe((result: any) => {
       this.ObtenerAlternativa();
