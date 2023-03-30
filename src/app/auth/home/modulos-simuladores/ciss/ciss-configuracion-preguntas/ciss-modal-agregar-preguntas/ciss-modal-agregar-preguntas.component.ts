@@ -283,7 +283,7 @@ export class CissModalAgregarPreguntasComponent implements OnInit {
   }
 
   seleccionar(e: any) {
-    console.log(e);
+    console.log(e); 
     console.log(e.value);
     this.idDominio = e.value;
 
@@ -297,7 +297,7 @@ export class CissModalAgregarPreguntasComponent implements OnInit {
     //Editar Pregunta
     const dialogRef = this.dialog.open(CissModalAlternativasComponent, {
       panelClass: 'dialog-abrir-alternativa',
-      data: [data,isNewAlternativa,TieneRetroalimentacionUnica],
+      data: [data,isNewAlternativa,TieneRetroalimentacionUnica,1],
     });
     dialogRef.afterClosed().subscribe((result: any) => {
       console.log(result);
