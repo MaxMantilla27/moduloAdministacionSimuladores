@@ -27,22 +27,22 @@ export interface AwsEnvioFilePreguntaDTO{
    IdAwsTipoPreguntaClasificacion: number;
    Enunciado: string;
    UrlImagenPreguntaArchivo: File;
-   TieneRetroalimentacionUnica: boolean; 
+   TieneRetroalimentacionUnica: boolean;
    UrlRetroalimentacionVideo: string;
    Retroalimentacion: string;
    ImgRetroalimentacionArchivo: File;
-   Respuestas : Array<AwsEnvioRespuesDTO> 
+   Respuestas : Array<AwsEnvioRespuesDTO>
 }
 export interface AwsEnvioRespuesDTO{
-   Id: number; 
-   IdSimuladorAwsPregunta: number; 
-   Respuesta: string; 
-   Valor: number; 
-   Correcto: boolean; 
-   Puntaje: number; 
-   UrlRetroalimentacionVideo: string; 
-   Explicacion: string; 
-   UrlImagenArchivo: File;  
+   Id: number;
+   IdSimuladorAwsPregunta: number;
+   Respuesta: string;
+   Valor: number;
+   Correcto: boolean;
+   Puntaje: number;
+   UrlRetroalimentacionVideo: string;
+   Explicacion: string;
+   UrlImagenArchivo: File;
 }
 
 export interface Alternativa{
@@ -53,4 +53,32 @@ export interface Alternativa{
   UrlVideo: string,
   Texto:string,
   Imagen: string
+}
+export interface DetallePreguntaDTO{
+  id:number,
+  idAspenetUsers:string,
+  idSimuladorAwsDominio:number,
+  idSimuladorAwsTarea:number,
+  idSimuladorTipoRespuesta:number,
+  enunciado:string,
+  urlImagenPregunta:string,
+  tieneRetroalimentacionUnica:boolean,
+  tieneRetroalimentacion:boolean,
+  urlRetroalimentacionVideo:string,
+  imgRetroalimentacion:string,
+  retroalimentacion:string,
+  idAwsTipoPreguntaClasificacion:number
+}
+export interface AwsEnvioFilePreguntaActualizarDTO{
+  Id: number;
+  IdSimuladorAwsDominio: number;
+  IdSimuladorAwsTarea: number;
+  IdSimuladorTipoRespuesta: number;
+  IdAwsTipoPreguntaClasificacion: number;
+  Enunciado: string;
+  UrlImagenPreguntaArchivo: File;
+  TieneRetroalimentacionUnica: boolean;
+  UrlRetroalimentacionVideo: string;
+  Retroalimentacion: string;
+  ImgRetroalimentacionArchivo: File;
 }

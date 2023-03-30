@@ -1,1 +1,145 @@
-<p>pbi works!</p>
+<div class="row " style="margin-left:0px">
+    <div class="col-12 col-md-12 col-lg-12" style="position: relative;padding: 0px;">
+      <div style="margin-top: 10px;display: flex;margin-bottom: -40px;">
+        <div style="cursor:pointer" [routerLink]="'/'">
+          <i style="color:#FFA218;font-size:3rem" class="material-icons">arrow_back</i>
+        </div>
+        <div *ngIf="Esquema!=undefined" style="margin-top:10px;">
+          <img style="width:13rem" src="https://repositorioweb.blob.core.windows.net/repositorioweb/simulador/{{Esquema}}/imagenes/{{LogoSimulador}}" />
+        </div>
+      </div>
+      <mat-tab-group class="tabVertical" [(selectedIndex)]="tabIndex" >
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Configuración de categorías</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-pmp-configuracion-categorias>
+            </app-pmp-configuracion-categorias>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Configuración de tipo de preguntas</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-pmp-configuracion-tipo-preguntas>
+            </app-pmp-configuracion-tipo-preguntas>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Configuración de preguntas</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-pmp-configuracion-preguntas>
+            </app-pmp-configuracion-preguntas>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Configuración de interfaz</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-pmp-configuracion-interfaz>
+            </app-pmp-configuracion-interfaz>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Administrador de usuarios</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-pmp-administrar-usuarios>
+            </app-pmp-administrar-usuarios>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Reporte General</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-pmp-reporte-general>
+            </app-pmp-reporte-general>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div  class="contentHeaderM" >
+              <div *ngIf="!hide" class="titleMatr">Reporte de Usuarios</div>
+            </div>
+          </ng-template>
+          <div class="pad-resp">
+            <app-pmp-reporte-usuarios>
+            </app-pmp-reporte-usuarios>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+  
+    </div>
+  </div>
+  
+  <!-- <mat-toolbar class="example-toolbar">
+    <button mat-icon-button (click)="isExpanded = !isExpanded">
+      <i class="material-icons">arrow_forward</i>
+    </button>
+    <h1 class="example-app-name">Pmp Tento</h1>
+  </mat-toolbar>
+  <mat-sidenav-container class="example-container" autosize>
+    <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true">
+      <mat-nav-list>
+        <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" [routerLink]="'configuracionCategorias'">
+          <span class="full-width" *ngIf="isExpanded || isShowing"
+            >Configuracion de categorias</span
+          >
+  
+        </mat-list-item>
+        <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" [routerLink]="'configuracionTipoPreguntas'">
+          <span class="full-width" *ngIf="isExpanded || isShowing"
+            >Configuracion de tipo de pregunta</span
+          >
+        </mat-list-item>
+        <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" [routerLink]="'configuracionPreguntas'">
+          <span class="full-width" *ngIf="isExpanded || isShowing"
+            >Configuracion de preguntas</span
+          >
+        </mat-list-item>
+        <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" [routerLink]="'configuracionInterfaz'">
+          <span class="full-width" *ngIf="isExpanded || isShowing"
+            >Configuracion de interfaz</span
+          >
+        </mat-list-item>
+        <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" [routerLink]="'administrarUsuarios'">
+          <span class="full-width" *ngIf="isExpanded || isShowing"
+            >Administrador de usuarios</span
+          >
+        </mat-list-item>
+        <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" [routerLink]="'reporteGeneral'">
+          <span class="full-width" *ngIf="isExpanded || isShowing"
+            >Reporte General</span
+          >
+        </mat-list-item>
+        <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" [routerLink]="'reporteUsuario'">
+          <span class="full-width" *ngIf="isExpanded || isShowing"
+            >Reporte de Usuarios</span
+          >
+        </mat-list-item>
+      </mat-nav-list>
+      <mat-nav-list> </mat-nav-list>
+    </mat-sidenav>
+    <router-outlet></router-outlet>
+    <div></div>
+  </mat-sidenav-container> -->
+  

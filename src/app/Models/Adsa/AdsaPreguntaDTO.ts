@@ -54,3 +54,32 @@ export interface Alternativa{
   Texto:string,
   Imagen: string
 }
+
+export interface DetallePreguntaDTO{
+  id:number,
+  idAspenetUsers:string,
+  idSimuladorAdsaDominio:number,
+  idSimuladorAdsaTarea:number,
+  idSimuladorTipoRespuesta:number,
+  enunciado:string,
+  urlImagenPregunta:string,
+  tieneRetroalimentacionUnica:boolean,
+  tieneRetroalimentacion:boolean,
+  urlRetroalimentacionVideo:string,
+  imgRetroalimentacion:string,
+  retroalimentacion:string,
+  idAdsaTipoPreguntaClasificacion:number
+}
+export interface AdsaEnvioFilePreguntaActualizarDTO{
+  Id: number;
+  IdSimuladorAdsaDominio: number;
+  IdSimuladorAdsaTarea: number;
+  IdSimuladorTipoRespuesta: number;
+  IdAdsaTipoPreguntaClasificacion: number;
+  Enunciado: string;
+  UrlImagenPreguntaArchivo: File;
+  TieneRetroalimentacionUnica: boolean;
+  UrlRetroalimentacionVideo: string;
+  Retroalimentacion: string;
+  ImgRetroalimentacionArchivo: File;
+}

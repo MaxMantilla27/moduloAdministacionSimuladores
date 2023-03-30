@@ -1,7 +1,7 @@
 import { HttpClient,HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { AwsEnvioFilePreguntaDTO, awsPreguntaDTO } from 'src/app/Models/Aws/AwsPreguntaDTO';
+import { AwsEnvioFilePreguntaActualizarDTO, AwsEnvioFilePreguntaDTO, awsPreguntaDTO } from 'src/app/Models/Aws/AwsPreguntaDTO';
 import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
@@ -15,20 +15,20 @@ export class AwsPreguntaService {
     return this.http.get<any>(this.urlBase + '/ObtenerListaModoDapper');
   }
 
-  public ObtenerawsPregunta(idPregunta: any):Observable<any>{
-    return this.http.post<any>(this.urlBase+'/ObtenerawsPregunta?Id='+idPregunta,'');
+  public ObtenerAwsPregunta(IdPregunta: number):Observable<any>{
+    return this.http.post<any>(this.urlBase+'/ObtenerAwsPregunta?IdPregunta='+IdPregunta,'');
   }
 
   public AgregarPregunta(listaPregunta: AwsEnvioFilePreguntaDTO):Observable<any>{
     const formData: FormData = new FormData();
     console.log(listaPregunta);
     formData.append('Id', listaPregunta.Id.toString());
-    formData.append('IdSimuladorawsDominio', listaPregunta.IdSimuladorAwsDominio.toString());
-    formData.append('IdSimuladorawsTarea', listaPregunta.IdSimuladorAwsTarea.toString());
+    formData.append('IdSimuladorAwsDominio', listaPregunta.IdSimuladorAwsDominio.toString());
+    formData.append('IdSimuladorAwsTarea', listaPregunta.IdSimuladorAwsTarea.toString());
     formData.append('IdSimuladorTipoRespuesta', listaPregunta.IdSimuladorTipoRespuesta.toString());
     formData.append('Enunciado', listaPregunta.Enunciado.toString());
     formData.append('UrlImagenPreguntaArchivo', listaPregunta.UrlImagenPreguntaArchivo);
-    formData.append('IdawsTipoPreguntaClasificacion', listaPregunta.IdAwsTipoPreguntaClasificacion.toString());
+    formData.append('IdAwsTipoPreguntaClasificacion', listaPregunta.IdAwsTipoPreguntaClasificacion.toString());
     formData.append('TieneRetroalimentacionUnica', listaPregunta.TieneRetroalimentacionUnica.toString());
     formData.append('UrlRetroalimentacionVideo', listaPregunta.UrlRetroalimentacionVideo.toString() );
     formData.append('Retroalimentacion', listaPregunta.Retroalimentacion.toString() );
@@ -36,7 +36,7 @@ export class AwsPreguntaService {
     console.log(listaPregunta.Respuestas)
     for (let i = 0; i < listaPregunta.Respuestas.length; i++) {
       formData.append('Respuestas[' + i + '][Id]', listaPregunta.Respuestas[i].Id.toString());
-      formData.append('Respuestas[' + i + '][IdSimuladorawsPregunta]', listaPregunta.Respuestas[i].IdSimuladorAwsPregunta.toString());
+      formData.append('Respuestas[' + i + '][IdSimuladorAwsPregunta]', listaPregunta.Respuestas[i].IdSimuladorAwsPregunta.toString());
       formData.append('Respuestas[' + i + '][Respuesta]', listaPregunta.Respuestas[i].Respuesta.toString());
       formData.append('Respuestas[' + i + '][Valor]', listaPregunta.Respuestas[i].Valor.toString());
       formData.append('Respuestas[' + i + '][Correcto]', listaPregunta.Respuestas[i].Correcto.toString());
@@ -48,10 +48,26 @@ export class AwsPreguntaService {
    console.log(formData)
 
 
-   return this.http.post<any>(this.urlBase+'/GuardarArchivo',formData);
+   return this.http.post<any>(this.urlBase+'/RegistrarAwsPregunta',formData);
   }
   public EliminarPreguntaAws(IdPregunta: number):Observable<any>{
     return this.http.post<any>(this.urlBase+'/EliminarPreguntaAws?IdPregunta='+IdPregunta,'');
   }
-
+  public ActualizarPregunta(listaPregunta: AwsEnvioFilePreguntaActualizarDTO):Observable<any>{
+    const formData: FormData = new FormData();
+    console.log(listaPregunta);
+    formData.append('Id', listaPregunta.Id.toString());
+    formData.append('IdSimuladorAwsDominio', listaPregunta.IdSimuladorAwsDominio.toString());
+    formData.append('IdSimuladorAwsTarea', listaPregunta.IdSimuladorAwsTarea.toString());
+    formData.append('IdSimuladorTipoRespuesta', listaPregunta.IdSimuladorTipoRespuesta.toString());
+    formData.append('Enunciado', listaPregunta.Enunciado.toString());
+    formData.append('UrlImagenPreguntaArchivo', listaPregunta.UrlImagenPreguntaArchivo);
+    formData.append('IdAwsTipoPreguntaClasificacion', listaPregunta.IdAwsTipoPreguntaClasificacion.toString());
+    formData.append('TieneRetroalimentacionUnica', listaPregunta.TieneRetroalimentacionUnica.toString());
+    formData.append('UrlRetroalimentacionVideo', listaPregunta.UrlRetroalimentacionVideo.toString() );
+    formData.append('Retroalimentacion', listaPregunta.Retroalimentacion.toString() );
+    formData.append('ImgRetroalimentacionArchivo', listaPregunta.ImgRetroalimentacionArchivo);
+   console.log(formData)
+   return this.http.post<any>(this.urlBase+'/ActualizarAwsPregunta',formData);
+  }
 }

@@ -1,1 +1,55 @@
-<p>aws-configuracion-tipo-preguntas works!</p>
+<div class="row" style="padding: 40px 30px 10px 30px;">
+    <div class="titulo">
+      Configuración de tipo de preguntas.
+    </div>
+    <div class="subTitulo">
+      Puedes modificar los tipos de pregunta que seran asignados a las preguntas
+        del simulador
+    </div>
+  
+    <div id="test">
+  
+      <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed" class="table">
+        <thead>
+          <tr>
+            <th nzCustomFilter style="border: solid 1px #b2b2b2;width:100px; text-align: center; background-color: #E7E7E7;color: #222222;">Id</th>
+            <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Tipo de pregunta</th>
+            <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of nzTable.data; let i = index">
+            <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.id }}</td>
+            <td style="border: solid 1px #b2b2b2;">
+              <ng-container *ngIf="data.select == false">
+                {{ data.nombre }}
+              </ng-container>
+              <ng-container *ngIf="data.select == true">
+                <input
+                  type="text"
+                  nz-input
+                  [(ngModel)]="data.nombreNuevo"
+                />
+              </ng-container>
+            </td>
+            <td style="border: solid 1px #b2b2b2;justify-content: center;display: flex;">
+              <ng-container *ngIf="data.select == false">
+                <button mat-button class="edit" (click)="editar(i)">
+                  <i class="material-icons">edit</i>
+                </button>
+              </ng-container>
+              <ng-container *ngIf="data.select == true">
+                <button mat-button class="aceptar" (click)="aceptar(i)">
+                  <i class="material-icons">check_circle</i>
+                </button>
+                <button mat-button class="cancel" (click)="cancelar(i)">
+                  <i class="material-icons">close</i>
+                </button>
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>
+  

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AwsModalAgregarCategoriaComponent } from './aws-modal-agregar-categoria.component';
+import { AwsModalAgregarCategoriasComponent } from './aws-modal-agregar-categoria.component';
 
 describe('AwsModalAgregarCategoriaComponent', () => {
-  let component: AwsModalAgregarCategoriaComponent;
-  let fixture: ComponentFixture<AwsModalAgregarCategoriaComponent>;
+  let component: AwsModalAgregarCategoriasComponent;
+  let fixture: ComponentFixture<AwsModalAgregarCategoriasComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AwsModalAgregarCategoriaComponent ]
+      declarations: [ AwsModalAgregarCategoriasComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AwsModalAgregarCategoriaComponent);
+    fixture = TestBed.createComponent(AwsModalAgregarCategoriasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

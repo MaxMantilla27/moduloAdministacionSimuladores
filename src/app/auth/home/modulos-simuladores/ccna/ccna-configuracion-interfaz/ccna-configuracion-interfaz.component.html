@@ -1,1 +1,108 @@
-<p>ccna-configuracion-interfaz works!</p>
+<div class="row" style="padding: 40px 30px 10px 30px;">
+    <div class="titulo">
+      Configuración de interfaz
+    </div>
+    <div class="subTitulo">
+      Puedes modificar el video tutorial y el logotipo mostrado al inicio del simulador.
+    </div>
+  
+    <div style="margin-top: 15px;">
+      <div class="inp">
+        <div class="tit">
+          <p>Video Tutorial:</p>
+        </div >
+        <input style="width:40rem" type='text' placeholder="[Url / IdVideo]" [(ngModel)]="video"/>
+      </div>
+  
+      <div class="inp">
+        <div class="tit">
+          <p>Logotipo:</p>
+        </div>
+        <input type="file" id="file" (change)="getFileDetails($event)"/>
+      </div>
+  
+      <div >
+        <p>Parametros de nivel</p>
+  
+      <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed"class="table">
+        <thead>
+          <tr>
+            <th nzCustomFilter style="border: solid 1px #b2b2b2;width:120px ; text-align: center; background-color: #E7E7E7;color: #222222;">Promedio Minimo</th>
+            <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Promedio Maximo</th>
+            <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">N intentos</th>
+            <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Nivel</th>
+            <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of nzTable.data; let i = index">
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              <ng-container *ngIf="data.select == false">
+                {{ data.valorMinimo }}
+              </ng-container>
+              <ng-container *ngIf="data.select == true">
+                <input style="width: 5rem;"
+                  max="100"
+                  min="0"
+                  type="number"
+                  nz-input
+                  [(ngModel)]="data.valorMinimo"
+                />
+              </ng-container>
+            </td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              <ng-container *ngIf="data.select == false">
+                {{ data.valorMaximo }}
+              </ng-container>
+              <ng-container *ngIf="data.select == true">
+                <input  style="width: 5rem;"
+                  max="100"
+                  min="0"
+                  type="number"
+                  nz-input
+                  [(ngModel)]="data.valorMaximo"
+                />
+              </ng-container>
+            </td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.numeroIntentos }}</td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.nombre }}</td>
+            <td  style="border: solid 1px #b2b2b2;justify-content: center;display: flex;">
+              <ng-container *ngIf="data.select == false">
+                <button mat-button class="edit" (click)="editar(i)">
+                  <i class="material-icons">edit</i>
+                </button>
+              </ng-container>
+              <ng-container *ngIf="data.select == true">
+                <button mat-button class="aceptar" (click)="aceptar(i)">
+                  <i class="material-icons">check_circle</i>
+                </button>
+                <button mat-button class="cancel" (click)="cancelar(i)">
+                  <i class="material-icons">close</i>
+                </button>
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+      </div>
+  
+      <div class="inp">
+        <div class="tit">
+          <p>Porcentaje minimo de aprobacion:</p>
+        </div>
+        <input style="width: 5rem;border-radius: 10px;" type="number" [(ngModel)]="porcentaje" min="0" max="100"/>
+      </div>
+  
+      <div class="inp">
+        <div class="tit">
+          <p>Vigencia de acceso:</p>
+        </div>
+        <input style="width: 5rem;border-radius: 10px;" type="number" [(ngModel)]="acceso" min="0" />
+      </div>
+  
+      <button mat-raised-button style="background-color: orange; color: white" (click)="ActualizarInterfaz()">
+        Guardar Cambios
+      </button>
+    </div>
+  </div>
+  

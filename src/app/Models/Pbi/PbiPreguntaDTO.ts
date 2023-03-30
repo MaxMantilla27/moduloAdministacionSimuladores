@@ -27,22 +27,22 @@ export interface PbiEnvioFilePreguntaDTO{
    IdPbiTipoPreguntaClasificacion: number;
    Enunciado: string;
    UrlImagenPreguntaArchivo: File;
-   TieneRetroalimentacionUnica: boolean; 
+   TieneRetroalimentacionUnica: boolean;
    UrlRetroalimentacionVideo: string;
    Retroalimentacion: string;
    ImgRetroalimentacionArchivo: File;
-   Respuestas : Array<PbiEnvioRespuesDTO> 
+   Respuestas : Array<PbiEnvioRespuesDTO>
 }
 export interface PbiEnvioRespuesDTO{
-   Id: number; 
-   IdSimuladorPbiPregunta: number; 
-   Respuesta: string; 
-   Valor: number; 
-   Correcto: boolean; 
-   Puntaje: number; 
-   UrlRetroalimentacionVideo: string; 
-   Explicacion: string; 
-   UrlImagenArchivo: File;  
+   Id: number;
+   IdSimuladorPbiPregunta: number;
+   Respuesta: string;
+   Valor: number;
+   Correcto: boolean;
+   Puntaje: number;
+   UrlRetroalimentacionVideo: string;
+   Explicacion: string;
+   UrlImagenArchivo: File;
 }
 
 export interface Alternativa{
@@ -53,4 +53,32 @@ export interface Alternativa{
   UrlVideo: string,
   Texto:string,
   Imagen: string
+}
+export interface DetallePreguntaDTO{
+  id:number,
+  idAspenetUsers:string,
+  idSimuladorPbiDominio:number,
+  idSimuladorPbiTarea:number,
+  idSimuladorTipoRespuesta:number,
+  enunciado:string,
+  urlImagenPregunta:string,
+  tieneRetroalimentacionUnica:boolean,
+  tieneRetroalimentacion:boolean,
+  urlRetroalimentacionVideo:string,
+  imgRetroalimentacion:string,
+  retroalimentacion:string,
+  idPbiTipoPreguntaClasificacion:number
+}
+export interface PbiEnvioFilePreguntaActualizarDTO{
+  Id: number;
+  IdSimuladorPbiDominio: number;
+  IdSimuladorPbiTarea: number;
+  IdSimuladorTipoRespuesta: number;
+  IdPbiTipoPreguntaClasificacion: number;
+  Enunciado: string;
+  UrlImagenPreguntaArchivo: File;
+  TieneRetroalimentacionUnica: boolean;
+  UrlRetroalimentacionVideo: string;
+  Retroalimentacion: string;
+  ImgRetroalimentacionArchivo: File;
 }

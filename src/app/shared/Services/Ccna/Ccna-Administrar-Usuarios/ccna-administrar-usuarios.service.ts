@@ -11,18 +11,17 @@ export class CcnaAdministrarUsuariosService {
   public urlBase=environment.url_api+'CcnaAdministrarUsuarios';
   constructor(private http: HttpClient) { }
 
-  public ObtenerReporteAdministrarUsuarioResumen():Observable<any>{
-    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumen');
+  public ObtenerReporteAdministrarUsuarioResumenCcna():Observable<any>{
+    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumenCcna');
   }
-  public ObtenerReporteAdministrarUsuarioPorCodigoMatricula(CodigoMatricula:string): Observable<any> {
+  public ObtenerReporteAdministrarUsuarioPorCodigoMatriculaCcna(CodigoMatricula:string): Observable<any> {
     console.log(CodigoMatricula)
-    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCodigoMatricula?CodigoMatricula='+CodigoMatricula,'');
-
+    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCodigoMatriculaCcna?CodigoMatricula='+CodigoMatricula,'');
   }
-  public ObtenerReporteAdministrarUsuarioPorCentroCostos(CentroCostos:string): Observable<any> {
-    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCentroCostos?CentroCostos='+CentroCostos,'');
+  public ObtenerReporteAdministrarUsuarioPorCentroCostosCcna(CentroCostos:string): Observable<any> {
+    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCentroCostosCcna?CentroCostos='+CentroCostos,'');
   }
-  public GuardarCambiosAccesoSimulador(json:CcnaAdministrarUsuariosAccesoDTO): Observable<any> {
-    return this.http.post<any>(this.urlBase + '/GuardarCambiosAccesoSimulador',json);
+  public GuardarCambiosAccesoSimuladorCcna(json:CcnaAdministrarUsuariosAccesoDTO): Observable<any> {
+    return this.http.post<any>(this.urlBase + '/GuardarCambiosAccesoSimuladorCcna',json);
   }
 }

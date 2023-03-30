@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { actualizarTipoRespuestaDTO,actualizarInterfaz } from 'src/app/Models/Pbi/PbiTipoRespuesta';
+import { actualizarTipoRespuestaDTO,actualizarInterfaz, actualizarParametrosNivel } from 'src/app/Models/Pbi/PbiTipoRespuesta';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -17,8 +17,7 @@ export class PbiTipoRespuestaService {
 
   public urlBase=environment.url_api+'PbiTipoRespuesta';
   public urlBase2=environment.url_api+'PbiParametrosNivel';
-  public urlBase3=environment.url_api+'PbiTipoDominio';
-  public urlBase4= environment.url_api+'PbiConfiguracionSimulador';
+
   constructor(private http: HttpClient) { }
 
 
@@ -28,6 +27,10 @@ export class PbiTipoRespuestaService {
 
   public actualizarTipoRespuesta(Json:actualizarTipoRespuestaDTO):Observable<any>{
     return this.http.post<any>(this.urlBase+'/actualizarTipoRespuesta',Json);
+  }
+
+  public actualizarParametrosNivel(Json:actualizarParametrosNivel):Observable<any>{
+    return this.http.post<any>(this.urlBase2+'/actualizarPbiParametroNivel',Json);
   }
 
   public ObtenerParametrosNivelEntity():Observable<any>{

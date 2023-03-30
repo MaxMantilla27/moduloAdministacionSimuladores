@@ -11,18 +11,17 @@ export class AwsAdministrarUsuariosService {
   public urlBase=environment.url_api+'AwsAdministrarUsuarios';
   constructor(private http: HttpClient) { }
 
-  public ObtenerReporteAdministrarUsuarioResumen():Observable<any>{
-    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumen');
+  public ObtenerReporteAdministrarUsuarioResumenAws():Observable<any>{
+    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumenAws');
   }
-  public ObtenerReporteAdministrarUsuarioPorCodigoMatricula(CodigoMatricula:string): Observable<any> {
+  public ObtenerReporteAdministrarUsuarioPorCodigoMatriculaAws(CodigoMatricula:string): Observable<any> {
     console.log(CodigoMatricula)
-    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCodigoMatricula?CodigoMatricula='+CodigoMatricula,'');
-
+    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCodigoMatriculaAws?CodigoMatricula='+CodigoMatricula,'');
   }
-  public ObtenerReporteAdministrarUsuarioPorCentroCostos(CentroCostos:string): Observable<any> {
-    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCentroCostos?CentroCostos='+CentroCostos,'');
+  public ObtenerReporteAdministrarUsuarioPorCentroCostosAws(CentroCostos:string): Observable<any> {
+    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCentroCostosAws?CentroCostos='+CentroCostos,'');
   }
-  public GuardarCambiosAccesoSimulador(json:AwsAdministrarUsuariosAccesoDTO): Observable<any> {
-    return this.http.post<any>(this.urlBase + '/GuardarCambiosAccesoSimulador',json);
+  public GuardarCambiosAccesoSimuladorAws(json:AwsAdministrarUsuariosAccesoDTO): Observable<any> {
+    return this.http.post<any>(this.urlBase + '/GuardarCambiosAccesoSimuladorAws',json);
   }
 }

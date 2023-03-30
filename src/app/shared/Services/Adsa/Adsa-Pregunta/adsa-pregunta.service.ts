@@ -1,7 +1,7 @@
 import { HttpClient,HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { AdsaEnvioFilePreguntaDTO, adsaPreguntaDTO } from 'src/app/Models/Adsa/AdsaPreguntaDTO';
+import { AdsaEnvioFilePreguntaActualizarDTO, AdsaEnvioFilePreguntaDTO, adsaPreguntaDTO } from 'src/app/Models/Adsa/AdsaPreguntaDTO';
 import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
@@ -52,6 +52,23 @@ export class AdsaPreguntaService {
   }
   public EliminarPreguntaAdsa(IdPregunta: number):Observable<any>{
     return this.http.post<any>(this.urlBase+'/EliminarPreguntaAdsa?IdPregunta='+IdPregunta,'');
+  }
+  public ActualizarPregunta(listaPregunta: AdsaEnvioFilePreguntaActualizarDTO):Observable<any>{
+    const formData: FormData = new FormData();
+    console.log(listaPregunta);
+    formData.append('Id', listaPregunta.Id.toString());
+    formData.append('IdSimuladorPmpDominio', listaPregunta.IdSimuladorAdsaDominio.toString());
+    formData.append('IdSimuladorPmpTarea', listaPregunta.IdSimuladorAdsaTarea.toString());
+    formData.append('IdSimuladorTipoRespuesta', listaPregunta.IdSimuladorTipoRespuesta.toString());
+    formData.append('Enunciado', listaPregunta.Enunciado.toString());
+    formData.append('UrlImagenPreguntaArchivo', listaPregunta.UrlImagenPreguntaArchivo);
+    formData.append('IdPmpTipoPreguntaClasificacion', listaPregunta.IdAdsaTipoPreguntaClasificacion.toString());
+    formData.append('TieneRetroalimentacionUnica', listaPregunta.TieneRetroalimentacionUnica.toString());
+    formData.append('UrlRetroalimentacionVideo', listaPregunta.UrlRetroalimentacionVideo.toString() );
+    formData.append('Retroalimentacion', listaPregunta.Retroalimentacion.toString() );
+    formData.append('ImgRetroalimentacionArchivo', listaPregunta.ImgRetroalimentacionArchivo);
+   console.log(formData)
+   return this.http.post<any>(this.urlBase+'/ActualizarPmpPregunta',formData);
   }
 
 }

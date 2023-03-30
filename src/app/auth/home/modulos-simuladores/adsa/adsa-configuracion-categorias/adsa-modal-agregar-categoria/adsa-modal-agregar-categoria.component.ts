@@ -13,14 +13,14 @@ import { AdsaPreguntaService } from 'src/app/shared/Services/Adsa/Adsa-Pregunta/
   encapsulation: ViewEncapsulation.None,
 
 })
-export class adsaModalAgregarCategoriaComponent implements OnInit {
+export class AdsaModalAgregarCategoriaComponent implements OnInit {
 
   constructor(
-    public dialogRef: MatDialogRef<adsaModalAgregarCategoriaComponent>,
+    public dialogRef: MatDialogRef<AdsaModalAgregarCategoriaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private alertaService: AlertaService,
     private formBuilder: FormBuilder,
-    private _Dominio: adsaCategoriasService
+    private _Dominio: AdsaCategoriasService
   ) { }
 
   loading:any

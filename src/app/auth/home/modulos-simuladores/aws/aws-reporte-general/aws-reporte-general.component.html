@@ -1,1 +1,232 @@
-<p>aws-reporte-general works!</p>
+<div class="row" style="padding: 40px 30px 10px 30px;">
+    <div class="titulo">
+      Reporte General
+    </div>
+    <div class="subTitulo">
+      Puedes monitorear el estado de todos los alumnos matriculados en el programa e identificar que alumnos estan preparados para rendir el examen oficial de certificacion
+    </div>
+    <div class="tablaReporteGeneral" *ngIf="listOfDisplayData!=undefined">
+      <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed"class="table">
+        <thead>
+          <tr>
+            <th nzCustomFilter style="border: solid 1px #b2b2b2;width:120px ; text-align: center; background-color: #E7E7E7;color: #222222;">Código de Matrícula
+              <nz-filter-trigger
+              [(nzVisible)]="visible"
+              [nzActive]="searchValue.length > 0"
+              [nzDropdownMenu]="menu"
+            >
+              <span nz-icon nzType="search"></span>
+            </nz-filter-trigger></th>
+            <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Alumno
+              <nz-filter-trigger
+              [(nzVisible)]="visible2"
+              [nzActive]="searchValue2.length > 0"
+              [nzDropdownMenu]="menu2"
+            >
+              <span nz-icon nzType="search"></span>
+            </nz-filter-trigger></th>
+            <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Centro de Costos
+              <nz-filter-trigger
+              [(nzVisible)]="visible3"
+              [nzActive]="searchValue3.length > 0"
+              [nzDropdownMenu]="menu3"
+            >
+              <span nz-icon nzType="search"></span>
+            </nz-filter-trigger></th>
+            <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Tipo de Matrícula
+              <nz-filter-trigger
+              [(nzVisible)]="visible4"
+              [nzActive]="searchValue4.length > 0"
+              [nzDropdownMenu]="menu4"
+            >
+              <span nz-icon nzType="search"></span>
+            </nz-filter-trigger></th>
+            <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Fecha de Matrícula al Simulador</th>
+            <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Ptje. máx M. exámen</th>
+            <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Ptje. prom M. exámen</th>
+            <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Simulaciones Finalizadas</th>
+            <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Fecha de últimas simulación</th>
+            <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Nivel
+              <nz-filter-trigger
+              [(nzVisible)]="visible5"
+              [nzActive]="searchValue5.length > 0"
+              [nzDropdownMenu]="menu5"
+            >
+              <span nz-icon nzType="search"></span>
+            </nz-filter-trigger></th>
+            <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Certificación</th>
+            <th style="border: solid 1px #b2b2b2;width:120px;text-align: center; background-color: #E7E7E7;color: #222222;">Guardar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of nzTable.data; let i = index">
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              {{ data.codigoMatricula }}
+            </td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              {{ data.alumno }}
+            </td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              {{ data.centroCostos }}
+            </td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              {{ data.tipoMatricula }}</td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              {{ data.fechaMatriculaSimulador|date: 'dd/MM/yyyy' }}
+            </td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              {{ data.puntajeMaximo }}
+            </td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              {{ data.puntajePromedio }}
+            </td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              {{ data.simulacionesFinalizadas }}
+            </td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              {{ data.fechaUltimaSimulacion|date: 'dd/MM/yyyy' }}
+            </td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              {{ data.nivel }}
+            </td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              <mat-select [(ngModel)]="data.idCertificacion" (selectionChange)="seleccionar($event)">
+                <mat-option *ngFor="let a of ComboReporteGeneral" [value]="a.id" >
+                  {{a.nombre}}
+                </mat-option>
+              </mat-select>
+            </td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              <button mat-button class="aceptar" (click)="GuardarCambios(data)">
+                <i class="material-icons">check_circle</i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+  
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown">
+          <div class="search-box">
+            <input
+              type="text"
+              nz-input
+              placeholder="Search name"
+              [(ngModel)]="searchValue"
+            />
+            <button
+              nz-button
+              nzSize="small"
+              nzType="primary"
+              (click)="search()"
+              class="search-button"
+            >
+              Search
+            </button>
+            <button nz-button nzSize="small" (click)="reset()">Reset</button>
+          </div>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #menu2="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown">
+          <div class="search-box">
+            <input
+              type="text"
+              nz-input
+              placeholder="Search name"
+              [(ngModel)]="searchValue2"
+            />
+            <button
+              nz-button
+              nzSize="small"
+              nzType="primary"
+              (click)="search2()"
+              class="search-button"
+            >
+              Search
+            </button>
+            <button nz-button nzSize="small" (click)="reset()">Reset</button>
+          </div>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #menu3="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown">
+          <div class="search-box">
+            <input
+              type="text"
+              nz-input
+              placeholder="Search name"
+              [(ngModel)]="searchValue3"
+            />
+            <button
+              nz-button
+              nzSize="small"
+              nzType="primary"
+              (click)="search3()"
+              class="search-button"
+            >
+              Search
+            </button>
+            <button nz-button nzSize="small" (click)="reset()">Reset</button>
+          </div>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #menu4="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown">
+          <div class="search-box">
+            <input
+              type="text"
+              nz-input
+              placeholder="Search name"
+              [(ngModel)]="searchValue4"
+            />
+            <button
+              nz-button
+              nzSize="small"
+              nzType="primary"
+              (click)="search4()"
+              class="search-button"
+            >
+              Search
+            </button>
+            <button nz-button nzSize="small" (click)="reset()">Reset</button>
+          </div>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #menu5="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown">
+          <div class="search-box">
+            <input
+              type="text"
+              nz-input
+              placeholder="Search name"
+              [(ngModel)]="searchValue5"
+            />
+            <button
+              nz-button
+              nzSize="small"
+              nzType="primary"
+              (click)="search5()"
+              class="search-button"
+            >
+              Search
+            </button>
+            <button nz-button nzSize="small" (click)="reset()">Reset</button>
+          </div>
+        </div>
+      </nz-dropdown-menu>
+    </div>
+    <div class="loadingTablaReporteGeneral" *ngIf="listOfDisplayData==undefined">
+      <div class="container" style="width: 63%;">
+        <div style="padding:0.75rem 1.25rem;width: 100%;height: 450px;">
+          <div style="margin-top: 100px; display: flex;justify-content: center;">
+            <mat-spinner></mat-spinner>
+          </div>
+          <div style="margin-top: 20px;text-align: center">
+            Los registros se están cargando ...
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

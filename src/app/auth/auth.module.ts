@@ -114,7 +114,7 @@ import { PbiConfiguracionTipoPreguntasComponent } from './home/modulos-simulador
 import { PbiReporteGeneralComponent } from './home/modulos-simuladores/pbi/pbi-reporte-general/pbi-reporte-general.component';
 import { PbiReporteUsuariosComponent } from './home/modulos-simuladores/pbi/pbi-reporte-usuarios/pbi-reporte-usuarios.component';
 import { PbiAbrirModalDetalleExamenComponent } from './home/modulos-simuladores/pbi/pbi-reporte-usuarios/pbi-abrir-modal-detalle-examen/pbi-abrir-modal-detalle-examen.component';
-
+import { AwsModalAgregarCategoriasComponent } from './home/modulos-simuladores/aws/aws-configuracion-categorias/aws-modal-agregar-categoria/aws-modal-agregar-categoria.component';
 @NgModule({
   declarations: [
     AuthComponent,
@@ -182,8 +182,7 @@ import { PbiAbrirModalDetalleExamenComponent } from './home/modulos-simuladores/
     CissModalAlternativasComponent,
     DevopsModalAlternativasComponent,
     LabcModalAlternativasComponent,
-    PacpModalAlternativasComponent
-    ModalAlternativasComponent,
+    PacpModalAlternativasComponent,
     AwsComponent,
     AwsAdministrarUsuariosComponent,
     AwsConfiguracionCategoriasComponent,
@@ -230,7 +229,8 @@ import { PbiAbrirModalDetalleExamenComponent } from './home/modulos-simuladores/
     PbiConfiguracionTipoPreguntasComponent,
     PbiReporteGeneralComponent,
     PbiReporteUsuariosComponent,
-    PbiAbrirModalDetalleExamenComponent
+    PbiAbrirModalDetalleExamenComponent,
+    AwsModalAgregarCategoriasComponent
 
   ],
   imports: [

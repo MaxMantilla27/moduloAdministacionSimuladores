@@ -11,18 +11,17 @@ export class PbiAdministrarUsuariosService {
   public urlBase=environment.url_api+'PbiAdministrarUsuarios';
   constructor(private http: HttpClient) { }
 
-  public ObtenerReporteAdministrarUsuarioResumen():Observable<any>{
-    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumen');
+  public ObtenerReporteAdministrarUsuarioResumenPbi():Observable<any>{
+    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumenPbi');
   }
-  public ObtenerReporteAdministrarUsuarioPorCodigoMatricula(CodigoMatricula:string): Observable<any> {
+  public ObtenerReporteAdministrarUsuarioPorCodigoMatriculaPbi(CodigoMatricula:string): Observable<any> {
     console.log(CodigoMatricula)
-    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCodigoMatricula?CodigoMatricula='+CodigoMatricula,'');
-
+    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCodigoMatriculaPbi?CodigoMatricula='+CodigoMatricula,'');
   }
-  public ObtenerReporteAdministrarUsuarioPorCentroCostos(CentroCostos:string): Observable<any> {
-    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCentroCostos?CentroCostos='+CentroCostos,'');
+  public ObtenerReporteAdministrarUsuarioPorCentroCostosPbi(CentroCostos:string): Observable<any> {
+    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCentroCostosPbi?CentroCostos='+CentroCostos,'');
   }
-  public GuardarCambiosAccesoSimulador(json:PbiAdministrarUsuariosAccesoDTO): Observable<any> {
-    return this.http.post<any>(this.urlBase + '/GuardarCambiosAccesoSimulador',json);
+  public GuardarCambiosAccesoSimuladorPbi(json:PbiAdministrarUsuariosAccesoDTO): Observable<any> {
+    return this.http.post<any>(this.urlBase + '/GuardarCambiosAccesoSimuladorPbi',json);
   }
 }
