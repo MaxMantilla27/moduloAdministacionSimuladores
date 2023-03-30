@@ -64,7 +64,9 @@ export class LabcConfiguracionPreguntasComponent implements OnInit {
       panelClass: 'dialog-abrir-pregunta',
       data: [isNew, data]
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerPreguntasLabc()
+    });
   }
 
   editarPregunta(data: any) {
@@ -74,7 +76,9 @@ export class LabcConfiguracionPreguntasComponent implements OnInit {
       panelClass: 'dialog-abrir-pregunta',
       data: [isNew, data],
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerPreguntasLabc()
+    });
   }
 
   reset(): void {

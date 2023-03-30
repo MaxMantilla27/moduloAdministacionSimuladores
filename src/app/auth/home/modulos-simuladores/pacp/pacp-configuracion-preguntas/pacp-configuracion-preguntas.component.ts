@@ -63,7 +63,9 @@ export class PacpConfiguracionPreguntasComponent implements OnInit {
       panelClass: 'dialog-abrir-pregunta',
       data: [isNew, data]
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerPreguntasPacp()
+    });
   }
 
   editarPregunta(data: any) {
@@ -73,7 +75,9 @@ export class PacpConfiguracionPreguntasComponent implements OnInit {
       panelClass: 'dialog-abrir-pregunta',
       data: [isNew, data],
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerPreguntasPacp()
+    });
   }
 
   reset(): void {

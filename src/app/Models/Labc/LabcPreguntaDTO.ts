@@ -53,3 +53,34 @@ export interface LabcPreguntaDTO {
     Imagen: string
   }
   
+
+  export interface LabcEnvioFilePreguntaActualizarDTO{
+    Id: number;
+    IdSimuladorLabcDominio: number;
+    IdSimuladorLabcTarea: number;
+    IdSimuladorTipoRespuesta: number;
+    IdLabcTipoPreguntaClasificacion: number;
+    Enunciado: string;
+    UrlImagenPreguntaArchivo: File;
+    TieneRetroalimentacionUnica: boolean;
+    UrlRetroalimentacionVideo: string;
+    Retroalimentacion: string;
+    ImgRetroalimentacionArchivo: File;
+  }
+  
+
+  export interface DetallePreguntaDTO{
+    id:number,
+    idAspenetUsers:string,
+    idSimuladorLabcDominio:number,
+    idSimuladorLabcTarea:number,
+    idSimuladorTipoRespuesta:number,
+    enunciado:string,
+    urlImagenPregunta:string,
+    tieneRetroalimentacionUnica:boolean,
+    tieneRetroalimentacion:boolean,
+    urlRetroalimentacionVideo:string,
+    imgRetroalimentacion:string,
+    retroalimentacion:string,
+    idLabcTipoPreguntaClasificacion:number
+  }

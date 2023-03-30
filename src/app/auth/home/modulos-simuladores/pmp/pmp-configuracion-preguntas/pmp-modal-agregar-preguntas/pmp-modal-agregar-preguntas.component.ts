@@ -1,23 +1,12 @@
-import { AfterViewInit, Component, Inject, Input, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
-import { formulario } from 'src/app/Models/Formulario';
-import {
-  DetallePreguntaDTO,
-  PmpEnvioFilePreguntaActualizarDTO,
-  PmpEnvioFilePreguntaDTO,
-  PmpEnvioRespuesDTO,
-} from 'src/app/Models/Pmp/PreguntaDTO';
+import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { DetallePreguntaDTO, PmpEnvioFilePreguntaActualizarDTO, PmpEnvioFilePreguntaDTO, PmpEnvioRespuesDTO} from 'src/app/Models/Pmp/PreguntaDTO';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { PmpCategoriasService } from 'src/app/shared/Services/Pmp/Pmp-Categorias/pmp-categorias.service';
 import { PmpPreguntaService } from 'src/app/shared/Services/Pmp/Pmp-Pregunta/pmp-pregunta.service';
 import { PmpPreguntaRespuestaService } from 'src/app/shared/Services/Pmp/Pmp-PreguntaRespuesta/pmp-preguntaRespuesta.service';
 import { PmpTareaService } from 'src/app/shared/Services/Pmp/Pmp-Tarea/pmp-tarea.service';
-import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
 import Swal from 'sweetalert2';
 import { ModalAlternativasComponent } from './pmp-modal-alternativas/modal-alternativas.component';
 
@@ -55,6 +44,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   loading: any;
   loader: any;
   public show: boolean = false;
+  public dataPregunta = this.data
   public json: PmpEnvioFilePreguntaDTO = {
     Id: 0,
     IdSimuladorPmpDominio: 0,
@@ -310,9 +300,12 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     //Editar Pregunta
     const dialogRef = this.dialog.open(ModalAlternativasComponent, {
       panelClass: 'dialog-abrir-alternativa',
-      data: [data,isNewAlternativa,TieneRetroalimentacionUnica],
+      data: [data,isNewAlternativa,TieneRetroalimentacionUnica, 1],
     });
     dialogRef.afterClosed().subscribe((result: any) => {
+      console.log("uno")
+      this.ObtenerAlternativa();
+
       console.log(result);
       Object.assign(this.listaAlternativas[index], result);
       //this.listaAlternativas[index]=result
@@ -320,7 +313,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     });
   }
 
-  editarAlternativas(data: any, index: number) {
+  editarAlternativas(data: any, index: number) { 
     var isNewAlternativa=false
     var TieneRetroalimentacionUnica=this.TieneRetroalimentacionUnica
     console.log(data);
@@ -329,6 +322,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
       data: [data,isNewAlternativa,TieneRetroalimentacionUnica],
     });
     dialogRef.afterClosed().subscribe((Recargar: boolean) => {
+      this.ObtenerAlternativa();
       if(Recargar==true){
         this.ObtenerAlternativa();
       }
@@ -389,21 +383,26 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     var TieneRetroalimentacionUnica=this.TieneRetroalimentacionUnica
     const dialogRef = this.dialog.open(ModalAlternativasComponent, {
       panelClass: 'dialog-abrir-alternativa',
-      data:[undefined,isNewAlternativa,TieneRetroalimentacionUnica]
+      data:[undefined,isNewAlternativa,TieneRetroalimentacionUnica,this.data[1] ]
     });
 
     this.valorAgregado = false;
     dialogRef.afterClosed().subscribe((result: any) => {
+      console.log("tres")
+    
       console.log(result);
       this.listaAlternativasAnterior = this.listaAlternativas;
       console.log(this.listaAlternativasAnterior);
       console.log(this.listaAlternativas);
       if (result != undefined) {
+        console.log(result)
         this.valorAgregado = true;
-        this.listaAlternativas.push(result);
+       this.listaAlternativas.push(result);
+        Object.assign(result, result);
         console.log(this.listaAlternativas);
       }
       this.valorAgregado = true;
+      this.ObtenerAlternativa();
     });
   }
 

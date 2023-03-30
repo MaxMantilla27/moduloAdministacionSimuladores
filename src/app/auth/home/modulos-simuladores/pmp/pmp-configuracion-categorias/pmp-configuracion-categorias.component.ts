@@ -5,11 +5,7 @@ import { PmpModalAgregarCategoriaComponent } from './pmp-modal-agregar-categoria
 import { PmpCategoriasService } from 'src/app/shared/Services/Pmp/Pmp-Categorias/pmp-categorias.service';
 import { PmpTareaService } from 'src/app/shared/Services/Pmp/Pmp-Tarea/pmp-tarea.service';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
-import {
-  actualizarTipoRespuestaDTO,
-  filtradoPreguntaDTO,
-  filtro,
-} from 'src/app/Models/Pmp/TipoRespuesta';
+import { filtro } from 'src/app/Models/Pmp/TipoRespuesta';
 
 @Component({
   selector: 'app-pmp-configuracion-categorias',

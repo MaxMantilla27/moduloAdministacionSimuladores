@@ -1,0 +1,65 @@
+.dialog-abrir-pregunta{
+    mat-dialog-container {
+      padding: 0px !important;
+      margin-top: 60px;
+      width: 60rem;
+      height: 30rem;
+      overflow-x: clip;
+    }
+  }
+  
+  .tituloModalPregunta {
+    padding: 15px;
+    background-color: #23CAE4;
+    color: white;
+    font-weight: bold;
+    display: flex;
+  }
+  
+  .box{
+    border: 3px solid #E1E1E1;
+    border-radius: 10px;
+    padding: 5px;
+    padding-bottom: 0px;
+    width: 100%;
+    margin-top: 5px;
+  }
+  .buttonGroup{
+    margin-left: 10%;
+  }
+  
+  .contenidoTablaAlternativas{
+    text-align: center;
+    border: solid 1px #b2b2b2 !important;
+    padding-left: 5px;
+    padding-right: 5px;
+    // border-bottom: solid 1px #b2b2b2;
+  }
+  .encabezadoTablaAlternativas{
+    border: solid 1px #b2b2b2 !important;
+    text-align: center;
+    background-color: #E7E7E7;
+    color: #222222;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  
+  .cerrarModalPregunta{
+    width: 130px;
+    background-color: #FC5757;
+    color: white;
+    margin-right: 20px;
+    font-size: 17px;
+    border-radius: 6px;
+  }
+  .textoInputModalPregunta{
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .btnNuevaAlternativa{
+    background-color: #28A745;
+    color: white;
+    margin-top: 10px;
+  }
+  

@@ -43,6 +43,11 @@ import { PacpConfiguracionInterfazComponent } from './home/modulos-simuladores/p
 import { PacpAdministrarUsuariosComponent } from './home/modulos-simuladores/pacp/pacp-administrar-usuarios/pacp-administrar-usuarios.component';
 import { PacpReporteGeneralComponent } from './home/modulos-simuladores/pacp/pacp-reporte-general/pacp-reporte-general.component';
 import { PacpReporteUsuariosComponent } from './home/modulos-simuladores/pacp/pacp-reporte-usuarios/pacp-reporte-usuarios.component';
+import { CmrpComponent } from './home/modulos-simuladores/cmrp/cmrp.component';
+import { CapmComponent } from './home/modulos-simuladores/capm/capm.component';
+import { LssbComponent } from './home/modulos-simuladores/lssb/lssb.component';
+import { ItilComponent } from './home/modulos-simuladores/itil/itil.component';
+import { TogComponent } from './home/modulos-simuladores/tog/tog.component';
 import { AwsComponent } from './home/modulos-simuladores/aws/aws.component';
 import { AwsConfiguracionCategoriasComponent } from './home/modulos-simuladores/aws/aws-configuracion-categorias/aws-configuracion-categorias.component';
 import { AwsConfiguracionTipoPreguntasComponent } from './home/modulos-simuladores/aws/aws-configuracion-tipo-preguntas/aws-configuracion-tipo-preguntas.component';
@@ -84,160 +89,147 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'pmp', component: PmpComponent },
-      {
-        path: 'pmp/configuracionCategorias',
-        component: PmpConfiguracionCategoriasComponent,
-      },
-      {
-        path: 'pmp/configuracionTipoPreguntas',
-        component: PmpConfiguracionTipoPreguntasComponent,
-      },
-      {
-        path: 'pmp/configuracionPreguntas',
-        component: PmpConfiguracionPreguntasComponent,
-      },
-      {
-        path: 'pmp/configuracionInterfaz',
-        component: PmpConfiguracionInterfazComponent,
-      },
-      {
-        path: 'pmp/administrarUsuarios',
-        component: PmpAdministrarUsuariosComponent,
-      },
-      { path: 'pmp/reporteGeneral', component: PmpReporteGeneralComponent },
-      { path: 'pmp/reporteUsuario', component: PmpReporteUsuariosComponent },
-    ],
-  },
-  {
-    path: '',
-    component: AuthComponent,
-    canActivateChild: [AuthGuard],
-    children: [
-      { path: '', component: HomeComponent },
       { path: 'ciss', component: CissComponent },
-      {
-        path: 'ciss/configuracionCategorias',
-        component: CissConfiguracionCategoriasComponent,
-      },
-      {
-        path: 'ciss/configuracionTipoPreguntas',
-        component: CissConfiguracionTipoPreguntasComponent,
-      },
-      {
-        path: 'ciss/configuracionPreguntas',
-        component: CissConfiguracionPreguntasComponent,
-      },
-      {
-        path: 'ciss/configuracionInterfaz',
-        component: CissConfiguracionInterfazComponent,
-      },
-      {
-        path: 'ciss/administrarUsuarios',
-        component: CissAdministrarUsuariosComponent,
-      },
-      { path: 'ciss/reporteGeneral', component: CissReporteGeneralComponent },
-      { path: 'ciss/reporteUsuario', component: CissReporteUsuariosComponent },
-    ],
-  },
-  {
-    path: '',
-    component: AuthComponent,
-    canActivateChild: [AuthGuard],
-    children: [
-      { path: '', component: HomeComponent },
       { path: 'devop', component: DevopsComponent },
-      {
-        path: 'devop/configuracionCategorias',
-        component: DevopsConfiguracionCategoriasComponent,
-      },
-      {
-        path: 'devop/configuracionTipoPreguntas',
-        component: DevopsConfiguracionTipoPreguntasComponent,
-      },
-      {
-        path: 'devop/configuracionPreguntas',
-        component: DevopsConfiguracionPreguntasComponent,
-      },
-      {
-        path: 'devop/configuracionInterfaz',
-        component: DevopsConfiguracionInterfazComponent,
-      },
-      {
-        path: 'devop/administrarUsuarios',
-        component: DevopsAdministrarUsuariosComponent,
-      },
-      {
-        path: 'devop/reporteGeneral',
-        component: DevopsReporteGeneralComponent,
-      },
-      {
-        path: 'devop/reporteUsuario',
-        component: DevopsReporteUsuariosComponent,
-      },
-    ],
-  },
-  {
-    path: '',
-    component: AuthComponent,
-    canActivateChild: [AuthGuard],
-    children: [
-      { path: '', component: HomeComponent },
       { path: 'labc', component: LabcComponent },
-      {
-        path: 'labc/configuracionCategorias',
-        component: LabcConfiguracionCategoriasComponent,
-      },
-      {
-        path: 'labc/configuracionTipoPreguntas',
-        component: LabcConfiguracionTipoPreguntasComponent,
-      },
-      {
-        path: 'labc/configuracionPreguntas',
-        component: LabcConfiguracionPreguntasComponent,
-      },
-      {
-        path: 'labc/configuracionInterfaz',
-        component: LabcConfiguracionInterfazComponent,
-      },
-      {
-        path: 'labc/administrarUsuarios',
-        component: LabcAdministrarUsuariosComponent,
-      },
-      { path: 'labc/reporteGeneral', component: LabcReporteGeneralComponent },
-      { path: 'labc/reporteUsuario', component: LabcReporteUsuariosComponent },
-    ],
-  },
-  {
-    path: '',
-    component: AuthComponent,
-    canActivateChild: [AuthGuard],
-    children: [
-      { path: '', component: HomeComponent },
       { path: 'pacp', component: PacpComponent },
-      {
-        path: 'pacp/configuracionCategorias',
-        component: PacpConfiguracionCategoriasComponent,
-      },
-      {
-        path: 'pacp/configuracionTipoPreguntas',
-        component: PacpConfiguracionTipoPreguntasComponent,
-      },
-      {
-        path: 'pacp/configuracionPreguntas',
-        component: PacpConfiguracionPreguntasComponent,
-      },
-      {
-        path: 'pacp/configuracionInterfaz',
-        component: PacpConfiguracionInterfazComponent,
-      },
-      {
-        path: 'pacp/administrarUsuarios',
-        component: PacpAdministrarUsuariosComponent,
-      },
-      { path: 'pacp/reporteGeneral', component: PacpReporteGeneralComponent },
-      { path: 'pacp/reporteUsuario', component: PacpReporteUsuariosComponent },
+      { path: 'cmrp', component: CmrpComponent },
+      { path: 'capm', component: CapmComponent },
+      { path: 'itil', component: ItilComponent },
+      { path: 'lssb', component: LssbComponent },
+      { path: 'tog', component: TogComponent },
     ],
   },
+  // {
+  //   path: '',
+  //   component: AuthComponent,
+  //   canActivateChild: [AuthGuard],
+  //   children: [
+  //     { path: '', component: HomeComponent },
+  //     { path: 'ciss', component: CissComponent },
+  //     {
+  //       path: 'ciss/configuracionCategorias',
+  //       component: CissConfiguracionCategoriasComponent,
+  //     },
+  //     {
+  //       path: 'ciss/configuracionTipoPreguntas',
+  //       component: CissConfiguracionTipoPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'ciss/configuracionPreguntas',
+  //       component: CissConfiguracionPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'ciss/configuracionInterfaz',
+  //       component: CissConfiguracionInterfazComponent,
+  //     },
+  //     {
+  //       path: 'ciss/administrarUsuarios',
+  //       component: CissAdministrarUsuariosComponent,
+  //     },
+  //     { path: 'ciss/reporteGeneral', component: CissReporteGeneralComponent },
+  //     { path: 'ciss/reporteUsuario', component: CissReporteUsuariosComponent },
+  //   ],
+  // },
+  // {
+  //   path: '',
+  //   component: AuthComponent,
+  //   canActivateChild: [AuthGuard],
+  //   children: [
+  //     { path: '', component: HomeComponent },
+  //     { path: 'devop', component: DevopsComponent },
+  //     {
+  //       path: 'devop/configuracionCategorias',
+  //       component: DevopsConfiguracionCategoriasComponent,
+  //     },
+  //     {
+  //       path: 'devop/configuracionTipoPreguntas',
+  //       component: DevopsConfiguracionTipoPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'devop/configuracionPreguntas',
+  //       component: DevopsConfiguracionPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'devop/configuracionInterfaz',
+  //       component: DevopsConfiguracionInterfazComponent,
+  //     },
+  //     {
+  //       path: 'devop/administrarUsuarios',
+  //       component: DevopsAdministrarUsuariosComponent,
+  //     },
+  //     {
+  //       path: 'devop/reporteGeneral',
+  //       component: DevopsReporteGeneralComponent,
+  //     },
+  //     {
+  //       path: 'devop/reporteUsuario',
+  //       component: DevopsReporteUsuariosComponent,
+  //     },
+  //   ],
+  // },
+  // {
+  //   path: '',
+  //   component: AuthComponent,
+  //   canActivateChild: [AuthGuard],
+  //   children: [
+  //     { path: '', component: HomeComponent },
+  //     { path: 'labc', component: LabcComponent },
+  //     {
+  //       path: 'labc/configuracionCategorias',
+  //       component: LabcConfiguracionCategoriasComponent,
+  //     },
+  //     {
+  //       path: 'labc/configuracionTipoPreguntas',
+  //       component: LabcConfiguracionTipoPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'labc/configuracionPreguntas',
+  //       component: LabcConfiguracionPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'labc/configuracionInterfaz',
+  //       component: LabcConfiguracionInterfazComponent,
+  //     },
+  //     {
+  //       path: 'labc/administrarUsuarios',
+  //       component: LabcAdministrarUsuariosComponent,
+  //     },
+  //     { path: 'labc/reporteGeneral', component: LabcReporteGeneralComponent },
+  //     { path: 'labc/reporteUsuario', component: LabcReporteUsuariosComponent },
+  //   ],
+  // },
+  // {
+  //   path: '',
+  //   component: AuthComponent,
+  //   canActivateChild: [AuthGuard],
+  //   children: [
+  //     { path: '', component: HomeComponent },
+  //     { path: 'pacp', component: PacpComponent },
+  //     {
+  //       path: 'pacp/configuracionCategorias',
+  //       component: PacpConfiguracionCategoriasComponent,
+  //     },
+  //     {
+  //       path: 'pacp/configuracionTipoPreguntas',
+  //       component: PacpConfiguracionTipoPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'pacp/configuracionPreguntas',
+  //       component: PacpConfiguracionPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'pacp/configuracionInterfaz',
+  //       component: PacpConfiguracionInterfazComponent,
+  //     },
+  //     {
+  //       path: 'pacp/administrarUsuarios',
+  //       component: PacpAdministrarUsuariosComponent,
+  //     },
+  //     { path: 'pacp/reporteGeneral', component: PacpReporteGeneralComponent },
+  //     { path: 'pacp/reporteUsuario', component: PacpReporteUsuariosComponent },
+  //   ],
+  // },
   {
     path: '',
     component: AuthComponent,
