@@ -4,7 +4,6 @@ import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { pmpPreguntaActualizarDTO, pmpPreguntaDTO } from 'src/app/Models/Pmp/PreguntaDTO';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { PmpCategoriasService } from 'src/app/shared/Services/Pmp/Pmp-Categorias/pmp-categorias.service';
-import { PmpPreguntaService } from 'src/app/shared/Services/Pmp/Pmp-Pregunta/pmp-pregunta.service';
 
 @Component({
   selector: 'app-pmp-modal-agregar-categoria',

@@ -1,9 +1,7 @@
-import { Component, Input, OnInit, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 import { PmpExamenService } from 'src/app/shared/Services/Pmp/Pmp-examen/pmp-examen.service';
-import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
-import { PmpAbrirModalDetalleExamenComponent } from './pmp-abrir-modal-detalle-examen/pmp-abrir-modal-detalle-examen/pmp-abrir-modal-detalle-examen.component';
+import { PmpAbrirModalDetalleExamenComponent } from './pmp-abrir-modal-detalle-examen/pmp-abrir-modal-detalle-examen.component';
 
 
 @Component({

@@ -1,7 +1,6 @@
 import { Component, OnInit,Inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { pmpPreguntaActualizarDTO, pmpPreguntaDTO } from 'src/app/Models/Pmp/PreguntaDTO';
 import { pmpActualizarTareaDTO, pmpAgregarTareaDTO } from 'src/app/Models/Pmp/TareaDTO';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { PmpCategoriasService } from 'src/app/shared/Services/Pmp/Pmp-Categorias/pmp-categorias.service';

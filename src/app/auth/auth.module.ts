@@ -17,7 +17,7 @@ import { PmpConfiguracionTipoPreguntasComponent } from './home/modulos-simulador
 import { PmpReporteGeneralComponent } from './home/modulos-simuladores/pmp/pmp-reporte-general/pmp-reporte-general.component';
 import { PmpReporteUsuariosComponent } from './home/modulos-simuladores/pmp/pmp-reporte-usuarios/pmp-reporte-usuarios.component';
 import { PmpComponent } from './home/modulos-simuladores/pmp/pmp.component';
-import { PmpAbrirModalDetalleExamenComponent } from './home/modulos-simuladores/pmp/pmp-reporte-usuarios/pmp-abrir-modal-detalle-examen/pmp-abrir-modal-detalle-examen/pmp-abrir-modal-detalle-examen.component';
+import { PmpAbrirModalDetalleExamenComponent } from './home/modulos-simuladores/pmp/pmp-reporte-usuarios/pmp-abrir-modal-detalle-examen/pmp-abrir-modal-detalle-examen.component';
 import { ModalAlternativasComponent } from './home/modulos-simuladores/pmp/pmp-configuracion-preguntas/pmp-modal-agregar-preguntas/pmp-modal-alternativas/modal-alternativas.component';
 import { PacpComponent } from './home/modulos-simuladores/pacp/pacp.component';
 import { CissComponent } from './home/modulos-simuladores/ciss/ciss.component';
@@ -67,6 +67,71 @@ import { CissModalAlternativasComponent } from './home/modulos-simuladores/ciss/
 import { DevopsModalAlternativasComponent } from './home/modulos-simuladores/devops/devops-configuracion-preguntas/devops-modal-agregar-preguntas/devops-modal-alternativas/devops-modal-alternativas.component';
 import { LabcModalAlternativasComponent } from './home/modulos-simuladores/labc/labc-configuracion-preguntas/labc-modal-agregar-preguntas/labc-modal-alternativas/labc-modal-alternativas.component';
 import { PacpModalAlternativasComponent } from './home/modulos-simuladores/pacp/pacp-configuracion-preguntas/pacp-modal-agregar-preguntas/pacp-modal-alternativas/pacp-modal-alternativas.component';
+import { CapmComponent } from './home/modulos-simuladores/capm/capm.component';
+import { CmrpComponent } from './home/modulos-simuladores/cmrp/cmrp.component';
+import { ItilComponent } from './home/modulos-simuladores/itil/itil.component';
+import { LssbComponent } from './home/modulos-simuladores/lssb/lssb.component';
+import { TogComponent } from './home/modulos-simuladores/tog/tog.component';
+import { TogAdministrarUsuariosComponent } from './home/modulos-simuladores/tog/tog-administrar-usuarios/tog-administrar-usuarios.component';
+import { CapmAdministrarUsuariosComponent } from './home/modulos-simuladores/capm/capm-administrar-usuarios/capm-administrar-usuarios.component';
+import { CapmConfiguracionCategoriasComponent } from './home/modulos-simuladores/capm/capm-configuracion-categorias/capm-configuracion-categorias.component';
+import { CapmConfiguracionInterfazComponent } from './home/modulos-simuladores/capm/capm-configuracion-interfaz/capm-configuracion-interfaz.component';
+import { CapmConfiguracionPreguntasComponent } from './home/modulos-simuladores/capm/capm-configuracion-preguntas/capm-configuracion-preguntas.component';
+import { CapmConfiguracionTipoPreguntasComponent } from './home/modulos-simuladores/capm/capm-configuracion-tipo-preguntas/capm-configuracion-tipo-preguntas.component';
+import { CapmReporteGeneralComponent } from './home/modulos-simuladores/capm/capm-reporte-general/capm-reporte-general.component';
+import { CapmReporteUsuariosComponent } from './home/modulos-simuladores/capm/capm-reporte-usuarios/capm-reporte-usuarios.component';
+import { CmrpAdministrarUsuariosComponent } from './home/modulos-simuladores/cmrp/cmrp-administrar-usuarios/cmrp-administrar-usuarios.component';
+import { CmrpConfiguracionCategoriasComponent } from './home/modulos-simuladores/cmrp/cmrp-configuracion-categorias/cmrp-configuracion-categorias.component';
+import { CmrpConfiguracionInterfazComponent } from './home/modulos-simuladores/cmrp/cmrp-configuracion-interfaz/cmrp-configuracion-interfaz.component';
+import { CmrpConfiguracionPreguntasComponent } from './home/modulos-simuladores/cmrp/cmrp-configuracion-preguntas/cmrp-configuracion-preguntas.component';
+import { CmrpConfiguracionTipoPreguntasComponent } from './home/modulos-simuladores/cmrp/cmrp-configuracion-tipo-preguntas/cmrp-configuracion-tipo-preguntas.component';
+import { CmrpReporteGeneralComponent } from './home/modulos-simuladores/cmrp/cmrp-reporte-general/cmrp-reporte-general.component';
+import { CmrpReporteUsuariosComponent } from './home/modulos-simuladores/cmrp/cmrp-reporte-usuarios/cmrp-reporte-usuarios.component';
+import { ItilAdministrarUsuariosComponent } from './home/modulos-simuladores/itil/itil-administrar-usuarios/itil-administrar-usuarios.component';
+import { ItilConfiguracionCategoriasComponent } from './home/modulos-simuladores/itil/itil-configuracion-categorias/itil-configuracion-categorias.component';
+import { ItilConfiguracionInterfazComponent } from './home/modulos-simuladores/itil/itil-configuracion-interfaz/itil-configuracion-interfaz.component';
+import { ItilConfiguracionPreguntasComponent } from './home/modulos-simuladores/itil/itil-configuracion-preguntas/itil-configuracion-preguntas.component';
+import { ItilConfiguracionTipoPreguntasComponent } from './home/modulos-simuladores/itil/itil-configuracion-tipo-preguntas/itil-configuracion-tipo-preguntas.component';
+import { ItilReporteGeneralComponent } from './home/modulos-simuladores/itil/itil-reporte-general/itil-reporte-general.component';
+import { ItilReporteUsuariosComponent } from './home/modulos-simuladores/itil/itil-reporte-usuarios/itil-reporte-usuarios.component';
+import { LssbAdministrarUsuariosComponent } from './home/modulos-simuladores/lssb/lssb-administrar-usuarios/lssb-administrar-usuarios.component';
+import { LssbConfiguracionCategoriasComponent } from './home/modulos-simuladores/lssb/lssb-configuracion-categorias/lssb-configuracion-categorias.component';
+import { LssbConfiguracionInterfazComponent } from './home/modulos-simuladores/lssb/lssb-configuracion-interfaz/lssb-configuracion-interfaz.component';
+import { LssbConfiguracionPreguntasComponent } from './home/modulos-simuladores/lssb/lssb-configuracion-preguntas/lssb-configuracion-preguntas.component';
+import { LssbConfiguracionTipoPreguntasComponent } from './home/modulos-simuladores/lssb/lssb-configuracion-tipo-preguntas/lssb-configuracion-tipo-preguntas.component';
+import { LssbReporteGeneralComponent } from './home/modulos-simuladores/lssb/lssb-reporte-general/lssb-reporte-general.component';
+import { LssbReporteUsuariosComponent } from './home/modulos-simuladores/lssb/lssb-reporte-usuarios/lssb-reporte-usuarios.component';
+import { TogConfiguracionCategoriasComponent } from './home/modulos-simuladores/tog/tog-configuracion-categorias/tog-configuracion-categorias.component';
+import { TogConfiguracionInterfazComponent } from './home/modulos-simuladores/tog/tog-configuracion-interfaz/tog-configuracion-interfaz.component';
+import { TogConfiguracionPreguntasComponent } from './home/modulos-simuladores/tog/tog-configuracion-preguntas/tog-configuracion-preguntas.component';
+import { TogConfiguracionTipoPreguntasComponent } from './home/modulos-simuladores/tog/tog-configuracion-tipo-preguntas/tog-configuracion-tipo-preguntas.component';
+import { TogReporteGeneralComponent } from './home/modulos-simuladores/tog/tog-reporte-general/tog-reporte-general.component';
+import { TogReporteUsuariosComponent } from './home/modulos-simuladores/tog/tog-reporte-usuarios/tog-reporte-usuarios.component';
+import { TogAbrirModalDetalleExamenComponent } from './home/modulos-simuladores/tog/tog-reporte-usuarios/tog-abrir-modal-detalle-examen/tog-abrir-modal-detalle-examen.component';
+import { LssbAbrirModalDetalleExamenComponent } from './home/modulos-simuladores/lssb/lssb-reporte-usuarios/lssb-abrir-modal-detalle-examen/lssb-abrir-modal-detalle-examen.component';
+import { ItilAbrirModalDetalleExamenComponent } from './home/modulos-simuladores/itil/itil-reporte-usuarios/itil-abrir-modal-detalle-examen/itil-abrir-modal-detalle-examen.component';
+import { CmrpAbrirModalDetalleExamenComponent } from './home/modulos-simuladores/cmrp/cmrp-reporte-usuarios/cmrp-abrir-modal-detalle-examen/cmrp-abrir-modal-detalle-examen.component';
+import { CapmAbrirModalDetalleExamenComponent } from './home/modulos-simuladores/capm/capm-reporte-usuarios/capm-abrir-modal-detalle-examen/capm-abrir-modal-detalle-examen.component';
+import { TogModalAgregarCategoriaComponent } from './home/modulos-simuladores/tog/tog-configuracion-categorias/tog-modal-agregar-categoria/tog-modal-agregar-categoria.component';
+import { TogModalAgregarSubcategoriaComponent } from './home/modulos-simuladores/tog/tog-configuracion-categorias/tog-modal-agregar-subcategoria/tog-modal-agregar-subcategoria.component';
+import { LssbModalAgregarCategoriaComponent } from './home/modulos-simuladores/lssb/lssb-configuracion-categorias/lssb-modal-agregar-categoria/lssb-modal-agregar-categoria.component';
+import { LssbModalAgregarSubcategoriaComponent } from './home/modulos-simuladores/lssb/lssb-configuracion-categorias/lssb-modal-agregar-subcategoria/lssb-modal-agregar-subcategoria.component';
+import { ItilModalAgregarCategoriaComponent } from './home/modulos-simuladores/itil/itil-configuracion-categorias/itil-modal-agregar-categoria/itil-modal-agregar-categoria.component';
+import { ItilModalAgregarSubcategoriaComponent } from './home/modulos-simuladores/itil/itil-configuracion-categorias/itil-modal-agregar-subcategoria/itil-modal-agregar-subcategoria.component';
+import { CmrpModalAgregarCategoriaComponent } from './home/modulos-simuladores/cmrp/cmrp-configuracion-categorias/cmrp-modal-agregar-categoria/cmrp-modal-agregar-categoria.component';
+import { CmrpModalAgregarSubcategoriaComponent } from './home/modulos-simuladores/cmrp/cmrp-configuracion-categorias/cmrp-modal-agregar-subcategoria/cmrp-modal-agregar-subcategoria.component';
+import { CapmModalAgregarCategoriaComponent } from './home/modulos-simuladores/capm/capm-configuracion-categorias/capm-modal-agregar-categoria/capm-modal-agregar-categoria.component';
+import { CapmModalAgregarSubcategoriaComponent } from './home/modulos-simuladores/capm/capm-configuracion-categorias/capm-modal-agregar-subcategoria/capm-modal-agregar-subcategoria.component';
+import { TogModalAgregarPreguntasComponent } from './home/modulos-simuladores/tog/tog-configuracion-preguntas/tog-modal-agregar-preguntas/tog-modal-agregar-preguntas.component';
+import { LssbModalAgregarPreguntasComponent } from './home/modulos-simuladores/lssb/lssb-configuracion-preguntas/lssb-modal-agregar-preguntas/lssb-modal-agregar-preguntas.component';
+import { ItilModalAgregarPreguntasComponent } from './home/modulos-simuladores/itil/itil-configuracion-preguntas/itil-modal-agregar-preguntas/itil-modal-agregar-preguntas.component';
+import { CmrpModalAgregarPreguntasComponent } from './home/modulos-simuladores/cmrp/cmrp-configuracion-preguntas/cmrp-modal-agregar-preguntas/cmrp-modal-agregar-preguntas.component';
+import { CapmModalAgregarPreguntasComponent } from './home/modulos-simuladores/capm/capm-configuracion-preguntas/capm-modal-agregar-preguntas/capm-modal-agregar-preguntas.component';
+import { TogModalAlternativasComponent } from './home/modulos-simuladores/tog/tog-configuracion-preguntas/tog-modal-agregar-preguntas/tog-modal-alternativas/tog-modal-alternativas.component';
+import { LssbModalAlternativasComponent } from './home/modulos-simuladores/lssb/lssb-configuracion-preguntas/lssb-modal-agregar-preguntas/lssb-modal-alternativas/lssb-modal-alternativas.component';
+import { ItilModalAlternativasComponent } from './home/modulos-simuladores/itil/itil-configuracion-preguntas/itil-modal-agregar-preguntas/itil-modal-alternativas/itil-modal-alternativas.component';
+import { CmrpModalAlternativasComponent } from './home/modulos-simuladores/cmrp/cmrp-configuracion-preguntas/cmrp-modal-agregar-preguntas/cmrp-modal-alternativas/cmrp-modal-alternativas.component';
+import { CapmModalAlternativasComponent } from './home/modulos-simuladores/capm/capm-configuracion-preguntas/capm-modal-agregar-preguntas/capm-modal-alternativas/capm-modal-alternativas.component';
 
 @NgModule({
   declarations: [
@@ -135,7 +200,73 @@ import { PacpModalAlternativasComponent } from './home/modulos-simuladores/pacp/
     CissModalAlternativasComponent,
     DevopsModalAlternativasComponent,
     LabcModalAlternativasComponent,
-    PacpModalAlternativasComponent
+    PacpModalAlternativasComponent,
+    CapmComponent,
+    CmrpComponent,
+    ItilComponent,
+    LssbComponent,
+    TogComponent,
+    TogAdministrarUsuariosComponent,
+    CapmAdministrarUsuariosComponent,
+    CapmConfiguracionCategoriasComponent,
+    CapmConfiguracionInterfazComponent,
+    CapmConfiguracionPreguntasComponent,
+    CapmConfiguracionTipoPreguntasComponent,
+    CapmReporteGeneralComponent,
+    CapmReporteUsuariosComponent,
+    CmrpAdministrarUsuariosComponent,
+    CmrpConfiguracionCategoriasComponent,
+    CmrpConfiguracionInterfazComponent,
+    CmrpConfiguracionPreguntasComponent,
+    CmrpConfiguracionTipoPreguntasComponent,
+    CmrpReporteGeneralComponent,
+    CmrpReporteUsuariosComponent,
+    ItilAdministrarUsuariosComponent,
+    ItilConfiguracionCategoriasComponent,
+    ItilConfiguracionInterfazComponent,
+    ItilConfiguracionPreguntasComponent,
+    ItilConfiguracionTipoPreguntasComponent,
+    ItilReporteGeneralComponent,
+    ItilReporteUsuariosComponent,
+    LssbAdministrarUsuariosComponent,
+    LssbConfiguracionCategoriasComponent,
+    LssbConfiguracionInterfazComponent,
+    LssbConfiguracionPreguntasComponent,
+    LssbConfiguracionTipoPreguntasComponent,
+    LssbReporteGeneralComponent,
+    LssbReporteUsuariosComponent,
+    TogConfiguracionCategoriasComponent,
+    TogConfiguracionInterfazComponent,
+    TogConfiguracionPreguntasComponent,
+    TogConfiguracionTipoPreguntasComponent,
+    TogReporteGeneralComponent,
+    TogReporteUsuariosComponent,
+    TogAbrirModalDetalleExamenComponent,
+    LssbAbrirModalDetalleExamenComponent,
+    ItilAbrirModalDetalleExamenComponent,
+    CmrpAbrirModalDetalleExamenComponent,
+    CapmAbrirModalDetalleExamenComponent,
+    TogModalAgregarCategoriaComponent,
+    TogModalAgregarSubcategoriaComponent,
+    LssbModalAgregarCategoriaComponent,
+    LssbModalAgregarSubcategoriaComponent,
+    ItilModalAgregarCategoriaComponent,
+    ItilModalAgregarSubcategoriaComponent,
+    CmrpModalAgregarCategoriaComponent,
+    CmrpModalAgregarSubcategoriaComponent,
+    CapmModalAgregarCategoriaComponent,
+    CapmModalAgregarSubcategoriaComponent,
+    TogModalAgregarPreguntasComponent,
+    LssbModalAgregarPreguntasComponent,
+    ItilModalAgregarPreguntasComponent,
+    CmrpModalAgregarPreguntasComponent,
+    CapmModalAgregarPreguntasComponent,
+    TogModalAlternativasComponent,
+    LssbModalAlternativasComponent,
+    ItilModalAlternativasComponent,
+    CmrpModalAlternativasComponent,
+    CapmModalAlternativasComponent
+
 
   ],
   imports: [

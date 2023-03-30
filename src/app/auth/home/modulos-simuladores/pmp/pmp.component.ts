@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild,ViewEncapsulation } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { MatTabChangeEvent } from '@angular/material/tabs';
 import { PmpConfiguracionSimuladorService } from 'src/app/shared/Services/Pmp/Pmp-Configuracion-Simulador/pmp-configuracion-simulador.service';
 
 @Component({

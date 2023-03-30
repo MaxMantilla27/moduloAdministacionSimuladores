@@ -1,9 +1,8 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators  } from '@angular/forms';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PmpPreguntaRespuestaEnvioDTO } from 'src/app/Models/Pmp/PmpPreguntaRespuestaDTO';
 import { PmpPreguntaRespuestaService } from 'src/app/shared/Services/Pmp/Pmp-PreguntaRespuesta/pmp-preguntaRespuesta.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modal-alternativas',
@@ -55,11 +54,8 @@ export class ModalAlternativasComponent implements OnInit {
 
   ngOnInit(): void {
     this.formAlternativa.reset();
-    console.log(this.data)
-    console.log(this.data[2])
     this.TieneRetroalimentacionUnica=this.data[2]
-    console.log(this.data)
-    if(this.data[0]!=undefined)
+    if(this.data[0]!=undefined && this.data[1]==true)
     {
       this.formAlternativa.patchValue({
         Id:this.data[0].idAlternativa,
@@ -69,8 +65,17 @@ export class ModalAlternativasComponent implements OnInit {
         UrlRetroalimentacionVideo:this.data[0].urlRetroalimentacionVideo,
         Retroalimentacion:this.data[0].retroalimentacion
       })
-
-      console.log(this.formAlternativa)
+    }
+    if(this.data[0]!=undefined && this.data[1]==false)
+    {
+      this.formAlternativa.patchValue({
+        Id:0,
+        Respuesta:this.data[0].Respuesta,
+        Correcto:this.data[0].Correcto,
+        Puntaje:this.data[0].Puntaje,
+        UrlRetroalimentacionVideo:this.data[0].UrlRetroalimentacionVideo,
+        Retroalimentacion:this.data[0].Retroalimentacion
+      })
     }
   }
 

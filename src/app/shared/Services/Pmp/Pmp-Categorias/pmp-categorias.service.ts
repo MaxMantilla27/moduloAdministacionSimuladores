@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UserCredentialsDTO } from 'src/app/Models/login';
 import { pmpPreguntaActualizarDTO, pmpPreguntaDTO } from 'src/app/Models/Pmp/PreguntaDTO';
 import { environment } from 'src/environments/environment';
 
