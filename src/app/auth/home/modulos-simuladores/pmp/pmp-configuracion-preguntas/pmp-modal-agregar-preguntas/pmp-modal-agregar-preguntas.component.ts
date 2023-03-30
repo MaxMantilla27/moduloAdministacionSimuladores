@@ -1,23 +1,12 @@
-import { AfterViewInit, Component, Inject, Input, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
-import { formulario } from 'src/app/Models/Formulario';
-import {
-  DetallePreguntaDTO,
-  PmpEnvioFilePreguntaActualizarDTO,
-  PmpEnvioFilePreguntaDTO,
-  PmpEnvioRespuesDTO,
-} from 'src/app/Models/Pmp/PreguntaDTO';
+import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { DetallePreguntaDTO, PmpEnvioFilePreguntaActualizarDTO, PmpEnvioFilePreguntaDTO, PmpEnvioRespuesDTO} from 'src/app/Models/Pmp/PreguntaDTO';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { PmpCategoriasService } from 'src/app/shared/Services/Pmp/Pmp-Categorias/pmp-categorias.service';
 import { PmpPreguntaService } from 'src/app/shared/Services/Pmp/Pmp-Pregunta/pmp-pregunta.service';
 import { PmpPreguntaRespuestaService } from 'src/app/shared/Services/Pmp/Pmp-PreguntaRespuesta/pmp-preguntaRespuesta.service';
 import { PmpTareaService } from 'src/app/shared/Services/Pmp/Pmp-Tarea/pmp-tarea.service';
-import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
 import Swal from 'sweetalert2';
 import { ModalAlternativasComponent } from './pmp-modal-alternativas/modal-alternativas.component';
 

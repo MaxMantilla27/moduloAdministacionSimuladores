@@ -1,0 +1,308 @@
+<div class="row" style="padding: 40px 30px 10px 30px;">
+  <div class="titulo">
+    Reporte de Usuarios
+  </div>
+  <div class="subTitulo">
+    Puedes visualizar el estado de los simuladores, resultado y nivel de aprendizaje.
+  </div >
+  <div style="margin-top:15px">
+    <div style="display: flex;margin-top: 10px;margin-bottom: 15px;">
+      <div class="col-12 col-md-3 nombreInput">
+        Codigo de matricula:
+      </div>
+      <div class="col-12 col-md-3">
+        <input class="inputRUsuarioBuscar" placeholder="[Codigo]"  [(ngModel)]="codigoMatricula"/>
+      </div>
+      <div class="col-12 col-md-6">
+        <button mat-button style="background-color: #04BAFF; color: white" (click)="filtroReporteUsuarios()">
+          <i class="material-icons">search</i>
+        Buscar
+      </button>
+      </div>
+    </div>
+    <div style="display: flex;margin-top: 10px;margin-bottom: 10px;">
+      <div class="col-12 col-md-3 nombreInput">
+        Id Alumno:
+      </div>
+      <div class="col-12 col-md-9">
+        <input [disabled]="isDisabled" class="inputRUsuario"  placeholder="[IdAlumno]" [(ngModel)]="IdAlumno" />
+      </div>
+    </div>
+
+    <div style="display: flex;margin-top: 10px;margin-bottom: 10px;">
+      <div class="col-12 col-md-3 nombreInput">
+        Nombres y Apellidos:
+      </div>
+      <div class="col-12 col-md-9">
+        <input  [disabled]="isDisabled"  class="inputRUsuario"  placeholder="[Nombres y Apellidos]" [(ngModel)]="Alumno" />
+      </div>
+    </div>
+    <div style="display: flex;margin-top: 10px;margin-bottom: 10px;">
+      <div class="col-12 col-md-3 nombreInput">
+        Nivel:
+      </div>
+      <div class="col-12 col-md-9">
+        <input  [disabled]="isDisabled"  class="inputRUsuario"  placeholder="[Nivel]" [(ngModel)]="Nivel"/>
+      </div>
+    </div>
+    <div style="display: flex;margin-top: 10px;margin-bottom: 10px;">
+      <div class="col-12 col-md-3 nombreInput">
+        Examenes activos:
+      </div>
+      <div class="col-12 col-md-9">
+        <input  [disabled]="isDisabled"  class="inputRUsuario"  placeholder="[Examenes Activos]" [(ngModel)]="ExamenesActivos"/>
+      </div>
+    </div>
+    <div style="display: flex;margin-top: 10px;margin-bottom: 10px;">
+      <div class="col-12 col-md-3 nombreInput">
+        Examenes Completados:
+      </div>
+      <div class="col-12 col-md-9">
+        <input  [disabled]="isDisabled"  class="inputRUsuario"  placeholder="[Examenes Completados]" [(ngModel)]="ExamenesCompletados" />
+      </div>
+    </div>
+  </div>
+
+  <div class="container datos1" style="margin-bottom: 20px">
+    <div class="row" style="margin-bottom: 10px;">
+      <div class="col-md-4">
+        <button
+          class="modos"
+          mat-flat-button
+          [ngClass]="{ colorin: Modo == 1 }"
+          (click)="ObtenerResumenSimulacionesPorModoUsuario(1)"
+        >
+          Modo estudio
+        </button>
+      </div>
+      <div class="col-md-4">
+        <button
+          class="modos"
+          mat-flat-button
+          [ngClass]="{ colorin: Modo == 2 }"
+          (click)="ObtenerResumenSimulacionesPorModoUsuario(2)"
+        >
+          Modo entrenamiento
+        </button>
+      </div>
+      <div class="col-md-4">
+        <button
+          class="modos"
+          mat-flat-button
+          [ngClass]="{ colorin: Modo == 3 }"
+          (click)="ObtenerResumenSimulacionesPorModoUsuario(3)"
+        >
+          Modo examen
+        </button>
+      </div>
+
+  </div>
+  <ng-container *ngIf="Modo == 1 && IdAspNetUsers!=''">
+
+  <div class="container datos">
+    <div class="row">
+      <div class="col-md-4">
+        <div>
+          <p>Resultados de la ultima simulacion</p>
+          <app-dona [Puntos]="PuntosUltimaSimulacion" [TotalPuntos]="PuntosUltimaSimulacion"></app-dona>
+          <div class="item-leyenda-dona-principal">
+            <div>Nombre: {{NombreUltimaSimulacion}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <p>Mejor puntaje obtenido</p>
+        <app-dona [Puntos]="PuntosMejorSimulacion" [TotalPuntos]="PuntosMejorSimulacion"></app-dona>
+        <div class="item-leyenda-dona-principal">
+          <div>Simulación: {{NombreMejorSimulacion}}</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <p>Categorias con mayores puntajes</p>
+        <div *ngIf="PuntajesCategoria!=undefined">
+          <ng-container *ngFor="let itemCategorias of PuntajesCategoria" >
+            <div *ngIf="itemCategorias.promedio!=0" class="row">
+              <div class="col-9" style="top:8px;">
+                <mat-progress-bar mode="determinate" style="height: 10px;"
+                  [value]="itemCategorias.promedio">
+                </mat-progress-bar>
+                <p style="text-align: left;"><b style="color:#786565">Categoría {{itemCategorias.id}}: </b> <span>{{itemCategorias.nombre}}</span></p>
+            </div>
+            <div class="col-3">
+                <h5 style="color: #0684f2; white-space: nowrap; font-weight: 800 ">{{itemCategorias.promedio}}%</h5>
+            </div>
+            </div>
+          </ng-container>
+        </div>
+        <div *ngIf="PuntajesCategoria==undefined">
+          <div style=" font-size: 15px;margin-top: 10px;">
+            Aún no ha realizado ninguna sesión de estudio
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container datos1" style="margin-top: 50px">
+    <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed" class="table">
+      <thead>
+        <tr>
+          <th nzCustomFilter style="border: solid 1px #b2b2b2;width:100px; text-align: center; background-color: #E7E7E7;color: #222222;">Ranking</th>
+          <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Nombre</th>
+          <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Fecha y hora de inicio</th>
+          <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Fecha y hora de finalización</th>
+          <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Duración</th>
+          <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Puntaje</th>
+          <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Ver Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of nzTable.data; let i = index">
+          <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.ranking2 }}</td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.nombreSimulacion}}</td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.fechaHoraInicio| date:'dd/MM/yyyy' }} {{ data.fechaHoraInicio| date:'hh:mm:ss'}}</td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.fechaHoraFinalizacion| date:'dd/MM/yyyy' }} {{ data.fechaHoraFinalizacion| date:'hh:mm:ss'}}</td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.duracion }}</td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.puntaje }}</td>
+          <td style="text-align: center;border: solid 1px #b2b2b2;">
+            <button mat-button class="detalle" (click)="VerExamen(data.idExamen)">
+            <i class="material-icons">description</i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+</div>
+</ng-container>
+
+<ng-container *ngIf="Modo == 2 && IdAspNetUsers!=''">
+
+    <div class="container datos">
+      <div class="row">
+        <div class="col-md-4">
+          <div>
+            <p>Resultados de la ultima simulacion</p>
+            <app-dona [Puntos]="PuntosUltimaSimulacion" [TotalPuntos]="PuntosUltimaSimulacion"></app-dona>
+            <div class="item-leyenda-dona-principal">
+              <div>Nombre: {{NombreUltimaSimulacion}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <p>Mejor puntaje obtenido</p>
+          <app-dona [Puntos]="PuntosMejorSimulacion" [TotalPuntos]="PuntosMejorSimulacion"></app-dona>
+          <div class="item-leyenda-dona-principal">
+            <div>Simulación: {{NombreMejorSimulacion}}</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <p>Puntaje general por categorias</p>
+          <div>
+            <app-barras
+              [ResultadoDominio1]="ResultadoDominio1"
+              [ResultadoDominio2]="ResultadoDominio2"
+              [ResultadoDominio3]="ResultadoDominio3">
+            </app-barras>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container datos1" style="margin-top: 50px">
+      <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed" class="table">
+        <thead>
+          <tr>
+            <th nzCustomFilter style="border: solid 1px #b2b2b2;width:100px; text-align: center; background-color: #E7E7E7;color: #222222;">Ranking</th>
+            <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Nombre</th>
+            <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Fecha y hora de inicio</th>
+            <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Fecha y hora de finalización</th>
+            <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Duración</th>
+            <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Puntaje</th>
+            <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Ver Detalle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of nzTable.data; let i = index">
+            <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.ranking2 }}</td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.nombreSimulacion}}</td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.fechaHoraInicio| date:'dd/MM/yyyy' }} {{ data.fechaHoraInicio| date:'hh:mm:ss'}}</td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.fechaHoraFinalizacion| date:'dd/MM/yyyy' }} {{ data.fechaHoraFinalizacion| date:'hh:mm:ss'}}</td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.duracion }}</td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.puntaje }}</td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              <button mat-button class="detalle" (click)="VerExamen(data.idExamen)">
+              <i class="material-icons">description</i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+  </div>
+  </ng-container>
+
+  <ng-container *ngIf="Modo == 3 && IdAspNetUsers!=''">
+
+    <div class="container datos">
+      <div class="row">
+        <div class="col-md-4">
+          <div>
+            <p>Resultados de la ultima simulacion</p>
+            <app-dona [Puntos]="PuntosUltimaSimulacion" [TotalPuntos]="PuntosUltimaSimulacion"></app-dona>
+            <div class="item-leyenda-dona-principal">
+              <div>Nombre: {{NombreUltimaSimulacion}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <p>Mejor puntaje obtenido</p>
+          <app-dona [Puntos]="PuntosMejorSimulacion" [TotalPuntos]="PuntosMejorSimulacion"></app-dona>
+          <div class="item-leyenda-dona-principal">
+            <div>Simulación: {{NombreMejorSimulacion}}</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <p>Puntaje general por categorias</p>
+          <div>
+            <app-barras
+              [ResultadoDominio1]="ResultadoDominio1"
+              [ResultadoDominio2]="ResultadoDominio2"
+              [ResultadoDominio3]="ResultadoDominio3">
+            </app-barras>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container datos1" style="margin-top: 50px">
+      <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed" class="table">
+        <thead>
+          <tr>
+            <th nzCustomFilter style="border: solid 1px #b2b2b2;width:100px; text-align: center; background-color: #E7E7E7;color: #222222;">Ranking</th>
+            <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Nombre</th>
+            <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Fecha y hora de inicio</th>
+            <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Fecha y hora de finalización</th>
+            <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Duración</th>
+            <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Puntaje</th>
+            <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Ver Detalle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of nzTable.data; let i = index">
+            <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.ranking2 }}</td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.nombreSimulacion}}</td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.fechaHoraInicio| date:'dd/MM/yyyy' }} {{ data.fechaHoraInicio| date:'hh:mm:ss'}}</td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.fechaHoraFinalizacion| date:'dd/MM/yyyy' }} {{ data.fechaHoraFinalizacion| date:'hh:mm:ss'}}</td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.duracion }}</td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.puntaje }}</td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              <button mat-button class="detalle" (click)="VerExamen(data.idExamen)">
+              <i class="material-icons">description</i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+  </div>
+  </ng-container>
+</div>
+</div>

@@ -1,19 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { actualizarTipoRespuestaDTO,actualizarInterfaz, actualizarParametrosNivel } from 'src/app/Models/Pmp/TipoRespuesta';
+import { actualizarTipoRespuestaDTO, actualizarParametrosNivel } from 'src/app/Models/Pmp/TipoRespuesta';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PmpTipoRespuestaService {
-  ObtenerSubcategoriaCombo(envio: any) {
-    throw new Error('Method not implemented.');
-  }
-  ObtenerComboDominio() {
-    throw new Error('Method not implemented.');
-  }
 
   public urlBase=environment.url_api+'PmpTipoRespuesta';
   public urlBase2=environment.url_api+'PmpParametrosNivel';

@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseChartDirective } from 'ng2-charts';
-import { NZ_ICONS } from 'ng-zorro-antd/icon';
-import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
-import { IconDefinition } from '@ant-design/icons-angular';
-import * as AllIcons from '@ant-design/icons-angular/icons';
 import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
-import { actualizarParametrosNivel, actualizarTipoRespuestaDTO,actualizarInterfaz } from 'src/app/Models/Pmp/TipoRespuesta';
+import { actualizarParametrosNivel, actualizarInterfaz } from 'src/app/Models/Pmp/TipoRespuesta';
 import { PmpConfiguracionSimuladorService } from 'src/app/shared/Services/Pmp/Pmp-Configuracion-Simulador/pmp-configuracion-simulador.service';
 
 @Component({
@@ -133,10 +128,6 @@ getFileDetails(event:any) {
       this.filestatus=false
     }
     this.selectedFiles = event.target.files;
-    // console.log ('Name: ' + name + "\n" +
-    //   'Type: ' + extencion + "\n" +
-    //   'Last-Modified-Date: ' + modifiedDate + "\n" +
-    //   'Size: ' + Math.round((size/1024)/1024) + " MB");
   }
 }
 ActualizarInterfaz(){
@@ -176,6 +167,6 @@ ActualizarInterfaz(){
     });
   }
 
-  
+
 
 }

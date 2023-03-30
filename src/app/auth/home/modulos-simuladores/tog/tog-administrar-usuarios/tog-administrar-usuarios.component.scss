@@ -1,0 +1,79 @@
+.titulo{
+  color: #7E7E7E;
+  font-size: 30px;
+  font-weight: bold;
+}
+.subTitulo{
+  color: #7E7E7E;
+  font-size: 15px;
+}
+.titulo2{
+    padding: 15px;
+  }
+
+
+p {
+  color: grey;
+}
+
+h1 {
+  font-size: 30px;
+  color: grey;
+}
+
+.inp {
+  width: 100%;
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.inp input {
+  margin-right: 20px;
+}
+
+.inp button {
+  margin-right: 20px;
+}
+
+.inp .tit {
+  margin-right: 20px;
+}
+
+.inp p {
+  margin-right: 20px;
+  color: grey;
+  font-size: 15px;
+}
+
+.half {
+  width: 50%;
+  display: flex;
+}
+.inputAdmUsuarioBuscar{
+  border-radius: 10px;
+  text-align: center;
+  width: 11rem;
+  height: 36px;
+}
+.guardar{
+  background-color: #094D82;
+  color: white;
+}
+.contenidoTablaAdmUsuarios{
+  text-align: center;
+  border: solid 1px #b2b2b2;
+  padding-left: 5px;
+    padding-right: 5px;
+}
+.encabezadoTablaAdmUsuarios{
+  border: solid 1px #b2b2b2;
+  text-align: center;
+  background-color: #E7E7E7;
+  color: #222222;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.loadingTablaReporteUsuario{
+  justify-content: center;
+  display: flex;
+}
