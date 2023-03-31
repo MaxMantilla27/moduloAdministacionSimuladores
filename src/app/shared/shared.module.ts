@@ -105,7 +105,13 @@ import { NzCodeEditorModule } from 'ng-zorro-antd/code-editor';
 import { NzGraphModule } from 'ng-zorro-antd/graph';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
+/** config angular i18n **/
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+registerLocaleData(en);
 
+/** config ng-zorro-antd i18n **/
+import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 
 @NgModule({
   declarations: [
@@ -327,6 +333,10 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     NzGraphModule,
     MatButtonToggleModule
 
+  ],
+
+  providers   : [
+    { provide: NZ_I18N, useValue: en_US }
   ]
 })
 export class SharedModule { }
