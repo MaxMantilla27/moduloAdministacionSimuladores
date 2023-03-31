@@ -48,6 +48,38 @@ import { CapmComponent } from './home/modulos-simuladores/capm/capm.component';
 import { LssbComponent } from './home/modulos-simuladores/lssb/lssb.component';
 import { ItilComponent } from './home/modulos-simuladores/itil/itil.component';
 import { TogComponent } from './home/modulos-simuladores/tog/tog.component';
+import { AwsComponent } from './home/modulos-simuladores/aws/aws.component';
+import { AwsConfiguracionCategoriasComponent } from './home/modulos-simuladores/aws/aws-configuracion-categorias/aws-configuracion-categorias.component';
+import { AwsConfiguracionTipoPreguntasComponent } from './home/modulos-simuladores/aws/aws-configuracion-tipo-preguntas/aws-configuracion-tipo-preguntas.component';
+import { AwsConfiguracionPreguntasComponent } from './home/modulos-simuladores/aws/aws-configuracion-preguntas/aws-configuracion-preguntas.component';
+import { AwsConfiguracionInterfazComponent } from './home/modulos-simuladores/aws/aws-configuracion-interfaz/aws-configuracion-interfaz.component';
+import { AwsAdministrarUsuariosComponent } from './home/modulos-simuladores/aws/aws-administrar-usuarios/aws-administrar-usuarios.component';
+import { AwsReporteGeneralComponent } from './home/modulos-simuladores/aws/aws-reporte-general/aws-reporte-general.component';
+import { AwsReporteUsuariosComponent } from './home/modulos-simuladores/aws/aws-reporte-usuarios/aws-reporte-usuarios.component';
+import { AdsaComponent } from './home/modulos-simuladores/adsa/adsa.component';
+import { AdsaConfiguracionCategoriasComponent } from './home/modulos-simuladores/adsa/adsa-configuracion-categorias/adsa-configuracion-categorias.component';
+import { AdsaConfiguracionTipoPreguntasComponent } from './home/modulos-simuladores/adsa/adsa-configuracion-tipo-preguntas/adsa-configuracion-tipo-preguntas.component';
+import { AdsaConfiguracionPreguntasComponent } from './home/modulos-simuladores/adsa/adsa-configuracion-preguntas/adsa-configuracion-preguntas.component';
+import { AdsaConfiguracionInterfazComponent } from './home/modulos-simuladores/adsa/adsa-configuracion-interfaz/adsa-configuracion-interfaz.component';
+import { AdsaAdministrarUsuariosComponent } from './home/modulos-simuladores/adsa/adsa-administrar-usuarios/adsa-administrar-usuarios.component';
+import { AdsaReporteGeneralComponent } from './home/modulos-simuladores/adsa/adsa-reporte-general/adsa-reporte-general.component';
+import { AdsaReporteUsuariosComponent } from './home/modulos-simuladores/adsa/adsa-reporte-usuarios/adsa-reporte-usuarios.component';
+import { CcnaComponent } from './home/modulos-simuladores/ccna/ccna.component';
+import { CcnaConfiguracionCategoriasComponent } from './home/modulos-simuladores/ccna/ccna-configuracion-categorias/ccna-configuracion-categorias.component';
+import { CcnaConfiguracionTipoPreguntasComponent } from './home/modulos-simuladores/ccna/ccna-configuracion-tipo-preguntas/ccna-configuracion-tipo-preguntas.component';
+import { CcnaConfiguracionPreguntasComponent } from './home/modulos-simuladores/ccna/ccna-configuracion-preguntas/ccna-configuracion-preguntas.component';
+import { CcnaConfiguracionInterfazComponent } from './home/modulos-simuladores/ccna/ccna-configuracion-interfaz/ccna-configuracion-interfaz.component';
+import { CcnaAdministrarUsuariosComponent } from './home/modulos-simuladores/ccna/ccna-administrar-usuarios/ccna-administrar-usuarios.component';
+import { CcnaReporteUsuariosComponent } from './home/modulos-simuladores/ccna/ccna-reporte-usuarios/ccna-reporte-usuarios.component';
+import { CcnaReporteGeneralComponent } from './home/modulos-simuladores/ccna/ccna-reporte-general/ccna-reporte-general.component';
+import { PbiComponent } from './home/modulos-simuladores/pbi/pbi.component';
+import { PbiConfiguracionCategoriasComponent } from './home/modulos-simuladores/pbi/pbi-configuracion-categorias/pbi-configuracion-categorias.component';
+import { PbiConfiguracionTipoPreguntasComponent } from './home/modulos-simuladores/pbi/pbi-configuracion-tipo-preguntas/pbi-configuracion-tipo-preguntas.component';
+import { PbiConfiguracionPreguntasComponent } from './home/modulos-simuladores/pbi/pbi-configuracion-preguntas/pbi-configuracion-preguntas.component';
+import { PbiConfiguracionInterfazComponent } from './home/modulos-simuladores/pbi/pbi-configuracion-interfaz/pbi-configuracion-interfaz.component';
+import { PbiAdministrarUsuariosComponent } from './home/modulos-simuladores/pbi/pbi-administrar-usuarios/pbi-administrar-usuarios.component';
+import { PbiReporteUsuariosComponent } from './home/modulos-simuladores/pbi/pbi-reporte-usuarios/pbi-reporte-usuarios.component';
+import { PbiReporteGeneralComponent } from './home/modulos-simuladores/pbi/pbi-reporte-general/pbi-reporte-general.component';
 
 const routes: Routes = [
   {
@@ -65,7 +97,12 @@ const routes: Routes = [
       { path: 'capm', component: CapmComponent },
       { path: 'itil', component: ItilComponent },
       { path: 'lssb', component: LssbComponent },
+      { path: 'adsa', component: AdsaComponent },
+      { path: 'aws', component: AwsComponent },
+      { path: 'ccna', component: CcnaComponent },
+      { path: 'pbi', component: PbiComponent },
       { path: 'tog', component: TogComponent },
+      
     ],
   },
   // {
@@ -196,6 +233,130 @@ const routes: Routes = [
   //     },
   //     { path: 'pacp/reporteGeneral', component: PacpReporteGeneralComponent },
   //     { path: 'pacp/reporteUsuario', component: PacpReporteUsuariosComponent },
+  //   ],
+  // },
+  // {
+  //   path: '',
+  //   component: AuthComponent,
+  //   canActivateChild: [AuthGuard],
+  //   children: [
+  //     { path: '', component: HomeComponent },
+  //     { path: 'aws', component: AwsComponent },
+  //     {
+  //       path: 'aws/configuracionCategorias',
+  //       component: AwsConfiguracionCategoriasComponent,
+  //     },
+  //     {
+  //       path: 'aws/configuracionTipoPreguntas',
+  //       component: AwsConfiguracionTipoPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'aws/configuracionPreguntas',
+  //       component: AwsConfiguracionPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'aws/configuracionInterfaz',
+  //       component: AwsConfiguracionInterfazComponent,
+  //     },
+  //     {
+  //       path: 'aws/administrarUsuarios',
+  //       component: AwsAdministrarUsuariosComponent,
+  //     },
+  //     { path: 'aws/reporteGeneral', component: AwsReporteGeneralComponent },
+  //     { path: 'aws/reporteUsuario', component: AwsReporteUsuariosComponent },
+  //   ],
+  // },
+  // {
+  //   path: '',
+  //   component: AuthComponent,
+  //   canActivateChild: [AuthGuard],
+  //   children: [
+  //     { path: '', component: HomeComponent },
+  //     { path: 'adsa', component: AdsaComponent },
+  //     {
+  //       path: 'adsa/configuracionCategorias',
+  //       component: AdsaConfiguracionCategoriasComponent,
+  //     },
+  //     {
+  //       path: 'adsa/configuracionTipoPreguntas',
+  //       component: AdsaConfiguracionTipoPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'adsa/configuracionPreguntas',
+  //       component: AdsaConfiguracionPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'adsa/configuracionInterfaz',
+  //       component: AdsaConfiguracionInterfazComponent,
+  //     },
+  //     {
+  //       path: 'adsa/administrarUsuarios',
+  //       component: AdsaAdministrarUsuariosComponent,
+  //     },
+  //     { path: 'adsa/reporteGeneral', component: AdsaReporteGeneralComponent },
+  //     { path: 'adsa/reporteUsuario', component: AdsaReporteUsuariosComponent },
+  //   ],
+  // },
+  // {
+  //   path: '',
+  //   component: AuthComponent,
+  //   canActivateChild: [AuthGuard],
+  //   children: [
+  //     { path: '', component: HomeComponent },
+  //     { path: 'ccna', component: CcnaComponent },
+  //     {
+  //       path: 'ccna/configuracionCategorias',
+  //       component: CcnaConfiguracionCategoriasComponent,
+  //     },
+  //     {
+  //       path: 'ccna/configuracionTipoPreguntas',
+  //       component: CcnaConfiguracionTipoPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'ccna/configuracionPreguntas',
+  //       component: CcnaConfiguracionPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'ccna/configuracionInterfaz',
+  //       component: CcnaConfiguracionInterfazComponent,
+  //     },
+  //     {
+  //       path: 'ccna/administrarUsuarios',
+  //       component: CcnaAdministrarUsuariosComponent,
+  //     },
+  //     { path: 'ccna/reporteGeneral', component: CcnaReporteGeneralComponent },
+  //     { path: 'ccna/reporteUsuario', component: CcnaReporteUsuariosComponent },
+  //   ],
+  // },
+  // {
+  //   path: '',
+  //   component: AuthComponent,
+  //   canActivateChild: [AuthGuard],
+  //   children: [
+  //     { path: '', component: HomeComponent },
+  //     { path: 'pbi', component: PbiComponent },
+  //     {
+  //       path: 'pbi/configuracionCategorias',
+  //       component: PbiConfiguracionCategoriasComponent,
+  //     },
+  //     {
+  //       path: 'pbi/configuracionTipoPreguntas',
+  //       component: PbiConfiguracionTipoPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'pbi/configuracionPreguntas',
+  //       component: PbiConfiguracionPreguntasComponent,
+  //     },
+  //     {
+  //       path: 'pbi/configuracionInterfaz',
+  //       component: PbiConfiguracionInterfazComponent,
+  //     },
+  //     {
+  //       path: 'pbi/administrarUsuarios',
+  //       component: PbiAdministrarUsuariosComponent,
+  //     },
+  //     { path: 'pbi/reporteGeneral', component: PbiReporteGeneralComponent },
+  //     { path: 'pbi/reporteUsuario', component: PbiReporteUsuariosComponent },
   //   ],
   // },
 ];

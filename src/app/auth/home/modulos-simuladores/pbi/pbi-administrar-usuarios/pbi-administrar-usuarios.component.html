@@ -1,0 +1,903 @@
+<div class="row" style="padding: 40px 30px 10px 30px">
+    <div class="titulo">Administrar usuarios</div>
+    <div class="subTitulo">
+      Puedes administrar las solicitudes de acceso a simuladores enviadas por
+      alumnos
+    </div>
+    <div class="col-12 col-md-2">
+      <button
+        mat-raised-button
+        style="background-color: #04baff; color: white"
+        (click)="ObtenerReporteAdministrarUsuarioResumenPbi()"
+      >
+        Obtener Reporte Resumen
+      </button>
+    </div>
+    <div class="titulo2">
+      <div class="row">
+        <div class="col-12 col-md-6" style="display: flex">
+          <div class="col-12 col-md-4">
+            <p>Codigo de matricula:</p>
+          </div>
+          <div class="col-12 col-md-5">
+            <input
+              class="inputAdmUsuarioBuscar"
+              placeholder="Código de matrícula"
+              [(ngModel)]="CodigoMatricula"
+            />
+          </div>
+          <div class="col-12 col-md-2">
+            <button
+              mat-raised-button
+              style="background-color: #04baff; color: white"
+              (click)="
+                ObtenerReporteAdministrarUsuarioPorCodigoMatriculaPbi(
+                  CodigoMatricula
+                )
+              "
+            >
+              <i class="material-icons">search</i>
+              Buscar
+            </button>
+          </div>
+        </div>
+        <div class="col-12 col-md-6" style="display: flex">
+          <div class="col-12 col-md-4">Centro de costos:</div>
+          <div class="col-12 col-md-5">
+            <input
+              class="inputAdmUsuarioBuscar"
+              placeholder="Centro de Costos"
+              [(ngModel)]="CentroCostos"
+            />
+          </div>
+          <div class="col-12 col-md-2">
+            <button
+              mat-raised-button
+              style="background-color: #04baff; color: white"
+              (click)="
+                ObtenerReporteAdministrarUsuarioPorCentroCostosPbi(CentroCostos)
+              "
+            >
+              <i class="material-icons">search</i>
+              Buscar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="CodigoMatriculaBuscar == '' && CentroCostosBuscar == ''">
+      <nz-table
+        #nzTable
+        [nzData]="listOfDisplayData"
+        nzTableLayout="fixed"
+        class="table"
+      >
+        <thead>
+          <tr>
+            <th
+              nzCustomFilter
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Código de Matrícula
+              <nz-filter-trigger
+                [(nzVisible)]="visible"
+                [nzActive]="searchValue.length > 0"
+                [nzDropdownMenu]="menu"
+              >
+                <span nz-icon nzType="search"></span>
+              </nz-filter-trigger>
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Alumno
+              <nz-filter-trigger
+                [(nzVisible)]="visible2"
+                [nzActive]="searchValue2.length > 0"
+                [nzDropdownMenu]="menu2"
+              >
+                <span nz-icon nzType="search"></span>
+              </nz-filter-trigger>
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Correo Electrónico
+              <nz-filter-trigger
+                [(nzVisible)]="visible3"
+                [nzActive]="searchValue3.length > 0"
+                [nzDropdownMenu]="menu3"
+              >
+                <span nz-icon nzType="search"></span>
+              </nz-filter-trigger>
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Nombre de programa
+              <nz-filter-trigger
+                [(nzVisible)]="visible4"
+                [nzActive]="searchValue4.length > 0"
+                [nzDropdownMenu]="menu4"
+              >
+                <span nz-icon nzType="search"></span>
+              </nz-filter-trigger>
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Centro de Costos
+              <nz-filter-trigger
+                [(nzVisible)]="visible5"
+                [nzActive]="searchValue5.length > 0"
+                [nzDropdownMenu]="menu5"
+              >
+                <span nz-icon nzType="search"></span>
+              </nz-filter-trigger>
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Fecha de matrícula al simulador
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Estado de Curso
+              <nz-filter-trigger
+                [(nzVisible)]="visible6"
+                [nzActive]="searchValue6.length > 0"
+                [nzDropdownMenu]="menu6"
+              >
+                <span nz-icon nzType="search"></span>
+              </nz-filter-trigger>
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Estado de Pagos
+              <nz-filter-trigger
+                [(nzVisible)]="visible7"
+                [nzActive]="searchValue7.length > 0"
+                [nzDropdownMenu]="menu7"
+              >
+                <span nz-icon nzType="search"></span>
+              </nz-filter-trigger>
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Pagos Realizados
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Estado de Solicitud
+              <nz-filter-trigger
+                [(nzVisible)]="visible8"
+                [nzActive]="searchValue8.length > 0"
+                [nzDropdownMenu]="menu8"
+              >
+                <span nz-icon nzType="search"></span>
+              </nz-filter-trigger>
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Habilitar
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Fecha de Caducidad
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of nzTable.data; let i = index">
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.codigoMatricula }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.alumno }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.correo }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.nombrePrograma }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.centroCostos }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              <div *ngIf="data.fechaAccesoSimulador == null">00/00/0000</div>
+              <div *ngIf="data.fechaAccesoSimulador != null">
+                {{ data.fechaAccesoSimulador | date : "dd/MM/yyyy" }}
+              </div>
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              <div *ngIf="data.estadoCurso == true">{{ data.avance }}%</div>
+              <div *ngIf="data.estadoCurso == false"></div>
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.estadoPagos }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.cuotasPagadas }} / {{ data.numeroCuotas }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.estadoSolicitud }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              <input type="checkbox" [(ngModel)]="data.habilitar" />
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              <div *ngIf="data.fechaCaducidadSimulador == null">00/00/0000</div>
+              <div *ngIf="data.fechaCaducidadSimulador != null">
+                {{ data.fechaCaducidadSimulador | date : "dd/MM/yyyy" }}
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown">
+          <div class="search-box">
+            <input
+              type="text"
+              nz-input
+              placeholder="Search name"
+              [(ngModel)]="searchValue"
+            />
+            <button
+              nz-button
+              nzSize="small"
+              nzType="primary"
+              (click)="search()"
+              class="search-button"
+            >
+              Search
+            </button>
+            <button nz-button nzSize="small" (click)="reset()">Reset</button>
+          </div>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #menu2="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown">
+          <div class="search-box">
+            <input
+              type="text"
+              nz-input
+              placeholder="Search name"
+              [(ngModel)]="searchValue2"
+            />
+            <button
+              nz-button
+              nzSize="small"
+              nzType="primary"
+              (click)="search2()"
+              class="search-button"
+            >
+              Search
+            </button>
+            <button nz-button nzSize="small" (click)="reset()">Reset</button>
+          </div>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #menu3="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown">
+          <div class="search-box">
+            <input
+              type="text"
+              nz-input
+              placeholder="Search name"
+              [(ngModel)]="searchValue3"
+            />
+            <button
+              nz-button
+              nzSize="small"
+              nzType="primary"
+              (click)="search3()"
+              class="search-button"
+            >
+              Search
+            </button>
+            <button nz-button nzSize="small" (click)="reset()">Reset</button>
+          </div>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #menu4="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown">
+          <div class="search-box">
+            <input
+              type="text"
+              nz-input
+              placeholder="Search name"
+              [(ngModel)]="searchValue4"
+            />
+            <button
+              nz-button
+              nzSize="small"
+              nzType="primary"
+              (click)="search4()"
+              class="search-button"
+            >
+              Search
+            </button>
+            <button nz-button nzSize="small" (click)="reset()">Reset</button>
+          </div>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #menu5="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown">
+          <div class="search-box">
+            <input
+              type="text"
+              nz-input
+              placeholder="Search name"
+              [(ngModel)]="searchValue5"
+            />
+            <button
+              nz-button
+              nzSize="small"
+              nzType="primary"
+              (click)="search5()"
+              class="search-button"
+            >
+              Search
+            </button>
+            <button nz-button nzSize="small" (click)="reset()">Reset</button>
+          </div>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #menu6="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown">
+          <div class="search-box">
+            <input
+              type="text"
+              nz-input
+              placeholder="Search name"
+              [(ngModel)]="searchValue6"
+            />
+            <button
+              nz-button
+              nzSize="small"
+              nzType="primary"
+              (click)="search6()"
+              class="search-button"
+            >
+              Search
+            </button>
+            <button nz-button nzSize="small" (click)="reset()">Reset</button>
+          </div>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #menu7="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown">
+          <div class="search-box">
+            <input
+              type="text"
+              nz-input
+              placeholder="Search name"
+              [(ngModel)]="searchValue7"
+            />
+            <button
+              nz-button
+              nzSize="small"
+              nzType="primary"
+              (click)="search7()"
+              class="search-button"
+            >
+              Search
+            </button>
+            <button nz-button nzSize="small" (click)="reset()">Reset</button>
+          </div>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #menu8="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown">
+          <div class="search-box">
+            <input
+              type="text"
+              nz-input
+              placeholder="Search name"
+              [(ngModel)]="searchValue8"
+            />
+            <button
+              nz-button
+              nzSize="small"
+              nzType="primary"
+              (click)="search8()"
+              class="search-button"
+            >
+              Search
+            </button>
+            <button nz-button nzSize="small" (click)="reset()">Reset</button>
+          </div>
+        </div>
+      </nz-dropdown-menu>
+    </div>
+    <div *ngIf="CodigoMatriculaBuscar != ''">
+      <nz-table
+        #nzTable
+        [nzData]="ReporteCodigoMatricula"
+        nzTableLayout="fixed"
+        class="table"
+      >
+        <thead>
+          <tr>
+            <th
+              nzCustomFilter
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Código de Matrícula
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Alumno
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Correo Electrónico
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Nombre de programa
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Centro de Costos
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Fecha de matrícula al simulador
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Estado de Curso
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Estado de Pagos
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Pagos Realizados
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Estado de Solicitud
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Habilitar
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Fecha de Caducidad
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of nzTable.data; let i = index">
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.codigoMatricula }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.alumno }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.correo }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.nombrePrograma }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.centroCostos }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              <div *ngIf="data.fechaAccesoSimulador == null">00/00/0000</div>
+              <div *ngIf="data.fechaAccesoSimulador != null">
+                {{ data.fechaAccesoSimulador | date : "dd/MM/yyyy" }}
+              </div>
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              <div *ngIf="data.estadoCurso == true">{{ data.avance }}%</div>
+              <div *ngIf="data.estadoCurso == false"></div>
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.estadoPagos }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.cuotasPagadas }} / {{ data.numeroCuotas }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.estadoSolicitud }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              <input type="checkbox" [(ngModel)]="data.habilitar" />
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              <div *ngIf="data.fechaCaducidadSimulador == null">00/00/0000</div>
+              <div *ngIf="data.fechaCaducidadSimulador != null">
+                {{ data.fechaCaducidadSimulador | date : "dd/MM/yyyy" }}
+              </div>
+            </td>
+            <td class="contenidoTablaAdmUsuarios">
+              <button mat-button class="guardar" (click)="GuardarCambios(data)">
+                <i class="material-icons">save</i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+    <div *ngIf="CentroCostosBuscar != ''">
+      <nz-table
+        #nzTable
+        [nzData]="ReporteCentroCostos"
+        nzTableLayout="fixed"
+        class="table"
+      >
+        <thead>
+          <tr>
+            <th
+              nzCustomFilter
+              style="
+                border: solid 1px #b2b2b2;
+                width: 130px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Código de Matrícula
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Alumno
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Correo Electrónico
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 150px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Nombre de programa
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Centro de Costos
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Fecha de matrícula al simulador
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Estado de Curso
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Estado de Pagos
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Pagos Realizados
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Estado de Solicitud
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Habilitar
+            </th>
+            <th
+              style="
+                border: solid 1px #b2b2b2;
+                width: 120px;
+                text-align: center;
+                background-color: #e7e7e7;
+                color: #222222;
+              "
+            >
+              Fecha de Caducidad
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of nzTable.data; let i = index">
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.codigoMatricula }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.alumno }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.correo }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.nombrePrograma }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.centroCostos }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              <div *ngIf="data.fechaAccesoSimulador == null">00/00/0000</div>
+              <div *ngIf="data.fechaAccesoSimulador != null">
+                {{ data.fechaAccesoSimulador | date : "dd/MM/yyyy" }}
+              </div>
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              <div *ngIf="data.estadoCurso == true">{{ data.avance }}%</div>
+              <div *ngIf="data.estadoCurso == false"></div>
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.estadoPagos }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.cuotasPagadas }} / {{ data.numeroCuotas }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              {{ data.estadoSolicitud }}
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              <input type="checkbox" [(ngModel)]="data.habilitar" />
+            </td>
+            <td style="text-align: center; border: solid 1px #b2b2b2">
+              <div *ngIf="data.fechaCaducidadSimulador == null">00/00/0000</div>
+              <div *ngIf="data.fechaCaducidadSimulador != null">
+                {{ data.fechaCaducidadSimulador | date : "dd/MM/yyyy" }}
+              </div>
+            </td>
+            <td class="contenidoTablaAdmUsuarios">
+              <button mat-button class="guardar" (click)="GuardarCambios(data)">
+                <i class="material-icons">save</i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+    <div class="loadingTablaReporteUsuario" *ngIf="CentroCostosBuscar!='' && ReporteCentroCostos==undefined">
+      <div class="container" style="width: 63%;">
+        <div style="padding:0.75rem 1.25rem;width: 100%;height: 450px;">
+          <div style="margin-top: 100px; display: flex;justify-content: center;">
+            <mat-spinner></mat-spinner>
+          </div>
+          <div style="margin-top: 20px;text-align: center">
+            Los registros se están cargando ...
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

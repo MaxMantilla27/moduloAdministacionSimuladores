@@ -142,6 +142,7 @@ export class CissModalAgregarPreguntasComponent implements OnInit {
         next: (x: any) => {
           console.log(x)
           this.DetallePregunta = x;
+        
           console.log(this.DetallePregunta)
           this.formPregunta.patchValue({
             Id:x[0].id,
@@ -152,6 +153,7 @@ export class CissModalAgregarPreguntasComponent implements OnInit {
             // ImagenPregunta: null,
             // Alternativas:[]
             TieneRetroalimentacionUnica:x[0].tieneRetroalimentacionUnica,
+
             UrlVideo:x[0].urlRetroalimentacionVideo,
             Retroalimentacion:x[0].retroalimentacion,
             // ImgPreguntaRetroalimentacion:undefined
@@ -280,6 +282,8 @@ export class CissModalAgregarPreguntasComponent implements OnInit {
       this.jsonActualizar.UrlRetroalimentacionVideo = '';
       this.jsonActualizar.Retroalimentacion = ''
     }
+
+    console.log(this.jsonActualizar)
     this._pregunta.ActualizarPregunta(this.jsonActualizar).subscribe({
       next: (x:any) => {
         console.log(x)
