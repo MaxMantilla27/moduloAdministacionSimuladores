@@ -5,6 +5,7 @@ import {
 } from 'src/app/Models/Devops/DevopsTipoRespuesta';
 import { DevopsConfiguracionSimuladorService } from 'src/app/shared/Services/Devops/Devops-Configuracion-Simulador/devops-configuracion-simulador.service';
 import { DevopsTipoRespuestaService } from 'src/app/shared/Services/Devops/Devops-Tipo-Respuesta/devops-tipo-respuesta.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-devops-configuracion-interfaz',
@@ -158,14 +159,40 @@ export class DevopsConfiguracionInterfazComponent implements OnInit {
       .subscribe({
         next: (x) => {},
         error: (e) => {},
-        complete: () => {},
+        complete: () => {
+          this.mensajeExitoso();
+        },
       });
-  }
+    }
+    
+    mensajeExitoso(mensaje?: string) {
+      const Toast = Swal.mixin({
+        toast: true,
+        target: '#content-drawer-component',
+        customClass: {
+          container: 'swal2-container-integra',
+        },
+        position: 'top-right',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: false,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer);
+          toast.addEventListener('mouseleave', Swal.resumeTimer);
+        },
+      });
+      return Toast.fire({
+        icon: 'success',
+        title: mensaje != null ? mensaje : 'Guardado con exito',
+      });
+    }
   Actualizar() {
     this._TipoRespuesta.actualizarParametrosNivel(this.envio).subscribe({
       next: (x) => {},
       error: (e) => {},
-      complete: () => {},
+      complete: () => {
+        this.mensajeExitoso();
+      },
     });
   }
 }
