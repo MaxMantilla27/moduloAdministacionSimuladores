@@ -26,6 +26,7 @@ export class CapmConfiguracionCategoriasComponent implements OnInit {
   public listaCategorias: any;
   public listaSubCategorias: any;
   public CantTotalPreguntasPorExamenCategoria = 0;
+  public CantTotalPreguntasPorExamenSubCategoria = 0;
   public isNew = false;
 
   //------Nombre Categoria -------//
@@ -96,6 +97,18 @@ export class CapmConfiguracionCategoriasComponent implements OnInit {
         console.log(x);
         this.listaSubCategorias = x;
         this.listOfDisplayData2 = this.listaSubCategorias
+        this.listaCategorias.forEach((y: any) => {
+          this.CantTotalPreguntasPorExamenSubCategoria =
+            this.CantTotalPreguntasPorExamenSubCategoria +
+            y.cantidadPreguntasPorExamen;
+        });
+        this.listaSubCategorias.forEach((y: any) => {
+          var auxProporcion =
+            (y.cantidadPreguntasPorExamen /
+              this.CantTotalPreguntasPorExamenSubCategoria) *
+            100;
+          y.proporcion = Math.round(auxProporcion);
+        });
       },
     });
   }

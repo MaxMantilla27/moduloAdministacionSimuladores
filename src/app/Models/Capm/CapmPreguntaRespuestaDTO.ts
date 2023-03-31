@@ -7,3 +7,16 @@ export interface CapmPreguntaRespuestaEnvioDTO{
   Explicacion:string,
   ImagenArchivo:File
 }
+
+
+
+export interface CapmPreguntaRespuestaEnvioAgregarDTO{
+  Id:number,
+  Respuesta:string,
+  Correcto:boolean,
+  Puntaje:number,
+  UrlVideo:string,
+  Explicacion:string,
+  ImagenArchivo:File,
+  IdSimuladorCapmPregunta:number,
+}

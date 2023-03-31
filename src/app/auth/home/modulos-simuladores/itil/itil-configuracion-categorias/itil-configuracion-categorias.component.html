@@ -1,283 +1,285 @@
 <div class="row" style="padding: 40px 30px 10px 30px">
   <div class="titulo">Configuración</div>
-  <mat-tab-group class="tabHorizontalCategorias">
-    <mat-tab label="Categorias">
-      <div class="titulo">Categorias</div>
-      <div class="subTitulo">
-        Puedes modificar los nombres de las categorías, la cantidad de preguntas
-        por examen y su proporcion dentro del examen, este determinara cuantas
-        preguntas apareceran para cada categoria en los modos entrenamiento y
-        examen.
-      </div>
-      <div>
-        <button mat-button class="agregar2" (click)="agregar()">Añadir</button>
-      </div>
-
-      <div *ngIf="listaCategorias != undefined" id="test">
-        <nz-table #basicTable [nzData]="listOfDisplayData">
-          <thead>
-            <tr>
-              <th>Id
-                <nz-filter-trigger
-                [(nzVisible)]="visible2"
-                [nzActive]="searchValue2.length > 0"
-                [nzDropdownMenu]="menu2"
-              >
-                <span nz-icon nzType="search"></span>
-              </nz-filter-trigger>
-              </th>
-              <th>Nombre
-                <nz-filter-trigger
-                [(nzVisible)]="visible"
-                [nzActive]="searchValue.length > 0"
-                [nzDropdownMenu]="menu"
-              >
-                <span nz-icon nzType="search"></span>
-              </nz-filter-trigger>
-              </th>
-              <th>Cant. de preguntas por examen</th>
-              <th>Proporción</th>
-              <th>Opciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let data of basicTable.data">
-              <td>
-                {{ data.id }}
-              </td>
-              <td>
-                {{ data.nombre }}
-              </td>
-              <td>
-                {{ data.cantidadPreguntasPorExamen }}
-              </td>
-              <td>{{ data.proporcion }} %</td>
-              <td>
-                <ng-container>
-                  <button
-                    mat-button
-                    class="edit"
-                    (click)="EditarCategoria(data)"
-                  >
-                    <i class="material-icons">edit</i>
-                  </button>
-                </ng-container>
-                <ng-container>
-                  <button
-                    mat-button
-                    class="delete"
-                    (click)="EliminarCategoria(data)"
-                  >
-                    <i class="material-icons">delete</i>
-                  </button>
-                </ng-container>
-              </td>
-            </tr>
-          </tbody>
-        </nz-table>
-
-    <nz-dropdown-menu #menu="nzDropdownMenu">
-      <div class="ant-table-filter-dropdown">
-        <div class="search-box">
-          <input
-            type="text"
-            nz-input
-            placeholder="Search name"
-            [(ngModel)]="searchValue"
-          />
-          <button
-            nz-button
-            nzSize="small"
-            nzType="primary"
-            (click)="search()"
-            class="search-button"
-          >
-            Search
-          </button>
-          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+  <div class="col-12" style="position: relative;">
+    <mat-tab-group class="tabHorizontalCategorias">
+      <mat-tab label="Categorias">
+        <div class="titulo" style="margin-top: 10px;">Categorias</div>
+        <div class="subTitulo">
+          Puedes modificar los nombres de las categorías, la cantidad de preguntas
+          por examen y su proporcion dentro del examen, este determinara cuantas
+          preguntas apareceran para cada categoria en los modos entrenamiento y
+          examen.
         </div>
-      </div>
-    </nz-dropdown-menu>
-
-    <nz-dropdown-menu #menu2="nzDropdownMenu">
-      <div class="ant-table-filter-dropdown">
-        <div class="search-box">
-          <input
-            type="text"
-            nz-input
-            placeholder="Search name"
-            [(ngModel)]="searchValue2"
-          />
-          <button
-            nz-button
-            nzSize="small"
-            nzType="primary"
-            (click)="search2()"
-            class="search-button"
-          >
-            Search
-          </button>
-          <button nz-button nzSize="small" (click)="reset2()">Reset</button>
+        <div>
+          <button mat-button class="agregar2" (click)="agregar()">Añadir</button>
         </div>
-      </div>
-    </nz-dropdown-menu>
-      </div>
-    </mat-tab>
-    <mat-tab label="SubCategorias">
-      <div class="titulo">Subcategorias</div>
-      <div class="subTitulo">
-        Puedes modificar los nombres de las subcategorías, la cantidad de
-        preguntas por examen y su proporcion dentro del examen, este determinara
-        cuantas preguntas apareceran para cada categoria en los modos
-        entrenamiento y examen.
-      </div>
-      <div>
-        <button mat-button class="agregar2" (click)="agregarSubCategoria()">
-          Añadir
-        </button>
-      </div>
-      <div *ngIf="listaSubCategorias != undefined" id="test">
-        <nz-table #basicTable [nzData]="listOfDisplayData2">
-          <thead>
-            <tr>
-              <th>Id
-                <nz-filter-trigger
-                [(nzVisible)]="visible4"
-                [nzActive]="searchValue4.length > 0"
-                [nzDropdownMenu]="menu4"
-              >
-                <span nz-icon nzType="search"></span>
-              </nz-filter-trigger>
-              </th>
-              <th>Nombre de la subcategoría
-                <nz-filter-trigger
-                [(nzVisible)]="visible3"
-                [nzActive]="searchValue3.length > 0"
-                [nzDropdownMenu]="menu3"
-              >
-                <span nz-icon nzType="search"></span>
-              </nz-filter-trigger>
-              </th>
-              <th>Categoria Asignada
 
-                <nz-filter-trigger
-                [(nzVisible)]="visible5"
-                [nzActive]="searchValue5.length > 0"
-                [nzDropdownMenu]="menu5"
-              >
-                <span nz-icon nzType="search"></span>
-              </nz-filter-trigger>
-              </th>
-              <th>Cant. de preguntas por examen</th>
-              <th>Proporción</th>
-              <th>Opciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let data of basicTable.data">
-              <td>
-                {{ data.id }}
-              </td>
-              <td>
-                {{ data.nombre }}
-              </td>
-              <td>
-                {{ data.categoria }}
-              </td>
-              <td>
-                {{ data.cantidadPreguntasPorExamen }}
-              </td>
-              <td>{{ data.proporcion }} %</td>
-              <td>
-                <ng-container>
-                  <button
-                    mat-button
-                    class="edit"
-                    (click)="EditarSubCategoria(data)"
-                  >
-                    <i class="material-icons">edit</i>
-                  </button>
-                </ng-container>
-                <ng-container>
-                  <button
-                    mat-button
-                    class="delete"
-                    (click)="EliminarSubCategoria(data)"
-                  >
-                    <i class="material-icons">delete</i>
-                  </button>
-                </ng-container>
-              </td>
-            </tr>
-          </tbody>
-        </nz-table>
-        <nz-dropdown-menu #menu4="nzDropdownMenu">
-          <div class="ant-table-filter-dropdown">
-            <div class="search-box">
-              <input
-                type="text"
-                nz-input
-                placeholder="Search name"
-                [(ngModel)]="searchValue4"
-              />
-              <button
-                nz-button
-                nzSize="small"
-                nzType="primary"
-                (click)="search4()"
-                class="search-button"
-              >
-                Search
-              </button>
-              <button nz-button nzSize="small" (click)="reset4()">Reset</button>
-            </div>
+        <div *ngIf="listaCategorias != undefined" id="test">
+          <nz-table #basicTable [nzData]="listOfDisplayData">
+            <thead>
+              <tr>
+                <th>Id
+                  <nz-filter-trigger
+                  [(nzVisible)]="visible2"
+                  [nzActive]="searchValue2.length > 0"
+                  [nzDropdownMenu]="menu2"
+                >
+                  <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+                </th>
+                <th>Nombre
+                  <nz-filter-trigger
+                  [(nzVisible)]="visible"
+                  [nzActive]="searchValue.length > 0"
+                  [nzDropdownMenu]="menu"
+                >
+                  <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+                </th>
+                <th>Cant. de preguntas por examen</th>
+                <th>Proporción</th>
+                <th>Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of basicTable.data">
+                <td>
+                  {{ data.id }}
+                </td>
+                <td>
+                  {{ data.nombre }}
+                </td>
+                <td>
+                  {{ data.cantidadPreguntasPorExamen }}
+                </td>
+                <td>{{ data.proporcion }} %</td>
+                <td>
+                  <ng-container>
+                    <button
+                      mat-button
+                      class="edit"
+                      (click)="EditarCategoria(data)"
+                    >
+                      <i class="material-icons">edit</i>
+                    </button>
+                  </ng-container>
+                  <ng-container>
+                    <button
+                      mat-button
+                      class="delete"
+                      (click)="EliminarCategoria(data)"
+                    >
+                      <i class="material-icons">delete</i>
+                    </button>
+                  </ng-container>
+                </td>
+              </tr>
+            </tbody>
+          </nz-table>
+
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown">
+          <div class="search-box">
+            <input
+              type="text"
+              nz-input
+              placeholder="Search name"
+              [(ngModel)]="searchValue"
+            />
+            <button
+              nz-button
+              nzSize="small"
+              nzType="primary"
+              (click)="search()"
+              class="search-button"
+            >
+              Search
+            </button>
+            <button nz-button nzSize="small" (click)="reset()">Reset</button>
           </div>
-        </nz-dropdown-menu>
-        <nz-dropdown-menu #menu3="nzDropdownMenu">
-          <div class="ant-table-filter-dropdown">
-            <div class="search-box">
-              <input
-                type="text"
-                nz-input
-                placeholder="Search name"
-                [(ngModel)]="searchValue3"
-              />
-              <button
-                nz-button
-                nzSize="small"
-                nzType="primary"
-                (click)="search3()"
-                class="search-button"
-              >
-                Search
-              </button>
-              <button nz-button nzSize="small" (click)="reset3()">Reset</button>
-            </div>
+        </div>
+      </nz-dropdown-menu>
+
+      <nz-dropdown-menu #menu2="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown">
+          <div class="search-box">
+            <input
+              type="text"
+              nz-input
+              placeholder="Search name"
+              [(ngModel)]="searchValue2"
+            />
+            <button
+              nz-button
+              nzSize="small"
+              nzType="primary"
+              (click)="search2()"
+              class="search-button"
+            >
+              Search
+            </button>
+            <button nz-button nzSize="small" (click)="reset2()">Reset</button>
           </div>
-        </nz-dropdown-menu>
-        <nz-dropdown-menu #menu5="nzDropdownMenu">
-          <div class="ant-table-filter-dropdown">
-            <div class="search-box">
-              <input
-                type="text"
-                nz-input
-                placeholder="Search name"
-                [(ngModel)]="searchValue5"
-              />
-              <button
-                nz-button
-                nzSize="small"
-                nzType="primary"
-                (click)="search5()"
-                class="search-button"
-              >
-                Search
-              </button>
-              <button nz-button nzSize="small" (click)="reset5()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+        </div>
+      </mat-tab>
+      <mat-tab label="SubCategorias">
+        <div class="titulo">Subcategorias</div>
+        <div class="subTitulo">
+          Puedes modificar los nombres de las subcategorías, la cantidad de
+          preguntas por examen y su proporcion dentro del examen, este determinara
+          cuantas preguntas apareceran para cada categoria en los modos
+          entrenamiento y examen.
+        </div>
+        <div>
+          <button mat-button class="agregar2" (click)="agregarSubCategoria()">
+            Añadir
+          </button>
+        </div>
+        <div *ngIf="listaSubCategorias != undefined" id="test">
+          <nz-table #basicTable [nzData]="listOfDisplayData2">
+            <thead>
+              <tr>
+                <th>Id
+                  <nz-filter-trigger
+                  [(nzVisible)]="visible4"
+                  [nzActive]="searchValue4.length > 0"
+                  [nzDropdownMenu]="menu4"
+                >
+                  <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+                </th>
+                <th>Nombre de la subcategoría
+                  <nz-filter-trigger
+                  [(nzVisible)]="visible3"
+                  [nzActive]="searchValue3.length > 0"
+                  [nzDropdownMenu]="menu3"
+                >
+                  <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+                </th>
+                <th>Categoria Asignada
+
+                  <nz-filter-trigger
+                  [(nzVisible)]="visible5"
+                  [nzActive]="searchValue5.length > 0"
+                  [nzDropdownMenu]="menu5"
+                >
+                  <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+                </th>
+                <th>Cant. de preguntas por examen</th>
+                <th>Proporción</th>
+                <th>Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of basicTable.data">
+                <td>
+                  {{ data.id }}
+                </td>
+                <td>
+                  {{ data.nombre }}
+                </td>
+                <td>
+                  {{ data.categoria }}
+                </td>
+                <td>
+                  {{ data.cantidadPreguntasPorExamen }}
+                </td>
+                <td>{{ data.proporcion }} %</td>
+                <td>
+                  <ng-container>
+                    <button
+                      mat-button
+                      class="edit"
+                      (click)="EditarSubCategoria(data)"
+                    >
+                      <i class="material-icons">edit</i>
+                    </button>
+                  </ng-container>
+                  <ng-container>
+                    <button
+                      mat-button
+                      class="delete"
+                      (click)="EliminarSubCategoria(data)"
+                    >
+                      <i class="material-icons">delete</i>
+                    </button>
+                  </ng-container>
+                </td>
+              </tr>
+            </tbody>
+          </nz-table>
+          <nz-dropdown-menu #menu4="nzDropdownMenu">
+            <div class="ant-table-filter-dropdown">
+              <div class="search-box">
+                <input
+                  type="text"
+                  nz-input
+                  placeholder="Search name"
+                  [(ngModel)]="searchValue4"
+                />
+                <button
+                  nz-button
+                  nzSize="small"
+                  nzType="primary"
+                  (click)="search4()"
+                  class="search-button"
+                >
+                  Search
+                </button>
+                <button nz-button nzSize="small" (click)="reset4()">Reset</button>
+              </div>
             </div>
-          </div>
-        </nz-dropdown-menu>
-      </div>
-    </mat-tab>
-  </mat-tab-group>
+          </nz-dropdown-menu>
+          <nz-dropdown-menu #menu3="nzDropdownMenu">
+            <div class="ant-table-filter-dropdown">
+              <div class="search-box">
+                <input
+                  type="text"
+                  nz-input
+                  placeholder="Search name"
+                  [(ngModel)]="searchValue3"
+                />
+                <button
+                  nz-button
+                  nzSize="small"
+                  nzType="primary"
+                  (click)="search3()"
+                  class="search-button"
+                >
+                  Search
+                </button>
+                <button nz-button nzSize="small" (click)="reset3()">Reset</button>
+              </div>
+            </div>
+          </nz-dropdown-menu>
+          <nz-dropdown-menu #menu5="nzDropdownMenu">
+            <div class="ant-table-filter-dropdown">
+              <div class="search-box">
+                <input
+                  type="text"
+                  nz-input
+                  placeholder="Search name"
+                  [(ngModel)]="searchValue5"
+                />
+                <button
+                  nz-button
+                  nzSize="small"
+                  nzType="primary"
+                  (click)="search5()"
+                  class="search-button"
+                >
+                  Search
+                </button>
+                <button nz-button nzSize="small" (click)="reset5()">Reset</button>
+              </div>
+            </div>
+          </nz-dropdown-menu>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
 </div>

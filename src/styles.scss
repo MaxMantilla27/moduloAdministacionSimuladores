@@ -82,7 +82,7 @@ min-height: 540px;
 overflow: hidden;
 }
 .tabVertical
-mat-tab-header
+.mat-tab-header
 .mat-tab-label-container
 .mat-tab-list
 .mat-tab-labels
@@ -122,4 +122,98 @@ box-shadow: inset 8px 0px 0 #3390ff;
     height: 30rem;
     overflow-x: clip;
   }
+}
+.tabHorizontalCategorias {
+  flex-direction: row !important;
+}
+.tabHorizontalCategorias .mat-tab-header {
+  border-bottom: none !important;
+  margin-top: 50px;
+}
+.tabHorizontalCategorias .mat-tab-header .mat-tab-header-pagination {
+  display: none !important;
+}
+.tabHorizontalCategorias .mat-tab-header .mat-tab-label-container {
+  border-right: 2px solid #d2d2d2;
+}
+.tabHorizontalCategorias
+.mat-tab-header
+.mat-tab-label-container
+.mat-tab-list
+.mat-tab-labels {
+flex-direction: row !important;
+opacity: 1;
+max-width: 17rem;
+//border-right: 2px solid #d2d2d2;
+}
+.tabVerttabHorizontalCategoriasical
+.mat-tab-header
+.mat-tab-label-container
+.mat-tab-list
+.mat-tab-labels
+.mat-tab-label {
+justify-content: flex-start;
+opacity: 1 !important;
+padding-left: 0px;
+padding-right: 0px;
+min-width: 60px !important;
+height: auto !important;
+width: 100%;
+//justify-content: center;
+}
+.tabHorizontalCategorias
+.mat-tab-header
+.mat-tab-label-container
+.mat-tab-list
+.mat-tab-labels
+.mat-tab-label:hover {
+  background: #FFFFFF;
+}
+
+.tabHorizontalCategorias
+.mat-tab-header
+.mat-tab-label-container
+.mat-tab-list
+.mat-ink-bar {
+height: 100%;
+left: 98% !important;
+display: none;
+}
+.tabHorizontalCategorias .mat-tab-body-wrapper {
+flex: 1 1 auto !important;
+min-height: 540px;
+}
+.tabHorizontalCategorias .mat-tab-body-wrapper .mat-tab-body .mat-tab-body-content {
+overflow: hidden;
+}
+.tabHorizontalCategorias
+.mat-tab-header
+.mat-tab-label-container
+.mat-tab-list
+.mat-tab-labels
+.mat-tab-label-active {
+  background: #FFFFFF;
+  box-shadow: inset 10rem 0px 0 #04BAFF;
+  color: white;
+}
+
+@media (max-width: 768px) {
+.tabHorizontalCategorias > mat-tab-header{
+  z-index: 100;
+  //position: absolute !important;
+  background: white;
+  height: 100%;
+  min-width: 2px;
+}
+
+}
+@media (min-width: 768px) {
+.tabHorizontalCategorias > mat-tab-header{
+  z-index: 100;
+  //position: absolute !important;
+  background: white;
+  height: calc( 100% - 40px );
+  min-width: 2px;
+  max-width: 17rem;
+}
 }

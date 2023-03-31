@@ -7,3 +7,16 @@ export interface ItilPreguntaRespuestaEnvioDTO{
   Explicacion:string,
   ImagenArchivo:File
 }
+
+
+
+export interface ItilPreguntaRespuestaEnvioAgregarDTO{
+  Id:number,
+  Respuesta:string,
+  Correcto:boolean,
+  Puntaje:number,
+  UrlVideo:string,
+  Explicacion:string,
+  ImagenArchivo:File,
+  IdSimuladorItilPregunta:number,
+}

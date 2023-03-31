@@ -6,7 +6,7 @@
     ></mat-progress-spinner>
   </div>
 </ng-container>
-<div class="tituloModal">Añadir SubCategoria</div>
+<div class="tituloModal">Configuración Subcategorías</div>
 <form [formGroup]="formCategoria">
 <mat-dialog-content class="mat-typography">
   <div class="contenedor">
@@ -14,8 +14,7 @@
       <h3>Nombre de la categoria *</h3>
       <div class="ver">
         <mat-form-field appearance="fill">
-          <mat-label>Categorias</mat-label>
-
+          <mat-label>Categorías</mat-label>
           <mat-select
             (selectionChange)="FiltrarSubs($event)"
             formControlName="IdCategoria"
@@ -38,7 +37,6 @@
       </div>
     </div>
   </div>
-
   <div class="contenedor">
     <div class="inre">
       <h3>Cantidad de preguntas totales *</h3>
@@ -80,8 +78,6 @@
       </div>
     </div>
   </div>
-
-
   <div class="crear">
     <ng-container *ngIf="data== undefined">
       <button style="background: #FF850C;" mat-flat-button class="botonAgregar" (click)="Agregar()">Guardar Cambios</button>

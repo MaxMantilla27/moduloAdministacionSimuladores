@@ -87,10 +87,21 @@
     </div>
     <div class="row" style="margin-top:15px">
       <div *ngIf="data[1]==false" class="col-12 col-md-6" style="text-align: right;">
-        <button [disabled]="!formAlternativa.valid" mat-flat-button style="background: #FF850C; color: white;width: 9rem;border-radius: 15px;" (click)="ActualizarAlternativa()">Guardar Cambios</button>
+        <ng-container *ngIf="data[3] == undefined">
+        <button [disabled]="!formAlternativa.valid" mat-flat-button style="background: #FF850C; color: white;width: 9rem;border-radius: 15px;" (click)="ActualizarAlternativa()">Actualizar Cambios</button>
+      </ng-container>
+      <ng-container *ngIf="data[3] != undefined">
+        <button [disabled]="!formAlternativa.valid" mat-flat-button style="background: #FF850C; color: white;width: 9rem;border-radius: 15px;" (click)="ActualizarNuevo()">Actualizar Cambios </button>
+      </ng-container>
       </div>
       <div  *ngIf="data[1]==true" class="col-12 col-md-6" style="text-align: right;">
+        <ng-container *ngIf="data[3] != undefined">
         <button [disabled]="!formAlternativa.valid" mat-flat-button style="background: #FF850C; color: white;width: 9rem;border-radius: 15px;" (click)="EnviarRegistrosAlternativas()">Guardar Cambios</button>
+      </ng-container>
+      <ng-container *ngIf="data[3] == undefined">
+        <button [disabled]="!formAlternativa.valid" mat-flat-button style="background: #FF850C; color: white;width: 9rem;border-radius: 15px;" (click)="EnviarNuevo()">Guardar Cambios</button>
+      </ng-container>
+
       </div>
       <div  class="col-12 col-md-6">
         <button mat-flat-button style="background: #FC5757;color:white;width: 9rem;border-radius: 15px;" (click)="Cancelar()">Cancelar</button>
