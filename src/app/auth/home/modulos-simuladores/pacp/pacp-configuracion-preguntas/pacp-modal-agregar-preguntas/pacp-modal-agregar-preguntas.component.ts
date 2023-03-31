@@ -250,6 +250,14 @@ export class PacpModalAgregarPreguntasComponent implements OnInit {
         this.jsonActualizar.UrlImagenPreguntaArchivo = file;
       }
     }
+
+    if(this.formPregunta.get('UrlVideo')?.value == null){
+      this.jsonActualizar.UrlRetroalimentacionVideo =''
+      console.log(this.jsonActualizar)
+    }
+    else{
+      this.jsonActualizar.UrlRetroalimentacionVideo = this.formPregunta.get('UrlVideo')?.value;
+    }
     this.jsonActualizar.Id = this.formPregunta.get('Id')?.value;
     this.jsonActualizar.IdPacpTipoPreguntaClasificacion = 2;
     this.jsonActualizar.IdSimuladorPacpDominio = this.formPregunta.get('IdCategoria')?.value;

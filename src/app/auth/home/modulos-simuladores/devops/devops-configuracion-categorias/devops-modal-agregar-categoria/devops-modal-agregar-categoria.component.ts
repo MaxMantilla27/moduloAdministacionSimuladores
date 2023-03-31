@@ -113,7 +113,8 @@ export class DevopsModalAgregarCategoriaComponent implements OnInit {
     this.jsonEnvio.Leyenda = this.formCategoria.get('Leyenda')?.value
     this.jsonEnvio.CantidadPreguntasPorExamen = this.formCategoria.get('CantidadPreguntasExamen')?.value
     this.jsonEnvio.CantidadTotal= this.formCategoria.get('CantidadPreguntasTotales')?.value
-    this.jsonEnvio.Proporcion = this.formCategoria.get('Proporcion')?.value
+    this.jsonEnvio.Proporcion =  Math.round((this.jsonEnvio.CantidadTotal/this.jsonEnvio.CantidadPreguntasPorExamen)*100)
+
 
 
     console.log(this.jsonEnvio)
@@ -152,7 +153,8 @@ export class DevopsModalAgregarCategoriaComponent implements OnInit {
     this.jsonActualizar.Leyenda = this.formCategoria.get('Leyenda')?.value
     this.jsonActualizar.CantidadPreguntasPorExamen = this.formCategoria.get('CantidadPreguntasExamen')?.value
     this.jsonActualizar.CantidadTotal= this.formCategoria.get('CantidadPreguntasTotales')?.value
-    this.jsonActualizar.Proporcion = this.formCategoria.get('Proporcion')?.value
+    this.jsonEnvio.Proporcion =  Math.round((this.jsonActualizar.CantidadTotal/this.jsonActualizar.CantidadPreguntasPorExamen)*100)
+
 
     console.log(this.jsonActualizar)
 

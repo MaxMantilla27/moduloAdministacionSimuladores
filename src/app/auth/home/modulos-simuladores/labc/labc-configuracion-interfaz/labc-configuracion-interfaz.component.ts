@@ -5,6 +5,7 @@ import {
 } from 'src/app/Models/Labc/LabcTipoRespuesta';
 import { PacpConfiguracionSimuladorService } from 'src/app/shared/Services/Pacp/Pacp-Configuracion-Simulador/pacp-configuracion-simulador.service';
 import { PacpTipoRespuestaService } from 'src/app/shared/Services/Pacp/Pacp-Tipo-Respuesta/pacp-tipo-respuesta.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-labc-configuracion-interfaz',
@@ -158,15 +159,41 @@ export class LabcConfiguracionInterfazComponent implements OnInit {
       .subscribe({
         next: (x) => {},
         error: (e) => {},
-        complete: () => {},
+        complete: () => {
+          this.mensajeExitoso();
+        },
       });
-  }
+    }
+    
+    mensajeExitoso(mensaje?: string) {
+      const Toast = Swal.mixin({
+        toast: true,
+        target: '#content-drawer-component',
+        customClass: {
+          container: 'swal2-container-integra',
+        },
+        position: 'top-right',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: false,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer);
+          toast.addEventListener('mouseleave', Swal.resumeTimer);
+        },
+      });
+      return Toast.fire({
+        icon: 'success',
+        title: mensaje != null ? mensaje : 'Guardado con exito',
+      });
+    }
 
   Actualizar() {
     this._TipoRespuesta.actualizarParametrosNivel(this.envio).subscribe({
       next: (x) => {},
       error: (e) => {},
-      complete: () => {},
+      complete: () => {
+        this.mensajeExitoso();
+      },
     });
   }
 }

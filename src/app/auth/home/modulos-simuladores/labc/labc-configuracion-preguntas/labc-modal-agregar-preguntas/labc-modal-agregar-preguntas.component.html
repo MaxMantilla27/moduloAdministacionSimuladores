@@ -26,22 +26,22 @@
               </mat-form-field>
             </div>
           </div>
- 
-        </div>
-        <div class="col-12 col-md-6" style="display:flex">
-          <div class="col-12 col-md-4 textoInputModalPregunta">
-            Tipo de Pregunta:
+          <div class="col-12 col-md-6" style="display:flex">
+            <div class="col-12 col-md-4 textoInputModalPregunta">
+              Tipo de Pregunta:
+            </div>
+            <div class="col-12 col-md-6">
+              <mat-form-field>
+                <mat-label>Tipo de pregunta</mat-label>
+                <mat-select [disabled]="!isNew"  type="number" formControlName="IdTipoRespuesta" >
+                <mat-option *ngFor="let a of listaTipoPregunta" [value]="a.id">{{ a.nombre }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="formPregunta.invalid">Seleccione un tipo de respuesta</mat-error>
+              </mat-form-field>
+            </div>
           </div>
-          <div class="col-12 col-md-6">
-            <mat-form-field>
-              <mat-label>Tipo de pregunta</mat-label>
-              <mat-select [disabled]="!isNew"  type="number" formControlName="IdTipoRespuesta" >
-              <mat-option *ngFor="let a of listaTipoPregunta" [value]="a.id">{{ a.nombre }}</mat-option>
-              </mat-select>
-              <mat-error *ngIf="formPregunta.invalid">Seleccione un tipo de respuesta</mat-error>
-            </mat-form-field>
-          </div>
         </div>
+
         <div class="col-12 col-md-12 textoInputModalPregunta">
           Enunciado:
         </div>

@@ -5,6 +5,7 @@ import {
 } from 'src/app/Models/Pacp/PacpTipoRespuesta';
 import { PacpConfiguracionSimuladorService } from 'src/app/shared/Services/Pacp/Pacp-Configuracion-Simulador/pacp-configuracion-simulador.service';
 import { PacpTipoRespuestaService } from 'src/app/shared/Services/Pacp/Pacp-Tipo-Respuesta/pacp-tipo-respuesta.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-pacp-configuracion-interfaz',
@@ -114,7 +115,7 @@ export class PacpConfiguracionInterfazComponent implements OnInit {
     (this.envio.id = this.listOfDisplayData[index].id),
       (this.envio.valorMinimo = this.listOfDisplayData[index].valorMinimo),
       (this.envio.valorMaximo = this.listOfDisplayData[index].valorMaximo);
-    // this.Actualizar()
+    this.Actualizar()
   }
   handleFile(event: any): void {
     this.fileToUpload = event.target.files;
@@ -158,15 +159,41 @@ export class PacpConfiguracionInterfazComponent implements OnInit {
       .subscribe({
         next: (x) => {},
         error: (e) => {},
-        complete: () => {},
+        complete: () => {
+          this.mensajeExitoso();
+        },
       });
-  }
+    }
+    
+    mensajeExitoso(mensaje?: string) {
+      const Toast = Swal.mixin({
+        toast: true,
+        target: '#content-drawer-component',
+        customClass: {
+          container: 'swal2-container-integra',
+        },
+        position: 'top-right',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: false,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer);
+          toast.addEventListener('mouseleave', Swal.resumeTimer);
+        },
+      });
+      return Toast.fire({
+        icon: 'success',
+        title: mensaje != null ? mensaje : 'Guardado con exito',
+      });
+    }
 
   Actualizar() {
     this._TipoRespuesta.actualizarParametrosNivel(this.envio).subscribe({
       next: (x) => {},
       error: (e) => {},
-      complete: () => {},
+      complete: () => {
+        this.mensajeExitoso();
+      },
     });
   }
 }

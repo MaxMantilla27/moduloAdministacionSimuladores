@@ -253,6 +253,14 @@ export class LabcModalAgregarPreguntasComponent implements OnInit {
         this.jsonActualizar.UrlImagenPreguntaArchivo = file;
       }
     }
+
+    if(this.formPregunta.get('UrlVideo')?.value == null){
+      this.jsonActualizar.UrlRetroalimentacionVideo =''
+      console.log(this.jsonActualizar)
+    }
+    else{
+      this.jsonActualizar.UrlRetroalimentacionVideo = this.formPregunta.get('UrlVideo')?.value;
+    }
     this.jsonActualizar.Id = this.formPregunta.get('Id')?.value;
     this.jsonActualizar.IdLabcTipoPreguntaClasificacion = 2;
     this.jsonActualizar.IdSimuladorLabcDominio = this.formPregunta.get('IdCategoria')?.value;
