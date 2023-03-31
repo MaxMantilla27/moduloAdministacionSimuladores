@@ -119,8 +119,8 @@ export class AwsModalAgregarCategoriasComponent implements OnInit {
     this.jsonEnvio.Leyenda = this.formCategoria.get('Leyenda')?.value
     this.jsonEnvio.CantidadPreguntasPorExamen = this.formCategoria.get('CantidadPreguntasExamen')?.value
     this.jsonEnvio.CantidadTotal= this.formCategoria.get('CantidadPreguntasTotales')?.value
-    this.jsonEnvio.Proporcion = this.formCategoria.get('Proporcion')?.value
-    this.jsonEnvio.TieneSubCategoria = this.formCategoria.get('TieneSubCategoria')?.value
+    // this.jsonEnvio.Proporcion = this.formCategoria.get('Proporcion')?.value
+    // this.jsonEnvio.TieneSubCategoria = this.formCategoria.get('TieneSubCategoria')?.value
 
 
     console.log(this.jsonEnvio)
