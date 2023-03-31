@@ -164,7 +164,7 @@ ActualizarInterfaz(){
   });
 }
   Actualizar() {
-    this._TipoRespuesta.actualizarTipoRespuesta(this.envio).subscribe({
+    this._TipoRespuesta.actualizarParametrosNivel(this.envio).subscribe({
       next: (x) => {
       },
       error:(e)=>{

@@ -64,10 +64,8 @@ export class CcnaConfiguracionPreguntasComponent implements OnInit {
       panelClass: 'dialog-abrir-pregunta',
       data: [isNew, IdPregunta]
     });
-    dialogRef.afterClosed().subscribe((Recargar:boolean) => {
-      if(Recargar==true){
-        this.ObtenerPreguntasCcna();
-      }
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerPreguntasCcna()
     });
   }
 
@@ -78,10 +76,8 @@ export class CcnaConfiguracionPreguntasComponent implements OnInit {
       panelClass: 'dialog-abrir-pregunta',
       data: [isNew, IdPregunta],
     });
-    dialogRef.afterClosed().subscribe((Recargar:boolean) => {
-      if(Recargar==true){
-        this.ObtenerPreguntasCcna();
-      }
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerPreguntasCcna()
     });
   }
 

@@ -25,23 +25,24 @@
               <mat-error  *ngIf="formPregunta.invalid">Seleccione una categoría</mat-error>
             </mat-form-field>
           </div>
+          <div class="col-12 col-md-6" style="display:flex">
+            <div class="col-12 col-md-4 textoInputModalPregunta">
+              Tipo de Pregunta:
+            </div>
+            <div class="col-12 col-md-6">
+              <mat-form-field>
+                <mat-label>Tipo de pregunta</mat-label>
+                <mat-select [disabled]="!isNew"  type="number" formControlName="IdTipoRespuesta" >
+                <mat-option *ngFor="let a of listaTipoPregunta" [value]="a.id">{{ a.nombre }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="formPregunta.invalid">Seleccione un tipo de respuesta</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
         </div>
 
       </div>
-      <div class="col-12 col-md-6" style="display:flex">
-        <div class="col-12 col-md-4 textoInputModalPregunta">
-          Tipo de Pregunta:
-        </div>
-        <div class="col-12 col-md-6">
-          <mat-form-field>
-            <mat-label>Tipo de pregunta</mat-label>
-            <mat-select [disabled]="!isNew"  type="number" formControlName="IdTipoRespuesta" >
-            <mat-option *ngFor="let a of listaTipoPregunta" [value]="a.id">{{ a.nombre }}</mat-option>
-            </mat-select>
-            <mat-error *ngIf="formPregunta.invalid">Seleccione un tipo de respuesta</mat-error>
-          </mat-form-field>
-        </div>
-      </div>
+      
       <div class="col-12 col-md-12 textoInputModalPregunta">
         Enunciado:
       </div>
@@ -255,7 +256,7 @@
         <button [disabled]="!formPregunta.valid" mat-flat-button style="background: #FF850C; color: white;width: 9rem;border-radius: 15px;" (click)="AgregarNuevaPregunta()">Guardar Cambios</button>
       </div>
       <div *ngIf="isNew==false" class="col-12 col-md-6" style="text-align: right;">
-        <button [disabled]="!formPregunta.valid" mat-flat-button style="background: #FF850C; color: white;width: 9rem;border-radius: 15px;" (click)="ActualizarPregunta()">Guardar Cambios</button>
+        <button [disabled]="!formPregunta.valid" mat-flat-button style="background: #FF850C; color: white;width: 9rem;border-radius: 15px;" (click)="ActualizarPregunta()">Actualizar Cambios</button>
       </div>
       <div  class="col-12 col-md-6">
         <button mat-flat-button style="background: #FC5757;color:white;width: 9rem;border-radius: 15px;" (click)="Cancelar()">Cancelar</button>

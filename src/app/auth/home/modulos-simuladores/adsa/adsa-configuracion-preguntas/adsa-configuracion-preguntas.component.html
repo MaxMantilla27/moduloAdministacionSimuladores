@@ -58,16 +58,6 @@
                 <span nz-icon nzType="search"></span>
               </nz-filter-trigger>
             </th>
-            <th style="border: solid 1px #b2b2b2;width:65px; text-align: center; background-color: #E7E7E7;color: #222222;">
-              Nombre Subcategoria
-              <nz-filter-trigger
-              [(nzVisible)]="visible5"
-              [nzActive]="searchValue5.length > 0"
-              [nzDropdownMenu]="menu5"
-            >
-              <span nz-icon nzType="search"></span>
-            </nz-filter-trigger>
-            </th>
             <th style="border: solid 1px #b2b2b2;width:80px; text-align: center; background-color: #E7E7E7;color: #222222;">Opciones</th>
           </tr>
         </thead>
@@ -86,9 +76,7 @@
             <td style="text-align: center; border: 1px solid #cacaca">
               {{ data.categoria }}
             </td>
-            <td style="text-align: center; border: 1px solid #cacaca">
-              {{ data.subcategoria }}
-            </td>
+            
   
             <td  style="text-align: center; border: 1px solid #cacaca">
               <ng-container>

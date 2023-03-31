@@ -168,7 +168,7 @@ export class CcnaModalAlternativasComponent implements OnInit {
       this.AgregarAlternativaDTO.IdSimuladorCcnaPregunta = 0
     }
     else{
-      this.AgregarAlternativaDTO.IdSimuladorCcnaPregunta = this.data[3]
+      this.AgregarAlternativaDTO.IdSimuladorCcnaPregunta = this.data[3].id
     }
    
 

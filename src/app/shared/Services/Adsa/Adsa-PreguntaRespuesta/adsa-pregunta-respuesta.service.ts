@@ -57,7 +57,7 @@ export class AdsaPreguntaRespuestaService {
     const req= new HttpRequest('POST', `${this.urlBase}/AgregarAdsaPreguntaRespuesta`,formData, {
       reportProgress: true,
       responseType: 'json'
-    });
+    }); 
     return this.http.request(req)
   }
 }

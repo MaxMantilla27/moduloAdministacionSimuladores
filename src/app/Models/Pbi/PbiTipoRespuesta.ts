@@ -1,6 +1,8 @@
 export interface actualizarTipoRespuestaDTO {
     id:number,
     nombre: string,
+    usuarioModificacion:string,
+    fechaModificaciones: Date,
   }
 
 export interface filtradoPreguntaDTO{

@@ -64,10 +64,8 @@ export class AdsaConfiguracionPreguntasComponent implements OnInit {
       panelClass: 'dialog-abrir-pregunta',
       data: [isNew, IdPregunta]
     });
-    dialogRef.afterClosed().subscribe((Recargar:boolean) => {
-      if(Recargar==true){
-        this.ObtenerPreguntasAdsa();
-      }
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerPreguntasAdsa()
     });
   }
 
@@ -78,10 +76,8 @@ export class AdsaConfiguracionPreguntasComponent implements OnInit {
       panelClass: 'dialog-abrir-pregunta',
       data: [isNew, IdPregunta],
     });
-    dialogRef.afterClosed().subscribe((Recargar:boolean) => {
-      if(Recargar==true){
-        this.ObtenerPreguntasAdsa();
-      }
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerPreguntasAdsa()
     });
   }
 

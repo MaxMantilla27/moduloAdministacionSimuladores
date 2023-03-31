@@ -16,7 +16,8 @@ export class AdsaPreguntaService {
   }
 
   public ObtenerAdsaPregunta(idPregunta: any):Observable<any>{
-    return this.http.post<any>(this.urlBase+'/ObtenerAdsaPregunta?Id='+idPregunta,'');
+    console.log(idPregunta)
+    return this.http.post<any>(this.urlBase+'/ObtenerAdsaPregunta?IdPregunta='+idPregunta,'');
   }
 
   public AgregarPregunta(listaPregunta: AdsaEnvioFilePreguntaDTO):Observable<any>{
@@ -48,7 +49,7 @@ export class AdsaPreguntaService {
    console.log(formData)
 
 
-   return this.http.post<any>(this.urlBase+'/GuardarArchivo',formData);
+   return this.http.post<any>(this.urlBase+'/RegistrarAdsaPregunta',formData);
   }
   public EliminarPreguntaAdsa(IdPregunta: number):Observable<any>{
     return this.http.post<any>(this.urlBase+'/EliminarPreguntaAdsa?IdPregunta='+IdPregunta,'');
@@ -57,18 +58,18 @@ export class AdsaPreguntaService {
     const formData: FormData = new FormData();
     console.log(listaPregunta);
     formData.append('Id', listaPregunta.Id.toString());
-    formData.append('IdSimuladorPmpDominio', listaPregunta.IdSimuladorAdsaDominio.toString());
-    formData.append('IdSimuladorPmpTarea', listaPregunta.IdSimuladorAdsaTarea.toString());
+    formData.append('IdSimuladorAdsaDominio', listaPregunta.IdSimuladorAdsaDominio.toString());
+    formData.append('IdSimuladorAdsaTarea', listaPregunta.IdSimuladorAdsaTarea.toString());
     formData.append('IdSimuladorTipoRespuesta', listaPregunta.IdSimuladorTipoRespuesta.toString());
     formData.append('Enunciado', listaPregunta.Enunciado.toString());
     formData.append('UrlImagenPreguntaArchivo', listaPregunta.UrlImagenPreguntaArchivo);
-    formData.append('IdPmpTipoPreguntaClasificacion', listaPregunta.IdAdsaTipoPreguntaClasificacion.toString());
+    formData.append('IdAdsaTipoPreguntaClasificacion', listaPregunta.IdAdsaTipoPreguntaClasificacion.toString());
     formData.append('TieneRetroalimentacionUnica', listaPregunta.TieneRetroalimentacionUnica.toString());
-    formData.append('UrlRetroalimentacionVideo', listaPregunta.UrlRetroalimentacionVideo.toString() );
+    formData.append('UrlVideo', listaPregunta.UrlRetroalimentacionVideo.toString() );
     formData.append('Retroalimentacion', listaPregunta.Retroalimentacion.toString() );
     formData.append('ImgRetroalimentacionArchivo', listaPregunta.ImgRetroalimentacionArchivo);
    console.log(formData)
-   return this.http.post<any>(this.urlBase+'/ActualizarPmpPregunta',formData);
+   return this.http.post<any>(this.urlBase+'/ActualizarAdsaPregunta',formData);
   }
 
 }

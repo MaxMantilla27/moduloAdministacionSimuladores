@@ -63,7 +63,9 @@ export class AwsConfiguracionPreguntasComponent implements OnInit {
       panelClass: 'dialog-abrir-pregunta',
       data: [isNew, data]
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerPreguntasAws()
+    });
   }
 
   editarPregunta(data: any) {
@@ -73,7 +75,9 @@ export class AwsConfiguracionPreguntasComponent implements OnInit {
       panelClass: 'dialog-abrir-pregunta',
       data: [isNew, data],
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerPreguntasAws()
+    });
   }
 
   reset(): void {

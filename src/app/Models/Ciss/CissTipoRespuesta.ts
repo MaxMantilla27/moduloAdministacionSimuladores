@@ -1,17 +1,8 @@
-
-export interface actualizarInterfaz {
-    id : number
-    urlVideo : string
-    logo : string
-    porcentajeMinimoAprobacion : number
-    vigenciaAcceso : number,
-    file: File
-  }
-
-
-  export interface actualizarTipoRespuestaDTO {
+ export interface actualizarTipoRespuestaDTO {
     id:number,
     nombre: string,
+    usuarioModificacion: string,
+    fechaModificaciones: Date,
   }
 
 export interface filtradoPreguntaDTO{

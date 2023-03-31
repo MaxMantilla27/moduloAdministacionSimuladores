@@ -138,7 +138,7 @@ export class AdsaModalAgregarPreguntasComponent implements OnInit {
   ObtenerDetallePregunta(){
     if (this.data[1] != undefined) {
       console.log(this.data[1]);
-      this._pregunta.ObtenerAdsaPregunta(this.data[1].id).subscribe({
+      this._pregunta.ObtenerAdsaPregunta(this.data[1]).subscribe({
         next: (x: any) => {
           console.log(x)
           this.DetallePregunta = x;
@@ -246,6 +246,14 @@ export class AdsaModalAgregarPreguntasComponent implements OnInit {
         this.jsonActualizar.UrlImagenPreguntaArchivo = file;
       }
     }
+
+    if(this.formPregunta.get('UrlVideo')?.value == null){
+      this.jsonActualizar.UrlRetroalimentacionVideo =''
+      console.log(this.jsonActualizar)
+    }
+    else{
+      this.jsonActualizar.UrlRetroalimentacionVideo = this.formPregunta.get('UrlVideo')?.value;
+    }
     this.jsonActualizar.Id = this.formPregunta.get('Id')?.value;
     this.jsonActualizar.IdAdsaTipoPreguntaClasificacion = 2;
     this.jsonActualizar.IdSimuladorAdsaDominio = this.formPregunta.get('IdCategoria')?.value;
@@ -254,7 +262,7 @@ export class AdsaModalAgregarPreguntasComponent implements OnInit {
     this.jsonActualizar.Enunciado = this.formPregunta.get('Enunciado')?.value;
     this.jsonActualizar.TieneRetroalimentacionUnica = this.TieneRetroalimentacionUnica;
     if(this.TieneRetroalimentacionUnica==true){
-      this.jsonActualizar.UrlRetroalimentacionVideo = this.formPregunta.get('UrlVideo')?.value;
+
       this.jsonActualizar.Retroalimentacion = this.formPregunta.get('Retroalimentacion')?.value;
       //Imagen de Retroalimentación
       if(this.selectedFilesPreguntaRetroalimentacion){
@@ -268,6 +276,7 @@ export class AdsaModalAgregarPreguntasComponent implements OnInit {
       this.jsonActualizar.UrlRetroalimentacionVideo = '';
       this.jsonActualizar.Retroalimentacion = ''
     }
+    console.log(this.jsonActualizar)
     this._pregunta.ActualizarPregunta(this.jsonActualizar).subscribe({
       next: (x:any) => {
         console.log(x)
@@ -346,7 +355,7 @@ export class AdsaModalAgregarPreguntasComponent implements OnInit {
   ObtenerAlternativa() {
     if (this.data[1] != undefined) {
       console.log(this.data[1]);
-      this._alternativa.ObtenerAlternativa(this.data[1].id).subscribe({
+      this._alternativa.ObtenerAlternativa(this.data[1]).subscribe({
         next: (x: any) => {
           this.listaAlternativas = x;
           console.log(x);

@@ -64,10 +64,8 @@ export class PbiConfiguracionPreguntasComponent implements OnInit {
       panelClass: 'dialog-abrir-pregunta',
       data: [isNew, IdPregunta]
     });
-    dialogRef.afterClosed().subscribe((Recargar:boolean) => {
-      if(Recargar==true){
-        this.ObtenerPreguntasPbi();
-      }
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerPreguntasPbi()
     });
   }
 
@@ -78,10 +76,8 @@ export class PbiConfiguracionPreguntasComponent implements OnInit {
       panelClass: 'dialog-abrir-pregunta',
       data: [isNew, IdPregunta],
     });
-    dialogRef.afterClosed().subscribe((Recargar:boolean) => {
-      if(Recargar==true){
-        this.ObtenerPreguntasPbi();
-      }
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ObtenerPreguntasPbi()
     });
   }
 

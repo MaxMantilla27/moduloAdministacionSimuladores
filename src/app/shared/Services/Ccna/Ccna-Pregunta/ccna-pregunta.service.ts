@@ -64,7 +64,7 @@ export class CcnaPreguntaService {
     formData.append('UrlImagenPreguntaArchivo', listaPregunta.UrlImagenPreguntaArchivo);
     formData.append('IdCcnaTipoPreguntaClasificacion', listaPregunta.IdCcnaTipoPreguntaClasificacion.toString());
     formData.append('TieneRetroalimentacionUnica', listaPregunta.TieneRetroalimentacionUnica.toString());
-    formData.append('UrlRetroalimentacionVideo', listaPregunta.UrlRetroalimentacionVideo.toString() );
+    formData.append('UrlVideo', listaPregunta.UrlRetroalimentacionVideo.toString() );
     formData.append('Retroalimentacion', listaPregunta.Retroalimentacion.toString() );
     formData.append('ImgRetroalimentacionArchivo', listaPregunta.ImgRetroalimentacionArchivo);
    console.log(formData)

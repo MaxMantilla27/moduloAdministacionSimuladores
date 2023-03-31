@@ -26,6 +26,8 @@ export class PbiConfiguracionTipoPreguntasComponent implements OnInit {
   public ActualizarTipoRespuesta: actualizarTipoRespuestaDTO={
     id : 0,
     nombre: '',
+    usuarioModificacion:'',
+    fechaModificaciones: new Date(),
   }
 
   ngOnInit(): void {

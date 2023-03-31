@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { actualizarTipoRespuestaDTO,actualizarInterfaz } from 'src/app/Models/Adsa/AdsaTipoRespuesta';
+import { actualizarTipoRespuestaDTO,actualizarInterfaz, actualizarParametrosNivel } from 'src/app/Models/Adsa/AdsaTipoRespuesta';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -28,6 +28,10 @@ export class AdsaTipoRespuestaService {
 
   public actualizarTipoRespuesta(Json:actualizarTipoRespuestaDTO):Observable<any>{
     return this.http.post<any>(this.urlBase+'/actualizarTipoRespuesta',Json);
+  }
+
+  public actualizarParametrosNivel(Json:actualizarParametrosNivel):Observable<any>{
+    return this.http.post<any>(this.urlBase2+'/actualizarAwsParametroNivel',Json);
   }
 
   public ObtenerParametrosNivelEntity():Observable<any>{

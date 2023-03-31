@@ -168,7 +168,7 @@ export class PbiModalAlternativasComponent implements OnInit {
       this.AgregarAlternativaDTO.IdSimuladorPbiPregunta = 0
     }
     else{
-      this.AgregarAlternativaDTO.IdSimuladorPbiPregunta = this.data[3]
+      this.AgregarAlternativaDTO.IdSimuladorPbiPregunta = this.data[3].id
     }
    
 

@@ -168,7 +168,7 @@ export class AwsModalAlternativasComponent implements OnInit {
       this.AgregarAlternativaDTO.IdSimuladorAwsPregunta = 0
     }
     else{
-      this.AgregarAlternativaDTO.IdSimuladorAwsPregunta = this.data[3]
+      this.AgregarAlternativaDTO.IdSimuladorAwsPregunta = this.data[3].id
     }
    
 
