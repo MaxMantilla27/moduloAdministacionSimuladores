@@ -15,6 +15,7 @@ export class CissReporteGeneralComponent implements OnInit {
     private _CissReporteGeneral: CissReporteGeneralService,
     private alertaService: AlertaService
   ) { }
+  
   public listOfDisplayData:any;
   public ReporteGeneral:any
   public ComboReporteGeneral:any

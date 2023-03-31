@@ -6,7 +6,8 @@
       Puedes monitorear el estado de todos los alumnos matriculados en el programa e identificar que alumnos estan preparados para rendir el examen oficial de certificacion
     </div>
     <div class="tablaReporteGeneral" *ngIf="listOfDisplayData!=undefined">
-      <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed"class="table">
+      
+      <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed"class="table"  [nzData]="['No data']">
         <thead>
           <tr>
             <th nzCustomFilter style="border: solid 1px #b2b2b2;width:120px ; text-align: center; background-color: #E7E7E7;color: #222222;">Código de Matrícula

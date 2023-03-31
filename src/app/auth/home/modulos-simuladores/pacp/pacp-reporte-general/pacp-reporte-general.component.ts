@@ -1,14 +1,14 @@
+
 import { Component, OnInit } from '@angular/core';
 import { PacpEnvioEstadoCertificacionAlumnoDTO } from 'src/app/Models/Pacp/PacpReporteGeneralDTO';
 import { filtradoReporteGeneralDTO } from 'src/app/Models/Pacp/PacpTipoRespuesta';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { PacpReporteGeneralService } from 'src/app/shared/Services/Pacp/Pacp-Reporte-General/pacp-reporte-general.service';
 
-
 @Component({
   selector: 'app-pacp-reporte-general',
   templateUrl: './pacp-reporte-general.component.html',
-  styleUrls: ['./pacp-reporte-general.component.scss']
+  styleUrls: ['./pacp-reporte-general.component.scss'],
 })
 export class PacpReporteGeneralComponent implements OnInit {
   constructor(
