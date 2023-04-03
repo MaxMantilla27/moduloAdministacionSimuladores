@@ -141,8 +141,8 @@ export class CissConfiguracionPreguntasComponent implements OnInit {
 
   mostrarMensajeEliminarPregunta(IdPregunta: number) {
     Swal.fire({
-      title: '�Est� seguro de eliminar el registro?',
-      text: '�No podr�s revertir esto!',
+      title: '¿Esta seguro de eliminar el registro?',
+      text: 'No podras revertir esto!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#4C5FC0',
