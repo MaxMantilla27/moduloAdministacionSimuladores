@@ -28,7 +28,7 @@ export class LssbTareaService {
     formData.append('Nombre', listaPregunta.Nombre.toString());
     formData.append('CantidadPreguntasPorExamen', listaPregunta.CantidadPreguntasPorExamen.toString());
     formData.append('CantidadTotal', listaPregunta.CantidadTotal.toString());
-    formData.append('Proporcion', listaPregunta.Proporcion.toString());
+    // formData.append('Proporcion', listaPregunta.Proporcion.toString());
     formData.append('IdSimuladorLssbDominio', listaPregunta.IdSimuladorLssbDominio.toString());
    console.log(formData)
 
@@ -43,7 +43,7 @@ export class LssbTareaService {
     formData.append('IdSimuladorLssbDominio', listaPregunta.IdSimuladorLssbDominio.toString());
     formData.append('CantidadPreguntasPorExamen', listaPregunta.CantidadPreguntasPorExamen.toString());
     formData.append('CantidadTotal', listaPregunta.CantidadTotal.toString());
-    formData.append('Proporcion', listaPregunta.Proporcion.toString());
+    // formData.append('Proporcion', listaPregunta.Proporcion.toString());
    console.log(formData)
 
     return this.http.put<any>(this.urlBase+'/ActualizarTarea',formData);

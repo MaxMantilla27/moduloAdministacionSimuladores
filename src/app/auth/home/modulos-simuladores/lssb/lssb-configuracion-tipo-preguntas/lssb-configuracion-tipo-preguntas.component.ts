@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { actualizarTipoRespuestaDTO } from 'src/app/Models/Lssb/LssbTipoRespuesta';
+import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { LssbTipoRespuestaService } from 'src/app/shared/Services/Lssb/Lssb-Tipo-Respuesta/lssb-tipo-respuesta.service';
 
 @Component({
@@ -10,7 +11,10 @@ import { LssbTipoRespuestaService } from 'src/app/shared/Services/Lssb/Lssb-Tipo
 export class LssbConfiguracionTipoPreguntasComponent implements OnInit {
   http: any;
 
-  constructor(private _TipoRespuesta: LssbTipoRespuestaService) {}
+  constructor(
+    private _TipoRespuesta: LssbTipoRespuestaService,
+    private alertaService: AlertaService
+  ) {}
 
   datasource :any= [];
   seleccionado = false;
@@ -65,11 +69,13 @@ export class LssbConfiguracionTipoPreguntasComponent implements OnInit {
     this.listOfDisplayData[index].nombre = this.listOfDisplayData[index].nombreNuevo;
     this.ActualizarTipoRespuesta.id = this.listOfDisplayData[index].id,
     this.ActualizarTipoRespuesta.nombre= this.listOfDisplayData[index].nombreNuevo,
+    console.log(this.ActualizarTipoRespuesta)
     this._TipoRespuesta.actualizarTipoRespuesta(this.ActualizarTipoRespuesta).subscribe({
-      next: (x) => {
+      next: (x: any) => {
+        this.alertaService.mensajeExitoso();
       },
-      error:(e)=>{
-
+      error: (error) => {
+        this.alertaService.notificationError(error.message);
       },
       complete: () => {
 

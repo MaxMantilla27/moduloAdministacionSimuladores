@@ -1,4 +1,4 @@
-<div class="tituloModal">Añadir Categoría</div>
+<div class="tituloModal">Configuración Categoría</div>
 <form [formGroup]="formCategoria">
 
   <div class="agregarCategoria">
@@ -17,7 +17,7 @@
           <div class="ver">
             <mat-form-field class="example-full-width" appearance="outline" >
               <mat-label>Leyenda</mat-label>
-              <input type="text"  formControlName="Leyenda" matInput />
+              <input type="text"  formControlName="Leyenda" [maxLength]="5" matInput />
               <mat-error *ngIf="formCategoria.invalid">{{obtenerErrorCampoNombre('Leyenda')}}</mat-error>
             </mat-form-field>
           </div>

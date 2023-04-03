@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { actualizarTipoRespuestaDTO } from 'src/app/Models/Cmrp/CmrpTipoRespuesta';
+import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { CmrpTipoRespuestaService } from 'src/app/shared/Services/Cmrp/Cmrp-Tipo-Respuesta/cmrp-tipo-respuesta.service';
 
 @Component({
@@ -10,7 +11,10 @@ import { CmrpTipoRespuestaService } from 'src/app/shared/Services/Cmrp/Cmrp-Tipo
 export class CmrpConfiguracionTipoPreguntasComponent implements OnInit {
   http: any;
 
-  constructor(private _TipoRespuesta: CmrpTipoRespuestaService) {}
+  constructor(
+    private _TipoRespuesta: CmrpTipoRespuestaService,
+    private alertaService:AlertaService
+  ) {}
 
   datasource :any= [];
   seleccionado = false;
@@ -66,10 +70,11 @@ export class CmrpConfiguracionTipoPreguntasComponent implements OnInit {
     this.ActualizarTipoRespuesta.id = this.listOfDisplayData[index].id,
     this.ActualizarTipoRespuesta.nombre= this.listOfDisplayData[index].nombreNuevo,
     this._TipoRespuesta.actualizarTipoRespuesta(this.ActualizarTipoRespuesta).subscribe({
-      next: (x) => {
+      next: (x: any) => {
+        this.alertaService.mensajeExitoso();
       },
-      error:(e)=>{
-
+      error: (error) => {
+        this.alertaService.notificationError(error.message);
       },
       complete: () => {
 

@@ -4,7 +4,7 @@ export interface LssbAgregarTareaDTO {
   CantidadPreguntasPorExamen: number;
   CantidadTotal: number;
   ImgLogo: File;
-  Proporcion: number;
+  // Proporcion: number;
 }
 
 
@@ -15,5 +15,5 @@ export interface LssbActualizarTareaDTO {
     CantidadPreguntasPorExamen: number;
     CantidadTotal: number;
     ImgLogo: File;
-    Proporcion: number;
+    // Proporcion: number;
   }

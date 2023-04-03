@@ -27,7 +27,7 @@ export class LssbCategoriasService {
     formData.append('Leyenda', listaPregunta.Leyenda.toString());
     formData.append('CantidadPreguntasPorExamen', listaPregunta.CantidadPreguntasPorExamen.toString());
     formData.append('CantidadTotal', listaPregunta.CantidadTotal.toString());
-    formData.append('Proporcion', listaPregunta.Proporcion.toString());
+    // formData.append('Proporcion', listaPregunta.Proporcion.toString());
     formData.append('TieneSubCategoria', listaPregunta.TieneSubCategoria.toString());
    console.log(formData)
 
@@ -42,7 +42,7 @@ export class LssbCategoriasService {
     formData.append('Leyenda', listaPregunta.Leyenda.toString());
     formData.append('CantidadPreguntasPorExamen', listaPregunta.CantidadPreguntasPorExamen.toString());
     formData.append('CantidadTotal', listaPregunta.CantidadTotal.toString());
-    formData.append('Proporcion', listaPregunta.Proporcion.toString());
+    // formData.append('Proporcion', listaPregunta.Proporcion.toString());
     formData.append('TieneSubCategoria', listaPregunta.TieneSubCategoria.toString());
    console.log(formData)
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { takeUntil } from 'rxjs';
 import { actualizarTipoRespuestaDTO } from 'src/app/Models/Pmp/TipoRespuesta';
+import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
 
 @Component({
@@ -12,7 +13,10 @@ import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp/Pmp-Tipo-Re
 export class PmpConfiguracionTipoPreguntasComponent implements OnInit {
   http: any;
 
-  constructor(private _TipoRespuesta: PmpTipoRespuestaService) {}
+  constructor(
+    private _TipoRespuesta: PmpTipoRespuestaService,
+    private alertaService: AlertaService
+  ) {}
 
   datasource :any= [];
   seleccionado = false;
@@ -68,10 +72,11 @@ export class PmpConfiguracionTipoPreguntasComponent implements OnInit {
     this.ActualizarTipoRespuesta.id = this.listOfDisplayData[index].id,
     this.ActualizarTipoRespuesta.nombre= this.listOfDisplayData[index].nombreNuevo,
     this._TipoRespuesta.actualizarTipoRespuesta(this.ActualizarTipoRespuesta).subscribe({
-      next: (x) => {
+      next: (x: any) => {
+        this.alertaService.mensajeExitoso();
       },
-      error:(e)=>{
-
+      error: (error) => {
+        this.alertaService.notificationError(error.message);
       },
       complete: () => {
 

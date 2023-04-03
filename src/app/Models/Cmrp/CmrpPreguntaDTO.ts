@@ -4,7 +4,7 @@ export interface CmrpPreguntaDTO {
   CantidadTotal: number;
   ImgLogo: File;
   Leyenda: string;
-  Proporcion: number;
+  // Proporcion: number;
   TieneSubCategoria: boolean;
 }
 
@@ -15,7 +15,7 @@ export interface CmrpPreguntaActualizarDTO {
   CantidadTotal: number;
   ImgLogo: File ;
   Leyenda: string;
-  Proporcion: number;
+  // Proporcion: number;
   TieneSubCategoria: boolean;
 }
 

@@ -5,7 +5,7 @@ import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { PacpPreguntaService } from 'src/app/shared/Services/Pacp/Pacp-Pregunta/pacp-pregunta.service';
 import Swal from 'sweetalert2';
 import { PacpModalAgregarPreguntasComponent } from './pacp-modal-agregar-preguntas/pacp-modal-agregar-preguntas.component';
- 
+
 @Component({
   selector: 'app-pacp-configuracion-preguntas',
   templateUrl: './pacp-configuracion-preguntas.component.html',
@@ -133,13 +133,13 @@ export class PacpConfiguracionPreguntasComponent implements OnInit {
 
   mostrarMensajeEliminarPregunta(IdPregunta: number) {
     Swal.fire({
-      title: '�Est� seguro de eliminar el registro?',
-      text: '�No podr�s revertir esto!',
+      title: 'Está seguro de eliminar el registro?',
+      text: 'No podrás revertir esto!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#4C5FC0',
       cancelButtonColor: '#d33',
-      confirmButtonText: '�Si, Eliminalo!',
+      confirmButtonText: 'Si, Eliminalo!',
       allowOutsideClick: false
     }).then((result) => {
       if (result.isConfirmed) {

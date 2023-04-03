@@ -17,8 +17,8 @@
         <div *ngIf="listaCategorias != undefined" id="test">
           <nz-table #basicTable [nzData]="listOfDisplayData">
             <thead>
-              <tr>
-                <th>Id
+              <tr >
+                <th style="border: solid 1px #b2b2b2;width:60px; text-align: center; background-color: #E7E7E7;color: #222222;">Id
                   <nz-filter-trigger
                   [(nzVisible)]="visible2"
                   [nzActive]="searchValue2.length > 0"
@@ -27,7 +27,7 @@
                   <span nz-icon nzType="search"></span>
                 </nz-filter-trigger>
                 </th>
-                <th>Nombre
+                <th style="border: solid 1px #b2b2b2;width:140px; text-align: center; background-color: #E7E7E7;color: #222222;">Nombre
                   <nz-filter-trigger
                   [(nzVisible)]="visible"
                   [nzActive]="searchValue.length > 0"
@@ -36,24 +36,24 @@
                   <span nz-icon nzType="search"></span>
                 </nz-filter-trigger>
                 </th>
-                <th>Cant. de preguntas por examen</th>
-                <th>Proporción</th>
-                <th>Opciones</th>
+                <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Cant. de preguntas por examen</th>
+                <th style="border: solid 1px #b2b2b2;width:100px; text-align: center; background-color: #E7E7E7;color: #222222;">Proporción</th>
+                <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Opciones</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let data of basicTable.data">
-                <td>
+                <td style="text-align: center;border: solid 1px #b2b2b2;">
                   {{ data.id }}
                 </td>
-                <td>
+                <td style="border: solid 1px #b2b2b2;">
                   {{ data.nombre }}
                 </td>
-                <td>
+                <td style="text-align: center;border: solid 1px #b2b2b2;">
                   {{ data.cantidadPreguntasPorExamen }}
                 </td>
-                <td>{{ data.proporcion }} %</td>
-                <td>
+                <td style="text-align: center;border: solid 1px #b2b2b2;">{{ data.proporcion }} %</td>
+                <td style="text-align: center;border: solid 1px #b2b2b2;">
                   <ng-container>
                     <button
                       mat-button
@@ -141,7 +141,7 @@
           <nz-table #basicTable [nzData]="listOfDisplayData2">
             <thead>
               <tr>
-                <th>Id
+                <th style="border: solid 1px #b2b2b2;width:60px; text-align: center; background-color: #E7E7E7;color: #222222;">Id
                   <nz-filter-trigger
                   [(nzVisible)]="visible4"
                   [nzActive]="searchValue4.length > 0"
@@ -150,7 +150,7 @@
                   <span nz-icon nzType="search"></span>
                 </nz-filter-trigger>
                 </th>
-                <th>Nombre de la subcategoría
+                <th style="border: solid 1px #b2b2b2;width:140px; text-align: center; background-color: #E7E7E7;color: #222222;">Nombre de la subcategoría
                   <nz-filter-trigger
                   [(nzVisible)]="visible3"
                   [nzActive]="searchValue3.length > 0"
@@ -159,7 +159,7 @@
                   <span nz-icon nzType="search"></span>
                 </nz-filter-trigger>
                 </th>
-                <th>Categoria Asignada
+                <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Categoria Asignada
 
                   <nz-filter-trigger
                   [(nzVisible)]="visible5"
@@ -169,27 +169,29 @@
                   <span nz-icon nzType="search"></span>
                 </nz-filter-trigger>
                 </th>
-                <th>Cant. de preguntas por examen</th>
-                <th>Proporción</th>
-                <th>Opciones</th>
+                <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Cant. de preguntas por examen</th>
+                <th style="border: solid 1px #b2b2b2;width:100px; text-align: center; background-color: #E7E7E7;color: #222222;">Proporción</th>
+                <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Opciones</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let data of basicTable.data">
-                <td>
+                <td style="text-align: center;border: solid 1px #b2b2b2;">
                   {{ data.id }}
                 </td>
-                <td>
+                <td style="border: solid 1px #b2b2b2;">
                   {{ data.nombre }}
                 </td>
-                <td>
+                <td style="border: solid 1px #b2b2b2;">
                   {{ data.categoria }}
                 </td>
-                <td>
+                <td style="text-align: center;border: solid 1px #b2b2b2;">
                   {{ data.cantidadPreguntasPorExamen }}
                 </td>
-                <td>{{ data.proporcion }} %</td>
-                <td>
+                <td style="text-align: center;border: solid 1px #b2b2b2;">
+                  {{ data.proporcion }} %
+                </td>
+                <td style="text-align: center;border: solid 1px #b2b2b2;">
                   <ng-container>
                     <button
                       mat-button

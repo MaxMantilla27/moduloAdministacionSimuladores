@@ -21,50 +21,40 @@ export class PmpModalAgregarCategoriaComponent implements OnInit {
     private formBuilder: FormBuilder,
     private _Dominio: PmpCategoriasService
   ) { }
-
-  loading:any
-  loader:any;
-  formCategoria: FormGroup = this.formBuilder.group({
-    Id: [0,[Validators.required]],
+  public formCategoria: FormGroup = this.formBuilder.group({
+    Id: [0],
     NombreCategoria: ['', [Validators.required]],
     Leyenda: ['', [Validators.required]],
     CantidadPreguntasTotales: [0,[Validators.required]],
     CantidadPreguntasExamen: [0,[Validators.required]],
-    Proporcion: [0,[Validators.required]],
-    TieneSubCategoria: true,
-    Logo: [ new File([],''), [Validators.required]]
+    // Proporcion: [0,[Validators.required]],
+    TieneSubCategoria: false,
+    Logo: new File([], '')
   });
   public nombrefile='Ningún archivo seleccionado'
-
   public selectedFiles?: FileList;
   public file:any;
   public filestatus=false
   public fileErrorMsg=''
-
-
-
   public jsonEnvio:pmpPreguntaDTO = {
-    Nombre: 'Prueba',
-    CantidadPreguntasPorExamen: 5,
-    CantidadTotal: 5,
+    Nombre: '',
+    CantidadPreguntasPorExamen: 0,
+    CantidadTotal: 0,
     ImgLogo: new File([],''),
-    Leyenda: 'asdas',
-    Proporcion: 5,
-    TieneSubCategoria: true,
+    Leyenda: '',
+    // Proporcion: ,
+    TieneSubCategoria: false,
   }
-
-
   public jsonActualizar:pmpPreguntaActualizarDTO = {
     Id: 0,
-    Nombre: 'Prueba',
-    CantidadPreguntasPorExamen: 5,
-    CantidadTotal: 5,
+    Nombre: '',
+    CantidadPreguntasPorExamen: 0,
+    CantidadTotal: 0,
     ImgLogo:  new File([],''),
-    Leyenda: 'asdas',
-    Proporcion: 5,
-    TieneSubCategoria: true,
+    Leyenda: '',
+    // Proporcion: 5,
+    TieneSubCategoria: false,
   }
-
 
   ngOnInit(): void {
     console.log(this.data)
@@ -88,22 +78,6 @@ export class PmpModalAgregarCategoriaComponent implements OnInit {
   Cancelar(){
     this.dialogRef.close();
   }
-  obtenerErrorCampoNombre(val: string) {
-    var campo = this.formCategoria.get(val);
-    if (campo!.hasError('required')) {
-      if(val=='NombreCategoria'){
-        return 'Ingresa el nombre';
-      }
-      if(val=='Leyenda'){
-        return 'Ingresa una leyenda';
-      }
-      if(val=='contraNuevaRepeat'){
-        return 'Confirma tu nueva contraseña';
-      }
-    }
-
-    return '';
-  }
 
   Agregar(){
 
@@ -118,35 +92,36 @@ export class PmpModalAgregarCategoriaComponent implements OnInit {
     this.jsonEnvio.Leyenda = this.formCategoria.get('Leyenda')?.value
     this.jsonEnvio.CantidadPreguntasPorExamen = this.formCategoria.get('CantidadPreguntasExamen')?.value
     this.jsonEnvio.CantidadTotal= this.formCategoria.get('CantidadPreguntasTotales')?.value
-    this.jsonEnvio.Proporcion = this.formCategoria.get('Proporcion')?.value
-    this.jsonEnvio.TieneSubCategoria = this.formCategoria.get('TieneSubCategoria')?.value
-
-
+    // this.jsonEnvio.Proporcion = this.formCategoria.get('Proporcion')?.value
+    console.log(this.formCategoria.get('TieneSubCategoria')?.value)
+    console.log(this.formCategoria)
+    if(this.formCategoria.get('TieneSubCategoria')?.value=="null" ||this.formCategoria.get('TieneSubCategoria')?.value==null){
+      this.jsonEnvio.TieneSubCategoria = false
+    }
+    else{
+      this.jsonEnvio.TieneSubCategoria = this.formCategoria.get('TieneSubCategoria')?.value
+    }
+    console.log(this.jsonEnvio.TieneSubCategoria)
     console.log(this.jsonEnvio)
-
     this._Dominio.AgregarCategoria(this.jsonEnvio).subscribe({
 
       next: (x) => {
         this.alertaService.mensajeIcon(
           'Aviso',
-          'La lista se agrego correctamente',
+          'La categoría se agregó correctamente',
           'success'
         );
-
-        this.dialogRef.close()
       },
       error:(e)=>{
         this.alertaService.mensajeError(e);
       },
       complete: () => {
-
+        this.dialogRef.close()
       },
     });
   }
 
-
   Editar(){
-
     if(this.selectedFiles){
       const file: File | null = this.selectedFiles.item(0);
       if (file) {
@@ -158,35 +133,27 @@ export class PmpModalAgregarCategoriaComponent implements OnInit {
     this.jsonActualizar.Leyenda = this.formCategoria.get('Leyenda')?.value
     this.jsonActualizar.CantidadPreguntasPorExamen = this.formCategoria.get('CantidadPreguntasExamen')?.value
     this.jsonActualizar.CantidadTotal= this.formCategoria.get('CantidadPreguntasTotales')?.value
-    this.jsonActualizar.Proporcion = this.formCategoria.get('Proporcion')?.value
+    // this.jsonActualizar.Proporcion = this.formCategoria.get('Proporcion')?.value
     this.jsonActualizar.TieneSubCategoria = this.formCategoria.get('TieneSubCategoria')?.value
 
-    console.log(this.jsonActualizar)
-
     this._Dominio.ActualizarCategoria(this.jsonActualizar).subscribe({
-
       next: (x) => {
         this.alertaService.mensajeIcon(
           'Aviso',
-          'La lista se actualizo correctamente',
+          'La categoría se actualizo correctamente',
           'success'
         );
-
-        this.dialogRef.close()
       },
       error:(e)=>{
         this.alertaService.mensajeError(e);
-
-
       },
       complete: () => {
-
+        this.dialogRef.close()
       },
     });
   }
 
   getFileDetails(e:any){
-
     for (var i = 0; i < e.target.files.length; i++) {
       this.filestatus=true
       var name = e.target.files[i].name;
@@ -203,6 +170,4 @@ export class PmpModalAgregarCategoriaComponent implements OnInit {
     }
     console.log( this.selectedFiles)
   }
-
-
 }

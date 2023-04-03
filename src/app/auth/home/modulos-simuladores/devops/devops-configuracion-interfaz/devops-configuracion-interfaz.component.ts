@@ -3,6 +3,7 @@ import {
   actualizarInterfaz,
   actualizarParametrosNivel,
 } from 'src/app/Models/Devops/DevopsTipoRespuesta';
+import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { DevopsConfiguracionSimuladorService } from 'src/app/shared/Services/Devops/Devops-Configuracion-Simulador/devops-configuracion-simulador.service';
 import { DevopsTipoRespuestaService } from 'src/app/shared/Services/Devops/Devops-Tipo-Respuesta/devops-tipo-respuesta.service';
 import Swal from 'sweetalert2';
@@ -15,7 +16,8 @@ import Swal from 'sweetalert2';
 export class DevopsConfiguracionInterfazComponent implements OnInit {
   constructor(
     private _TipoRespuesta: DevopsTipoRespuestaService,
-    private _DevopsConfiguracionSimulador: DevopsConfiguracionSimuladorService
+    private _DevopsConfiguracionSimulador: DevopsConfiguracionSimuladorService,
+    private alertaService:AlertaService
   ) {}
 
   public ParametrosNivel: any = [];
@@ -131,7 +133,7 @@ export class DevopsConfiguracionInterfazComponent implements OnInit {
       var modifiedDate = event.target.files[i].lastModifiedDate;
       var extencion = name.split('.')[name.split('.').length - 1];
       if (Math.round(size / 1024 / 1024) > 150) {
-        this.fileErrorMsg = 'El tama�o del archivo no debe superar los 25 MB';
+        this.fileErrorMsg = 'El tamaño del archivo no debe superar los 25 MB';
         this.filestatus = false;
       }
       this.selectedFiles = event.target.files;
@@ -143,7 +145,12 @@ export class DevopsConfiguracionInterfazComponent implements OnInit {
   }
   ActualizarInterfaz() {
     this.actualizar.id = this.ConfiguracionSimulador.id;
-    this.actualizar.urlVideo = this.video;
+    if(this.video!=null){
+      this.actualizar.urlVideo = this.video
+    }
+    else{
+      this.actualizar.urlVideo = ''
+    }
     this.actualizar.logo = this.logo;
     this.actualizar.porcentajeMinimoAprobacion = this.porcentaje;
     this.actualizar.vigenciaAcceso = this.acceso;
@@ -157,41 +164,27 @@ export class DevopsConfiguracionInterfazComponent implements OnInit {
     this._DevopsConfiguracionSimulador
       .DevopsActualizarConfiguracionSimulador(this.actualizar)
       .subscribe({
-        next: (x) => {},
-        error: (e) => {},
+        next: (x: any) => {
+          this.alertaService.mensajeExitoso();
+        },
+        error: (error) => {
+          this.alertaService.notificationError(error.message);
+        },
         complete: () => {
-          this.mensajeExitoso();
+
         },
-      });
-    }
-    
-    mensajeExitoso(mensaje?: string) {
-      const Toast = Swal.mixin({
-        toast: true,
-        target: '#content-drawer-component',
-        customClass: {
-          container: 'swal2-container-integra',
-        },
-        position: 'top-right',
-        showConfirmButton: false,
-        timer: 2000,
-        timerProgressBar: false,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer);
-          toast.addEventListener('mouseleave', Swal.resumeTimer);
-        },
-      });
-      return Toast.fire({
-        icon: 'success',
-        title: mensaje != null ? mensaje : 'Guardado con exito',
       });
     }
   Actualizar() {
     this._TipoRespuesta.actualizarParametrosNivel(this.envio).subscribe({
-      next: (x) => {},
-      error: (e) => {},
+      next: (x: any) => {
+        this.alertaService.mensajeExitoso();
+      },
+      error: (error) => {
+        this.alertaService.notificationError(error.message);
+      },
       complete: () => {
-        this.mensajeExitoso();
+
       },
     });
   }

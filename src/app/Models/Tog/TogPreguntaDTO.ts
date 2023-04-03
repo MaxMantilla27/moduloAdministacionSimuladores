@@ -4,7 +4,7 @@ export interface TogPreguntaDTO {
   CantidadTotal: number;
   ImgLogo: File;
   Leyenda: string;
-  Proporcion: number;
+  // Proporcion: number;
   TieneSubCategoria: boolean;
 }
 
@@ -15,7 +15,7 @@ export interface TogPreguntaActualizarDTO {
   CantidadTotal: number;
   ImgLogo: File ;
   Leyenda: string;
-  Proporcion: number;
+  // Proporcion: number;
   TieneSubCategoria: boolean;
 }
 

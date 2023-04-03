@@ -4,7 +4,7 @@ export interface ItilAgregarTareaDTO {
   CantidadPreguntasPorExamen: number;
   CantidadTotal: number;
   ImgLogo: File;
-  Proporcion: number;
+  // Proporcion: number;
 }
 
 
@@ -15,5 +15,5 @@ export interface ItilActualizarTareaDTO {
     CantidadPreguntasPorExamen: number;
     CantidadTotal: number;
     ImgLogo: File;
-    Proporcion: number;
+    // Proporcion: number;
   }

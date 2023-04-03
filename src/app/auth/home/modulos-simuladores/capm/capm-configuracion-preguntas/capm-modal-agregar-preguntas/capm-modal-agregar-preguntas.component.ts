@@ -139,6 +139,7 @@ export class CapmModalAgregarPreguntasComponent implements OnInit {
     this.ObtenerComboCategorias();
   }
   ObtenerDetallePregunta(){
+    console.log(this.data)
     if (this.data[1] != undefined) {
       console.log(this.data[1]);
       this._pregunta.ObtenerCapmPregunta(this.data[1]).subscribe({

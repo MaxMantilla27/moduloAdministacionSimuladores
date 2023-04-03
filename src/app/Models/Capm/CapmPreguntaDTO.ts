@@ -4,7 +4,7 @@ export interface CapmPreguntaDTO {
   CantidadTotal: number;
   ImgLogo: File;
   Leyenda: string;
-  Proporcion: number;
+  // Proporcion: number;
   TieneSubCategoria: boolean;
 }
 
@@ -15,7 +15,7 @@ export interface CapmPreguntaActualizarDTO {
   CantidadTotal: number;
   ImgLogo: File ;
   Leyenda: string;
-  Proporcion: number;
+  // Proporcion: number;
   TieneSubCategoria: boolean;
 }
 

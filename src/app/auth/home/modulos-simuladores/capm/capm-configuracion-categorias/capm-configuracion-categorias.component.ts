@@ -61,9 +61,8 @@ export class CapmConfiguracionCategoriasComponent implements OnInit {
 
   openDialogSub() {
     const dialogRef = this.dialog.open(CapmModalAgregarSubcategoriaComponent, {
-      width: '1000px',
-      maxHeight: '90vh',
-      panelClass: 'dialog-gestor',
+      width: '60%',
+      panelClass: 'dialog-agregar-sub-categoria',
     });
 
     dialogRef.afterClosed().subscribe((result) => {});
@@ -97,7 +96,7 @@ export class CapmConfiguracionCategoriasComponent implements OnInit {
         console.log(x);
         this.listaSubCategorias = x;
         this.listOfDisplayData2 = this.listaSubCategorias
-        this.listaCategorias.forEach((y: any) => {
+        this.listaSubCategorias.forEach((y: any) => {
           this.CantTotalPreguntasPorExamenSubCategoria =
             this.CantTotalPreguntasPorExamenSubCategoria +
             y.cantidadPreguntasPorExamen;
@@ -130,7 +129,7 @@ export class CapmConfiguracionCategoriasComponent implements OnInit {
     this.isNew = false;
     const dialogRef = this.dialog.open(CapmModalAgregarSubcategoriaComponent, {
       width: '60%',
-      panelClass: 'dialog-agregar-categoria',
+      panelClass: 'dialog-agregar-sub-categoria',
       disableClose: true,
     });
 
@@ -161,7 +160,7 @@ export class CapmConfiguracionCategoriasComponent implements OnInit {
     this.isNew = false;
     const dialogRef = this.dialog.open(CapmModalAgregarSubcategoriaComponent, {
       width: '60%',
-      panelClass: 'dialog-agregar-categoria',
+      panelClass: 'dialog-agregar-sub-categoria',
       data: [data],
       disableClose: true,
     });

@@ -1,93 +1,85 @@
-<ng-container *ngIf="loader == true">
-  <div class="loading-indicator">
-    <mat-progress-spinner
-      mode="indeterminate"
-      color="accent"
-    ></mat-progress-spinner>
-  </div>
-</ng-container>
 <div class="tituloModal">Configuración Subcategorías</div>
-<form [formGroup]="formCategoria">
-<mat-dialog-content class="mat-typography">
-  <div class="contenedor">
-    <div class="inre">
-      <h3>Nombre de la categoria *</h3>
-      <div class="ver">
-        <mat-form-field appearance="fill">
-          <mat-label>Categorías</mat-label>
-          <mat-select
-            (selectionChange)="FiltrarSubs($event)"
-            formControlName="IdCategoria"
-          >
-            <mat-option *ngFor="let a of listaComboCategorias" [value]="a.id">
-              {{ a.nombre }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+  <form [formGroup]="formSubCategoria">
+  <mat-dialog-content class="mat-typography">
+    <div style="display:flex">
+      <div class="inre">
+        <!-- <h3>Nombre de la categoria *</h3> -->
+        <div class="ver">
+          <mat-form-field appearance="fill">
+            <mat-label>Categorías</mat-label>
+            <mat-select
+              (selectionChange)="FiltrarSubs($event)"
+              formControlName="IdCategoria"
+            >
+              <mat-option *ngFor="let a of listaComboCategorias" [value]="a.id">
+                {{ a.nombre }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="inre">
+        <!-- <h3>Nombre de la Subcategoria *</h3> -->
+        <div class="ver">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Nombre de la subcategoria</mat-label>
+            <input matInput formControlName="NombreCategoria"/>
+            <mat-error *ngIf="formSubCategoria.invalid">Ingresar nombre de categoría</mat-error>
+          </mat-form-field>
+        </div>
       </div>
     </div>
-    <div class="inre">
-      <h3>Nombre de la Subcategoria *</h3>
-      <div class="ver">
-        <mat-form-field class="example-full-width" appearance="outline">
-          <mat-label>Nombre de la subcategoria</mat-label>
-          <input matInput formControlName="NombreCategoria"/>
-          <mat-error *ngIf="formCategoria.invalid">{{obtenerErrorCampoNombre('NombreCategoria')}}</mat-error>
-        </mat-form-field>
+    <div style="display:flex">
+      <div class="inre">
+        <!-- <h3>Cantidad de preguntas totales *</h3> -->
+        <div class="ver">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Cantidad de preguntas</mat-label>
+            <input min="0" matInput type="number" formControlName="CantidadPreguntasTotales" />
+            <mat-error *ngIf="formSubCategoria.invalid">Campo requerido</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="inre">
+        <!-- <h3>Cantidad de preguntas por examen *</h3> -->
+        <div class="ver">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Cantidad de preguntas</mat-label>
+            <input min="0" matInput type="number" formControlName="CantidadPreguntasExamen"/>
+            <mat-error *ngIf="formSubCategoria.invalid">Campo requerido</mat-error>
+          </mat-form-field>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="contenedor">
-    <div class="inre">
-      <h3>Cantidad de preguntas totales *</h3>
-      <div class="ver">
-        <mat-form-field class="example-full-width" appearance="outline">
-          <mat-label>Cantidad de preguntas</mat-label>
-          <input matInput type="number" formControlName="CantidadPreguntasTotales" />
-          <mat-error *ngIf="formCategoria.invalid">{{obtenerErrorCampoNombre('CantidadPreguntasTotales')}}</mat-error>
-        </mat-form-field>
-      </div>
-    </div>
-    <div class="inre">
-      <h3>Cantidad de preguntas por examen *</h3>
-      <div class="ver">
-        <mat-form-field class="example-full-width" appearance="outline">
-          <mat-label>Cantidad de preguntas</mat-label>
-          <input matInput type="number" formControlName="CantidadPreguntasExamen"/>
-          <mat-error *ngIf="formCategoria.invalid">{{obtenerErrorCampoNombre('CantidadPreguntasExamen')}}</mat-error>
-        </mat-form-field>
-      </div>
-    </div>
-  </div>
 
-  <div class="contenedor">
-    <div class="inre">
-      <h3>Proporcion *</h3>
-      <div class="ver">
-        <mat-form-field class="example-full-width" appearance="outline">
-          <mat-label>Proporcion</mat-label>
-          <input matInput type="number"  formControlName="Proporcion" />
-          <mat-error *ngIf="formCategoria.invalid">{{obtenerErrorCampoNombre('Proporcion')}}</mat-error>
-        </mat-form-field>
+    <div style="display:flex">
+      <!-- <div class="inre">
+        <h3>Proporcion *</h3>
+        <div class="ver">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Proporcion</mat-label>
+            <input matInput type="number"  formControlName="Proporcion" />
+            <mat-error *ngIf="formSubCategoria.invalid">{{obtenerErrorCampoNombre('Proporcion')}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div> -->
+      <div class="inre">
+        <h3>Imagen *</h3>
+        <div class="ver">
+          <input id="file" type="file" (change)="getFileDetails($event)" />
+        </div>
       </div>
     </div>
-    <div class="inre">
-      <h3>Imagen *</h3>
-      <div class="ver">
-        <input id="file" type="file" (change)="getFileDetails($event)" />
-      </div>
-    </div>
-  </div>
-  <div class="crear">
-    <ng-container *ngIf="data== undefined">
-      <button style="background: #FF850C;" mat-flat-button class="botonAgregar" (click)="Agregar()">Guardar Cambios</button>
-    </ng-container>
+    <div class="crear">
+      <ng-container *ngIf="data== undefined">
+        <button [disabled]="!formSubCategoria.valid" style="background: #FF850C;color: white;" mat-flat-button class="botonAgregar" (click)="Agregar()">Guardar Cambios</button>
+      </ng-container>
 
-    <ng-container *ngIf="data != undefined">
-      <button style="background: #FF850C;" mat-flat-button class="botonAgregar" (click)="Editar()">Guardar Cambios</button>
-    </ng-container>
-    <button mat-flat-button class="cancelar" (click)="Cancelar()">Cancelar</button>
-  </div>
-</mat-dialog-content>
+      <ng-container *ngIf="data != undefined">
+        <button [disabled]="!formSubCategoria.valid" style="background: #FF850C;color: white" mat-flat-button class="botonAgregar" (click)="Editar()">Guardar Cambios</button>
+      </ng-container>
+      <button mat-flat-button class="cancelar" (click)="Cancelar()">Cancelar</button>
+    </div>
+  </mat-dialog-content>
 
 </form>

@@ -3,54 +3,37 @@
   > div.mat-form-field-infix{
     padding: 0.5em 0 0.5em 0;
   }
+
 .dialog-agregar-categoria{
   mat-dialog-container{
     padding: 0px !important;
     height: auto;
+    overflow-x: clip;
   }
-}
-.contenido{
-    width:100%;
-    display: flex;
-    margin-top: 30px;
-    border: 2px solid #f0f0f0e9;
-}
-
-.bloque{
-    width: 100%;
 }
 
 .tituloModal{
-    width: 100%;
-    background-color: #23CAE4;
-    color: white;
-    font-size: 20px;
-    height: 50px;
-    padding: 10px;
-    text-align: left;
-    justify-content: center;
+  width: 100%;
+  background-color: #23CAE4;
+  color: white;
+  font-size: 20px;
+  height: 50px;
+  padding: 10px;
+  text-align: left;
+  justify-content: center;
 }
 
-
 .botonAgregar{
-    width: 150px;
-    background-color: #23CAE4;
-    color: white;
-    margin-right: 20px;
+  width: 150px;
+  background-color: #23CAE4;
+  color: white;
+  margin-right: 20px;
 }
 
 .cancelar{
     width: 150px;
     background-color: red;
     color: white;
-}
-
-.agregar{
-    width: 100%;
-    display: flex;
-    justify-content: end;
-    margin-top: 10px;
-    margin-bottom: 5px;
 }
 
 .crear{
@@ -60,76 +43,19 @@
     margin-top: 10px;
     margin-bottom: 5px;
 }
-
-
-.remitente{
-    width: 100%;
-    border-radius: 20px;
-   border: 2px solid #f0f0f0e9;
-    margin-bottom: 20px;
-    border-top:none;
-  }
-
-
-
-  .contenedor{
-    display: flex;
-  }
-
-  .inre{
-    display: block;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 5px;
-    padding-bottom: 0px;
-    width: 100%;
-  }
-
-  .mat-form-field {
-    width: 100%;
-    display: inline-block;
-    position: relative;
-    text-align: left;
+.inre{
+  display: block;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 0px;
+  width: 100%;
 }
 
-.editW{
-    background-color: #17b76a;
-    color: white;
-    margin-right: 10px;
-    font-size: 15px;
+.mat-form-field {
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  text-align: left;
 }
 
-.deleteW{
-    background-color: red;
-    color: white;
-    margin-right: 10px;
-    font-size: 15px;
-}
-
-
-.loading-indicator {
-    position: fixed;
-    z-index: 999;
-    height: 2em;
-    width: 2em;
-    overflow: show;
-    margin: auto;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-  }
-  .w-100{
-    width: 100%!important;
-  }
-  /* Transparent Overlay */
-  .loading-indicator:before {
-    content: '';
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.3);
-  }

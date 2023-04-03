@@ -7,6 +7,7 @@ import * as AllIcons from '@ant-design/icons-angular/icons';
 import { PbiTipoRespuestaService } from 'src/app/shared/Services/Pbi/Pbi-Tipo-Respuesta/pbi-tipo-respuesta.service';
 import { actualizarParametrosNivel, actualizarTipoRespuestaDTO,actualizarInterfaz } from 'src/app/Models/Pbi/PbiTipoRespuesta';
 import { PbiConfiguracionSimuladorService } from 'src/app/shared/Services/Pbi/Pbi-Configuracion-Simulador/pbi-configuracion-simulador.service';
+import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 
 @Component({
   selector: 'app-pbi-configuracion-interfaz',
@@ -17,7 +18,8 @@ export class PbiConfiguracionInterfazComponent implements OnInit {
 
   constructor(
     private _TipoRespuesta: PbiTipoRespuestaService,
-    private _PbiConfiguracionSimulador: PbiConfiguracionSimuladorService
+    private _PbiConfiguracionSimulador: PbiConfiguracionSimuladorService,
+    private alertaService:AlertaService
     ) {}
 
   public ParametrosNivel: any=[]
@@ -129,7 +131,7 @@ getFileDetails(event:any) {
     var modifiedDate = event.target.files[i].lastModifiedDate;
     var extencion=name.split('.')[name.split('.').length-1]
     if( Math.round((size/1024)/1024)>150){
-      this.fileErrorMsg='El tama�o del archivo no debe superar los 25 MB'
+      this.fileErrorMsg='El tamaño del archivo no debe superar los 25 MB'
       this.filestatus=false
     }
     this.selectedFiles = event.target.files;
@@ -141,7 +143,12 @@ getFileDetails(event:any) {
 }
 ActualizarInterfaz(){
   this.actualizar.id = this.ConfiguracionSimulador.id
-  this.actualizar.urlVideo = this.video
+  if(this.video!=null){
+    this.actualizar.urlVideo = this.video
+  }
+  else{
+    this.actualizar.urlVideo = ''
+  }
   this.actualizar.logo = this.logo
   this.actualizar.porcentajeMinimoAprobacion = this.porcentaje
   this.actualizar.vigenciaAcceso = this.acceso
@@ -153,10 +160,11 @@ ActualizarInterfaz(){
   }
   console.log(this.actualizar)
   this._PbiConfiguracionSimulador.PbiActualizarConfiguracionSimulador(this.actualizar).subscribe({
-    next: (x) => {
+    next: (x: any) => {
+      this.alertaService.mensajeExitoso();
     },
-    error:(e)=>{
-
+    error: (error) => {
+      this.alertaService.notificationError(error.message);
     },
     complete: () => {
 
@@ -165,10 +173,11 @@ ActualizarInterfaz(){
 }
   Actualizar() {
     this._TipoRespuesta.actualizarParametrosNivel(this.envio).subscribe({
-      next: (x) => {
+      next: (x: any) => {
+        this.alertaService.mensajeExitoso();
       },
-      error:(e)=>{
-
+      error: (error) => {
+        this.alertaService.notificationError(error.message);
       },
       complete: () => {
 

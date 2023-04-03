@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TogTipoRespuestaService } from 'src/app/shared/Services/Tog/Tog-Tipo-Respuesta/tog-tipo-respuesta.service';
 import { actualizarParametrosNivel, actualizarInterfaz } from 'src/app/Models/Tog/TogTipoRespuesta';
 import { TogConfiguracionSimuladorService } from 'src/app/shared/Services/Tog/Tog-Configuracion-Simulador/tog-configuracion-simulador.service';
+import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 
 @Component({
   selector: 'app-tog-configuracion-interfaz',
@@ -12,7 +13,8 @@ export class TogConfiguracionInterfazComponent implements OnInit {
 
   constructor(
     private _TipoRespuesta: TogTipoRespuestaService,
-    private _TogConfiguracionSimulador: TogConfiguracionSimuladorService
+    private _TogConfiguracionSimulador: TogConfiguracionSimuladorService,
+    private alertaService:AlertaService
     ) {}
 
   public ParametrosNivel: any=[]
@@ -124,7 +126,7 @@ getFileDetails(event:any) {
     var modifiedDate = event.target.files[i].lastModifiedDate;
     var extencion=name.split('.')[name.split('.').length-1]
     if( Math.round((size/1024)/1024)>150){
-      this.fileErrorMsg='El tama�o del archivo no debe superar los 25 MB'
+      this.fileErrorMsg='El tamaño del archivo no debe superar los 25 MB'
       this.filestatus=false
     }
     this.selectedFiles = event.target.files;
@@ -132,7 +134,12 @@ getFileDetails(event:any) {
 }
 ActualizarInterfaz(){
   this.actualizar.id = this.ConfiguracionSimulador.id
-  this.actualizar.urlVideo = this.video
+  if(this.video!=null){
+    this.actualizar.urlVideo = this.video
+  }
+  else{
+    this.actualizar.urlVideo = ''
+  }
   this.actualizar.logo = this.logo
   this.actualizar.porcentajeMinimoAprobacion = this.porcentaje
   this.actualizar.vigenciaAcceso = this.acceso
@@ -144,10 +151,11 @@ ActualizarInterfaz(){
   }
   console.log(this.actualizar)
   this._TogConfiguracionSimulador.TogActualizarConfiguracionSimulador(this.actualizar).subscribe({
-    next: (x) => {
+    next: (x: any) => {
+      this.alertaService.mensajeExitoso();
     },
-    error:(e)=>{
-
+    error: (error) => {
+      this.alertaService.notificationError(error.message);
     },
     complete: () => {
 
@@ -156,10 +164,11 @@ ActualizarInterfaz(){
 }
   Actualizar() {
     this._TipoRespuesta.actualizarParametrosNivel(this.envio).subscribe({
-      next: (x) => {
+      next: (x: any) => {
+        this.alertaService.mensajeExitoso();
       },
-      error:(e)=>{
-
+      error: (error) => {
+        this.alertaService.notificationError(error.message);
       },
       complete: () => {
 

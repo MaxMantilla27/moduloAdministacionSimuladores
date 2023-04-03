@@ -4,7 +4,7 @@ export interface pmpPreguntaDTO {
   CantidadTotal: number;
   ImgLogo: File;
   Leyenda: string;
-  Proporcion: number;
+  // Proporcion: number;
   TieneSubCategoria: boolean;
 }
 
@@ -15,7 +15,7 @@ export interface pmpPreguntaActualizarDTO {
   CantidadTotal: number;
   ImgLogo: File ;
   Leyenda: string;
-  Proporcion: number;
+  // Proporcion: number;
   TieneSubCategoria: boolean;
 }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { actualizarTipoRespuestaDTO } from 'src/app/Models/Tog/TogTipoRespuesta';
+import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { TogTipoRespuestaService } from 'src/app/shared/Services/Tog/Tog-Tipo-Respuesta/tog-tipo-respuesta.service';
 
 @Component({
@@ -10,7 +11,10 @@ import { TogTipoRespuestaService } from 'src/app/shared/Services/Tog/Tog-Tipo-Re
 export class TogConfiguracionTipoPreguntasComponent implements OnInit {
   http: any;
 
-  constructor(private _TipoRespuesta: TogTipoRespuestaService) {}
+  constructor(
+    private _TipoRespuesta: TogTipoRespuestaService,
+    private alertaService: AlertaService
+  ) {}
 
   datasource :any= [];
   seleccionado = false;
@@ -66,10 +70,11 @@ export class TogConfiguracionTipoPreguntasComponent implements OnInit {
     this.ActualizarTipoRespuesta.id = this.listOfDisplayData[index].id,
     this.ActualizarTipoRespuesta.nombre= this.listOfDisplayData[index].nombreNuevo,
     this._TipoRespuesta.actualizarTipoRespuesta(this.ActualizarTipoRespuesta).subscribe({
-      next: (x) => {
+      next: (x: any) => {
+        this.alertaService.mensajeExitoso();
       },
-      error:(e)=>{
-
+      error: (error) => {
+        this.alertaService.notificationError(error.message);
       },
       complete: () => {
 

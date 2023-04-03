@@ -21,50 +21,40 @@ export class LssbModalAgregarCategoriaComponent implements OnInit {
     private formBuilder: FormBuilder,
     private _Dominio: LssbCategoriasService
   ) { }
-
-  loading:any
-  loader:any;
-  formCategoria: FormGroup = this.formBuilder.group({
-    Id: [0,[Validators.required]],
+  public formCategoria: FormGroup = this.formBuilder.group({
+    Id: [0],
     NombreCategoria: ['', [Validators.required]],
     Leyenda: ['', [Validators.required]],
     CantidadPreguntasTotales: [0,[Validators.required]],
     CantidadPreguntasExamen: [0,[Validators.required]],
-    Proporcion: [0,[Validators.required]],
-    TieneSubCategoria: true,
-    Logo: [ new File([],''), [Validators.required]]
+    // Proporcion: [0,[Validators.required]],
+    TieneSubCategoria: false,
+    Logo: new File([], '')
   });
   public nombrefile='Ningún archivo seleccionado'
-
   public selectedFiles?: FileList;
   public file:any;
   public filestatus=false
   public fileErrorMsg=''
-
-
-
   public jsonEnvio:LssbPreguntaDTO = {
-    Nombre: 'Prueba',
-    CantidadPreguntasPorExamen: 5,
-    CantidadTotal: 5,
+    Nombre: '',
+    CantidadPreguntasPorExamen: 0,
+    CantidadTotal: 0,
     ImgLogo: new File([],''),
-    Leyenda: 'asdas',
-    Proporcion: 5,
-    TieneSubCategoria: true,
+    Leyenda: '',
+    // Proporcion: ,
+    TieneSubCategoria: false,
   }
-
-
   public jsonActualizar:LssbPreguntaActualizarDTO = {
     Id: 0,
-    Nombre: 'Prueba',
-    CantidadPreguntasPorExamen: 5,
-    CantidadTotal: 5,
+    Nombre: '',
+    CantidadPreguntasPorExamen: 0,
+    CantidadTotal: 0,
     ImgLogo:  new File([],''),
-    Leyenda: 'asdas',
-    Proporcion: 5,
-    TieneSubCategoria: true,
+    Leyenda: '',
+    // Proporcion: 5,
+    TieneSubCategoria: false,
   }
-
 
   ngOnInit(): void {
     console.log(this.data)
@@ -88,22 +78,6 @@ export class LssbModalAgregarCategoriaComponent implements OnInit {
   Cancelar(){
     this.dialogRef.close();
   }
-  obtenerErrorCampoNombre(val: string) {
-    var campo = this.formCategoria.get(val);
-    if (campo!.hasError('required')) {
-      if(val=='NombreCategoria'){
-        return 'Ingresa el nombre';
-      }
-      if(val=='Leyenda'){
-        return 'Ingresa una leyenda';
-      }
-      if(val=='contraNuevaRepeat'){
-        return 'Confirma tu nueva contraseña';
-      }
-    }
-
-    return '';
-  }
 
   Agregar(){
 
@@ -118,35 +92,27 @@ export class LssbModalAgregarCategoriaComponent implements OnInit {
     this.jsonEnvio.Leyenda = this.formCategoria.get('Leyenda')?.value
     this.jsonEnvio.CantidadPreguntasPorExamen = this.formCategoria.get('CantidadPreguntasExamen')?.value
     this.jsonEnvio.CantidadTotal= this.formCategoria.get('CantidadPreguntasTotales')?.value
-    this.jsonEnvio.Proporcion = this.formCategoria.get('Proporcion')?.value
-    this.jsonEnvio.TieneSubCategoria = this.formCategoria.get('TieneSubCategoria')?.value
-
-
-    console.log(this.jsonEnvio)
-
+    // this.jsonEnvio.Proporcion = this.formCategoria.get('Proporcion')?.value
+    this.jsonEnvio.TieneSubCategoria = false
     this._Dominio.AgregarCategoria(this.jsonEnvio).subscribe({
 
       next: (x) => {
         this.alertaService.mensajeIcon(
           'Aviso',
-          'La lista se agrego correctamente',
+          'La categoría se agregó correctamente',
           'success'
         );
-
-        this.dialogRef.close()
       },
       error:(e)=>{
         this.alertaService.mensajeError(e);
       },
       complete: () => {
-
+        this.dialogRef.close()
       },
     });
   }
 
-
   Editar(){
-
     if(this.selectedFiles){
       const file: File | null = this.selectedFiles.item(0);
       if (file) {
@@ -158,35 +124,27 @@ export class LssbModalAgregarCategoriaComponent implements OnInit {
     this.jsonActualizar.Leyenda = this.formCategoria.get('Leyenda')?.value
     this.jsonActualizar.CantidadPreguntasPorExamen = this.formCategoria.get('CantidadPreguntasExamen')?.value
     this.jsonActualizar.CantidadTotal= this.formCategoria.get('CantidadPreguntasTotales')?.value
-    this.jsonActualizar.Proporcion = this.formCategoria.get('Proporcion')?.value
-    this.jsonActualizar.TieneSubCategoria = this.formCategoria.get('TieneSubCategoria')?.value
-
-    console.log(this.jsonActualizar)
+    // this.jsonActualizar.Proporcion = this.formCategoria.get('Proporcion')?.value
+    this.jsonActualizar.TieneSubCategoria = false
 
     this._Dominio.ActualizarCategoria(this.jsonActualizar).subscribe({
-
       next: (x) => {
         this.alertaService.mensajeIcon(
           'Aviso',
-          'La lista se actualizo correctamente',
+          'La categoría se actualizo correctamente',
           'success'
         );
-
-        this.dialogRef.close()
       },
       error:(e)=>{
         this.alertaService.mensajeError(e);
-
-
       },
       complete: () => {
-
+        this.dialogRef.close()
       },
     });
   }
 
   getFileDetails(e:any){
-
     for (var i = 0; i < e.target.files.length; i++) {
       this.filestatus=true
       var name = e.target.files[i].name;
@@ -203,6 +161,4 @@ export class LssbModalAgregarCategoriaComponent implements OnInit {
     }
     console.log( this.selectedFiles)
   }
-
-
 }

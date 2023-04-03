@@ -4,7 +4,7 @@ export interface CapmAgregarTareaDTO {
   CantidadPreguntasPorExamen: number;
   CantidadTotal: number;
   ImgLogo: File;
-  Proporcion: number;
+  // Proporcion: number;
 }
 
 
@@ -15,5 +15,5 @@ export interface CapmActualizarTareaDTO {
     CantidadPreguntasPorExamen: number;
     CantidadTotal: number;
     ImgLogo: File;
-    Proporcion: number;
+    // Proporcion: number;
   }

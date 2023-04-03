@@ -61,9 +61,8 @@ export class LssbConfiguracionCategoriasComponent implements OnInit {
 
   openDialogSub() {
     const dialogRef = this.dialog.open(LssbModalAgregarSubcategoriaComponent, {
-      width: '1000px',
-      maxHeight: '90vh',
-      panelClass: 'dialog-gestor',
+      width: '60%',
+      panelClass: 'dialog-agregar-sub-categoria',
     });
 
     dialogRef.afterClosed().subscribe((result) => {});
@@ -130,7 +129,7 @@ export class LssbConfiguracionCategoriasComponent implements OnInit {
     this.isNew = false;
     const dialogRef = this.dialog.open(LssbModalAgregarSubcategoriaComponent, {
       width: '60%',
-      panelClass: 'dialog-agregar-categoria',
+      panelClass: 'dialog-agregar-sub-categoria',
       disableClose: true,
     });
 
@@ -161,7 +160,7 @@ export class LssbConfiguracionCategoriasComponent implements OnInit {
     this.isNew = false;
     const dialogRef = this.dialog.open(LssbModalAgregarSubcategoriaComponent, {
       width: '60%',
-      panelClass: 'dialog-agregar-categoria',
+      panelClass: 'dialog-agregar-sub-categoria',
       data: [data],
       disableClose: true,
     });

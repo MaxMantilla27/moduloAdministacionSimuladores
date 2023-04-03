@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { actualizarTipoRespuestaDTO } from 'src/app/Models/Capm/CapmTipoRespuesta';
+import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { CapmTipoRespuestaService } from 'src/app/shared/Services/Capm/Capm-Tipo-Respuesta/capm-tipo-respuesta.service';
 
 @Component({
@@ -10,7 +11,10 @@ import { CapmTipoRespuestaService } from 'src/app/shared/Services/Capm/Capm-Tipo
 export class CapmConfiguracionTipoPreguntasComponent implements OnInit {
   http: any;
 
-  constructor(private _TipoRespuesta: CapmTipoRespuestaService) {}
+  constructor(
+    private _TipoRespuesta: CapmTipoRespuestaService,
+    private alertaService:AlertaService
+  ) {}
 
   datasource :any= [];
   seleccionado = false;
@@ -66,10 +70,11 @@ export class CapmConfiguracionTipoPreguntasComponent implements OnInit {
     this.ActualizarTipoRespuesta.id = this.listOfDisplayData[index].id,
     this.ActualizarTipoRespuesta.nombre= this.listOfDisplayData[index].nombreNuevo,
     this._TipoRespuesta.actualizarTipoRespuesta(this.ActualizarTipoRespuesta).subscribe({
-      next: (x) => {
+      next: (x: any) => {
+        this.alertaService.mensajeExitoso();
       },
-      error:(e)=>{
-
+      error: (error) => {
+        this.alertaService.notificationError(error.message);
       },
       complete: () => {
 
