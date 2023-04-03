@@ -122,7 +122,7 @@ export class LssbModalAgregarPreguntasComponent implements OnInit {
   public formPregunta :FormGroup=new FormGroup({
     Id:new FormControl(0,Validators.required),
     IdCategoria:new FormControl(0,Validators.required),
-    IdSubCategoria:new FormControl(0,Validators.required),
+    // IdSubCategoria:new FormControl(0,Validators.required),
     IdTipoRespuesta:new FormControl(0,Validators.required),
     Enunciado:new FormControl('',Validators.required),
     ImagenPregunta:new FormControl(''),
@@ -149,7 +149,7 @@ export class LssbModalAgregarPreguntasComponent implements OnInit {
           this.formPregunta.patchValue({
             Id:x.id,
             IdCategoria:x.idSimuladorLssbDominio,
-            IdSubCategoria:x.idSimuladorLssbTarea,
+            // IdSubCategoria:x.idSimuladorLssbTarea,
             IdTipoRespuesta:x.idSimuladorTipoRespuesta,
             Enunciado:x.enunciado,
             // ImagenPregunta: null,
@@ -181,7 +181,7 @@ export class LssbModalAgregarPreguntasComponent implements OnInit {
     this.json.Id = 0;
     this.json.IdLssbTipoPreguntaClasificacion = 2;
     this.json.IdSimuladorLssbDominio = this.formPregunta.get('IdCategoria')?.value;
-    this.json.IdSimuladorLssbTarea = this.formPregunta.get('IdSubCategoria')?.value;
+    this.json.IdSimuladorLssbTarea = this.formPregunta.get('IdCategoria')?.value;
     this.json.IdSimuladorTipoRespuesta = this.formPregunta.get('IdTipoRespuesta')?.value;
     this.json.Enunciado = this.formPregunta.get('Enunciado')?.value;
     this.json.TieneRetroalimentacionUnica = this.TieneRetroalimentacionUnica;
@@ -252,7 +252,7 @@ export class LssbModalAgregarPreguntasComponent implements OnInit {
     this.jsonActualizar.Id = this.formPregunta.get('Id')?.value;
     this.jsonActualizar.IdLssbTipoPreguntaClasificacion = 2;
     this.jsonActualizar.IdSimuladorLssbDominio = this.formPregunta.get('IdCategoria')?.value;
-    this.jsonActualizar.IdSimuladorLssbTarea = this.formPregunta.get('IdSubCategoria')?.value;
+    this.jsonActualizar.IdSimuladorLssbTarea = this.formPregunta.get('IdCategoria')?.value;
     this.jsonActualizar.IdSimuladorTipoRespuesta = this.formPregunta.get('IdTipoRespuesta')?.value;
     this.jsonActualizar.Enunciado = this.formPregunta.get('Enunciado')?.value;
     this.jsonActualizar.TieneRetroalimentacionUnica = this.TieneRetroalimentacionUnica;

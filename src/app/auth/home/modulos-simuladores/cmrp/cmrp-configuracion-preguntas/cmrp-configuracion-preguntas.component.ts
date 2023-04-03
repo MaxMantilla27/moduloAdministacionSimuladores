@@ -52,6 +52,7 @@ export class CmrpConfiguracionPreguntasComponent implements OnInit {
       next: (x: any) => {
         this.datasource = x;
         this.listOfDisplayData = this.datasource;
+        console.log(x)
       },
     });
   }
