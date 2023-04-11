@@ -47,8 +47,20 @@
 
       <div style="display: flex;">
         <div class="inre">
+          <div class="row" style="display:flex">
+            <mat-form-field appearance="fill">
+              <mat-label>Nivel</mat-label>
+              <mat-select formControlName="IdNivel">
+                <mat-option *ngFor="let a of listaNivel" [value]="a.id">
+                  {{ a.nombre }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="inre">
           <div class="ver">
-            <div style="font-size: 13px;margin-top: -13px;">
+            <div style="font-size: 13px;margin-bottom: 5px;">
               Logo:
             </div>
             <div class="ver">
@@ -56,7 +68,7 @@
             </div>
           </div>
         </div>
-        <div class="inre">
+        <!-- <div class="inre">
           <div class="row" style="display:flex">
             <div class="col-12 col-md-6" style="font-size:12px">Tiene Subcategoría</div>
             <div class="col-12 col-md-6 ver">
@@ -64,7 +76,8 @@
               </mat-checkbox>
           </div>
           </div>
-        </div>
+        </div> -->
+
       </div>
 
       <div class="crear" style="margin-top:20px;margin-bottom: 20px;">

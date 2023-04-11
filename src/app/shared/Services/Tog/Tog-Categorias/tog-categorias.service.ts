@@ -52,5 +52,8 @@ export class TogCategoriasService {
   public EliminarCategoria(idCategoria: any):Observable<any>{
     return this.http.post<any>(this.urlBase+'/Delete?id=' + idCategoria,'');
   }
+  public ObtenerComboNivel():Observable<any>{
+    return this.http.get<any>(this.urlBase +'/ObtenerComboNivel');
+  }
 }
 

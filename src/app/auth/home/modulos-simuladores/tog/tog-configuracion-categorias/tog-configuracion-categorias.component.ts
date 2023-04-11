@@ -24,6 +24,7 @@ export class TogConfiguracionCategoriasComponent implements OnInit {
   ) {}
 
   public listaCategorias: any;
+  public listaNivel: any;
   public listaSubCategorias: any;
   public CantTotalPreguntasPorExamenCategoria = 0;
   public CantTotalPreguntasPorExamenSubCategoria = 0;
@@ -56,7 +57,7 @@ export class TogConfiguracionCategoriasComponent implements OnInit {
 
   ngOnInit(): void {
     this.ObtenerCategorias();
-    this.ObtenerSubCategorias();
+    // this.ObtenerSubCategorias();
   }
 
   openDialogSub() {
@@ -90,27 +91,27 @@ export class TogConfiguracionCategoriasComponent implements OnInit {
     });
   }
 
-  ObtenerSubCategorias() {
-    this._tarea.ObtenerTareas().subscribe({
-      next: (x: any) => {
-        console.log(x);
-        this.listaSubCategorias = x;
-        this.listOfDisplayData2 = this.listaSubCategorias
-        this.listaSubCategorias.forEach((y: any) => {
-          this.CantTotalPreguntasPorExamenSubCategoria =
-            this.CantTotalPreguntasPorExamenSubCategoria +
-            y.cantidadPreguntasPorExamen;
-        });
-        this.listaSubCategorias.forEach((y: any) => {
-          var auxProporcion =
-            (y.cantidadPreguntasPorExamen /
-              this.CantTotalPreguntasPorExamenSubCategoria) *
-            100;
-          y.proporcion = Math.round(auxProporcion);
-        });
-      },
-    });
-  }
+  // ObtenerSubCategorias() {
+  //   this._tarea.ObtenerTareas().subscribe({
+  //     next: (x: any) => {
+  //       console.log(x);
+  //       this.listaSubCategorias = x;
+  //       this.listOfDisplayData2 = this.listaSubCategorias
+  //       this.listaSubCategorias.forEach((y: any) => {
+  //         this.CantTotalPreguntasPorExamenSubCategoria =
+  //           this.CantTotalPreguntasPorExamenSubCategoria +
+  //           y.cantidadPreguntasPorExamen;
+  //       });
+  //       this.listaSubCategorias.forEach((y: any) => {
+  //         var auxProporcion =
+  //           (y.cantidadPreguntasPorExamen /
+  //             this.CantTotalPreguntasPorExamenSubCategoria) *
+  //           100;
+  //         y.proporcion = Math.round(auxProporcion);
+  //       });
+  //     },
+  //   });
+  // }
 
   agregar() {
     this.isNew = false;
@@ -125,18 +126,18 @@ export class TogConfiguracionCategoriasComponent implements OnInit {
     });
   }
 
-  agregarSubCategoria() {
-    this.isNew = false;
-    const dialogRef = this.dialog.open(TogModalAgregarSubcategoriaComponent, {
-      width: '60%',
-      panelClass: 'dialog-agregar-sub-categoria',
-      disableClose: true,
-    });
+  // agregarSubCategoria() {
+  //   this.isNew = false;
+  //   const dialogRef = this.dialog.open(TogModalAgregarSubcategoriaComponent, {
+  //     width: '60%',
+  //     panelClass: 'dialog-agregar-sub-categoria',
+  //     disableClose: true,
+  //   });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      this.ObtenerSubCategorias();
-    });
-  }
+  //   dialogRef.afterClosed().subscribe((result) => {
+  //     this.ObtenerSubCategorias();
+  //   });
+  // }
 
   EditarCategoria(data: any) {
     console.log(data);
@@ -154,21 +155,21 @@ export class TogConfiguracionCategoriasComponent implements OnInit {
     });
   }
 
-  EditarSubCategoria(data: any) {
-    console.log(data);
-    // Editar Categoria
-    this.isNew = false;
-    const dialogRef = this.dialog.open(TogModalAgregarSubcategoriaComponent, {
-      width: '60%',
-      panelClass: 'dialog-agregar-sub-categoria',
-      data: [data],
-      disableClose: true,
-    });
+  // EditarSubCategoria(data: any) {
+  //   console.log(data);
+  //   // Editar Categoria
+  //   this.isNew = false;
+  //   const dialogRef = this.dialog.open(TogModalAgregarSubcategoriaComponent, {
+  //     width: '60%',
+  //     panelClass: 'dialog-agregar-sub-categoria',
+  //     data: [data],
+  //     disableClose: true,
+  //   });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      this.ObtenerSubCategorias();
-    });
-  }
+  //   dialogRef.afterClosed().subscribe((result) => {
+  //     this.ObtenerSubCategorias();
+  //   });
+  // }
 
   EliminarCategoria(data: any) {
     this.alertaService.mensajeEliminarTemporal().then((result) => {
@@ -184,19 +185,19 @@ export class TogConfiguracionCategoriasComponent implements OnInit {
     });
   }
 
-  EliminarSubCategoria(data: any) {
-    this.alertaService.mensajeEliminarTemporal().then((result) => {
-      if (result.isConfirmed) {
-        this._tarea.EliminarCategoria(data.id).subscribe({
-          next: (x) => {},
-          error: (e) => {},
-          complete: () => {
-            this.ObtenerSubCategorias();
-          },
-        });
-      }
-    });
-  }
+  // EliminarSubCategoria(data: any) {
+  //   this.alertaService.mensajeEliminarTemporal().then((result) => {
+  //     if (result.isConfirmed) {
+  //       this._tarea.EliminarCategoria(data.id).subscribe({
+  //         next: (x) => {},
+  //         error: (e) => {},
+  //         complete: () => {
+  //           this.ObtenerSubCategorias();
+  //         },
+  //       });
+  //     }
+  //   });
+  // }
 
   reset(): void {
     this.listOfDisplayData = this.listaCategorias;
@@ -279,6 +280,6 @@ export class TogConfiguracionCategoriasComponent implements OnInit {
         item.categoria != null &&
         item.categoria.indexOf(this.searchValue5) !== -1
     );
-
   }
+
 }

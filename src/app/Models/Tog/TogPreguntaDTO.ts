@@ -1,4 +1,5 @@
 export interface TogPreguntaDTO {
+  IdNivel:number,
   Nombre: string;
   CantidadPreguntasPorExamen: number;
   CantidadTotal: number;
@@ -10,6 +11,7 @@ export interface TogPreguntaDTO {
 
 export interface TogPreguntaActualizarDTO {
   Id:number;
+  IdNivel:number;
   Nombre: string;
   CantidadPreguntasPorExamen: number;
   CantidadTotal: number;

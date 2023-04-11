@@ -19,10 +19,11 @@ export class TogModalAgregarCategoriaComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private alertaService: AlertaService,
     private formBuilder: FormBuilder,
-    private _Dominio: TogCategoriasService
+    private _Dominio: TogCategoriasService,
   ) { }
   public formCategoria: FormGroup = this.formBuilder.group({
     Id: [0],
+    IdNivel: [0, [Validators.required]],
     NombreCategoria: ['', [Validators.required]],
     Leyenda: ['', [Validators.required]],
     CantidadPreguntasTotales: [0,[Validators.required]],
@@ -34,9 +35,11 @@ export class TogModalAgregarCategoriaComponent implements OnInit {
   public nombrefile='Ningún archivo seleccionado'
   public selectedFiles?: FileList;
   public file:any;
+  public listaNivel:any;
   public filestatus=false
   public fileErrorMsg=''
   public jsonEnvio:TogPreguntaDTO = {
+    IdNivel:0,
     Nombre: '',
     CantidadPreguntasPorExamen: 0,
     CantidadTotal: 0,
@@ -47,6 +50,7 @@ export class TogModalAgregarCategoriaComponent implements OnInit {
   }
   public jsonActualizar:TogPreguntaActualizarDTO = {
     Id: 0,
+    IdNivel:0,
     Nombre: '',
     CantidadPreguntasPorExamen: 0,
     CantidadTotal: 0,
@@ -57,10 +61,12 @@ export class TogModalAgregarCategoriaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.ObtenerNivel();
     console.log(this.data)
     if(this.data!=undefined)
     {
       this.formCategoria.get('Id')?.setValue(this.data[0].id)
+      this.formCategoria.get('IdNivel')?.setValue(this.data[0].nivel)
       this.formCategoria.get('NombreCategoria')?.setValue(this.data[0].nombre)
       this.formCategoria.get('Leyenda')?.setValue(this.data[0].leyenda)
       this.formCategoria.get('CantidadPreguntasTotales')?.setValue(this.data[0].cantidadTotal)
@@ -88,21 +94,13 @@ export class TogModalAgregarCategoriaComponent implements OnInit {
       }
     }
 
+    this.jsonEnvio.IdNivel = this.formCategoria.get('IdNivel')?.value
     this.jsonEnvio.Nombre = this.formCategoria.get('NombreCategoria')?.value
     this.jsonEnvio.Leyenda = this.formCategoria.get('Leyenda')?.value
     this.jsonEnvio.CantidadPreguntasPorExamen = this.formCategoria.get('CantidadPreguntasExamen')?.value
     this.jsonEnvio.CantidadTotal= this.formCategoria.get('CantidadPreguntasTotales')?.value
     // this.jsonEnvio.Proporcion = this.formCategoria.get('Proporcion')?.value
-    console.log(this.formCategoria.get('TieneSubCategoria')?.value)
-    console.log(this.formCategoria)
-    if(this.formCategoria.get('TieneSubCategoria')?.value=="null" ||this.formCategoria.get('TieneSubCategoria')?.value==null){
-      this.jsonEnvio.TieneSubCategoria = false
-    }
-    else{
-      this.jsonEnvio.TieneSubCategoria = this.formCategoria.get('TieneSubCategoria')?.value
-    }
-    console.log(this.jsonEnvio.TieneSubCategoria)
-    console.log(this.jsonEnvio)
+    this.jsonEnvio.TieneSubCategoria = false
     this._Dominio.AgregarCategoria(this.jsonEnvio).subscribe({
 
       next: (x) => {
@@ -129,12 +127,13 @@ export class TogModalAgregarCategoriaComponent implements OnInit {
       }
     }
     this.jsonActualizar.Id = this.data[0].id
+    this.jsonEnvio.Nombre = this.formCategoria.get('NombreCategoria')?.value
     this.jsonActualizar.Nombre = this.formCategoria.get('NombreCategoria')?.value
     this.jsonActualizar.Leyenda = this.formCategoria.get('Leyenda')?.value
     this.jsonActualizar.CantidadPreguntasPorExamen = this.formCategoria.get('CantidadPreguntasExamen')?.value
     this.jsonActualizar.CantidadTotal= this.formCategoria.get('CantidadPreguntasTotales')?.value
     // this.jsonActualizar.Proporcion = this.formCategoria.get('Proporcion')?.value
-    this.jsonActualizar.TieneSubCategoria = this.formCategoria.get('TieneSubCategoria')?.value
+    this.jsonActualizar.TieneSubCategoria = false
 
     this._Dominio.ActualizarCategoria(this.jsonActualizar).subscribe({
       next: (x) => {
@@ -169,5 +168,12 @@ export class TogModalAgregarCategoriaComponent implements OnInit {
       this.selectedFiles = e.target.files;
     }
     console.log( this.selectedFiles)
+  }
+  ObtenerNivel(){
+    this._Dominio.ObtenerComboNivel().subscribe({
+      next: (x: any) => {
+        this.listaNivel = x;
+      },
+    });
   }
 }
