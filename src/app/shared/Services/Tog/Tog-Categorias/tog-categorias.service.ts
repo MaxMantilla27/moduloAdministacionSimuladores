@@ -23,6 +23,7 @@ export class TogCategoriasService {
   public AgregarCategoria(listaPregunta: TogPreguntaDTO):Observable<any>{
     const formData: FormData = new FormData();
     formData.append('ImgLogo', listaPregunta.ImgLogo);
+    formData.append('IdNivel', listaPregunta.IdNivel.toString());
     formData.append('Nombre', listaPregunta.Nombre.toString());
     formData.append('Leyenda', listaPregunta.Leyenda.toString());
     formData.append('CantidadPreguntasPorExamen', listaPregunta.CantidadPreguntasPorExamen.toString());
@@ -39,6 +40,7 @@ export class TogCategoriasService {
     formData.append('Id', listaPregunta.Id.toString());
     formData.append('ImgLogo', listaPregunta.ImgLogo);
     formData.append('Nombre', listaPregunta.Nombre.toString());
+    formData.append('IdNivel', listaPregunta.IdNivel.toString());
     formData.append('Leyenda', listaPregunta.Leyenda.toString());
     formData.append('CantidadPreguntasPorExamen', listaPregunta.CantidadPreguntasPorExamen.toString());
     formData.append('CantidadTotal', listaPregunta.CantidadTotal.toString());

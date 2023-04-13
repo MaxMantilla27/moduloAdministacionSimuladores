@@ -128,6 +128,7 @@ export class TogModalAgregarCategoriaComponent implements OnInit {
     }
     this.jsonActualizar.Id = this.data[0].id
     this.jsonEnvio.Nombre = this.formCategoria.get('NombreCategoria')?.value
+    this.jsonEnvio.IdNivel = this.formCategoria.get('IdNivel')?.value
     this.jsonActualizar.Nombre = this.formCategoria.get('NombreCategoria')?.value
     this.jsonActualizar.Leyenda = this.formCategoria.get('Leyenda')?.value
     this.jsonActualizar.CantidadPreguntasPorExamen = this.formCategoria.get('CantidadPreguntasExamen')?.value
