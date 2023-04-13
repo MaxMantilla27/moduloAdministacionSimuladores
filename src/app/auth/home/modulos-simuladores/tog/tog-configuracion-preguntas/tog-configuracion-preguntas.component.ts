@@ -39,7 +39,7 @@ export class TogConfiguracionPreguntasComponent implements OnInit {
     'enunciado',
     'idcategoria',
     'nombrecategoria',
-    'nombresubcategoria',
+    'nombrenivel',
   ];
 
   ngOnInit(): void {
@@ -138,7 +138,7 @@ export class TogConfiguracionPreguntasComponent implements OnInit {
     this.visible5 = false;
     this.listOfDisplayData = this.datasource.filter(
       (item: filtradoPreguntaDTO) =>
-        (item.subcategoria && item.subcategoria!=null && item.subcategoria.indexOf(this.searchValue5) !== -1)
+        (item.nivel && item.nivel!=null && item.nivel.indexOf(this.searchValue5) !== -1)
     );
     console.log(this.listOfDisplayData)
   }

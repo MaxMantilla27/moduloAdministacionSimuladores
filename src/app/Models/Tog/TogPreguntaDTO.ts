@@ -25,6 +25,7 @@ export interface TogEnvioFilePreguntaDTO{
    Id: number;
    IdSimuladorTogDominio: number;
    IdSimuladorTogTarea: number;
+   IdSimuladorTogNivel:number;
    IdSimuladorTipoRespuesta: number;
    IdTogTipoPreguntaClasificacion: number;
    Enunciado: string;
@@ -75,6 +76,7 @@ export interface TogEnvioFilePreguntaActualizarDTO{
   Id: number;
   IdSimuladorTogDominio: number;
   IdSimuladorTogTarea: number;
+  IdSimuladorTogNivel: number;
   IdSimuladorTipoRespuesta: number;
   IdTogTipoPreguntaClasificacion: number;
   Enunciado: string;

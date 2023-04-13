@@ -24,7 +24,8 @@ export class TogPreguntaService {
     console.log(listaPregunta);
     formData.append('Id', listaPregunta.Id.toString());
     formData.append('IdSimuladorTogDominio', listaPregunta.IdSimuladorTogDominio.toString());
-    formData.append('IdSimuladorTogTarea', listaPregunta.IdSimuladorTogTarea.toString());
+    formData.append('IdSimuladorTogTarea', listaPregunta.IdSimuladorTogDominio.toString());
+    formData.append('IdSimuladorTogNivel', listaPregunta.IdSimuladorTogNivel.toString());
     formData.append('IdSimuladorTipoRespuesta', listaPregunta.IdSimuladorTipoRespuesta.toString());
     formData.append('Enunciado', listaPregunta.Enunciado.toString());
     formData.append('UrlImagenPreguntaArchivo', listaPregunta.UrlImagenPreguntaArchivo);
@@ -58,7 +59,8 @@ export class TogPreguntaService {
     console.log(listaPregunta);
     formData.append('Id', listaPregunta.Id.toString());
     formData.append('IdSimuladorTogDominio', listaPregunta.IdSimuladorTogDominio.toString());
-    formData.append('IdSimuladorTogTarea', listaPregunta.IdSimuladorTogTarea.toString());
+    formData.append('IdSimuladorTogTarea', listaPregunta.IdSimuladorTogDominio.toString());
+    formData.append('IdSimuladorTogNivel', listaPregunta.IdSimuladorTogNivel.toString());
     formData.append('IdSimuladorTipoRespuesta', listaPregunta.IdSimuladorTipoRespuesta.toString());
     formData.append('Enunciado', listaPregunta.Enunciado.toString());
     formData.append('UrlImagenPreguntaArchivo', listaPregunta.UrlImagenPreguntaArchivo);

@@ -8,7 +8,7 @@ export interface filtradoPreguntaDTO{
   enunciado:string,
   idCategoria:number,
   categoria:string,
-  subcategoria:string,
+  nivel:string,
 }
 
 export interface filtradoAdministradorDTO{

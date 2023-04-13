@@ -49,6 +49,7 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
     Id: 0,
     IdSimuladorTogDominio: 0,
     IdSimuladorTogTarea: 0,
+    IdSimuladorTogNivel: 0,
     IdSimuladorTipoRespuesta: 0,
     Enunciado: '',
     UrlImagenPreguntaArchivo: new File([], ''),
@@ -63,6 +64,7 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
     Id: 0,
     IdSimuladorTogDominio: 0,
     IdSimuladorTogTarea: 0,
+    IdSimuladorTogNivel: 0,
     IdSimuladorTipoRespuesta: 0,
     Enunciado: '',
     UrlImagenPreguntaArchivo: new File([], ''),
@@ -87,6 +89,7 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
   public isNew = this.data[0];
   public listaAlternativasAnterior: any[];
   public valorAgregado = true;
+  public listaNivel:any;
   envio: any = [
     {
       idDominio: 0,
@@ -122,7 +125,7 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
   public formPregunta :FormGroup=new FormGroup({
     Id:new FormControl(0,Validators.required),
     IdCategoria:new FormControl(0,Validators.required),
-    IdSubCategoria:new FormControl(0,Validators.required),
+    IdNivel:new FormControl(0,Validators.required),
     IdTipoRespuesta:new FormControl(0,Validators.required),
     Enunciado:new FormControl('',Validators.required),
     ImagenPregunta:new FormControl(''),
@@ -149,7 +152,7 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
           this.formPregunta.patchValue({
             Id:x.id,
             IdCategoria:x.idSimuladorTogDominio,
-            IdSubCategoria:x.idSimuladorTogTarea,
+            IdNivel:x.idSimuladorTogNivel,
             IdTipoRespuesta:x.idSimuladorTipoRespuesta,
             Enunciado:x.enunciado,
             // ImagenPregunta: null,
@@ -160,7 +163,7 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
             // ImgPreguntaRetroalimentacion:undefined
           })
           console.log(this.formPregunta)
-          this.FiltrarSubCategoritas();
+          // this.FiltrarSubCategoritas();
         },
       });
     }
@@ -181,7 +184,7 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
     this.json.Id = 0;
     this.json.IdTogTipoPreguntaClasificacion = 2;
     this.json.IdSimuladorTogDominio = this.formPregunta.get('IdCategoria')?.value;
-    this.json.IdSimuladorTogTarea = this.formPregunta.get('IdSubCategoria')?.value;
+    this.json.IdSimuladorTogTarea = this.formPregunta.get('IdNivel')?.value;
     this.json.IdSimuladorTipoRespuesta = this.formPregunta.get('IdTipoRespuesta')?.value;
     this.json.Enunciado = this.formPregunta.get('Enunciado')?.value;
     this.json.TieneRetroalimentacionUnica = this.TieneRetroalimentacionUnica;
@@ -252,7 +255,7 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
     this.jsonActualizar.Id = this.formPregunta.get('Id')?.value;
     this.jsonActualizar.IdTogTipoPreguntaClasificacion = 2;
     this.jsonActualizar.IdSimuladorTogDominio = this.formPregunta.get('IdCategoria')?.value;
-    this.jsonActualizar.IdSimuladorTogTarea = this.formPregunta.get('IdSubCategoria')?.value;
+    this.jsonActualizar.IdSimuladorTogTarea = this.formPregunta.get('IdNivel')?.value;
     this.jsonActualizar.IdSimuladorTipoRespuesta = this.formPregunta.get('IdTipoRespuesta')?.value;
     this.jsonActualizar.Enunciado = this.formPregunta.get('Enunciado')?.value;
     this.jsonActualizar.TieneRetroalimentacionUnica = this.TieneRetroalimentacionUnica;
@@ -333,7 +336,7 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
     this._Categorias.ObtenerComboCategorias().subscribe({
       next: (x: any) => {
         this.listaCategorias = x.categorias;
-        this.listaSubCategorias = x.subCategorias;
+        this.listaNivel = x.nivel;
         this.listaTipoPregunta = x.tipoRespuesta;
         console.log(x);
       },
@@ -361,21 +364,21 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
     }
   }
 
-  FiltrarSubCategoritas() {
-    this.lisSubCategoriaPorCategoria = [];
-    var idcat = this.formPregunta.get('IdCategoria')?.value
-    console.log(idcat);
-    console.log(this.listaCategorias)
-    console.log(this.listaSubCategorias)
-    // if(this.listaCategorias!=undefined){
-      this.listaSubCategorias.forEach((ss: any) => {
-        if (ss.idSimuladorTogDominio == idcat) {
-          this.lisSubCategoriaPorCategoria.push(ss);
-        }
-      });
-    // }
-    console.log(this.lisSubCategoriaPorCategoria);
-  }
+  // FiltrarSubCategoritas() {
+  //   this.lisSubCategoriaPorCategoria = [];
+  //   var idcat = this.formPregunta.get('IdCategoria')?.value
+  //   console.log(idcat);
+  //   console.log(this.listaCategorias)
+  //   console.log(this.listaSubCategorias)
+  //   // if(this.listaCategorias!=undefined){
+  //     this.listaSubCategorias.forEach((ss: any) => {
+  //       if (ss.idSimuladorTogDominio == idcat) {
+  //         this.lisSubCategoriaPorCategoria.push(ss);
+  //       }
+  //     });
+  //   // }
+  //   console.log(this.lisSubCategoriaPorCategoria);
+  // }
 
   agregarNuevaAlternativa() {
     //Editar Pregunta

@@ -13,35 +13,34 @@
       <div style="display: flex;">
         <div class="col-12 col-md-6" style="display: flex;">
           <div class="col-12 col-md-4 textoInputModalPregunta">
-            Categoria:
+            Nivel:
           </div>
           <div class="col-12 col-md-6">
             <mat-form-field>
-              <mat-label>Categorias</mat-label>
-              <mat-select [disabled]="!isNew"  type="number" formControlName="IdCategoria" required
-              (selectionChange)="FiltrarSubCategoritas()">
-              <mat-option *ngFor="let a of listaCategorias" [value]="a.id">{{ a.nombre }}</mat-option>
-              </mat-select>
-              <mat-error  *ngIf="formPregunta.invalid">Seleccione una categoría</mat-error>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="col-12 col-md-6" style="display: flex;">
-          <div class="col-12 col-md-4 textoInputModalPregunta">
-            Sub Categoria:
-          </div>
-          <div class="col-12 col-md-6">
-            <mat-form-field>
-              <mat-label>Subcategorias</mat-label>
-              <mat-select [disabled]="!isNew"   type="number" formControlName="IdSubCategoria">
+              <mat-label>Nivel</mat-label>
+              <mat-select [disabled]="!isNew"   type="number" formControlName="IdNivel">
                 <mat-option
-                  *ngFor="let a of lisSubCategoriaPorCategoria"
+                  *ngFor="let a of listaNivel"
                   [value]="a.id"
                 >
                   {{ a.nombre }}
                 </mat-option>
               </mat-select>
               <mat-error  *ngIf="formPregunta.invalid">Seleccione una subcategoría</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-12 col-md-6" style="display: flex;">
+          <div class="col-12 col-md-4 textoInputModalPregunta">
+            Categoria:
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field>
+              <mat-label>Categorias</mat-label>
+              <mat-select [disabled]="!isNew"  type="number" formControlName="IdCategoria" required>
+              <mat-option *ngFor="let a of listaCategorias" [value]="a.id">{{ a.nombre }}</mat-option>
+              </mat-select>
+              <mat-error  *ngIf="formPregunta.invalid">Seleccione una categoría</mat-error>
             </mat-form-field>
           </div>
         </div>
