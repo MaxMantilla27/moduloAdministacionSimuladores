@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  // url_api:'https://simulador-servicio.bsginstitute.com/api/',
+  url_api:'https://simuladoradmin-servicio.bsginstitute.com/',
 };
