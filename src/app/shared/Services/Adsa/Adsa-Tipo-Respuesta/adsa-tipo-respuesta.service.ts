@@ -31,7 +31,7 @@ export class AdsaTipoRespuestaService {
   }
 
   public actualizarParametrosNivel(Json:actualizarParametrosNivel):Observable<any>{
-    return this.http.post<any>(this.urlBase2+'/actualizarAwsParametroNivel',Json);
+    return this.http.post<any>(this.urlBase2+'/actualizarAdsaParametroNivel',Json);
   }
 
   public ObtenerParametrosNivelEntity():Observable<any>{
