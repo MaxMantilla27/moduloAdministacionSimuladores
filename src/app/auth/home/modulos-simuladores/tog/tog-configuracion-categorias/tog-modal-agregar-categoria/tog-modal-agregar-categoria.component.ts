@@ -101,6 +101,7 @@ export class TogModalAgregarCategoriaComponent implements OnInit {
     this.jsonEnvio.CantidadTotal= this.formCategoria.get('CantidadPreguntasTotales')?.value
     // this.jsonEnvio.Proporcion = this.formCategoria.get('Proporcion')?.value
     this.jsonEnvio.TieneSubCategoria = false
+    console.log(this.jsonEnvio)
     this._Dominio.AgregarCategoria(this.jsonEnvio).subscribe({
 
       next: (x) => {
@@ -127,8 +128,8 @@ export class TogModalAgregarCategoriaComponent implements OnInit {
       }
     }
     this.jsonActualizar.Id = this.data[0].id
-    this.jsonEnvio.Nombre = this.formCategoria.get('NombreCategoria')?.value
-    this.jsonEnvio.IdNivel = this.formCategoria.get('IdNivel')?.value
+    this.jsonActualizar.Nombre = this.formCategoria.get('NombreCategoria')?.value
+    this.jsonActualizar.IdNivel = this.formCategoria.get('IdNivel')?.value
     this.jsonActualizar.Nombre = this.formCategoria.get('NombreCategoria')?.value
     this.jsonActualizar.Leyenda = this.formCategoria.get('Leyenda')?.value
     this.jsonActualizar.CantidadPreguntasPorExamen = this.formCategoria.get('CantidadPreguntasExamen')?.value
