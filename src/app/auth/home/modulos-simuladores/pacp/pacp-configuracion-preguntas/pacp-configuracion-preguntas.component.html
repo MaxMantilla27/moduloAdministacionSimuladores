@@ -6,7 +6,7 @@
       Puedes modificar el enunciado de las preguntas, sus alternativas, su retroalimentacion o el tipo de pregunta
     </div>
     <div>
-      <button mat-button class="agregar"(click)="agregarPregunta()">
+      <button mat-button class="btnAniadirPregunta"(click)="agregarPregunta()">
         Añadir
       </button>
     </div>
@@ -61,7 +61,7 @@
             <th style="border: solid 1px #b2b2b2;width:80px; text-align: center; background-color: #E7E7E7;color: #222222;">Opciones</th>
           </tr>
         </thead>
-  
+
         <tbody>
           <tr *ngFor="let data of columnTable.data; let i = index">
             <td style="text-align: center; border: 1px solid #cacaca">
@@ -76,7 +76,7 @@
             <td style="text-align: center; border: 1px solid #cacaca">
               {{ data.categoria }}
             </td>
-  
+
             <td  style="text-align: center; border: 1px solid #cacaca">
               <ng-container>
                 <button
@@ -87,7 +87,7 @@
               >
                 <i class="material-icons">edit</i>
               </button>
-  
+
               <button mat-button class="cancel" (click)="mostrarMensajeEliminarPregunta(data.id)">
                 <i class="material-icons">close</i>
               </button>
@@ -96,8 +96,8 @@
           </tr>
         </tbody>
       </nz-table>
-  
-  
+
+
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <div class="ant-table-filter-dropdown">
           <div class="search-box">
@@ -186,7 +186,7 @@
           </div>
         </div>
       </nz-dropdown-menu>
-     
+
     </div>
     <div class="loadingTablaConfiguracionPregunta" *ngIf="listOfDisplayData==undefined">
       <div class="container" style="width: 63%;">
@@ -201,4 +201,3 @@
       </div>
     </div>
   </div>
-  
