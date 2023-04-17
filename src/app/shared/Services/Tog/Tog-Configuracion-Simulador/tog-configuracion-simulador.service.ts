@@ -21,7 +21,8 @@ export class TogConfiguracionSimuladorService {
     formData.append('Id', Json.id.toString());
     formData.append('UrlVideo', Json.urlVideo.toString());
     formData.append('Logo', Json.logo.toString());
-    formData.append('PorcentajeMinimoAprobacion', Json.porcentajeMinimoAprobacion.toString());
+    formData.append('porcentajeMinimoAprobacionNivel1', Json.porcentajeMinimoAprobacionNivel1.toString());
+    formData.append('porcentajeMinimoAprobacionNivel2', Json.porcentajeMinimoAprobacionNivel2.toString());
     formData.append('VigenciaAcceso', Json.vigenciaAcceso.toString());
     const req= new HttpRequest('POST', `${this.urlBase}/TogActualizarConfiguracionSimulador`,formData, {
       reportProgress: true,

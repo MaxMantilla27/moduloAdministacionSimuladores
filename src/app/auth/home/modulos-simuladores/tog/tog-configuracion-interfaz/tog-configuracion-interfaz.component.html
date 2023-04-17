@@ -85,19 +85,30 @@
       </tbody>
     </nz-table>
     </div>
-
-    <div class="inp">
-      <div class="tit">
-        <p>Porcentaje minimo de aprobacion:</p>
+    <div class="row" style="margin-bottom: 10px;">
+      <div class="col-12 col-md-4" style="margin-right: 20px; color: grey;font-size: 15px;">
+        Porcentaje minimo de aprobacion Nivel1:
       </div>
-      <input style="width: 5rem;border-radius: 10px;" type="number" [(ngModel)]="porcentaje" min="0" max="100"/>
+      <div class="col-12 col-md-2">
+      <input style="width: 5rem;border-radius: 10px;" type="number" [(ngModel)]="porcentajeNivel1" min="0" max="100"/>
+      </div>
     </div>
-
-    <div class="inp">
-      <div class="tit">
-        <p>Vigencia de acceso:</p>
+    <div class="row" style="margin-bottom: 10px;">
+      <div class="col-12 col-md-4" style="margin-right: 20px; color: grey;font-size: 15px;">
+        Porcentaje minimo de aprobacion Nivel2:
       </div>
+      <div class="col-12 col-md-2">
+      <input style="width: 5rem;border-radius: 10px;" type="number" [(ngModel)]="porcentajeNivel2" min="0" max="100"/>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 10px;">
+      <div class="col-12 col-md-4" style="margin-right: 20px; color: grey;font-size: 15px;">
+        Vigencia de acceso::
+      </div>
+      <div class="col-12 col-md-2">
       <input style="width: 5rem;border-radius: 10px;" type="number" [(ngModel)]="acceso" min="0" />
+
+      </div>
     </div>
 
     <button mat-raised-button style="background-color: orange; color: white" (click)="ActualizarInterfaz()">

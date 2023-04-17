@@ -18,7 +18,7 @@
           <div class="col-12 col-md-6">
             <mat-form-field>
               <mat-label>Nivel</mat-label>
-              <mat-select [disabled]="!isNew"   type="number" formControlName="IdNivel">
+              <mat-select [disabled]="!isNew"   type="number" formControlName="IdNivel" (selectionChange)="FiltrarCategorias()"required>
                 <mat-option
                   *ngFor="let a of listaNivel"
                   [value]="a.id"
@@ -26,7 +26,7 @@
                   {{ a.nombre }}
                 </mat-option>
               </mat-select>
-              <mat-error  *ngIf="formPregunta.invalid">Seleccione una subcategoría</mat-error>
+              <mat-error  *ngIf="formPregunta.invalid">Seleccione un nivel</mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -38,7 +38,7 @@
             <mat-form-field>
               <mat-label>Categorias</mat-label>
               <mat-select [disabled]="!isNew"  type="number" formControlName="IdCategoria" required>
-              <mat-option *ngFor="let a of listaCategorias" [value]="a.id">{{ a.nombre }}</mat-option>
+              <mat-option *ngFor="let a of listaCategoriasNivel" [value]="a.id">{{ a.nombre }}</mat-option>
               </mat-select>
               <mat-error  *ngIf="formPregunta.invalid">Seleccione una categoría</mat-error>
             </mat-form-field>
@@ -52,7 +52,7 @@
         <div class="col-12 col-md-6">
           <mat-form-field>
             <mat-label>Tipo de pregunta</mat-label>
-            <mat-select [disabled]="!isNew"  type="number" formControlName="IdTipoRespuesta" >
+            <mat-select [disabled]="!isNew"  type="number" formControlName="IdTipoRespuesta"required >
             <mat-option *ngFor="let a of listaTipoPregunta" [value]="a.id">{{ a.nombre }}</mat-option>
             </mat-select>
             <mat-error *ngIf="formPregunta.invalid">Seleccione un tipo de respuesta</mat-error>
@@ -90,7 +90,7 @@
         <i class="material-icons">add</i>
       </button>
       <div>
-        <ng-container *ngIf="isNew != false">
+        <ng-container *ngIf="isNew != false && IdNivelNuevo ==1">
           <div *ngIf="valorAgregado == true" style="padding: 0px; margin-top: 10px;">
             <nz-table #nzTable [nzData]="listaAlternativas" nzTableLayout="fixed"class="table" >
               <thead >
@@ -125,7 +125,55 @@
                       <button
                         mat-button
                         class="edit"
-                        (click)="editarAlternativasTemporal(data,i)"
+                        (click)="editarAlternativasTemporalNivel1(data,i)"
+                      >
+                        <i class="material-icons">edit</i>
+                      </button>
+                    </ng-container>
+
+                    <ng-container>
+                      <button mat-button class="delete" (click)="mostrarMensajeEliminarPreguntaRespuestaTemporal(i)">
+                        <i class="material-icons">delete</i>
+                      </button>
+                    </ng-container>
+                  </td>
+                </tr>
+              </tbody>
+            </nz-table>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="isNew != false && IdNivelNuevo ==2">
+          <div *ngIf="valorAgregado == true" style="padding: 0px; margin-top: 10px;">
+            <nz-table #nzTable [nzData]="listaAlternativas" nzTableLayout="fixed"class="table" >
+              <thead >
+                <tr>
+                  <th class="encabezadoTablaAlternativas" style="width:80px;">OpcionRespuesta</th>
+                  <th class="encabezadoTablaAlternativas" style="width:140px;">Alternativa</th>
+                  <th class="encabezadoTablaAlternativas" style="width:70px;">Puntaje</th>
+                  <th class="encabezadoTablaAlternativas" style="width:220px;">Retroalimentacion</th>
+                  <th class="encabezadoTablaAlternativas" style="width:120px;">Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of nzTable.data; let i = index">
+                  <td class="contenidoTablaAlternativas">
+                    {{ data.Respuesta }}
+                  </td>
+                  <td class="contenidoTablaAlternativas">
+                    {{ data.OpcionRespuesta }}
+                  </td>
+                  <td class="contenidoTablaAlternativas">
+                    {{ data.Puntaje }}
+                  </td>
+                  <td class="contenidoTablaAlternativas">
+                    {{ data.Retroalimentacion }}
+                  </td>
+                  <td class="contenidoTablaAlternativas">
+                    <ng-container>
+                      <button
+                        mat-button
+                        class="edit"
+                        (click)="editarAlternativasTemporalNivel2(data,i)"
                       >
                         <i class="material-icons">edit</i>
                       </button>
@@ -143,17 +191,17 @@
         </ng-container>
 
 
-        <ng-container *ngIf="isNew == false">
+        <ng-container *ngIf="isNew == false && IdNivel==1">
           <div *ngIf="valorAgregado == true" style="padding: 0px; margin-top: 10px;">
             <nz-table #nzTable [nzData]="listaAlternativas" nzTableLayout="fixed"class="table" >
               <thead >
                 <tr>
-                  <th class="encabezadoTablaAlternativas" style="width:70px;">Id</th>
-                  <th class="encabezadoTablaAlternativas" style="width:140px;">Alternativa</th>
-                  <th class="encabezadoTablaAlternativas" style="width:70px;">Correcto</th>
+                  <th class="encabezadoTablaAlternativas" style="width:50px;">Id</th>
+                  <th class="encabezadoTablaAlternativas" style="width:220px;">Alternativa</th>
+                  <th class="encabezadoTablaAlternativas" style="width:75px;">Correcto</th>
                   <th class="encabezadoTablaAlternativas" style="width:70px;">Puntaje</th>
-                  <th class="encabezadoTablaAlternativas" style="width:220px;">Retroalimentacion</th>
-                  <th class="encabezadoTablaAlternativas" style="width:120px;">Opciones</th>
+                  <th class="encabezadoTablaAlternativas" style="width:140px;">Retroalimentacion</th>
+                  <th class="encabezadoTablaAlternativas" style="width:130px;">Opciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -187,7 +235,63 @@
                       <button
                         mat-button
                         class="edit"
-                        (click)="editarAlternativas(data,i)"
+                        (click)="editarAlternativasNivel1(data,i)"
+                      >
+                        <i class="material-icons">edit</i>
+                      </button>
+                    </ng-container>
+                    <ng-container>
+                      <button mat-button class="delete" (click)="mostrarMensajeEliminarPreguntaRespuesta(data.idAlternativa)">
+                        <i class="material-icons">delete</i>
+                      </button>
+                    </ng-container>
+                  </td>
+                </tr>
+              </tbody>
+            </nz-table>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="isNew == false  && IdNivel==2">
+          <div *ngIf="valorAgregado == true" style="padding: 0px; margin-top: 10px;">
+            <nz-table #nzTable [nzData]="listaAlternativas" nzTableLayout="fixed"class="table" >
+              <thead >
+                <tr>
+                  <th class="encabezadoTablaAlternativas" style="width:50px;">Id</th>
+                  <th class="encabezadoTablaAlternativas" style="width:80px;">Opción Respuesta</th>
+                  <th class="encabezadoTablaAlternativas" style="width:180px;">Alternativa</th>
+                  <th class="encabezadoTablaAlternativas" style="width:70px;">Puntaje</th>
+                  <th class="encabezadoTablaAlternativas" style="width:220px;">Retroalimentacion</th>
+                  <th class="encabezadoTablaAlternativas" style="width:80px;">Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of nzTable.data; let i = index">
+                  <td class="contenidoTablaAlternativas">
+                    {{ data.idAlternativa }}
+                  </td>
+                  <td class="contenidoTablaAlternativas">
+                    {{ data.opcionRespuesta }}
+                  </td>
+                  <td class="contenidoTablaAlternativas">
+                    {{ data.respuesta }}
+                  </td>
+                  <td class="contenidoTablaAlternativas">
+                    {{ data.puntaje }}
+                  </td>
+                  <td class="contenidoTablaAlternativas">
+                    <div *ngIf="data.explicacion==null">
+                      -
+                    </div>
+                    <div  *ngIf="data.explicacion!=null">
+                      {{ data.explicacion }}
+                    </div>
+                  </td>
+                  <td class="contenidoTablaAlternativas">
+                    <ng-container>
+                      <button
+                        mat-button
+                        class="edit"
+                        (click)="editarAlternativasNivel2(data,i)"
                       >
                         <i class="material-icons">edit</i>
                       </button>

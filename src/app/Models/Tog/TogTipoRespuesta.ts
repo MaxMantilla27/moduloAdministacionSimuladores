@@ -43,7 +43,8 @@ export interface actualizarParametrosNivel {
     id : number
     urlVideo : string
     logo : string
-    porcentajeMinimoAprobacion : number
+    porcentajeMinimoAprobacionNivel1 : number
+    porcentajeMinimoAprobacionNivel2 : number
     vigenciaAcceso : number,
     file: File
   }

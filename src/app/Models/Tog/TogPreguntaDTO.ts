@@ -21,7 +21,7 @@ export interface TogPreguntaActualizarDTO {
   TieneSubCategoria: boolean;
 }
 
-export interface TogEnvioFilePreguntaDTO{
+export interface TogEnvioFilePreguntaNivel1DTO{
    Id: number;
    IdSimuladorTogDominio: number;
    IdSimuladorTogTarea: number;
@@ -34,9 +34,9 @@ export interface TogEnvioFilePreguntaDTO{
    UrlRetroalimentacionVideo: string;
    Retroalimentacion: string;
    ImgRetroalimentacionArchivo: File;
-   Respuestas : Array<TogEnvioRespuesDTO>
+   Respuestas : Array<TogEnvioRespuestaNivel1DTO>
 }
-export interface TogEnvioRespuesDTO{
+export interface TogEnvioRespuestaNivel1DTO{
    Id: number;
    IdSimuladorTogPregunta: number;
    Respuesta: string;
@@ -46,6 +46,31 @@ export interface TogEnvioRespuesDTO{
    UrlRetroalimentacionVideo: string;
    Explicacion: string;
    UrlImagenArchivo: File;
+}
+export interface TogEnvioFilePreguntaNivel2DTO{
+  Id: number;
+  IdSimuladorTogDominio: number;
+  IdSimuladorTogTarea: number;
+  IdSimuladorTogNivel:number;
+  IdSimuladorTipoRespuesta: number;
+  IdTogTipoPreguntaClasificacion: number;
+  Enunciado: string;
+  UrlImagenPreguntaArchivo: File;
+  TieneRetroalimentacionUnica: boolean;
+  UrlRetroalimentacionVideo: string;
+  Retroalimentacion: string;
+  ImgRetroalimentacionArchivo: File;
+  Respuestas : Array<TogEnvioRespuestaNivel2DTO>
+}
+export interface TogEnvioRespuestaNivel2DTO{
+  Id: number;
+  IdSimuladorTogPregunta: number;
+  Respuesta: string;
+  OpcionRespuesta: string;
+  Puntaje: number;
+  UrlRetroalimentacionVideo: string;
+  Explicacion: string;
+  UrlImagenArchivo: File;
 }
 
 export interface Alternativa{

@@ -38,7 +38,8 @@ export class TogReporteGeneralComponent implements OnInit {
   visible5 = false;
 
   ngOnInit(): void {
-    this.ObtenerReporteGeneralTog();
+    this.listOfDisplayData=[]
+    // this.ObtenerReporteGeneralTog();
     this.ObtenerComboCertificacionTog();
   }
   ObtenerReporteGeneralTog(){

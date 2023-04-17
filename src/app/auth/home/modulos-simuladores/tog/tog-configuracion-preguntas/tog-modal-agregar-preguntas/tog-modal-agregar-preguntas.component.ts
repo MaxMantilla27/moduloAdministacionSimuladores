@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { DetallePreguntaDTO, TogEnvioFilePreguntaActualizarDTO, TogEnvioFilePreguntaDTO, TogEnvioRespuesDTO} from 'src/app/Models/Tog/TogPreguntaDTO';
+import { DetallePreguntaDTO, TogEnvioFilePreguntaActualizarDTO, TogEnvioFilePreguntaNivel1DTO, TogEnvioRespuestaNivel1DTO,TogEnvioFilePreguntaNivel2DTO, TogEnvioRespuestaNivel2DTO} from 'src/app/Models/Tog/TogPreguntaDTO';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { TogCategoriasService } from 'src/app/shared/Services/Tog/Tog-Categorias/tog-categorias.service';
 import { TogPreguntaService } from 'src/app/shared/Services/Tog/Tog-Pregunta/tog-pregunta.service';
@@ -9,6 +9,7 @@ import { TogPreguntaRespuestaService } from 'src/app/shared/Services/Tog/Tog-Pre
 import { TogTareaService } from 'src/app/shared/Services/Tog/Tog-Tarea/tog-tarea.service';
 import Swal from 'sweetalert2';
 import { TogModalAlternativasComponent } from './tog-modal-alternativas/tog-modal-alternativas.component';
+import { TogModalAlternativasNivelDosComponent } from './tog-modal-alternativas-nivel-dos/tog-modal-alternativas-nivel-dos.component';
 
 @Component({
   selector: 'app-tog-modal-agregar-preguntas',
@@ -45,7 +46,22 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
   loader: any;
   public show: boolean = false;
   public dataPregunta = this.data
-  public json: TogEnvioFilePreguntaDTO = {
+  public jsonNivel1: TogEnvioFilePreguntaNivel1DTO = {
+    Id: 0,
+    IdSimuladorTogDominio: 0,
+    IdSimuladorTogTarea: 0,
+    IdSimuladorTogNivel: 0,
+    IdSimuladorTipoRespuesta: 0,
+    Enunciado: '',
+    UrlImagenPreguntaArchivo: new File([], ''),
+    IdTogTipoPreguntaClasificacion: 0,
+    TieneRetroalimentacionUnica: true,
+    UrlRetroalimentacionVideo: '',
+    Retroalimentacion: '',
+    ImgRetroalimentacionArchivo: new File([], ''),
+    Respuestas: [],
+  };
+  public jsonNivel2: TogEnvioFilePreguntaNivel2DTO = {
     Id: 0,
     IdSimuladorTogDominio: 0,
     IdSimuladorTogTarea: 0,
@@ -90,6 +106,7 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
   public listaAlternativasAnterior: any[];
   public valorAgregado = true;
   public listaNivel:any;
+  public listaCategoriasNivel:any;
   envio: any = [
     {
       idDominio: 0,
@@ -135,10 +152,12 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
     Retroalimentacion :new FormControl(''),
     ImgPreguntaRetroalimentacion:new FormControl('',)
   })
-
+  public IdNivel=0;
+  public IdNivelNuevo=0;
   ngOnInit(): void {
     console.log(this.data);
     console.log(this.isNew);
+    this.IdNivel=this.data[2]
     this.ObtenerComboCategorias();
   }
   ObtenerDetallePregunta(){
@@ -163,7 +182,7 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
             // ImgPreguntaRetroalimentacion:undefined
           })
           console.log(this.formPregunta)
-          // this.FiltrarSubCategoritas();
+          this.FiltrarCategorias();
         },
       });
     }
@@ -174,34 +193,37 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
   }
 
   AgregarNuevaPregunta() {
-    //Imagen de Pregunta
+    var IdNivel = this.formPregunta.get('IdNivel')?.value;
+    if(IdNivel==1){
+      //Imagen de Pregunta
     if(this.selectedFilesPregunta){
       const file: File | null = this.selectedFilesPregunta.item(0);
       if (file) {
-        this.json.UrlImagenPreguntaArchivo = file;
+        this.jsonNivel1.UrlImagenPreguntaArchivo = file;
       }
     }
-    this.json.Id = 0;
-    this.json.IdTogTipoPreguntaClasificacion = 2;
-    this.json.IdSimuladorTogDominio = this.formPregunta.get('IdCategoria')?.value;
-    this.json.IdSimuladorTogTarea = this.formPregunta.get('IdNivel')?.value;
-    this.json.IdSimuladorTipoRespuesta = this.formPregunta.get('IdTipoRespuesta')?.value;
-    this.json.Enunciado = this.formPregunta.get('Enunciado')?.value;
-    this.json.TieneRetroalimentacionUnica = this.TieneRetroalimentacionUnica;
+    this.jsonNivel1.Id = 0;
+    this.jsonNivel1.IdTogTipoPreguntaClasificacion = 2;
+    this.jsonNivel1.IdSimuladorTogDominio = this.formPregunta.get('IdCategoria')?.value;
+    this.jsonNivel1.IdSimuladorTogTarea = this.formPregunta.get('IdCategoria')?.value;
+    this.jsonNivel1.IdSimuladorTogNivel = this.formPregunta.get('IdNivel')?.value;
+    this.jsonNivel1.IdSimuladorTipoRespuesta = this.formPregunta.get('IdTipoRespuesta')?.value;
+    this.jsonNivel1.Enunciado = this.formPregunta.get('Enunciado')?.value;
+    this.jsonNivel1.TieneRetroalimentacionUnica = this.TieneRetroalimentacionUnica;
     if(this.TieneRetroalimentacionUnica==true){
-      this.json.UrlRetroalimentacionVideo = this.formPregunta.get('UrlVideo')?.value;
-      this.json.Retroalimentacion = this.formPregunta.get('Retroalimentacion')?.value;
+      this.jsonNivel1.UrlRetroalimentacionVideo = this.formPregunta.get('UrlVideo')?.value;
+      this.jsonNivel1.Retroalimentacion = this.formPregunta.get('Retroalimentacion')?.value;
       //Imagen de Retroalimentación
       if(this.selectedFilesPreguntaRetroalimentacion){
         const file: File | null = this.selectedFilesPreguntaRetroalimentacion.item(0);
         if (file) {
-          this.json.ImgRetroalimentacionArchivo = file;
+          this.jsonNivel1.ImgRetroalimentacionArchivo = file;
         }
       }
     }
     else{
-      this.json.UrlRetroalimentacionVideo = '';
-      this.json.Retroalimentacion = ''
+      this.jsonNivel1.UrlRetroalimentacionVideo = '';
+      this.jsonNivel1.Retroalimentacion = ''
     }
     console.log(this.listaAlternativas)
     this.listaAlternativas.forEach((e: any) => {
@@ -217,7 +239,7 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
       if(e.Retroalimentacion==undefined){
         e.Retroalimentacion='';
       }
-      var alternativas: TogEnvioRespuesDTO = {
+      var alternativas: TogEnvioRespuestaNivel1DTO = {
         Id: 0,
         IdSimuladorTogPregunta: 0,
         Respuesta: e.Respuesta,
@@ -228,11 +250,11 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
         Explicacion: e.Retroalimentacion,
         UrlImagenArchivo: e.UrlImagenArchivo
       };
-      this.json.Respuestas.push(alternativas);
+      this.jsonNivel1.Respuestas.push(alternativas);
     });
-    console.log(this.json.Respuestas)
-    console.log(this.json)
-    this._pregunta.AgregarPregunta(this.json).subscribe({
+    console.log(this.jsonNivel1.Respuestas)
+    console.log(this.jsonNivel1)
+    this._pregunta.AgregarPreguntaNivel1(this.jsonNivel1).subscribe({
       next: (x:any) => {
         console.log(x)
       },
@@ -244,6 +266,74 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
         this.listaAlternativas=undefined;
       },
     })
+    }
+    else{
+      //Imagen de Pregunta
+    if(this.selectedFilesPregunta){
+      const file: File | null = this.selectedFilesPregunta.item(0);
+      if (file) {
+        this.jsonNivel2.UrlImagenPreguntaArchivo = file;
+      }
+    }
+    this.jsonNivel2.Id = 0;
+    this.jsonNivel2.IdTogTipoPreguntaClasificacion = 2;
+    this.jsonNivel2.IdSimuladorTogDominio = this.formPregunta.get('IdCategoria')?.value;
+    this.jsonNivel2.IdSimuladorTogTarea = this.formPregunta.get('IdCategoria')?.value;
+    this.jsonNivel2.IdSimuladorTogNivel = this.formPregunta.get('IdNivel')?.value;
+    this.jsonNivel2.IdSimuladorTipoRespuesta = this.formPregunta.get('IdTipoRespuesta')?.value;
+    this.jsonNivel2.Enunciado = this.formPregunta.get('Enunciado')?.value;
+    this.jsonNivel2.TieneRetroalimentacionUnica = this.TieneRetroalimentacionUnica;
+    if(this.TieneRetroalimentacionUnica==true){
+      this.jsonNivel2.UrlRetroalimentacionVideo = this.formPregunta.get('UrlVideo')?.value;
+      this.jsonNivel2.Retroalimentacion = this.formPregunta.get('Retroalimentacion')?.value;
+      //Imagen de Retroalimentación
+      if(this.selectedFilesPreguntaRetroalimentacion){
+        const file: File | null = this.selectedFilesPreguntaRetroalimentacion.item(0);
+        if (file) {
+          this.jsonNivel2.ImgRetroalimentacionArchivo = file;
+        }
+      }
+    }
+    else{
+      this.jsonNivel2.UrlRetroalimentacionVideo = '';
+      this.jsonNivel2.Retroalimentacion = ''
+    }
+    console.log(this.listaAlternativas)
+    this.listaAlternativas.forEach((e: any) => {
+      if(e.UrlRetroalimentacionVideo==undefined){
+        e.UrlRetroalimentacionVideo='';
+      }
+      if(e.Retroalimentacion==undefined){
+        e.Retroalimentacion='';
+      }
+      var alternativas: TogEnvioRespuestaNivel2DTO = {
+        Id: 0,
+        IdSimuladorTogPregunta: 0,
+        Respuesta: e.Respuesta,
+        OpcionRespuesta: e.OpcionRespuesta,
+        Puntaje: e.Puntaje,
+        UrlRetroalimentacionVideo: e.UrlRetroalimentacionVideo,
+        Explicacion: e.Retroalimentacion,
+        UrlImagenArchivo: e.UrlImagenArchivo
+      };
+      this.jsonNivel2.Respuestas.push(alternativas);
+    });
+    console.log(this.jsonNivel2.Respuestas)
+    console.log(this.jsonNivel2)
+    this._pregunta.AgregarPreguntaNivel2(this.jsonNivel2).subscribe({
+      next: (x:any) => {
+        console.log(x)
+      },
+      error: (error:any) => {
+      },
+      complete: () => {
+        this.dialogRef.close(true);
+        this.mensajeExitoso();
+        this.listaAlternativas=undefined;
+      },
+    })
+    }
+
   }
   ActualizarPregunta(){
     if(this.selectedFilesPregunta){
@@ -255,7 +345,8 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
     this.jsonActualizar.Id = this.formPregunta.get('Id')?.value;
     this.jsonActualizar.IdTogTipoPreguntaClasificacion = 2;
     this.jsonActualizar.IdSimuladorTogDominio = this.formPregunta.get('IdCategoria')?.value;
-    this.jsonActualizar.IdSimuladorTogTarea = this.formPregunta.get('IdNivel')?.value;
+    this.jsonActualizar.IdSimuladorTogTarea = this.formPregunta.get('IdCategoria')?.value;
+    this.jsonActualizar.IdSimuladorTogNivel = this.formPregunta.get('IdNivel')?.value;
     this.jsonActualizar.IdSimuladorTipoRespuesta = this.formPregunta.get('IdTipoRespuesta')?.value;
     this.jsonActualizar.Enunciado = this.formPregunta.get('Enunciado')?.value;
     this.jsonActualizar.TieneRetroalimentacionUnica = this.TieneRetroalimentacionUnica;
@@ -296,7 +387,7 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
     // this.ObtenerComboSubcategoria()
   }
 
-  editarAlternativasTemporal(data: any,index: number) {
+  editarAlternativasTemporalNivel1(data: any,index: number) {
     var isNewAlternativa=false
     var TieneRetroalimentacionUnica=this.TieneRetroalimentacionUnica
     console.log(data);
@@ -315,13 +406,47 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
       console.log(this.listaAlternativas)
     });
   }
+  editarAlternativasTemporalNivel2(data: any,index: number) {
+    var isNewAlternativa=false
+    var TieneRetroalimentacionUnica=this.TieneRetroalimentacionUnica
+    console.log(data);
+    //Editar Pregunta
+    const dialogRef = this.dialog.open(TogModalAlternativasNivelDosComponent, {
+      panelClass: 'dialog-abrir-alternativa',
+      data: [data,isNewAlternativa,TieneRetroalimentacionUnica, 1],
+    });
+    dialogRef.afterClosed().subscribe((result: any) => {
+      console.log("uno")
+      this.ObtenerAlternativa();
 
-  editarAlternativas(data: any, index: number) {
+      console.log(result);
+      Object.assign(this.listaAlternativas[index], result);
+      //this.listaAlternativas[index]=result
+      console.log(this.listaAlternativas)
+    });
+  }
+
+  editarAlternativasNivel1(data: any, index: number) {
     var isNewAlternativa=false
     var TieneRetroalimentacionUnica=this.TieneRetroalimentacionUnica
     console.log(data);
     const dialogRef = this.dialog.open(TogModalAlternativasComponent, {
       panelClass: 'dialog-abrir-alternativa',
+      data: [data,isNewAlternativa,TieneRetroalimentacionUnica],
+    });
+    dialogRef.afterClosed().subscribe((Recargar: boolean) => {
+      this.ObtenerAlternativa();
+      if(Recargar==true){
+        this.ObtenerAlternativa();
+      }
+    });
+  }
+  editarAlternativasNivel2(data: any, index: number) {
+    var isNewAlternativa=false
+    var TieneRetroalimentacionUnica=this.TieneRetroalimentacionUnica
+    console.log(data);
+    const dialogRef = this.dialog.open(TogModalAlternativasNivelDosComponent, {
+      panelClass: 'dialog-abrir-alternativa-nivel-dos',
       data: [data,isNewAlternativa,TieneRetroalimentacionUnica],
     });
     dialogRef.afterClosed().subscribe((Recargar: boolean) => {
@@ -353,35 +478,49 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
 
 
   ObtenerAlternativa() {
+    console.log(this.data)
     if (this.data[1] != undefined) {
       console.log(this.data[1]);
-      this._alternativa.ObtenerAlternativa(this.data[1]).subscribe({
-        next: (x: any) => {
-          this.listaAlternativas = x;
-          console.log(x);
-        },
-      });
+      if(this.data[2]==1){
+        this._alternativa.ObtenerAlternativaNivel1(this.data[1]).subscribe({
+          next: (x: any) => {
+            this.listaAlternativas = x;
+            console.log(x);
+          },
+        });
+      }
+      if(this.data[2]==2){
+        this._alternativa.ObtenerAlternativaNivel2(this.data[1]).subscribe({
+          next: (x: any) => {
+            this.listaAlternativas = x;
+            console.log(x);
+          },
+        });
+      }
     }
   }
 
-  // FiltrarSubCategoritas() {
-  //   this.lisSubCategoriaPorCategoria = [];
-  //   var idcat = this.formPregunta.get('IdCategoria')?.value
-  //   console.log(idcat);
-  //   console.log(this.listaCategorias)
-  //   console.log(this.listaSubCategorias)
-  //   // if(this.listaCategorias!=undefined){
-  //     this.listaSubCategorias.forEach((ss: any) => {
-  //       if (ss.idSimuladorTogDominio == idcat) {
-  //         this.lisSubCategoriaPorCategoria.push(ss);
-  //       }
-  //     });
-  //   // }
-  //   console.log(this.lisSubCategoriaPorCategoria);
-  // }
-
+  FiltrarCategorias() {
+    this.listaCategoriasNivel = [];
+    var idNivel = this.formPregunta.get('IdNivel')?.value
+    this.IdNivelNuevo = this.formPregunta.get('IdNivel')?.value
+    // if(this.listaCategorias!=undefined){
+      console.log(idNivel)
+      console.log(this.listaCategorias)
+      this.listaCategorias.forEach((ss: any) => {
+        if (ss.idSimuladorTogNivel == idNivel) {
+          this.listaCategoriasNivel.push(ss);
+        }
+      });
+    // }
+    console.log(this.listaCategoriasNivel);
+  }
   agregarNuevaAlternativa() {
-    //Editar Pregunta
+    if(this.IdNivelNuevo!=0){
+      var isNewAlternativa=true
+      console.log(this.IdNivelNuevo)
+    if(this.IdNivelNuevo==1){
+      //Editar Pregunta
     var isNewAlternativa=true
     var TieneRetroalimentacionUnica=this.TieneRetroalimentacionUnica
     const dialogRef = this.dialog.open(TogModalAlternativasComponent, {
@@ -407,6 +546,37 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
       this.valorAgregado = true;
       this.ObtenerAlternativa();
     });
+    }
+    if(this.IdNivelNuevo==2){
+      //Editar Pregunta
+    var isNewAlternativa=true
+    var TieneRetroalimentacionUnica=this.TieneRetroalimentacionUnica
+    const dialogRef = this.dialog.open(TogModalAlternativasNivelDosComponent, {
+      panelClass: 'dialog-abrir-alternativa-nivel-dos',
+      data:[undefined,isNewAlternativa,TieneRetroalimentacionUnica,this.data[1] ]
+    });
+
+    this.valorAgregado = false;
+    dialogRef.afterClosed().subscribe((result: any) => {
+      console.log("tres")
+
+      console.log(result);
+      this.listaAlternativasAnterior = this.listaAlternativas;
+      console.log(this.listaAlternativasAnterior);
+      console.log(this.listaAlternativas);
+      if (result != undefined) {
+        console.log(result)
+        this.valorAgregado = true;
+       this.listaAlternativas.push(result);
+        Object.assign(result, result);
+        console.log(this.listaAlternativas);
+      }
+      this.valorAgregado = true;
+      this.ObtenerAlternativa();
+    });
+    }
+
+    }
   }
 
   getFileDetailsPregunta(event: any) {
@@ -477,7 +647,7 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(IdRespuesta)
-        this.EliminarPreguntaRespuestaTog(IdRespuesta);
+        this.EliminarPreguntaRespuestaTog(IdRespuesta,this.IdNivelNuevo);
       }
     });
   }
@@ -502,8 +672,9 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
       title: mensaje != null ? mensaje : 'Guardado con exito',
     });
   }
-  EliminarPreguntaRespuestaTog(IdRespuesta:number){
-    this._alternativa.EliminarPreguntaRespuestaTog(IdRespuesta).subscribe({
+  EliminarPreguntaRespuestaTog(IdRespuesta:number,IdNivel:number){
+    console.log(this.IdNivel)
+    this._alternativa.EliminarPreguntaRespuestaTog(IdRespuesta,IdNivel).subscribe({
       next: (x: any) => {
       },
       error: (error:any) => {

@@ -20,3 +20,27 @@ export interface TogPreguntaRespuestaEnvioAgregarDTO{
   ImagenArchivo:File,
   IdSimuladorTogPregunta:number,
 }
+export interface TogPreguntaRespuestaEnvioNivel2DTO{
+  Id:number,
+  Respuesta:string,
+  IdSimuladorTogNivel:number,
+  OpcionRespuesta:string,
+  Puntaje:number,
+  UrlVideo:string,
+  Explicacion:string,
+  ImagenArchivo:File
+}
+
+
+
+export interface TogPreguntaRespuestaEnvioAgregarNivel2DTO{
+  Id:number,
+  Respuesta:string,
+  IdSimuladorTogNivel:number
+  OpcionRespuesta:string,
+  Puntaje:number,
+  UrlVideo:string,
+  Explicacion:string,
+  ImagenArchivo:File,
+  IdSimuladorTogPregunta:number,
+}

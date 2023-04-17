@@ -44,21 +44,21 @@ export class TogReporteUsuariosComponent implements OnInit {
   }
 
   filtroReporteUsuarios() {
-    this._Examen.ObtenerReporteUsuario(this.codigoMatricula).subscribe({
-      next: (x) => {
-         this.IdAlumno= x.idAlumno,
-         this.Alumno = x.alumno,
-         this.ExamenesActivos = x.examenesActivos,
-         this.ExamenesCompletados =  x.examenesCompletados,
-         this.Nivel = x.nivel,
-         this.IdAspNetUsers = x.idAspNetUsers
-      },
-      error:(e)=>{
-      },
-      complete: () => {
+    // this._Examen.ObtenerReporteUsuario(this.codigoMatricula).subscribe({
+    //   next: (x) => {
+    //      this.IdAlumno= x.idAlumno,
+    //      this.Alumno = x.alumno,
+    //      this.ExamenesActivos = x.examenesActivos,
+    //      this.ExamenesCompletados =  x.examenesCompletados,
+    //      this.Nivel = x.nivel,
+    //      this.IdAspNetUsers = x.idAspNetUsers
+    //   },
+    //   error:(e)=>{
+    //   },
+    //   complete: () => {
 
-      },
-    });
+    //   },
+    // });
   }
   ObtenerResumenSimulacionesPorModoUsuario(IdModo:number){
     this.Modo=IdModo;

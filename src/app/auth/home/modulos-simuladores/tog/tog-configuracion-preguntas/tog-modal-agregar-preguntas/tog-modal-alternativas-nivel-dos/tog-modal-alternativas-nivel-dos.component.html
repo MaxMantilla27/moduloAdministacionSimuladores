@@ -27,25 +27,31 @@
     <div class="row" style="display:flex">
       <div class="col-12 col-md-6"style="display:flex">
         <div class="col-12 col-md-4 textoInputModalAlternativa">
+          Opcion Respuesta*:
+        </div>
+        <div class="col-12 col-md-8" style="align-items: center;display: flex;margin-top: -10px;">
+          <mat-form-field class="example-full-width" appearance="outline" >
+            <input type="text"  formControlName="OpcionRespuesta" matInput />
+            <mat-error  *ngIf="formAlternativa.invalid">Campo requerido</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-12 col-md-1"style="display:flex">
+      </div>
+      <div class="col-12 col-md-5"style="display:flex">
+        <div class="col-12 col-md-5 textoInputModalAlternativa">
           Puntaje*:
         </div>
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-7">
           <mat-form-field class="example-full-width" appearance="outline" >
             <mat-label>Ingrese el puntaje</mat-label>
-            <input type="number"  formControlName="Puntaje" min="0" max="1" matInput />
+            <input type="number"  formControlName="Puntaje" min="0" max="5" matInput />
           </mat-form-field>
         </div>
 
       </div>
-      <div class="col-12 col-md-6"style="display:flex">
-        <div class="col-12 col-md-4 textoInputModalAlternativa">
-          Correcto*:
-        </div>
-        <div class="col-12 col-md-8" style="align-items: center;display: flex;margin-top: -10px;">
-          <mat-checkbox style="margin-top: -13px;" color="primary"  formControlName="Correcto"
-             class="example-full-width" appearance="outline"></mat-checkbox>
-        </div>
-      </div>
+
+
     </div>
     <div class="row">
       <div class="col-12 col-md-12"style="display:flex">

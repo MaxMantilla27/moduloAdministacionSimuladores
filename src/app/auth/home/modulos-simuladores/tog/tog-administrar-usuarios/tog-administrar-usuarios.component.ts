@@ -57,7 +57,7 @@ export class TogAdministrarUsuariosComponent implements OnInit {
   listOfDisplayData: any = [];
 
   ngOnInit(): void {
-    this.ObtenerReporteAdministrarUsuarioResumenTog();
+    // this.ObtenerReporteAdministrarUsuarioResumenTog();
   }
   ObtenerReporteAdministrarUsuarioResumenTog(){
     this.editarReporte=true;

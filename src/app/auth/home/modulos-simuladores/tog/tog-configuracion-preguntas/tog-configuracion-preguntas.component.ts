@@ -50,6 +50,7 @@ export class TogConfiguracionPreguntasComponent implements OnInit {
     this.listOfDisplayData=undefined;
     this._Pregunta.ObtenerPregunta().subscribe({
       next: (x: any) => {
+        console.log(x)
         this.datasource = x;
         this.listOfDisplayData = this.datasource;
       },
@@ -59,9 +60,10 @@ export class TogConfiguracionPreguntasComponent implements OnInit {
   agregarPregunta() {
     var isNew = true;
     var IdPregunta=undefined;
+    var IdNivel=undefined;
     const dialogRef = this.dialog.open(TogModalAgregarPreguntasComponent, {
       panelClass: 'dialog-abrir-pregunta',
-      data: [isNew, IdPregunta]
+      data: [isNew, IdPregunta,IdNivel]
     });
     dialogRef.afterClosed().subscribe((Recargar:boolean) => {
       if(Recargar==true){
@@ -70,12 +72,12 @@ export class TogConfiguracionPreguntasComponent implements OnInit {
     });
   }
 
-  editarPregunta(IdPregunta: any) {
+  editarPregunta(IdPregunta: number,IdNivel:number) {
     var isNew = false
     console.log(IdPregunta);
     const dialogRef = this.dialog.open(TogModalAgregarPreguntasComponent, {
       panelClass: 'dialog-abrir-pregunta',
-      data: [isNew, IdPregunta],
+      data: [isNew, IdPregunta,IdNivel],
     });
     dialogRef.afterClosed().subscribe((Recargar:boolean) => {
       if(Recargar==true){

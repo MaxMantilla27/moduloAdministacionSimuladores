@@ -29,7 +29,8 @@ export class TogConfiguracionInterfazComponent implements OnInit {
   public fileToUpload: File | null = null;
   public video=''
   public logo=''
-  public porcentaje=0
+  public porcentajeNivel1=0
+  public porcentajeNivel2=0
   public acceso=0
   public selectedFiles?: FileList;
   public file:any;
@@ -47,7 +48,8 @@ export class TogConfiguracionInterfazComponent implements OnInit {
     id : 0,
     urlVideo : '',
     logo : '',
-    porcentajeMinimoAprobacion : 0,
+    porcentajeMinimoAprobacionNivel1 : 0,
+    porcentajeMinimoAprobacionNivel2 : 0,
     vigenciaAcceso : 0,
     file:new File([],'')
   }
@@ -62,7 +64,8 @@ export class TogConfiguracionInterfazComponent implements OnInit {
         this.ConfiguracionSimulador = x;
         this.video = this.ConfiguracionSimulador.urlVideo
         this.acceso = this.ConfiguracionSimulador.vigenciaAcceso
-        this.porcentaje = this.ConfiguracionSimulador.porcentajeMinimoAprobacion
+        this.porcentajeNivel1 = this.ConfiguracionSimulador.porcentajeMinimoAprobacionNivel1
+        this.porcentajeNivel2 = this.ConfiguracionSimulador.porcentajeMinimoAprobacionNivel2
         this.logo = this.ConfiguracionSimulador.logo
 
       },
@@ -141,7 +144,8 @@ ActualizarInterfaz(){
     this.actualizar.urlVideo = ''
   }
   this.actualizar.logo = this.logo
-  this.actualizar.porcentajeMinimoAprobacion = this.porcentaje
+  this.actualizar.porcentajeMinimoAprobacionNivel1 = this.porcentajeNivel1
+  this.actualizar.porcentajeMinimoAprobacionNivel2 = this.porcentajeNivel2
   this.actualizar.vigenciaAcceso = this.acceso
   if(this.selectedFiles){
     const file: File | null = this.selectedFiles.item(0);

@@ -38,7 +38,9 @@ export class DonaComponent implements OnInit {
   };
   public doughnutChartType: ChartType = 'doughnut';
   ngOnChanges(changes: SimpleChanges): void {
-
+    this.tresDigitos=false;
+    this.dosDigitos=false;
+    this.unDigito=false;
     if(this.Puntos>=0){
       this.Puntos=Math.floor(this.Puntos)
       console.log(this.Puntos)

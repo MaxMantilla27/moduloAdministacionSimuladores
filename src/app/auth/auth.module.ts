@@ -181,6 +181,7 @@ import { PbiReporteGeneralComponent } from './home/modulos-simuladores/pbi/pbi-r
 import { PbiReporteUsuariosComponent } from './home/modulos-simuladores/pbi/pbi-reporte-usuarios/pbi-reporte-usuarios.component';
 import { PbiAbrirModalDetalleExamenComponent } from './home/modulos-simuladores/pbi/pbi-reporte-usuarios/pbi-abrir-modal-detalle-examen/pbi-abrir-modal-detalle-examen.component';
 import { AwsModalAgregarCategoriasComponent } from './home/modulos-simuladores/aws/aws-configuracion-categorias/aws-modal-agregar-categoria/aws-modal-agregar-categoria.component';
+import { TogModalAlternativasNivelDosComponent } from './home/modulos-simuladores/tog/tog-configuracion-preguntas/tog-modal-agregar-preguntas/tog-modal-alternativas-nivel-dos/tog-modal-alternativas-nivel-dos.component';
 @NgModule({
   declarations: [
     AuthComponent,
@@ -363,7 +364,8 @@ import { AwsModalAgregarCategoriasComponent } from './home/modulos-simuladores/a
     PbiReporteGeneralComponent,
     PbiReporteUsuariosComponent,
     PbiAbrirModalDetalleExamenComponent,
-    AwsModalAgregarCategoriasComponent
+    AwsModalAgregarCategoriasComponent,
+    TogModalAlternativasNivelDosComponent
 
   ],
   imports: [
