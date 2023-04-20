@@ -159,6 +159,7 @@ export class TogModalAgregarPreguntasComponent implements OnInit {
     console.log(this.isNew);
     this.IdNivel=this.data[2]
     this.ObtenerComboCategorias();
+    this.ObtenerDetallePregunta();
   }
   ObtenerDetallePregunta(){
     if (this.data[1] != undefined) {

@@ -55,6 +55,7 @@ export class PmpAdministrarUsuariosComponent implements OnInit {
   searchValue8 = '';
   visible8 = false;
   listOfDisplayData: any = [];
+  public DisableReporte=true;
 
   ngOnInit(): void {
     this.ObtenerReporteAdministrarUsuarioResumenPmp();

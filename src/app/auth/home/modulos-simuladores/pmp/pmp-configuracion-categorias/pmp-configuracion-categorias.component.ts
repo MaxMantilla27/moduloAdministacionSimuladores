@@ -91,6 +91,7 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
   }
 
   ObtenerSubCategorias() {
+    this.CantTotalPreguntasPorExamenSubCategoria=0;
     this._tarea.ObtenerTareas().subscribe({
       next: (x: any) => {
         console.log(x);
@@ -101,6 +102,8 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
             this.CantTotalPreguntasPorExamenSubCategoria +
             y.cantidadPreguntasPorExamen;
         });
+        console.log(this.CantTotalPreguntasPorExamenSubCategoria)
+        console.log(this.listaSubCategorias)
         this.listaSubCategorias.forEach((y: any) => {
           var auxProporcion =
             (y.cantidadPreguntasPorExamen /

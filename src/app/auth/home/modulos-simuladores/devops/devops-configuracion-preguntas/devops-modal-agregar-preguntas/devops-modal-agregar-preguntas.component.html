@@ -6,7 +6,7 @@
       <button mat-button class="cerrarModalPregunta" (click)="dialogRef.close()">Cerrar</button>
     </div>
   </div>
-  
+
   <div class="row" style="padding:25px">
     <form [formGroup]="formPregunta">
       <div class="col-12" >
@@ -18,7 +18,7 @@
             <div class="col-12 col-md-6">
               <mat-form-field>
                 <mat-label>Categorias</mat-label>
-                <mat-select [disabled]="!isNew"  type="number" formControlName="IdCategoria" required
+                <mat-select type="number" formControlName="IdCategoria" required
                 (selectionChange)="FiltrarSubCategoritas()">
                 <mat-option *ngFor="let a of listaCategorias" [value]="a.id">{{ a.nombre }}</mat-option>
                 </mat-select>
@@ -41,7 +41,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="col-12 col-md-12 textoInputModalPregunta">
           Enunciado:
         </div>
@@ -124,8 +124,8 @@
               </nz-table>
             </div>
           </ng-container>
-  
-  
+
+
           <ng-container *ngIf="isNew == false">
             <div *ngIf="valorAgregado == true" style="padding: 0px; margin-top: 10px;">
               <nz-table #nzTable [nzData]="listaAlternativas" nzTableLayout="fixed"class="table" >
@@ -263,7 +263,6 @@
       </div>
     </form>
   </div>
-  
-  
-  
-  
+
+
+

@@ -180,7 +180,7 @@ export class CapmModalAgregarPreguntasComponent implements OnInit {
       }
     }
     this.json.Id = 0;
-    this.json.IdCapmTipoPreguntaClasificacion = 2;
+    this.json.IdCapmTipoPreguntaClasificacion = 1;
     this.json.IdSimuladorCapmDominio = this.formPregunta.get('IdCategoria')?.value;
     this.json.IdSimuladorCapmTarea = this.formPregunta.get('IdSubCategoria')?.value;
     this.json.IdSimuladorTipoRespuesta = this.formPregunta.get('IdTipoRespuesta')?.value;
@@ -251,7 +251,7 @@ export class CapmModalAgregarPreguntasComponent implements OnInit {
       }
     }
     this.jsonActualizar.Id = this.formPregunta.get('Id')?.value;
-    this.jsonActualizar.IdCapmTipoPreguntaClasificacion = 2;
+    this.jsonActualizar.IdCapmTipoPreguntaClasificacion = 1;
     this.jsonActualizar.IdSimuladorCapmDominio = this.formPregunta.get('IdCategoria')?.value;
     this.jsonActualizar.IdSimuladorCapmTarea = this.formPregunta.get('IdSubCategoria')?.value;
     this.jsonActualizar.IdSimuladorTipoRespuesta = this.formPregunta.get('IdTipoRespuesta')?.value;

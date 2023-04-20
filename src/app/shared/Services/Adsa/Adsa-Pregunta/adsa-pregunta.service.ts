@@ -31,7 +31,9 @@ export class AdsaPreguntaService {
     formData.append('UrlImagenPreguntaArchivo', listaPregunta.UrlImagenPreguntaArchivo);
     formData.append('IdAdsaTipoPreguntaClasificacion', listaPregunta.IdAdsaTipoPreguntaClasificacion.toString());
     formData.append('TieneRetroalimentacionUnica', listaPregunta.TieneRetroalimentacionUnica.toString());
-    formData.append('UrlRetroalimentacionVideo', listaPregunta.UrlRetroalimentacionVideo.toString() );
+    if(listaPregunta.UrlRetroalimentacionVideo!=null){
+      formData.append('UrlRetroalimentacionVideo', listaPregunta.UrlRetroalimentacionVideo.toString() );
+    }
     formData.append('Retroalimentacion', listaPregunta.Retroalimentacion.toString() );
     formData.append('ImgRetroalimentacionArchivo', listaPregunta.ImgRetroalimentacionArchivo);
     console.log(listaPregunta.Respuestas)
@@ -65,7 +67,9 @@ export class AdsaPreguntaService {
     formData.append('UrlImagenPreguntaArchivo', listaPregunta.UrlImagenPreguntaArchivo);
     formData.append('IdAdsaTipoPreguntaClasificacion', listaPregunta.IdAdsaTipoPreguntaClasificacion.toString());
     formData.append('TieneRetroalimentacionUnica', listaPregunta.TieneRetroalimentacionUnica.toString());
-    formData.append('UrlVideo', listaPregunta.UrlRetroalimentacionVideo.toString() );
+    if(listaPregunta.UrlRetroalimentacionVideo!=null){
+      formData.append('UrlRetroalimentacionVideo', listaPregunta.UrlRetroalimentacionVideo.toString() );
+    }
     formData.append('Retroalimentacion', listaPregunta.Retroalimentacion.toString() );
     formData.append('ImgRetroalimentacionArchivo', listaPregunta.ImgRetroalimentacionArchivo);
    console.log(formData)

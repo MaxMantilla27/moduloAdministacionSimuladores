@@ -179,7 +179,7 @@ export class ItilModalAgregarPreguntasComponent implements OnInit {
       }
     }
     this.json.Id = 0;
-    this.json.IdItilTipoPreguntaClasificacion = 2;
+    this.json.IdItilTipoPreguntaClasificacion = 1;
     this.json.IdSimuladorItilDominio = this.formPregunta.get('IdCategoria')?.value;
     this.json.IdSimuladorItilTarea = this.formPregunta.get('IdSubCategoria')?.value;
     this.json.IdSimuladorTipoRespuesta = this.formPregunta.get('IdTipoRespuesta')?.value;
@@ -250,7 +250,7 @@ export class ItilModalAgregarPreguntasComponent implements OnInit {
       }
     }
     this.jsonActualizar.Id = this.formPregunta.get('Id')?.value;
-    this.jsonActualizar.IdItilTipoPreguntaClasificacion = 2;
+    this.jsonActualizar.IdItilTipoPreguntaClasificacion = 1;
     this.jsonActualizar.IdSimuladorItilDominio = this.formPregunta.get('IdCategoria')?.value;
     this.jsonActualizar.IdSimuladorItilTarea = this.formPregunta.get('IdSubCategoria')?.value;
     this.jsonActualizar.IdSimuladorTipoRespuesta = this.formPregunta.get('IdTipoRespuesta')?.value;

@@ -92,6 +92,7 @@ export class TogConfiguracionCategoriasComponent implements OnInit {
   }
 
   // ObtenerSubCategorias() {
+  //   this.CantTotalPreguntasPorExamenSubCategoria=0;
   //   this._tarea.ObtenerTareas().subscribe({
   //     next: (x: any) => {
   //       console.log(x);

@@ -625,7 +625,7 @@
           <th
             style="
               border: solid 1px #b2b2b2;
-              width: 120px;
+              width: 90px;
               text-align: center;
               background-color: #e7e7e7;
               color: #222222;
@@ -633,6 +633,17 @@
           >
             Fecha de Caducidad
           </th>
+          <th
+          style="
+            border: solid 1px #b2b2b2;
+            width: 140px;
+            text-align: center;
+            background-color: #e7e7e7;
+            color: #222222;
+          "
+        >
+          Guardar
+        </th>
         </tr>
       </thead>
       <tbody>
@@ -677,7 +688,8 @@
           <td style="text-align: center; border: solid 1px #b2b2b2">
             <div *ngIf="data.fechaCaducidadSimulador == null">00/00/0000</div>
             <div *ngIf="data.fechaCaducidadSimulador != null">
-              {{ data.fechaCaducidadSimulador | date : "dd/MM/yyyy" }}
+              <input type="date" [(ngModel)]="data.fechaCaducidadSimulador"
+              min="2022-01-01" max="2026-12-31">
             </div>
           </td>
           <td class="contenidoTablaAdmUsuarios">
@@ -823,7 +835,7 @@
           <th
             style="
               border: solid 1px #b2b2b2;
-              width: 120px;
+              width: 90px;
               text-align: center;
               background-color: #e7e7e7;
               color: #222222;
@@ -831,6 +843,17 @@
           >
             Fecha de Caducidad
           </th>
+          <th
+          style="
+            border: solid 1px #b2b2b2;
+            width: 140px;
+            text-align: center;
+            background-color: #e7e7e7;
+            color: #222222;
+          "
+        >
+          Guardar
+        </th>
         </tr>
       </thead>
       <tbody>
@@ -875,7 +898,8 @@
           <td style="text-align: center; border: solid 1px #b2b2b2">
             <div *ngIf="data.fechaCaducidadSimulador == null">00/00/0000</div>
             <div *ngIf="data.fechaCaducidadSimulador != null">
-              {{ data.fechaCaducidadSimulador | date : "dd/MM/yyyy" }}
+              <input type="date" [(ngModel)]="data.fechaCaducidadSimulador"
+              min="2022-01-01" max="2026-12-31">
             </div>
           </td>
           <td class="contenidoTablaAdmUsuarios">

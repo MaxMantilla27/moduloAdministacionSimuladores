@@ -18,7 +18,7 @@
           <div class="col-12 col-md-6">
             <mat-form-field>
               <mat-label>Categorias</mat-label>
-              <mat-select [disabled]="!isNew"  type="number" formControlName="IdCategoria" required
+              <mat-select type="number" formControlName="IdCategoria" required
               (selectionChange)="FiltrarSubCategoritas()">
               <mat-option *ngFor="let a of listaCategorias" [value]="a.id">{{ a.nombre }}</mat-option>
               </mat-select>
@@ -33,7 +33,7 @@
           <div class="col-12 col-md-6">
             <mat-form-field>
               <mat-label>Subcategorias</mat-label>
-              <mat-select [disabled]="!isNew"   type="number" formControlName="IdSubCategoria">
+              <mat-select  type="number" formControlName="IdSubCategoria">
                 <mat-option
                   *ngFor="let a of lisSubCategoriaPorCategoria"
                   [value]="a.id"
