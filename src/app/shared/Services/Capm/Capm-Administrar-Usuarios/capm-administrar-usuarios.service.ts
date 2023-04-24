@@ -12,7 +12,7 @@ export class CapmAdministrarUsuariosService {
   constructor(private http: HttpClient) { }
 
   public ObtenerReporteAdministrarUsuarioResumenCapm():Observable<any>{
-    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumenCapm');
+    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioCompletoCapm');
   }
   public ObtenerReporteAdministrarUsuarioPorCodigoMatriculaCapm(CodigoMatricula:string): Observable<any> {
     console.log(CodigoMatricula)

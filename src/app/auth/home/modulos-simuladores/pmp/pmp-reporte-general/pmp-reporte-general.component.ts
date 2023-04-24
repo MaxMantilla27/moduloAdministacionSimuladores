@@ -36,7 +36,7 @@ export class PmpReporteGeneralComponent implements OnInit {
   visible4 = false;
   searchValue5 = '';
   visible5 = false;
-
+  public DisabledDescargaExcel=true;
   ngOnInit(): void {
     this.ObtenerReporteGeneralPmp();
     this.ObtenerComboCertificacionPmp();
@@ -45,7 +45,11 @@ export class PmpReporteGeneralComponent implements OnInit {
     this._PmpReporteGeneral.ObtenerReporteGeneralPmp().subscribe({
       next: (x: any) => {
         this.ReporteGeneral = x;
+        console.log(x)
         this.listOfDisplayData = this.ReporteGeneral;
+        if(this.listOfDisplayData!=undefined){
+          this.DisabledDescargaExcel=false;
+        }
       },
     });
   }

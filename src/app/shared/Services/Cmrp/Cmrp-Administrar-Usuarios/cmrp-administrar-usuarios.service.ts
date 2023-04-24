@@ -12,7 +12,7 @@ export class CmrpAdministrarUsuariosService {
   constructor(private http: HttpClient) { }
 
   public ObtenerReporteAdministrarUsuarioResumenCmrp():Observable<any>{
-    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumenCmrp');
+    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioCompletoCmrp');
   }
   public ObtenerReporteAdministrarUsuarioPorCodigoMatriculaCmrp(CodigoMatricula:string): Observable<any> {
     console.log(CodigoMatricula)

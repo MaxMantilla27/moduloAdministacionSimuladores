@@ -12,7 +12,7 @@ export class CissAdministrarUsuariosService {
   constructor(private http: HttpClient) { }
 
   public ObtenerReporteAdministrarUsuarioResumen():Observable<any>{
-    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumen');
+    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioCompletoCiss');
   }
   public ObtenerReporteAdministrarUsuarioPorCodigoMatricula(CodigoMatricula:string): Observable<any> {
     console.log(CodigoMatricula)

@@ -55,11 +55,15 @@ export class PbiAdministrarUsuariosComponent implements OnInit {
   searchValue8 = '';
   visible8 = false;
   listOfDisplayData: any = [];
+  public DisableReporte=true;
+  public DisabledDescargaExcel=true;
 
   ngOnInit(): void {
     this.ObtenerReporteAdministrarUsuarioResumenPbi();
   }
   ObtenerReporteAdministrarUsuarioResumenPbi(){
+    this.listOfDisplayData=undefined;
+    this.DisabledDescargaExcel=true;
     this.editarReporte=true;
     this.CodigoMatricula=''
     this.CentroCostos=''
@@ -69,30 +73,19 @@ export class PbiAdministrarUsuariosComponent implements OnInit {
       next: (x: any) => {
         console.log(x)
         this.ReporteResumen=x;
-        this.ReporteResumen.forEach((p:any)=>{
-          if(p.estadoCurso==true){
-            p.avance=0;
-            var total=0;
-            var toralR=0;
-            total+=p.videosTotal==null?0:p.videosTotal
-            total+=p.examenProgramados==null?0:p.examenProgramados
-            total+=p.tareasProgramadas==null?0:p.tareasProgramadas
-
-           toralR+=p.videosTerminados==null?0:p.videosTerminados
-            toralR+=p.examenRealizado==null?0:p.examenRealizado
-            toralR+=p.tareasRealizadas==null?0:p.tareasRealizadas
-            if(total>0){
-              p.avance=toralR*100/total;
-              p.avance=Math.floor(p.avance);
-            }
-          }
-        })
-
-        this.listOfDisplayData = this.ReporteResumen
+        this.listOfDisplayData = x
+        if(this.listOfDisplayData!=undefined && x.length!=0){
+          this.listOfDisplayData.forEach((e:any) => {
+            e.cantidadCuotas= e.cuotasPagadas.toString() + '/'+e.numeroCuotas.toString();
+          });
+          this.DisabledDescargaExcel=false;
+        }
       },
     });
   }
   ObtenerReporteAdministrarUsuarioPorCodigoMatriculaPbi(CodigoMatricula:string){
+    this.listOfDisplayData=undefined;
+    this.DisabledDescargaExcel=true;
     var datePipe = new DatePipe('en-US');
     this.editarReporte=false;
     this.CentroCostosBuscar=''
@@ -103,31 +96,22 @@ export class PbiAdministrarUsuariosComponent implements OnInit {
       next: (x: any) => {
         console.log(x)
         this.ReporteCodigoMatricula=x;
-        this.ReporteCodigoMatricula.forEach((p:any)=>{
-          if(p.estadoCurso==true){
-            p.avance=0;
-            var total=0;
-            var toralR=0;
-            total+=p.videosTotal==null?0:p.videosTotal
-            total+=p.examenProgramados==null?0:p.examenProgramados
-            total+=p.tareasProgramadas==null?0:p.tareasProgramadas
-
-           toralR+=p.videosTerminados==null?0:p.videosTerminados
-            toralR+=p.examenRealizado==null?0:p.examenRealizado
-            toralR+=p.tareasRealizadas==null?0:p.tareasRealizadas
-            if(total>0){
-              p.avance=toralR*100/total;
-              p.avance=Math.floor(p.avance);
-            }
+        this.listOfDisplayData = x
+        if(this.listOfDisplayData!=undefined && x.length!=0){
+          this.listOfDisplayData.forEach((e:any) => {
+            e.cantidadCuotas= e.cuotasPagadas.toString() + '/'+e.numeroCuotas.toString();
+if(e.fechaCaducidadSimulador!=undefined && e.fechaCaducidadSimulador!=null){
+            e.fechaCaducidadSimulador=datePipe.transform(e.fechaCaducidadSimulador, 'yyyy-MM-dd')
           }
-          if(p.fechaCaducidadSimulador!=undefined && p.fechaCaducidadSimulador!=null){
-            p.fechaCaducidadSimulador=datePipe.transform(p.fechaCaducidadSimulador, 'yyyy-MM-dd')
-          }
-        })
+          });
+          this.DisabledDescargaExcel=false;
+        }
       },
     });
   }
   ObtenerReporteAdministrarUsuarioPorCentroCostosPbi(CentroCostos:string){
+    this.listOfDisplayData=undefined;
+    this.DisabledDescargaExcel=true;
     var datePipe = new DatePipe('en-US');
     this.editarReporte=false;
     this.CodigoMatriculaBuscar=''
@@ -138,27 +122,16 @@ export class PbiAdministrarUsuariosComponent implements OnInit {
       next: (x: any) => {
         console.log(x)
         this.ReporteCentroCostos=x;
-        this.ReporteCentroCostos.forEach((p:any)=>{
-          if(p.estadoCurso==true){
-            p.avance=0;
-            var total=0;
-            var toralR=0;
-            total+=p.videosTotal==null?0:p.videosTotal
-            total+=p.examenProgramados==null?0:p.examenProgramados
-            total+=p.tareasProgramadas==null?0:p.tareasProgramadas
-
-           toralR+=p.videosTerminados==null?0:p.videosTerminados
-            toralR+=p.examenRealizado==null?0:p.examenRealizado
-            toralR+=p.tareasRealizadas==null?0:p.tareasRealizadas
-            if(total>0){
-              p.avance=toralR*100/total;
-              p.avance=Math.floor(p.avance);
-            }
+        this.listOfDisplayData = x
+        if(this.listOfDisplayData!=undefined && x.length!=0){
+          this.listOfDisplayData.forEach((e:any) => {
+            e.cantidadCuotas= e.cuotasPagadas.toString() + '/'+e.numeroCuotas.toString();
+if(e.fechaCaducidadSimulador!=undefined && e.fechaCaducidadSimulador!=null){
+            e.fechaCaducidadSimulador=datePipe.transform(e.fechaCaducidadSimulador, 'yyyy-MM-dd')
           }
-          if(p.fechaCaducidadSimulador!=undefined && p.fechaCaducidadSimulador!=null){
-            p.fechaCaducidadSimulador=datePipe.transform(p.fechaCaducidadSimulador, 'yyyy-MM-dd')
-          }
-        })
+          });
+          this.DisabledDescargaExcel=false;
+        }
       },
     });
   }

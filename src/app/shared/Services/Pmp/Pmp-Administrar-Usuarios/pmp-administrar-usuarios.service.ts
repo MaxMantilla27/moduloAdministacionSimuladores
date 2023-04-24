@@ -12,7 +12,7 @@ export class PmpAdministrarUsuariosService {
   constructor(private http: HttpClient) { }
 
   public ObtenerReporteAdministrarUsuarioResumenPmp():Observable<any>{
-    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumenPmp');
+    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioCompletoPmp');
   }
   public ObtenerReporteAdministrarUsuarioPorCodigoMatriculaPmp(CodigoMatricula:string): Observable<any> {
     console.log(CodigoMatricula)

@@ -5,6 +5,41 @@
     <div class="subTitulo">
       Puedes monitorear el estado de todos los alumnos matriculados en el programa e identificar que alumnos estan preparados para rendir el examen oficial de certificacion
     </div>
+    <div class="col-12 col-md-3">
+      <button [disabled]="DisabledDescargaExcel"
+        mat-raised-button
+        style="background-color: #28A745; color: white"
+        (click)="excelexport.save()">
+        <i class="material-icons">description</i>
+        Exportar a Excel
+      </button>
+      <kendo-excelexport
+      [data]="listOfDisplayData"
+      fileName="CcnaReporteGeneral.xlsx" #excelexport>
+      <kendo-excelexport-column field="codigoMatricula" title="Codigo Matrícula">
+      </kendo-excelexport-column>
+      <kendo-excelexport-column field="alumno" title="Alumno">
+      </kendo-excelexport-column>
+      <kendo-excelexport-column field="centroCostos" title="Centro Costos">
+      </kendo-excelexport-column>
+      <kendo-excelexport-column field="tipoMatricula" title="Tipo de Matrícula">
+      </kendo-excelexport-column>
+      <kendo-excelexport-column field="fechaMatriculaSimulador" title="Fecha Matricula Simulador">
+      </kendo-excelexport-column>
+      <kendo-excelexport-column field="puntajeMaximo" title="Puntaje Máximo">
+      </kendo-excelexport-column>
+      <kendo-excelexport-column field="puntajePromedio" title="Puntaje Promedio">
+      </kendo-excelexport-column>
+      <kendo-excelexport-column field="simulacionesFinalizadas" title="Simulaciones Finalizadas">
+      </kendo-excelexport-column>
+      <kendo-excelexport-column field="fechaUltimaSimulacion" title="Fecha Última Simulación">
+      </kendo-excelexport-column>
+      <kendo-excelexport-column field="nivel" title="Nivel">
+      </kendo-excelexport-column>
+      <kendo-excelexport-column field="certificacion" title="Certificación">
+      </kendo-excelexport-column>
+      </kendo-excelexport>
+    </div>
     <div class="tablaReporteGeneral" *ngIf="listOfDisplayData!=undefined">
       <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed"class="table">
         <thead>
@@ -104,7 +139,7 @@
           </tr>
         </tbody>
       </nz-table>
-  
+
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <div class="ant-table-filter-dropdown">
           <div class="search-box">
@@ -229,4 +264,3 @@
       </div>
     </div>
   </div>
-  

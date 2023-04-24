@@ -12,7 +12,7 @@ export class AwsAdministrarUsuariosService {
   constructor(private http: HttpClient) { }
 
   public ObtenerReporteAdministrarUsuarioResumenAws():Observable<any>{
-    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumenAws');
+    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioCompletoAws');
   }
   public ObtenerReporteAdministrarUsuarioPorCodigoMatriculaAws(CodigoMatricula:string): Observable<any> {
     console.log(CodigoMatricula)

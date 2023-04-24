@@ -12,7 +12,7 @@ export class LssbAdministrarUsuariosService {
   constructor(private http: HttpClient) { }
 
   public ObtenerReporteAdministrarUsuarioResumenLssb():Observable<any>{
-    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumenLssb');
+    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioCompletoLssb');
   }
   public ObtenerReporteAdministrarUsuarioPorCodigoMatriculaLssb(CodigoMatricula:string): Observable<any> {
     console.log(CodigoMatricula)

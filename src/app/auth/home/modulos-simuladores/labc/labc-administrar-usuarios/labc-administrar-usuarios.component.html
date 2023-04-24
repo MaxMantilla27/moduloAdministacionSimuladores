@@ -13,6 +13,45 @@
       Obtener Reporte Resumen
     </button>
   </div>
+  <div class="col-12 col-md-1">
+  </div>
+  <div class="col-12 col-md-3">
+    <button [disabled]="DisabledDescargaExcel"
+      mat-raised-button
+      style="background-color: #28A745; color: white"
+      (click)="excelexport.save()">
+      <i class="material-icons">description</i>
+      Exportar a Excel
+    </button>
+    <kendo-excelexport
+    [data]="listOfDisplayData"
+    fileName="LabcReporteAdministrarUsuarios.xlsx" #excelexport>
+    <kendo-excelexport-column field="codigoMatricula" title="Codigo Matricula">
+    </kendo-excelexport-column>
+    <kendo-excelexport-column field="alumno" title="Alumno">
+    </kendo-excelexport-column>
+    <kendo-excelexport-column field="correo" title="Correo">
+    </kendo-excelexport-column>
+    <kendo-excelexport-column field="nombrePrograma" title="Nombre Programa">
+    </kendo-excelexport-column>
+    <kendo-excelexport-column field="centroCostos" title="Centro Costos">
+    </kendo-excelexport-column>
+    <kendo-excelexport-column field="fechaAccesoSimulador" title="Fecha Acceso Simulador">
+    </kendo-excelexport-column>
+    <kendo-excelexport-column field="avanceCurso"  title="Estado Curso">
+    </kendo-excelexport-column>
+    <kendo-excelexport-column field="estadoPagos" title="Estado Pagos">
+    </kendo-excelexport-column>
+    <kendo-excelexport-column field="cantidadCuotas" title="Cuotas Pagadas">
+    </kendo-excelexport-column>
+    <kendo-excelexport-column field="estadoSolicitud" title="Estado Solicitud">
+    </kendo-excelexport-column>
+    <kendo-excelexport-column field="habilitar" title="Habilitado">
+    </kendo-excelexport-column>
+    <kendo-excelexport-column field="fechaCaducidadSimulador" title="Fecha Caducidad Simulador">
+    </kendo-excelexport-column>
+    </kendo-excelexport>
+  </div>
   <div class="titulo2">
     <div class="row">
       <div class="col-12 col-md-6" style="display: flex">
@@ -297,7 +336,7 @@
             {{ data.estadoPagos }}
           </td>
           <td style="text-align: center; border: solid 1px #b2b2b2">
-            {{ data.cuotasPagadas }} / {{ data.numeroCuotas }}
+            {{ data.cantidadCuotas}}
           </td>
           <td style="text-align: center; border: solid 1px #b2b2b2">
             {{ data.estadoSolicitud }}
@@ -677,7 +716,7 @@
             {{ data.estadoPagos }}
           </td>
           <td style="text-align: center; border: solid 1px #b2b2b2">
-            {{ data.cuotasPagadas }} / {{ data.numeroCuotas }}
+            {{ data.cantidadCuotas}}
           </td>
           <td style="text-align: center; border: solid 1px #b2b2b2">
             {{ data.estadoSolicitud }}
@@ -887,7 +926,7 @@
             {{ data.estadoPagos }}
           </td>
           <td style="text-align: center; border: solid 1px #b2b2b2">
-            {{ data.cuotasPagadas }} / {{ data.numeroCuotas }}
+            {{ data.cantidadCuotas}}
           </td>
           <td style="text-align: center; border: solid 1px #b2b2b2">
             {{ data.estadoSolicitud }}
@@ -911,16 +950,5 @@
       </tbody>
     </nz-table>
   </div>
-  <div class="loadingTablaReporteUsuario" *ngIf="CentroCostosBuscar!='' && ReporteCentroCostos==undefined">
-    <div class="container" style="width: 63%;">
-      <div style="padding:0.75rem 1.25rem;width: 100%;height: 450px;">
-        <div style="margin-top: 100px; display: flex;justify-content: center;">
-          <mat-spinner></mat-spinner>
-        </div>
-        <div style="margin-top: 20px;text-align: center">
-          Los registros se están cargando ...
-        </div>
-      </div>
-    </div>
-  </div>
+
 </div>

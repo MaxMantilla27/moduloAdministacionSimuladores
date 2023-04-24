@@ -36,6 +36,7 @@ export class PbiReporteGeneralComponent implements OnInit {
   visible4 = false;
   searchValue5 = '';
   visible5 = false;
+  public DisabledDescargaExcel=true;
 
   ngOnInit(): void {
     this.ObtenerReporteGeneralPbi();
@@ -46,6 +47,9 @@ export class PbiReporteGeneralComponent implements OnInit {
       next: (x: any) => {
         this.ReporteGeneral = x;
         this.listOfDisplayData = this.ReporteGeneral;
+        if(this.listOfDisplayData!=undefined){
+          this.DisabledDescargaExcel=false;
+        }
       },
     });
   }

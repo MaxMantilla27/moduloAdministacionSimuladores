@@ -12,7 +12,7 @@ export class PbiAdministrarUsuariosService {
   constructor(private http: HttpClient) { }
 
   public ObtenerReporteAdministrarUsuarioResumenPbi():Observable<any>{
-    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumenPbi');
+    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioCompletoPbi');
   }
   public ObtenerReporteAdministrarUsuarioPorCodigoMatriculaPbi(CodigoMatricula:string): Observable<any> {
     console.log(CodigoMatricula)

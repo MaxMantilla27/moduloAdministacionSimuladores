@@ -12,7 +12,7 @@ export class CcnaAdministrarUsuariosService {
   constructor(private http: HttpClient) { }
 
   public ObtenerReporteAdministrarUsuarioResumenCcna():Observable<any>{
-    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumenCcna');
+    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioCompletoCcna');
   }
   public ObtenerReporteAdministrarUsuarioPorCodigoMatriculaCcna(CodigoMatricula:string): Observable<any> {
     console.log(CodigoMatricula)

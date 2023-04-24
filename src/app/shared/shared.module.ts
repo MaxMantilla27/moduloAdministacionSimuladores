@@ -104,6 +104,7 @@ import { NzPipesModule } from 'ng-zorro-antd/pipes';
 import { NzCodeEditorModule } from 'ng-zorro-antd/code-editor';
 import { NzGraphModule } from 'ng-zorro-antd/graph';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
 
 /** config angular i18n **/
 import { registerLocaleData } from '@angular/common';
@@ -224,7 +225,8 @@ import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
     NzPipesModule,
     NzCodeEditorModule,
     NzGraphModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    ExcelExportModule
 
 
   ],
@@ -331,7 +333,8 @@ import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
     NzPipesModule,
     NzCodeEditorModule,
     NzGraphModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    ExcelExportModule
 
   ],
 

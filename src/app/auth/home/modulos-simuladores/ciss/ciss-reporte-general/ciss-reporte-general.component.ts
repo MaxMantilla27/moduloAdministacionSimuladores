@@ -15,7 +15,7 @@ export class CissReporteGeneralComponent implements OnInit {
     private _CissReporteGeneral: CissReporteGeneralService,
     private alertaService: AlertaService
   ) { }
-  
+
   public listOfDisplayData:any;
   public ReporteGeneral:any
   public ComboReporteGeneral:any
@@ -37,6 +37,7 @@ export class CissReporteGeneralComponent implements OnInit {
   visible4 = false;
   searchValue5 = '';
   visible5 = false;
+  public DisabledDescargaExcel=true;
 
   ngOnInit(): void {
     this.ObtenerReporteGeneralCiss();
@@ -45,8 +46,12 @@ export class CissReporteGeneralComponent implements OnInit {
   ObtenerReporteGeneralCiss(){
     this._CissReporteGeneral.ObtenerReporteGeneralCiss().subscribe({
       next: (x: any) => {
+        console.log(x)
         this.ReporteGeneral = x;
         this.listOfDisplayData = this.ReporteGeneral;
+        if(this.listOfDisplayData!=undefined){
+          this.DisabledDescargaExcel=false;
+        }
       },
     });
   }

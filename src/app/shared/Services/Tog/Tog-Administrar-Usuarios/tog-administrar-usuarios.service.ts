@@ -12,7 +12,7 @@ export class TogAdministrarUsuariosService {
   constructor(private http: HttpClient) { }
 
   public ObtenerReporteAdministrarUsuarioResumenTog():Observable<any>{
-    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumenTog');
+    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioCompleto');
   }
   public ObtenerReporteAdministrarUsuarioPorCodigoMatriculaTog(CodigoMatricula:string): Observable<any> {
     console.log(CodigoMatricula)

@@ -12,7 +12,7 @@ export class ItilAdministrarUsuariosService {
   constructor(private http: HttpClient) { }
 
   public ObtenerReporteAdministrarUsuarioResumenItil():Observable<any>{
-    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioResumenItil');
+    return this.http.get<any>(this.urlBase +'/ObtenerReporteAdministrarUsuarioCompletoItil');
   }
   public ObtenerReporteAdministrarUsuarioPorCodigoMatriculaItil(CodigoMatricula:string): Observable<any> {
     console.log(CodigoMatricula)
