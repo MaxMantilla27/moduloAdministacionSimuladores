@@ -233,7 +233,7 @@ if(e.fechaCaducidadSimulador!=undefined && e.fechaCaducidadSimulador!=null){
   GuardarCambios(data:any){
     console.log(data)
     this.EnvioAcceso.idMatriculaCabecera = data.idMatriculaCabecera;
-    this.EnvioAcceso.idTipoSimuladorWeb = 1;
+    this.EnvioAcceso.idTipoSimuladorWeb = 7;
     this.EnvioAcceso.fechaExpiracion = data.fechaCaducidadSimulador;
     this.EnvioAcceso.idPersonal = 0;
     this.EnvioAcceso.descripcion = 'Acceso solicitado desde administrador con estado matriculado por centro de costos '+ data.centroCostos;
