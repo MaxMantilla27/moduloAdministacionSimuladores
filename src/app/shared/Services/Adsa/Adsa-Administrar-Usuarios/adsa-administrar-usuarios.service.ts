@@ -16,7 +16,7 @@ export class AdsaAdministrarUsuariosService {
   }
   public ObtenerReporteAdministrarUsuarioPorCodigoMatricula(CodigoMatricula:string): Observable<any> {
     console.log(CodigoMatricula)
-    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCodigoMatricula?CodigoMatriculaAdsa='+CodigoMatricula,'');
+    return this.http.post<any>(this.urlBase + '/ObtenerReporteAdministrarUsuarioPorCodigoMatriculaAdsa?CodigoMatricula='+CodigoMatricula,'');
 
   }
   public ObtenerReporteAdministrarUsuarioPorCentroCostos(CentroCostos:string): Observable<any> {
