@@ -27,8 +27,11 @@ export class PmpTipoRespuestaService {
     return this.http.post<any>(this.urlBase2+'/actualizarPmpParametroNivel',Json);
   }
 
-  public ObtenerParametrosNivelEntity():Observable<any>{
-    return this.http.get<any>(this.urlBase2+'/ObtenerParametrosNivelEntity');
+  /**
+   * Rangos de nivel de un esquema del contenido del examen (ECO). Cada esquema tiene los suyos.
+   */
+  public ObtenerParametrosNivelEntity(IdPmpEsquemaExamen:number):Observable<any>{
+    return this.http.get<any>(this.urlBase2+'/ObtenerParametrosNivelEntity?IdPmpEsquemaExamen='+IdPmpEsquemaExamen);
   }
 
 }

@@ -10,6 +10,9 @@ import { PmpAdministrarUsuariosComponent } from './home/modulos-simuladores/pmp/
 import { PmpConfiguracionCategoriasComponent } from './home/modulos-simuladores/pmp/pmp-configuracion-categorias/pmp-configuracion-categorias.component';
 import { PmpModalAgregarCategoriaComponent } from './home/modulos-simuladores/pmp/pmp-configuracion-categorias/pmp-modal-agregar-categoria/pmp-modal-agregar-categoria.component';
 import { PmpModalAgregarSubcategoriaComponent } from './home/modulos-simuladores/pmp/pmp-configuracion-categorias/pmp-modal-agregar-subcategoria/pmp-modal-agregar-subcategoria.component';
+import { PmpConfiguracionEsquemasComponent } from './home/modulos-simuladores/pmp/pmp-configuracion-esquemas/pmp-configuracion-esquemas.component';
+import { PmpModalAgregarEsquemaComponent } from './home/modulos-simuladores/pmp/pmp-configuracion-esquemas/pmp-modal-agregar-esquema/pmp-modal-agregar-esquema.component';
+import { PmpSelectorEsquemaExamenComponent } from './home/modulos-simuladores/pmp/pmp-selector-esquema-examen/pmp-selector-esquema-examen.component';
 import { PmpConfiguracionInterfazComponent } from './home/modulos-simuladores/pmp/pmp-configuracion-interfaz/pmp-configuracion-interfaz.component';
 import { PmpConfiguracionPreguntasComponent } from './home/modulos-simuladores/pmp/pmp-configuracion-preguntas/pmp-configuracion-preguntas.component';
 import { PmpModalAgregarPreguntasComponent } from './home/modulos-simuladores/pmp/pmp-configuracion-preguntas/pmp-modal-agregar-preguntas/pmp-modal-agregar-preguntas.component';
@@ -188,6 +191,9 @@ import { TogModalAlternativasNivelDosComponent } from './home/modulos-simuladore
     HomeComponent,
     PmpComponent,
     PmpAdministrarUsuariosComponent,
+    PmpConfiguracionEsquemasComponent,
+    PmpModalAgregarEsquemaComponent,
+    PmpSelectorEsquemaExamenComponent,
     PmpConfiguracionCategoriasComponent,
     PmpModalAgregarCategoriaComponent,
     PmpModalAgregarSubcategoriaComponent,

@@ -7,6 +7,7 @@ import { PmpCategoriasService } from 'src/app/shared/Services/Pmp/Pmp-Categorias
 import { PmpPreguntaService } from 'src/app/shared/Services/Pmp/Pmp-Pregunta/pmp-pregunta.service';
 import { PmpPreguntaRespuestaService } from 'src/app/shared/Services/Pmp/Pmp-PreguntaRespuesta/pmp-preguntaRespuesta.service';
 import { PmpTareaService } from 'src/app/shared/Services/Pmp/Pmp-Tarea/pmp-tarea.service';
+import { PmpEsquemaExamenService } from 'src/app/shared/Services/Pmp/Pmp-EsquemaExamen/pmp-esquema-examen.service';
 import Swal from 'sweetalert2';
 import { ModalAlternativasComponent } from './pmp-modal-alternativas/modal-alternativas.component';
 
@@ -25,6 +26,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
     private _Tareas: PmpTareaService,
     private _alternativa: PmpPreguntaRespuestaService,
     private _pregunta: PmpPreguntaService,
+    private _EsquemaExamen: PmpEsquemaExamenService,
     private fb: FormBuilder,
     public dialog: MatDialog,
     public alertaService:AlertaService,
@@ -47,6 +49,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   public dataPregunta = this.data
   public json: PmpEnvioFilePreguntaDTO = {
     Id: 0,
+    IdPmpEsquemaExamen: 0,
     IdSimuladorPmpDominio: 0,
     IdSimuladorPmpTarea: 0,
     IdSimuladorTipoRespuesta: 0,
@@ -61,6 +64,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   };
   public jsonActualizar: PmpEnvioFilePreguntaActualizarDTO = {
     Id: 0,
+    IdPmpEsquemaExamen: 0,
     IdSimuladorPmpDominio: 0,
     IdSimuladorPmpTarea: 0,
     IdSimuladorTipoRespuesta: 0,
@@ -179,6 +183,8 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
       }
     }
     this.json.Id = 0;
+    /* La pregunta se crea dentro del esquema del contenido del examen seleccionado. */
+    this.json.IdPmpEsquemaExamen = this._EsquemaExamen.IdEsquemaSeleccionado;
     this.json.IdPmpTipoPreguntaClasificacion = 2;
     this.json.IdSimuladorPmpDominio = this.formPregunta.get('IdCategoria')?.value;
     this.json.IdSimuladorPmpTarea = this.formPregunta.get('IdSubCategoria')?.value;
@@ -250,6 +256,7 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
       }
     }
     this.jsonActualizar.Id = this.formPregunta.get('Id')?.value;
+    this.jsonActualizar.IdPmpEsquemaExamen = this._EsquemaExamen.IdEsquemaSeleccionado;
     this.jsonActualizar.IdPmpTipoPreguntaClasificacion = 2;
     this.jsonActualizar.IdSimuladorPmpDominio = this.formPregunta.get('IdCategoria')?.value;
     this.jsonActualizar.IdSimuladorPmpTarea = this.formPregunta.get('IdSubCategoria')?.value;
@@ -330,12 +337,12 @@ export class PmpModalAgregarPreguntasComponent implements OnInit {
   }
 
   ObtenerComboCategorias() {
-    this._Categorias.ObtenerComboCategorias().subscribe({
+    /* Solo el contenido del esquema seleccionado, para no mezclar versiones del examen. */
+    this._Categorias.ObtenerComboCategorias(this._EsquemaExamen.IdEsquemaSeleccionado).subscribe({
       next: (x: any) => {
-        this.listaCategorias = x.categorias;
-        this.listaSubCategorias = x.subCategorias;
-        this.listaTipoPregunta = x.tipoRespuesta;
-        console.log(x);
+        this.listaCategorias = x != null ? x.categorias : [];
+        this.listaSubCategorias = x != null ? x.subCategorias : [];
+        this.listaTipoPregunta = x != null ? x.tipoRespuesta : [];
       },
       error: (error:any) => {
       },

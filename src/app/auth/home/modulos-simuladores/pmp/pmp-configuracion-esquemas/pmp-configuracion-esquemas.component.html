@@ -1,0 +1,97 @@
+<div class="row" style="padding: 40px 30px 10px 30px">
+  <div class="titulo">Configuración de esquemas</div>
+  <div class="subTitulo">
+    Un esquema es una versión del contenido del examen: sus categorías, subcategorías,
+    preguntas, porcentaje mínimo de aprobación y rangos de nivel. Las simulaciones nuevas
+    usan el esquema activo; las que ya existen conservan el suyo, así que el historial de
+    los alumnos no cambia.
+  </div>
+  <div class="col-12" style="position: relative">
+    <div>
+      <button mat-button class="agregar2" (click)="Agregar()">Añadir</button>
+    </div>
+
+    <div id="test">
+      <nz-table #tablaEsquemas [nzData]="listaEsquemas" [nzShowPagination]="false">
+        <thead>
+          <tr>
+            <th style="border: solid 1px #b2b2b2;width:60px; text-align: center; background-color: #E7E7E7;color: #222222;">Id</th>
+            <th style="border: solid 1px #b2b2b2;width:160px; text-align: center; background-color: #E7E7E7;color: #222222;">Nombre del esquema</th>
+            <th style="border: solid 1px #b2b2b2;width:220px; text-align: center; background-color: #E7E7E7;color: #222222;">Descripción</th>
+            <th style="border: solid 1px #b2b2b2;width:100px; text-align: center; background-color: #E7E7E7;color: #222222;">Categorías</th>
+            <th style="border: solid 1px #b2b2b2;width:100px; text-align: center; background-color: #E7E7E7;color: #222222;">Subcategorías</th>
+            <th style="border: solid 1px #b2b2b2;width:100px; text-align: center; background-color: #E7E7E7;color: #222222;">Preguntas</th>
+            <th style="border: solid 1px #b2b2b2;width:100px; text-align: center; background-color: #E7E7E7;color: #222222;">Simulaciones</th>
+            <th style="border: solid 1px #b2b2b2;width:100px; text-align: center; background-color: #E7E7E7;color: #222222;">Versión activa</th>
+            <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of tablaEsquemas.data">
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              {{ data.idPmpEsquemaExamen }}
+            </td>
+            <td style="border: solid 1px #b2b2b2;">
+              {{ data.nombre }}
+            </td>
+            <td style="border: solid 1px #b2b2b2;">
+              {{ data.descripcion }}
+            </td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              {{ data.cantidadDominio }}
+            </td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              {{ data.cantidadTarea }}
+            </td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              {{ data.cantidadPreguntaActiva }} / {{ data.cantidadPregunta }}
+            </td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              {{ data.cantidadExamen }}
+            </td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              <label
+                nz-radio
+                [ngModel]="data.activo"
+                [nzDisabled]="true"
+                [ngModelOptions]="{ standalone: true }"
+              ></label>
+            </td>
+            <td style="text-align: center;border: solid 1px #b2b2b2;">
+              <ng-container>
+                <button
+                  mat-button
+                  class="edit"
+                  title="Editar el esquema"
+                  (click)="Editar(data)"
+                >
+                  <i class="material-icons">edit</i>
+                </button>
+              </ng-container>
+              <ng-container *ngIf="!data.activo">
+                <button
+                  mat-button
+                  class="activar"
+                  title="Activar el esquema"
+                  (click)="Activar(data)"
+                >
+                  <i class="material-icons">check_circle</i>
+                </button>
+              </ng-container>
+              <ng-container *ngIf="data.sePuedeEliminar">
+                <button
+                  mat-button
+                  class="delete"
+                  title="Eliminar el esquema"
+                  (click)="Eliminar(data)"
+                >
+                  <i class="material-icons">delete</i>
+                </button>
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>
+</div>

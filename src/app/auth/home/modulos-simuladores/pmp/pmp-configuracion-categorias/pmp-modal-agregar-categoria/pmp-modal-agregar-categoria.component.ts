@@ -4,6 +4,7 @@ import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { pmpPreguntaActualizarDTO, pmpPreguntaDTO } from 'src/app/Models/Pmp/PreguntaDTO';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { PmpCategoriasService } from 'src/app/shared/Services/Pmp/Pmp-Categorias/pmp-categorias.service';
+import { PmpEsquemaExamenService } from 'src/app/shared/Services/Pmp/Pmp-EsquemaExamen/pmp-esquema-examen.service';
 
 @Component({
   selector: 'app-pmp-modal-agregar-categoria',
@@ -19,7 +20,8 @@ export class PmpModalAgregarCategoriaComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private alertaService: AlertaService,
     private formBuilder: FormBuilder,
-    private _Dominio: PmpCategoriasService
+    private _Dominio: PmpCategoriasService,
+    private _EsquemaExamen: PmpEsquemaExamenService
   ) { }
   public formCategoria: FormGroup = this.formBuilder.group({
     Id: [0],
@@ -37,6 +39,7 @@ export class PmpModalAgregarCategoriaComponent implements OnInit {
   public filestatus=false
   public fileErrorMsg=''
   public jsonEnvio:pmpPreguntaDTO = {
+    IdPmpEsquemaExamen: 0,
     Nombre: '',
     CantidadPreguntasPorExamen: 0,
     CantidadTotal: 0,
@@ -88,6 +91,8 @@ export class PmpModalAgregarCategoriaComponent implements OnInit {
       }
     }
 
+    /* La categoria se crea dentro del esquema del contenido del examen seleccionado. */
+    this.jsonEnvio.IdPmpEsquemaExamen = this._EsquemaExamen.IdEsquemaSeleccionado
     this.jsonEnvio.Nombre = this.formCategoria.get('NombreCategoria')?.value
     this.jsonEnvio.Leyenda = this.formCategoria.get('Leyenda')?.value
     this.jsonEnvio.CantidadPreguntasPorExamen = this.formCategoria.get('CantidadPreguntasExamen')?.value

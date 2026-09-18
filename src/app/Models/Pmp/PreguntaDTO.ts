@@ -1,4 +1,6 @@
 export interface pmpPreguntaDTO {
+  /** Esquema del contenido del examen (ECO) en el que se crea la categoria */
+  IdPmpEsquemaExamen: number;
   Nombre: string;
   CantidadPreguntasPorExamen: number;
   CantidadTotal: number;
@@ -21,6 +23,8 @@ export interface pmpPreguntaActualizarDTO {
 
 export interface PmpEnvioFilePreguntaDTO{
    Id: number;
+   /** Esquema del contenido del examen (ECO) al que debe pertenecer la subcategoria indicada */
+   IdPmpEsquemaExamen: number;
    IdSimuladorPmpDominio: number;
    IdSimuladorPmpTarea: number;
    IdSimuladorTipoRespuesta: number;
@@ -71,6 +75,8 @@ export interface DetallePreguntaDTO{
 }
 export interface PmpEnvioFilePreguntaActualizarDTO{
   Id: number;
+  /** Esquema del contenido del examen (ECO) al que debe pertenecer la subcategoria indicada */
+  IdPmpEsquemaExamen: number;
   IdSimuladorPmpDominio: number;
   IdSimuladorPmpTarea: number;
   IdSimuladorTipoRespuesta: number;

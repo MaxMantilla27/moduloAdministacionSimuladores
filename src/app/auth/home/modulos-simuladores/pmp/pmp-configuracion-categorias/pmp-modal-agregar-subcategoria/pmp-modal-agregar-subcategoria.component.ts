@@ -5,6 +5,7 @@ import { pmpActualizarTareaDTO, pmpAgregarTareaDTO } from 'src/app/Models/Pmp/Ta
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { PmpCategoriasService } from 'src/app/shared/Services/Pmp/Pmp-Categorias/pmp-categorias.service';
 import { PmpTareaService } from 'src/app/shared/Services/Pmp/Pmp-Tarea/pmp-tarea.service';
+import { PmpEsquemaExamenService } from 'src/app/shared/Services/Pmp/Pmp-EsquemaExamen/pmp-esquema-examen.service';
 
 @Component({
   selector: 'app-pmp-modal-agregar-subcategoria',
@@ -22,6 +23,7 @@ export class PmpModalAgregarSubcategoriaComponent implements OnInit {
     private alertaService: AlertaService,
     private _Tarea: PmpTareaService,
     private _Categorias: PmpCategoriasService,
+    private _EsquemaExamen: PmpEsquemaExamenService,
 ) {}
 
 formSubCategoria: FormGroup = this.formBuilder.group({
@@ -40,6 +42,7 @@ public filestatus=false
 public fileErrorMsg=''
 public listaComboCategorias:any;
 public jsonEnvio:pmpAgregarTareaDTO = {
+  IdPmpEsquemaExamen: 0,
   IdSimuladorPmpDominio:0 ,
   Nombre: '',
   CantidadPreguntasPorExamen: 0,
@@ -83,10 +86,10 @@ public jsonActualizar:pmpActualizarTareaDTO = {
    }
 
   ObtenerComboCategorias() {
-    this._Categorias.ObtenerComboCategorias().subscribe({
+    /* Solo las categorias del esquema seleccionado, para no mezclar versiones del examen. */
+    this._Categorias.ObtenerComboCategorias(this._EsquemaExamen.IdEsquemaSeleccionado).subscribe({
       next: (x: any) => {
-        this.listaComboCategorias = x.categorias;
-        console.log(this.listaComboCategorias)
+        this.listaComboCategorias = x != null ? x.categorias : [];
       },
     });
   }
@@ -98,6 +101,7 @@ public jsonActualizar:pmpActualizarTareaDTO = {
         this.jsonEnvio.ImgLogo = file;
       }
     }
+    this.jsonEnvio.IdPmpEsquemaExamen = this._EsquemaExamen.IdEsquemaSeleccionado
     this.jsonEnvio.Nombre = this.formSubCategoria.get('NombreCategoria')?.value
     this.jsonEnvio.IdSimuladorPmpDominio = this.formSubCategoria.get('IdCategoria')?.value
     this.jsonEnvio.CantidadPreguntasPorExamen = this.formSubCategoria.get('CantidadPreguntasExamen')?.value

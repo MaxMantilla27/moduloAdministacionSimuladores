@@ -1,0 +1,17 @@
+<div class="selectorEsquemaExamen">
+  <div class="tituloSelector">Esquema del examen:</div>
+  <mat-form-field appearance="outline" class="campoSelector">
+    <mat-select
+      [ngModel]="IdPmpEsquemaExamen"
+      (ngModelChange)="CambiarEsquema($event)"
+    >
+      <mat-option
+        *ngFor="let esquema of listaEsquemas"
+        [value]="esquema.idPmpEsquemaExamen"
+      >
+        {{ esquema.nombre }}
+        <span *ngIf="esquema.activo"> (activo)</span>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
