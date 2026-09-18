@@ -3,16 +3,22 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { PmpEnvioFilePreguntaActualizarDTO, PmpEnvioFilePreguntaDTO, pmpPreguntaDTO } from 'src/app/Models/Pmp/PreguntaDTO';
 import { environment } from 'src/environments/environment';
+/**
+ * Preguntas del simulador PMP.
+ * La pregunta hereda el esquema del contenido del examen (ECO) de su subcategoria, asi que
+ * el listado y las escrituras llevan IdPmpEsquemaExamen.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class PmpPreguntaService {
 
+
   public urlBase=environment.url_api+'PmpPregunta';
   constructor(private http: HttpClient) { }
 
-  public ObtenerPregunta(): Observable<any> {
-    return this.http.get<any>(this.urlBase + '/ObtenerListaModoDapper');
+  public ObtenerPregunta(IdPmpEsquemaExamen:number): Observable<any> {
+    return this.http.get<any>(this.urlBase + '/ObtenerListaModoDapper?IdPmpEsquemaExamen='+IdPmpEsquemaExamen);
   }
 
   public ObtenerPmpPregunta(IdPregunta: number):Observable<any>{
@@ -23,6 +29,7 @@ export class PmpPreguntaService {
     const formData: FormData = new FormData();
     console.log(listaPregunta);
     formData.append('Id', listaPregunta.Id.toString());
+    formData.append('IdPmpEsquemaExamen', listaPregunta.IdPmpEsquemaExamen.toString());
     formData.append('IdSimuladorPmpDominio', listaPregunta.IdSimuladorPmpDominio.toString());
     formData.append('IdSimuladorPmpTarea', listaPregunta.IdSimuladorPmpTarea.toString());
     formData.append('IdSimuladorTipoRespuesta', listaPregunta.IdSimuladorTipoRespuesta.toString());
@@ -59,6 +66,7 @@ export class PmpPreguntaService {
     const formData: FormData = new FormData();
     console.log(listaPregunta);
     formData.append('Id', listaPregunta.Id.toString());
+    formData.append('IdPmpEsquemaExamen', listaPregunta.IdPmpEsquemaExamen.toString());
     formData.append('IdSimuladorPmpDominio', listaPregunta.IdSimuladorPmpDominio.toString());
     formData.append('IdSimuladorPmpTarea', listaPregunta.IdSimuladorPmpTarea.toString());
     formData.append('IdSimuladorTipoRespuesta', listaPregunta.IdSimuladorTipoRespuesta.toString());

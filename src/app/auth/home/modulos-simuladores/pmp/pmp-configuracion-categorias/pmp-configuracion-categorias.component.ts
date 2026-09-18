@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { PmpModalAgregarSubcategoriaComponent } from './pmp-modal-agregar-subcategoria/pmp-modal-agregar-subcategoria.component';
 import { PmpModalAgregarCategoriaComponent } from './pmp-modal-agregar-categoria/pmp-modal-agregar-categoria.component';
 import { PmpCategoriasService } from 'src/app/shared/Services/Pmp/Pmp-Categorias/pmp-categorias.service';
 import { PmpTareaService } from 'src/app/shared/Services/Pmp/Pmp-Tarea/pmp-tarea.service';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { filtro } from 'src/app/Models/Pmp/TipoRespuesta';
+import { PmpEsquemaExamenService } from 'src/app/shared/Services/Pmp/Pmp-EsquemaExamen/pmp-esquema-examen.service';
 
 @Component({
   selector: 'app-pmp-configuracion-categorias',
@@ -13,13 +15,14 @@ import { filtro } from 'src/app/Models/Pmp/TipoRespuesta';
   styleUrls: ['./pmp-configuracion-categorias.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class PmpConfiguracionCategoriasComponent implements OnInit {
+export class PmpConfiguracionCategoriasComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['id', 'nombre', 'cantidad', 'proporcion'];
 
   constructor(
     public dialog: MatDialog,
     private _TipoDominio: PmpCategoriasService,
     private _tarea: PmpTareaService,
+    private _EsquemaExamen: PmpEsquemaExamenService,
     private alertaService: AlertaService
   ) {}
 
@@ -28,6 +31,9 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
   public CantTotalPreguntasPorExamenCategoria = 0;
   public CantTotalPreguntasPorExamenSubCategoria = 0;
   public isNew = false;
+  /** Esquema del contenido del examen (ECO) que el administrador tiene seleccionado. */
+  public IdPmpEsquemaExamen = 0;
+  private suscripcion = new Subscription();
 
   //------Nombre Categoria -------//
   searchValue = '';
@@ -55,8 +61,19 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
   visible5 = false;
 
   ngOnInit(): void {
-    this.ObtenerCategorias();
-    this.ObtenerSubCategorias();
+    this.suscripcion.add(
+      this._EsquemaExamen.EsquemaSeleccionado$.subscribe((Id: number) => {
+        if (Id > 0) {
+          this.IdPmpEsquemaExamen = Id;
+          this.ObtenerCategorias();
+          this.ObtenerSubCategorias();
+        }
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.suscripcion.unsubscribe();
   }
 
   openDialogSub() {
@@ -70,9 +87,9 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
 
   ObtenerCategorias() {
     this.CantTotalPreguntasPorExamenCategoria = 0;
-    this._TipoDominio.ObtenerCategorias().subscribe({
+    this._TipoDominio.ObtenerCategorias(this.IdPmpEsquemaExamen).subscribe({
       next: (x: any) => {
-        this.listaCategorias = x;
+        this.listaCategorias = x != null ? x : [];
         this.listOfDisplayData = this.listaCategorias;
         this.listaCategorias.forEach((y: any) => {
           this.CantTotalPreguntasPorExamenCategoria =
@@ -80,10 +97,13 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
             y.cantidadPreguntasPorExamen;
         });
         this.listaCategorias.forEach((y: any) => {
+          /* Un esquema recien creado no tiene preguntas por examen todavia. */
           var auxProporcion =
-            (y.cantidadPreguntasPorExamen /
-              this.CantTotalPreguntasPorExamenCategoria) *
-            100;
+            this.CantTotalPreguntasPorExamenCategoria > 0
+              ? (y.cantidadPreguntasPorExamen /
+                  this.CantTotalPreguntasPorExamenCategoria) *
+                100
+              : 0;
           y.proporcion = Math.round(auxProporcion);
         });
       },
@@ -92,23 +112,27 @@ export class PmpConfiguracionCategoriasComponent implements OnInit {
 
   ObtenerSubCategorias() {
     this.CantTotalPreguntasPorExamenSubCategoria=0;
-    this._tarea.ObtenerTareas().subscribe({
+    this._tarea.ObtenerTareas(this.IdPmpEsquemaExamen).subscribe({
       next: (x: any) => {
-        console.log(x);
-        this.listaSubCategorias = x;
+        this.listaSubCategorias = x != null ? x : [];
         this.listOfDisplayData2 = this.listaSubCategorias
         this.listaSubCategorias.forEach((y: any) => {
           this.CantTotalPreguntasPorExamenSubCategoria =
             this.CantTotalPreguntasPorExamenSubCategoria +
             y.cantidadPreguntasPorExamen;
         });
-        console.log(this.CantTotalPreguntasPorExamenSubCategoria)
-        console.log(this.listaSubCategorias)
+        /* La proporcion de una subcategoria se mide dentro de su propia categoria. */
         this.listaSubCategorias.forEach((y: any) => {
+          var totalCategoria = 0;
+          this.listaSubCategorias.forEach((z: any) => {
+            if (z.idSimuladorPmpDominio == y.idSimuladorPmpDominio) {
+              totalCategoria = totalCategoria + z.cantidadPreguntasPorExamen;
+            }
+          });
           var auxProporcion =
-            (y.cantidadPreguntasPorExamen /
-              this.CantTotalPreguntasPorExamenSubCategoria) *
-            100;
+            totalCategoria > 0
+              ? (y.cantidadPreguntasPorExamen / totalCategoria) * 100
+              : 0;
           y.proporcion = Math.round(auxProporcion);
         });
       },

@@ -1,9 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
-import { actualizarParametrosNivel, actualizarInterfaz } from 'src/app/Models/Pmp/TipoRespuesta';
+import { actualizarInterfaz } from 'src/app/Models/Pmp/TipoRespuesta';
 import { PmpConfiguracionSimuladorService } from 'src/app/shared/Services/Pmp/Pmp-Configuracion-Simulador/pmp-configuracion-simulador.service';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 
+/**
+ * Configuracion de interfaz del simulador PMP: lo que es global a todos los esquemas del
+ * contenido del examen (video tutorial, logotipo y vigencia de acceso).
+ *
+ * El porcentaje minimo de aprobacion y los rangos de nivel ya no se editan aqui: pertenecen a
+ * cada esquema y se editan en "Configuracion de esquemas". El porcentaje se sigue enviando
+ * porque el contrato del endpoint no cambio, pero el backend ya no lo guarda.
+ */
 @Component({
   selector: 'app-pmp-configuracion-interfaz',
   templateUrl: './pmp-configuracion-interfaz.component.html',
@@ -12,20 +19,11 @@ import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 export class PmpConfiguracionInterfazComponent implements OnInit {
 
   constructor(
-    private _TipoRespuesta: PmpTipoRespuestaService,
     private _PmpConfiguracionSimulador: PmpConfiguracionSimuladorService,
     private alertaService:AlertaService
     ) {}
 
-  public ParametrosNivel: any=[]
   public ConfiguracionSimulador:any;
-  public displayedColumns: string[] = ['minimo', 'maximo', 'intentos', 'nivel'];
-  public seleccionado = false;
-  public searchValue = '';
-  public visible = false;
-  public listOfDisplayData: any = [];
-  public editId: string | null = null;
-  public idMandar: number
   public fileToUpload: File | null = null;
   public video=''
   public logo=''
@@ -37,12 +35,6 @@ export class PmpConfiguracionInterfazComponent implements OnInit {
   public fileErrorMsg=''
   public nombrefile='Ningún archivo seleccionado'
 
-  public envio: actualizarParametrosNivel={
-    id : 0,
-    fechaModificacion: new Date(),
-    valorMinimo: 0,
-    valorMaximo: 0
-  }
   public actualizar: actualizarInterfaz={
     id : 0,
     urlVideo : '',
@@ -54,116 +46,57 @@ export class PmpConfiguracionInterfazComponent implements OnInit {
 
   ngOnInit(): void {
     this.ObtenerConfiguracionSimulador();
-    this.ObtenerParametrosNivel();
   }
+
   ObtenerConfiguracionSimulador() {
     this._PmpConfiguracionSimulador.PmpObtenerConfiguracionSimulador().subscribe({
       next: (x: any) => {
         this.ConfiguracionSimulador = x;
         this.video = this.ConfiguracionSimulador.urlVideo
         this.acceso = this.ConfiguracionSimulador.vigenciaAcceso
+        /* Viene del esquema activo; se conserva solo para devolverlo tal cual al guardar. */
         this.porcentaje = this.ConfiguracionSimulador.porcentajeMinimoAprobacion
         this.logo = this.ConfiguracionSimulador.logo
-
-      },
-    });
-  }
-  ObtenerParametrosNivel() {
-    this._TipoRespuesta.ObtenerParametrosNivelEntity().subscribe({
-      next: (x: any) => {
-        this.ParametrosNivel = x;
-        this.listOfDisplayData = this.ParametrosNivel
-        this.ParametrosNivel.forEach((d:any)=> {
-          d.select=false;
-          d.valorMinimo=d.valorMinimo
-          d.valorMaximo=d.valorMaximo
-        });
-        this.listOfDisplayData.forEach((d:any)=> {
-          d.select=false;
-          d.valorMinimo=d.valorMinimo
-          d.valorMaximo=d.valorMaximo
-        });
       },
     });
   }
 
-  editar(index:number) {
-
-    this.listOfDisplayData.forEach((d:any)=> {
-      d.select=false;
-    });
-    this.listOfDisplayData[index].select = true;
-  }
-
-  cancelar(index:number) {
-    this.listOfDisplayData[index].select = false;
-    this.listOfDisplayData[index].valorMinimo = this.listOfDisplayData[index].valorMinimo;
-    this.listOfDisplayData[index].valorMaximo = this.listOfDisplayData[index].valorMaximo;
-  }
-
-  aceptar(index:number) {
-    this.listOfDisplayData[index].select = false;
-    this.listOfDisplayData[index].valorMinimo = this.listOfDisplayData[index].valorMinimo;
-    this.listOfDisplayData[index].valorMaximo = this.listOfDisplayData[index].valorMaximo;
-
-    this.envio.id = this.listOfDisplayData[index].id,
-      this.envio.valorMinimo= this.listOfDisplayData[index].valorMinimo,
-      this.envio.valorMaximo= this.listOfDisplayData[index].valorMaximo
-      this.Actualizar()
-  }
   handleFile(event:any): void {
-
     this.fileToUpload = event.target.files
-}
+  }
 
-getFileDetails(event:any) {
-  for (var i = 0; i < event.target.files.length; i++) {
-    this.filestatus=true
-    var name = event.target.files[i].name;
-    this.nombrefile=name;
-    var type = event.target.files[i].type;
-    var size = event.target.files[i].size;
-    var modifiedDate = event.target.files[i].lastModifiedDate;
-    var extencion=name.split('.')[name.split('.').length-1]
-    if( Math.round((size/1024)/1024)>150){
-      this.fileErrorMsg='El tamaño del archivo no debe superar los 25 MB'
-      this.filestatus=false
-    }
-    this.selectedFiles = event.target.files;
-  }
-}
-ActualizarInterfaz(){
-  this.actualizar.id = this.ConfiguracionSimulador.id
-  if(this.video!=null){
-    this.actualizar.urlVideo = this.video
-  }
-  else{
-    this.actualizar.urlVideo = ''
-  }
-  this.actualizar.logo = this.logo
-  this.actualizar.porcentajeMinimoAprobacion = this.porcentaje
-  this.actualizar.vigenciaAcceso = this.acceso
-  if(this.selectedFiles){
-    const file: File | null = this.selectedFiles.item(0);
-    if (file) {
-      this.actualizar.file = file;
+  getFileDetails(event:any) {
+    for (var i = 0; i < event.target.files.length; i++) {
+      this.filestatus=true
+      var name = event.target.files[i].name;
+      this.nombrefile=name;
+      var size = event.target.files[i].size;
+      if( Math.round((size/1024)/1024)>150){
+        this.fileErrorMsg='El tamaño del archivo no debe superar los 25 MB'
+        this.filestatus=false
+      }
+      this.selectedFiles = event.target.files;
     }
   }
-  console.log(this.actualizar)
-  this._PmpConfiguracionSimulador.PmpActualizarConfiguracionSimulador(this.actualizar).subscribe({
-    next: (x: any) => {
-      this.alertaService.mensajeExitoso();
-    },
-    error: (error) => {
-      this.alertaService.notificationError(error.message);
-    },
-    complete: () => {
 
-    },
-  });
-}
-  Actualizar() {
-    this._TipoRespuesta.actualizarParametrosNivel(this.envio).subscribe({
+  ActualizarInterfaz(){
+    this.actualizar.id = this.ConfiguracionSimulador.id
+    if(this.video!=null){
+      this.actualizar.urlVideo = this.video
+    }
+    else{
+      this.actualizar.urlVideo = ''
+    }
+    this.actualizar.logo = this.logo
+    this.actualizar.porcentajeMinimoAprobacion = this.porcentaje
+    this.actualizar.vigenciaAcceso = this.acceso
+    if(this.selectedFiles){
+      const file: File | null = this.selectedFiles.item(0);
+      if (file) {
+        this.actualizar.file = file;
+      }
+    }
+    this._PmpConfiguracionSimulador.PmpActualizarConfiguracionSimulador(this.actualizar).subscribe({
       next: (x: any) => {
         this.alertaService.mensajeExitoso();
       },
@@ -175,7 +108,4 @@ ActualizarInterfaz(){
       },
     });
   }
-
-
-
 }

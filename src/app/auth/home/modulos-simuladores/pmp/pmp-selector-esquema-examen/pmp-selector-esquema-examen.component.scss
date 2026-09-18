@@ -1,0 +1,22 @@
+/* Se ve como un boton, del mismo alto que "Añadir", y se coloca a su lado. Este componente usa
+   ViewEncapsulation.None, por eso cada regla empieza con .selectorEsquemaExamen. */
+.selectorEsquemaExamen {
+  display: inline-flex;
+  align-items: center;
+  width: 150px;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 4px;
+  background-color: #4aa3c4;
+  cursor: pointer;
+}
+
+.selectorEsquemaExamen .mat-select {
+  font-weight: bold;
+  text-align: center;
+}
+
+.selectorEsquemaExamen .mat-select-value,
+.selectorEsquemaExamen .mat-select-arrow {
+  color: white;
+}

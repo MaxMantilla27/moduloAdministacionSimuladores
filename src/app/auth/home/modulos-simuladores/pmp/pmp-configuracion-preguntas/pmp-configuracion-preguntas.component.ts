@@ -1,9 +1,10 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { filtradoPreguntaDTO } from 'src/app/Models/Pmp/TipoRespuesta';
 import { AlertaService } from 'src/app/shared/Services/Alerta/alerta.service';
 import { PmpPreguntaService } from 'src/app/shared/Services/Pmp/Pmp-Pregunta/pmp-pregunta.service';
-import { PmpTipoRespuestaService } from 'src/app/shared/Services/Pmp/Pmp-Tipo-Respuesta/pmp-tipo-respuesta.service';
+import { PmpEsquemaExamenService } from 'src/app/shared/Services/Pmp/Pmp-EsquemaExamen/pmp-esquema-examen.service';
 import Swal from 'sweetalert2';
 import { PmpModalAgregarPreguntasComponent } from './pmp-modal-agregar-preguntas/pmp-modal-agregar-preguntas.component';
 
@@ -12,10 +13,11 @@ import { PmpModalAgregarPreguntasComponent } from './pmp-modal-agregar-preguntas
   templateUrl: './pmp-configuracion-preguntas.component.html',
   styleUrls: ['./pmp-configuracion-preguntas.component.scss'],
 })
-export class PmpConfiguracionPreguntasComponent implements OnInit {
+export class PmpConfiguracionPreguntasComponent implements OnInit, OnDestroy {
   constructor(
     public dialog: MatDialog,
     private _Pregunta: PmpPreguntaService,
+    private _EsquemaExamen: PmpEsquemaExamenService,
     public alertaService:AlertaService,
   ){
 
@@ -32,6 +34,9 @@ export class PmpConfiguracionPreguntasComponent implements OnInit {
   searchValue5 = '';
   visible5 = false;
   listOfDisplayData: any = [];
+  /** Esquema del contenido del examen (ECO) que el administrador tiene seleccionado. */
+  public IdPmpEsquemaExamen = 0;
+  private suscripcion = new Subscription();
 
 
 
@@ -44,14 +49,25 @@ export class PmpConfiguracionPreguntasComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.ObtenerPreguntasPmp();
+    this.suscripcion.add(
+      this._EsquemaExamen.EsquemaSeleccionado$.subscribe((Id: number) => {
+        if (Id > 0) {
+          this.IdPmpEsquemaExamen = Id;
+          this.ObtenerPreguntasPmp();
+        }
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.suscripcion.unsubscribe();
   }
 
   ObtenerPreguntasPmp() {
     this.listOfDisplayData=undefined;
-    this._Pregunta.ObtenerPregunta().subscribe({
+    this._Pregunta.ObtenerPregunta(this.IdPmpEsquemaExamen).subscribe({
       next: (x: any) => {
-        this.datasource = x;
+        this.datasource = x != null ? x : [];
         this.listOfDisplayData = this.datasource;
       },
     });

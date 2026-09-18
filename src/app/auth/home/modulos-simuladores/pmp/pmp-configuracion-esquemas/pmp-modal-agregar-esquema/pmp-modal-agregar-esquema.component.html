@@ -1,0 +1,129 @@
+<div class="tituloModal">Configuración del esquema del examen</div>
+<form [formGroup]="formEsquema">
+  <div class="agregarEsquema">
+    <mat-dialog-content class="mat-typography">
+      <div class="contenedor" style="margin-top: 15px; display: flex">
+        <div class="inre">
+          <div class="ver">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Nombre del esquema</mat-label>
+              <input type="text" formControlName="Nombre" [maxLength]="100" matInput />
+              <mat-error *ngIf="formEsquema.invalid">Ingrese el nombre</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="inre">
+          <div class="ver">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Porcentaje mínimo de aprobación</mat-label>
+              <input
+                type="number"
+                formControlName="PorcentajeMinimoAprobacion"
+                min="0"
+                max="100"
+                matInput
+              />
+              <mat-error *ngIf="formEsquema.invalid">Campo requerido</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex">
+        <div class="inre">
+          <div class="ver">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Descripción</mat-label>
+              <input type="text" formControlName="Descripcion" [maxLength]="500" matInput />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class="inre" *ngIf="data == undefined">
+        <div class="ayuda">
+          El esquema se crea vacío y desactivado. Sus rangos de nivel se copian del esquema
+          activo y se pueden editar después.
+        </div>
+      </div>
+
+      <div class="inre" *ngIf="data != undefined">
+        <div class="ayuda">Rangos de nivel de este esquema</div>
+        <nz-table
+          #tablaNiveles
+          [nzData]="ParametrosNivel"
+          [nzShowPagination]="false"
+          nzTableLayout="fixed"
+        >
+          <thead>
+            <tr>
+              <th style="border: solid 1px #b2b2b2; text-align: center; background-color: #E7E7E7;color: #222222;">Promedio mínimo</th>
+              <th style="border: solid 1px #b2b2b2; text-align: center; background-color: #E7E7E7;color: #222222;">Promedio máximo</th>
+              <th style="border: solid 1px #b2b2b2; text-align: center; background-color: #E7E7E7;color: #222222;">N° intentos</th>
+              <th style="border: solid 1px #b2b2b2; text-align: center; background-color: #E7E7E7;color: #222222;">Nivel</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let nivel of tablaNiveles.data">
+              <td style="text-align: center; border: solid 1px #b2b2b2">
+                <input
+                  style="width: 5rem"
+                  max="100"
+                  min="0"
+                  type="number"
+                  nz-input
+                  [(ngModel)]="nivel.valorMinimo"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+              </td>
+              <td style="text-align: center; border: solid 1px #b2b2b2">
+                <input
+                  style="width: 5rem"
+                  max="100"
+                  min="0"
+                  type="number"
+                  nz-input
+                  [(ngModel)]="nivel.valorMaximo"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+              </td>
+              <td style="text-align: center; border: solid 1px #b2b2b2">
+                {{ nivel.numeroIntentos }}
+              </td>
+              <td style="text-align: center; border: solid 1px #b2b2b2">
+                {{ nivel.nombre }}
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </div>
+
+      <div class="crear" style="margin-top: 20px; margin-bottom: 20px">
+        <ng-container *ngIf="data == undefined">
+          <button
+            [disabled]="!formEsquema.valid"
+            style="background: #ff850c; color: white"
+            mat-flat-button
+            class="botonAgregar"
+            (click)="Agregar()"
+          >
+            Guardar Cambios
+          </button>
+        </ng-container>
+
+        <ng-container *ngIf="data != undefined">
+          <button
+            [disabled]="!formEsquema.valid"
+            style="background: #ff850c; color: white"
+            mat-flat-button
+            class="botonAgregar"
+            (click)="Editar()"
+          >
+            Actualizar
+          </button>
+        </ng-container>
+        <button mat-flat-button class="cancelar" (click)="Cancelar()">Cancelar</button>
+      </div>
+    </mat-dialog-content>
+  </div>
+</form>

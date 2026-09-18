@@ -12,6 +12,17 @@
       <mat-tab>
         <ng-template mat-tab-label>
           <div  class="contentHeaderM" >
+            <div *ngIf="!hide" class="titleMatr">Configuración de esquemas</div>
+          </div>
+        </ng-template>
+        <div class="pad-resp">
+          <app-pmp-configuracion-esquemas>
+          </app-pmp-configuracion-esquemas>
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <div  class="contentHeaderM" >
             <div *ngIf="!hide" class="titleMatr">Configuración de categorías</div>
           </div>
         </ng-template>

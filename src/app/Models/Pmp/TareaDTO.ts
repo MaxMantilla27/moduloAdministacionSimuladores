@@ -1,4 +1,6 @@
 export interface pmpAgregarTareaDTO {
+  /** Esquema del contenido del examen (ECO) al que debe pertenecer la categoria indicada */
+  IdPmpEsquemaExamen: number;
   IdSimuladorPmpDominio: number;
   Nombre: string;
   CantidadPreguntasPorExamen: number;
