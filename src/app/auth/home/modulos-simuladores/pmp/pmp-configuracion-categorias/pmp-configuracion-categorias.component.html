@@ -10,9 +10,9 @@
           preguntas apareceran para cada categoria en los modos entrenamiento y
           examen.
         </div>
-        <app-pmp-selector-esquema-examen></app-pmp-selector-esquema-examen>
-        <div>
+        <div class="filaAgregarEsquema">
           <button mat-button class="agregar2" (click)="agregar()">Añadir</button>
+          <app-pmp-selector-esquema-examen></app-pmp-selector-esquema-examen>
         </div>
 
         <div *ngIf="listaCategorias != undefined" id="test">
@@ -133,11 +133,11 @@
           cuantas preguntas apareceran para cada categoria en los modos
           entrenamiento y examen.
         </div>
-        <app-pmp-selector-esquema-examen></app-pmp-selector-esquema-examen>
-        <div>
+        <div class="filaAgregarEsquema">
           <button mat-button class="agregar2" (click)="agregarSubCategoria()">
             Añadir
           </button>
+          <app-pmp-selector-esquema-examen></app-pmp-selector-esquema-examen>
         </div>
         <div *ngIf="listaSubCategorias != undefined" id="test">
           <nz-table #basicTable [nzData]="listOfDisplayData2">

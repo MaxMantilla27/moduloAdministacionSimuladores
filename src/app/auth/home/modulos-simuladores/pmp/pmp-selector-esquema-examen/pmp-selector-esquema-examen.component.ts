@@ -74,6 +74,14 @@ export class PmpSelectorEsquemaExamenComponent implements OnInit, OnDestroy {
     });
   }
 
+  /** El combo cerrado muestra solo el nombre; la marca "(activo)" queda en la lista. */
+  NombreEsquemaSeleccionado(): string {
+    const esquema = this.listaEsquemas.find(
+      (y) => y.idPmpEsquemaExamen == this.IdPmpEsquemaExamen
+    );
+    return esquema != undefined ? esquema.nombre : '';
+  }
+
   CambiarEsquema(IdPmpEsquemaExamen: number) {
     this._EsquemaExamen.SeleccionarEsquema(IdPmpEsquemaExamen);
   }

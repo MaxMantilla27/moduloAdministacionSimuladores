@@ -23,7 +23,7 @@
             <th style="border: solid 1px #b2b2b2;width:100px; text-align: center; background-color: #E7E7E7;color: #222222;">Preguntas</th>
             <th style="border: solid 1px #b2b2b2;width:100px; text-align: center; background-color: #E7E7E7;color: #222222;">Simulaciones</th>
             <th style="border: solid 1px #b2b2b2;width:100px; text-align: center; background-color: #E7E7E7;color: #222222;">Versión activa</th>
-            <th style="border: solid 1px #b2b2b2;width:120px; text-align: center; background-color: #E7E7E7;color: #222222;">Opciones</th>
+            <th style="border: solid 1px #b2b2b2;width:250px; text-align: center; background-color: #E7E7E7;color: #222222;">Opciones</th>
           </tr>
         </thead>
         <tbody>
@@ -52,42 +52,41 @@
             <td style="text-align: center;border: solid 1px #b2b2b2;">
               <label
                 nz-radio
+                class="radioVersionActiva"
                 [ngModel]="data.activo"
                 [nzDisabled]="true"
                 [ngModelOptions]="{ standalone: true }"
               ></label>
             </td>
             <td style="text-align: center;border: solid 1px #b2b2b2;">
-              <ng-container>
+              <div class="opcionesEsquema">
+                <button
+                  *ngIf="!data.activo"
+                  mat-button
+                  class="activarEsquema"
+                  title="Activar el esquema"
+                  (click)="Activar(data)"
+                >
+                  Activar
+                </button>
                 <button
                   mat-button
-                  class="edit"
+                  class="editarEsquema"
                   title="Editar el esquema"
                   (click)="Editar(data)"
                 >
                   <i class="material-icons">edit</i>
                 </button>
-              </ng-container>
-              <ng-container *ngIf="!data.activo">
                 <button
+                  *ngIf="data.sePuedeEliminar"
                   mat-button
-                  class="activar"
-                  title="Activar el esquema"
-                  (click)="Activar(data)"
-                >
-                  <i class="material-icons">check_circle</i>
-                </button>
-              </ng-container>
-              <ng-container *ngIf="data.sePuedeEliminar">
-                <button
-                  mat-button
-                  class="delete"
+                  class="eliminarEsquema"
                   title="Eliminar el esquema"
                   (click)="Eliminar(data)"
                 >
                   <i class="material-icons">delete</i>
                 </button>
-              </ng-container>
+              </div>
             </td>
           </tr>
         </tbody>

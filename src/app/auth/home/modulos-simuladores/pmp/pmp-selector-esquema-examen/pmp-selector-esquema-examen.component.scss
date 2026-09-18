@@ -1,27 +1,22 @@
+/* Se ve como un boton, del mismo alto que "Añadir", y se coloca a su lado. Este componente usa
+   ViewEncapsulation.None, por eso cada regla empieza con .selectorEsquemaExamen. */
 .selectorEsquemaExamen {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  margin-bottom: 10px;
+  width: 150px;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 4px;
+  background-color: #4aa3c4;
+  cursor: pointer;
 }
 
-.tituloSelector {
-  color: #7e7e7e;
-  font-size: 14px;
-  margin-right: 10px;
-  /* Sin esto el titulo se parte en dos lineas cuando la pantalla es angosta. */
-  flex: 0 0 auto;
-  white-space: nowrap;
+.selectorEsquemaExamen .mat-select {
+  font-weight: bold;
+  text-align: center;
 }
 
-/* Las pantallas del simulador declaran mat-form-field al 100% de ancho y este componente usa
-   ViewEncapsulation.None, asi que el ancho del combo se fija con el selector completo. */
-.selectorEsquemaExamen .mat-form-field.campoSelector {
-  flex: 0 0 auto;
-  width: 20rem;
-}
-
-.selectorEsquemaExamen
-  .mat-form-field.mat-form-field-appearance-outline
-  > div.mat-form-field-infix {
-  padding: 0.5em 0 0.5em 0;
+.selectorEsquemaExamen .mat-select-value,
+.selectorEsquemaExamen .mat-select-arrow {
+  color: white;
 }

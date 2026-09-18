@@ -57,3 +57,10 @@
   color: white;
   margin-bottom: 15px !important;
 }
+
+/* Boton "Añadir" y combo del esquema en la misma fila. */
+.filaAgregarEsquema {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
